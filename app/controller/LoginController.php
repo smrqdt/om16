@@ -22,7 +22,7 @@ class LoginController extends Controller {
             }
             $this->app->flashNow('error', $this->errorOutput($v->errors()));
         }
-        $this->render('login.tpl');
+        $this->render('login/login.tpl');
     }
 
     public function signup(){
