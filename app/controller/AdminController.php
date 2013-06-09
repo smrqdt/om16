@@ -12,7 +12,8 @@ class AdminController extends Controller{
 				"orders" => $orders,
 				"users" => $users,
 				"items" => $items,
-				"noCartItems"=> count($cart)
+				"noCartItems"=> count($cart),
+				"user" => $this->user
 		);
 		
 		$this->render("admin/index.tpl", $data);
