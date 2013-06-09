@@ -26,27 +26,30 @@ class LoginController extends Controller {
     }
 
     public function signup(){
+    	print_r($_SESSION);
         if ($this->app->request()->isPost()) {
             $v = $this->validator($this->post());
-            $v->rule('required', array('email', 'username', 'password'));
+            $v->rule('required', array('email', 'username', 'password', 'password_verify', 'address'));
             $v->rule('email', 'email');
             $v->rule('length', 'username', 4, 22);
             $v->rule('length', 'password', 3, 11);
+            $v->rule('equals', 'password', 'password_verify');
             if ($v->validate()) {
-                $u = R::dispense('users');
+            	$u = new User();
                 $u->name = $this->post('name');
                 $u->email = $this->post('email');
                 $u->username = $this->post('username');
+                $u->address = $this->post('address');
                 $u->password = $this->auth->getProvider()->hashPassword($this->post('password'));
-                $u->ip_address = $this->app->request()->getIp();
-                R::store($u);
+                $u->save();
 
                 $this->app->flash('info', 'Your registration was successfull');
+                $this->auth->login($this->post('username'), $this->post('password'), $this->post('remember'));
                 $this->redirect('home');
             }
-            $this->app->flashNow('error', $this->errorOutput($v->errors()));
+            $this->app->flash('error', $this->errorOutput($v->errors()));
         }
-        $this->render('login/signup');
+        $this->render('login/signup.tpl');
     }
 
     public function logout(){

@@ -35,6 +35,7 @@ abstract class Controller {
 	public function render($template, $data = array(), $status = null){
 		$this->app->view()->appendData(array('auth' => $this->auth));
 		$data['path'] = APP_PATH;
+		$data['flash'] = $_SESSION['slim.flash'];
 		$this->app->render($template, $data, $status);
 	}
 

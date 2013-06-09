@@ -12,7 +12,7 @@
               {if $user['logged_in']}
               Logged in as {$user['email']} <a href="{$path}index.php/logout" id="logoutButton" class="btn btn-small btn-inverse navbar-link">Logout</a>
               {else}
-              <a href="#" id="signupButton" class="btn btn-small btn-inverse navbar-link">Signup</a>
+              <a href="{$path}index.php/signup" id="signupButton" class="btn btn-small btn-inverse navbar-link">Signup</a>
               <a href="{$path}index.php/login" id="loginButton" class="btn btn-small btn-inverse navbar-link">Login</a>
               {/if}
             </p>
@@ -27,3 +27,5 @@
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
+{include file="flash.tpl"}
+    

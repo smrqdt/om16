@@ -51,6 +51,9 @@ body {
 }
 
 #logoutButton{
-	margin-top: 0px;
 	margin-left: 5px;
+}
+
+#loginButton, #signupButton, #logoutButton {
+	margin-top: 0px;
 }

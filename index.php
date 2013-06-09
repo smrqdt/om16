@@ -52,6 +52,7 @@ $adminController = new AdminController();
 // Login
 $app->map('/login/', array($loginController, 'index'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
+$app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 
 // Shop
 $app->get('/', array($shopController, 'index'))->name('home');

@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
-<h1>Order completed</h1>
+<h1>Order status</h1>
 
 <div class="span5">
 <h6>Shipping address:</h6>
@@ -9,6 +9,14 @@
 
 <div class="span5">
 <table class="table">
+	<tr>
+		<th>
+			Billing#
+		</th>
+		<td>
+			{$order->bill}
+		</td>
+	</tr>
 	<tr>
 		<th>
 			Ordered
