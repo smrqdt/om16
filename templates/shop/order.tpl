@@ -4,7 +4,13 @@
 
 <div class="span5">
 <h6>Shipping address:</h6>
-{$order->getUser()->address}
+{$order->getUser()->name}
+{$order->getUser()->lastname}
+{$order->getUser()->street}
+{$order->getUser()->street_number}
+{$order->getUser()->plz}
+{$order->getUser()->city}
+{$order->getUser()->country}
 </div>
 
 <div class="span5">

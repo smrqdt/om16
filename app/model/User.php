@@ -6,7 +6,13 @@ class User implements DBObject {
 	public $email = null;
 	public $username = null;
 	public $password = null;
-	public $address = null;
+	public $name = null;
+	public $lastname = null;
+	public $street = null;
+	public $street_number = null;
+	public $plz = null;
+	public $city = null;
+	public $country = null;
 	public $admin = null;
 
 	public function __construct() {
@@ -26,8 +32,26 @@ class User implements DBObject {
 			if(array_key_exists("password", $params)){
 				$this->password = $params["password"];
 			}
-			if(array_key_exists("address", $params)){
-				$this->address = $params["address"];
+			if(array_key_exists("name", $params)){
+				$this->name = $params["name"];
+			}
+			if(array_key_exists("lastname", $params)){
+				$this->lastname = $params["lastname"];
+			}
+			if(array_key_exists("street", $params)){
+				$this->street = $params["street"];
+			}
+			if(array_key_exists("street_number", $params)){
+				$this->street_number = $params["street_number"];
+			}
+			if(array_key_exists("plz", $params)){
+				$this->plz = $params["plz"];
+			}
+			if(array_key_exists("city", $params)){
+				$this->city = $params["city"];
+			}
+			if(array_key_exists("country", $params)){
+				$this->country = $params["country"];
 			}
 			if(array_key_exists("admin", $params)){
 				$this->admin = $params["admin"];
@@ -51,12 +75,18 @@ class User implements DBObject {
 		$db = Database::get();
 
 		if( $this->id == null ) {
-			$result = $db->insert( "INSERT INTO tbl_user ( email, username, password, address) " .
-					"VALUES ( :email, :username, :password, :address);",
+			$result = $db->insert( "INSERT INTO tbl_user ( email, username, password, name, lastname, street, street_number, plz, city, country) " .
+					"VALUES ( :email, :username, :password, :name, :lastname, :street, :street_number, :plz, :city, :country);",
 					array( ":email" => 				$this->email,
 							":username" => 			$this->username,
 							":password" => 			$this->password,
-							":address" => 			$this->address
+							":name" => 				$this->name,
+							":lastname" => 			$this->lastname,
+							":street" => 			$this->street,
+							":street_number" => 	$this->street_number,
+							":plz" => 				$this->plz,
+							":city" => 				$this->city,
+							":country" => 			$this->country
 					));
 
 			$this->id = $db->lastInsertId();
@@ -68,7 +98,13 @@ class User implements DBObject {
 					array( ":email" => 				$this->email,
 							":username" => 			$this->username,
 							":password" => 			$this->password,
-							":address" => 			$this->address,
+							":name" => 				$this->name,
+							":lastname" => 			$this->lastname,
+							":street" => 			$this->street,
+							":street_number" => 	$this->street_number,
+							":plz" => 				$this->plz,
+							":city" => 				$this->city,
+							":country" => 			$this->country,
 							":admin" => 			$this->admin,
 							":id" =>				$this->id ) );
 
