@@ -19,7 +19,7 @@ class LoginController extends Controller {
 						$this->redirect('home');
 					}
 				}
-				$this->app->flash('error', "Login failed!");
+				$this->app->flashNow('error', "Login failed!");
 			}
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
 		}
@@ -47,7 +47,7 @@ class LoginController extends Controller {
 				$this->auth->login($this->post('username'), $this->post('password'), $this->post('remember'));
 				$this->redirect('home');
 			}
-			$this->app->flash('error', $this->errorOutput($v->errors()));
+			$this->app->flashNow('error', $this->errorOutput($v->errors()));
 		}
 		$this->render('login/signup.tpl');
 	}
