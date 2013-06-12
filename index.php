@@ -7,20 +7,26 @@ require_once 'libs/Slim/View.php';
 require_once 'libs/Slim/Middleware.php';
 require_once 'libs/Slim/Extras/Views/Smarty.php';
 require_once 'libs/Slim/Extras/Log/DateTimeFileWriter.php';
+require_once 'libs/ActiveRecord.php';
 require_once 'libs/Strong/Strong.php';
 require_once 'libs/Slim/Extras/Middleware/StrongAuth.php';
-require_once 'Database.php';
-require_once 'app/DBObject.php';
+
 require_once 'app/model/Size.php';
 require_once 'app/model/Item.php';
 require_once 'app/model/User.php';
 require_once 'app/model/Order.php';
 require_once 'app/model/OrderItem.php';
+
 require_once 'app/Controller.php';
 require_once 'app/controller/LoginController.php';
 require_once 'app/controller/ShopController.php';
 require_once 'app/controller/AdminController.php';
 require_once 'config.php';
+
+ActiveRecord\Config::initialize(function($cfg) {
+	$cfg->set_model_directory('.');
+	$cfg->set_connections(array('development' => DB_PROVIDER.'://'.DB_USERNAME.':'.DB_PASSWORD.'@'.DB_HOSTNAME.'/'.DB_NAME));
+});
 
 session_start();
 \Slim\Slim::registerAutoloader();
@@ -32,6 +38,7 @@ $app = new \Slim\Slim(array(
 		'log.level' => 4,
 		'log.enabled' => true
 ));
+
 
 $authConfig = array(
 		'provider' => 'PDO',

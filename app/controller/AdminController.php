@@ -5,10 +5,10 @@ class AdminController extends Controller{
 	public function index(){
 		$this->checkAdmin();
 
-		$orders = Order::getAll();
+		$orders = Order::all();
 		$cart = $this->getCart();
-		$users = User::getAll();
-		$items = Item::getAll();
+		$users = User::all();
+		$items = Item::all();
 
 		$data = array(
 				"orders" => $orders,

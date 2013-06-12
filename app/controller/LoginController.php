@@ -29,8 +29,8 @@ class LoginController extends Controller {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'street_number', 'plz', 'city', 'country'));
 			$v->rule('email', 'email');
-			$v->rule('length', 'username', 3);
-			$v->rule('length', 'password', 6);
+			$v->rule('length', 'username', 3, 128);
+			$v->rule('length', 'password', 6, 256);
 			$v->rule('equals', 'password', 'password_verify');
 			if ($v->validate()) {
 				$u = new User();
@@ -63,6 +63,7 @@ class LoginController extends Controller {
 	}
 
 	public function forgot(){
+		// TODO
 		if ($this->auth->loggedIn()) {
 			$this->redirect('/', false);
 		}

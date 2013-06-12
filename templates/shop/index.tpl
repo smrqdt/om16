@@ -10,11 +10,11 @@
 		</h4>
 		<img src="{$item->image}" class="img-polaroid" style="background-color:#ddd; height:240px; width:240px;"/>
 		<p>{$item->description}</p>
-		<h5>{$item->price} €</h5>
+		<h5>{$item->price/100.0} €</h5>
 		<form method="post" action="{$path}index.php/addItem/{$item->id}">
-		{if $item->getSizes()}
+		{if $item->sizes}
 			<select id="size" name="size" class="btn span6">
-			{foreach from=$item->getSizes() item=size}
+			{foreach from=$item->sizes item=size}
 				<option>{$size->size}</option>
 			{/foreach}
 			<select>

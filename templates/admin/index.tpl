@@ -60,10 +60,10 @@
 				{$order->bill}
 			</td>
 			<td>
-				{$order->getUser()->email}
+				{$order->user->email}
 			</td>
 			<td>
-				{count($order->getItems())}
+				{count($order->orderitems)}
 			</td>
 			<td>
 				{$order->hashlink}
@@ -165,7 +165,7 @@
 			{$user->admin}
 		</td>
 		<td>
-			{count($user->getOrders())}
+			{count($user->orders)}
 		</td>
 		<td>
 			<a href="#" class="btn"><i class="icon-pencil"></i></a>
@@ -225,7 +225,7 @@
 				{$item->price} €
 			</td>
 			<td>
-				{count($item->getSizes())}
+				{count($item->sizes)}
 			</td>
 			<td>
 				<img src="{$item->image}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />

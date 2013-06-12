@@ -4,7 +4,7 @@ class ShopController extends Controller {
 
 	public function index(){
 			
-		$items = Item::getAll();
+		$items = Item::all();
 		$cart = $this->getCart();
 		if(!isset($this->user) || $this->user == null){
 			$this->user = array("logged_in"=> false);
@@ -79,18 +79,18 @@ class ShopController extends Controller {
 		foreach ($cart as $item){
 			$sum += ($item["item"]->price/100)*$item["amount"];
 		}
-		
+
 		if(!isset($this->user) || $this->user == null){
 			$this->user = array("logged_in"=> false);
 		}
-		
+
 		$data = array(
 				"cart" => $cart,
 				"noCartItems" => count($cart),
 				"sum" => $sum,
 				"user" => $this->user
 		);
-		
+
 		if(isset($this->user["id"])){
 			$user = User::find($this->user["id"]);
 			$data["userObj"] = $user;
@@ -101,23 +101,24 @@ class ShopController extends Controller {
 	}
 
 	public function submitOrder(){
-		$order = new Order();
+
 		$user = User::find($this->user["id"]);
-		$order->user = $user->id;
+
 		// TODO: generate order and bill numbers
-		$order->number = "asdf";
-		$order->bill = "asdf";
-		$order->save();
+		$order = $user->create_orders(array(
+				'number' => "asdf",
+				'bill' => "asdf",
+				'hashlink'=> $this->gen_uuid()
+		));
+
 		$cart = $this->getCart();
 		foreach($cart as $ci){
-			$orderItem = new OrderItem(array(
-					"item" => $ci["item"]->id,
-					"order" => $order->id,
+			$order->create_orderitems(array(
+					"item_id" => $ci["item"]->id,
 					"amount" => $ci["amount"],
 					"size" => $ci["size"]
 			)
 			);
-			$orderItem->save();
 		}
 		$_SESSION["cart"] = array();
 
@@ -133,20 +134,31 @@ class ShopController extends Controller {
 	}
 
 	public function order($hash){
-		$order = Order::findHash($hash);
-		$cart = $this->getCart();
-		
-		if(!isset($this->user) || $this->user == null){
-			$this->user = array("logged_in"=> false);
-		}
-
-		$data = array(
-				"order" => $order,
-				"noCartItems"=> count($cart),
-				"user" => $this->user
+		$order = Order::find(
+				'first',
+				array(
+						'hashlink' => $hash
+				)
 		);
 
-		$this->render("shop/order.tpl", $data);
+		if($order == null){
+			$this->app->flashNow('error', "Order could not be found!");
+			$this->index();
+		}else{
+			$cart = $this->getCart();
+
+			if(!isset($this->user) || $this->user == null){
+				$this->user = array("logged_in"=> false);
+			}
+
+			$data = array(
+					"order" => $order,
+					"noCartItems"=> count($cart),
+					"user" => $this->user
+			);
+
+			$this->render("shop/order.tpl", $data);
+		}
 	}
 
 	public function noSignup(){
@@ -179,5 +191,27 @@ class ShopController extends Controller {
 			$cart = $_SESSION["cart"];
 		}
 		return $cart;
+	}
+
+	private function gen_uuid() {
+		return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+				// 32 bits for "time_low"
+				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+
+				// 16 bits for "time_mid"
+				mt_rand( 0, 0xffff ),
+
+				// 16 bits for "time_hi_and_version",
+				// four most significant bits holds version number 4
+				mt_rand( 0, 0x0fff ) | 0x4000,
+
+				// 16 bits, 8 bits for "clk_seq_hi_res",
+				// 8 bits for "clk_seq_low",
+				// two most significant bits holds zero and one for variant DCE1.1
+				mt_rand( 0, 0x3fff ) | 0x8000,
+
+				// 48 bits for "node"
+				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+		);
 	}
 }
