@@ -44,7 +44,7 @@ class LoginController extends Controller {
 				$u->plz = $this->post('plz');
 				$u->city = $this->post('city');
 				$u->country = $this->post('country');
-				$u->password = $this->auth->getProvider()->hashPassword($this->post('password'));
+				$u->password = $this->auth->getProvider()->initPassword($this->post('password'));
 				$u->save();
 
 				$this->app->flash('info', 'Your registration was successfull');

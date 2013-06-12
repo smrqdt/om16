@@ -39,10 +39,8 @@ $app = new \Slim\Slim(array(
 		'log.enabled' => true
 ));
 
-
 $authConfig = array(
-		'provider' => 'PDO',
-		'pdo' => new PDO(DB_PROVIDER.":host=".DB_HOSTNAME.";dbname=".DB_NAME, DB_USERNAME, DB_PASSWORD),
+		'provider' => 'AuthProvider',
 		'auth.type' => 'form',
 		'login.url' => APP_PATH.'index.php/login',
 		'security.urls' => array(
