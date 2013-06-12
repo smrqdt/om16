@@ -153,8 +153,14 @@ class ShopController extends Controller {
 		// TODO add salt to generated password
 		$u = array(
 				"email" => $this->post("email"),
-				"address" => $this->post("address"),
-				"password" => md5($this->post("email").$this->post("address")),
+				"name" => $this->post("name"),
+				"lastname" => $this->post("lastname"),
+				"street" => $this->post("street"),
+				"street_number" => $this->post("street_number"),
+				"plz" => $this->post("plz"),
+				"city" => $this->post("city"),
+				"country" => $this->post("country"),
+				"password" => md5($this->post("email").$this->post("plz")),
 				"logged_in" => false
 		);
 		print_r($u);

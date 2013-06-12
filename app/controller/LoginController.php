@@ -27,7 +27,7 @@ class LoginController extends Controller {
 	public function signup(){
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
-			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'address'));
+			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'street_number', 'plz', 'city', 'country'));
 			$v->rule('email', 'email');
 			$v->rule('length', 'username', 3);
 			$v->rule('length', 'password', 6);
@@ -37,7 +37,13 @@ class LoginController extends Controller {
 				$u->name = $this->post('name');
 				$u->email = $this->post('email');
 				$u->username = $this->post('username');
-				$u->address = $this->post('address');
+				$u->name = $this->post('name');
+				$u->lastname = $this->post('lastname');
+				$u->street = $this->post('street');
+				$u->street_number = $this->post('street_number');
+				$u->plz = $this->post('plz');
+				$u->city = $this->post('city');
+				$u->country = $this->post('country');
 				$u->password = $this->auth->getProvider()->hashPassword($this->post('password'));
 				$u->save();
 

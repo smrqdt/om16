@@ -95,7 +95,25 @@
 				email
 			</th>
 			<th>
-				address
+				name
+			</th>
+			<th>
+				lastname
+			</th>
+			<th>
+				street
+			</th>
+			<th>
+				street_number
+			</th>
+			<th>
+				plz
+			</th>
+			<th>
+				city
+			</th>
+			<th>
+				country
 			</th>
 			<th>
 				admin
@@ -123,7 +141,25 @@
 			{$user->email}
 		</td>
 		<td>
-			{$user->address}
+			{$user->name}
+		</td>
+		<td>
+			{$user->lastname}
+		</td>
+		<td>
+			{$user->street}
+		</td>
+		<td>
+			{$user->street_number}
+		</td>
+		<td>
+			{$user->plz}
+		</td>
+		<td>
+			{$user->city}
+		</td>
+		<td>
+			{$user->country}
 		</td>
 		<td>
 			{$user->admin}

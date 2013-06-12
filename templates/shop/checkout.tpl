@@ -36,10 +36,21 @@
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="address">Address</label>
+    <label class="control-label" for="name">Name</label>
+    <label class="control-label" for="lastname">Lastname</label>
+    <label class="control-label" for="street">Street</label>
+    <label class="control-label" for="street_number">Street Number</label>
+    <label class="control-label" for="plz">PLZ</label>
+    <label class="control-label" for="city">City</label>
+    <label class="control-label" for="country">Country</label>
     <div class="controls">
-      <textarea id="address" name="address" rows="4" placeholder="Address"></textarea>
-      <span class="helpline">Firstname, Lastname, Street Building, Postcode, City, Country</span>
+    	<input type="text" id="name" name="name" placeholder="Name">
+    	<input type="text" id="lastname" name="lastname" placeholder="Lastname">
+    	<input type="text" id="street" name="street" placeholder="Street">
+    	<input type="text" id="street_number" name="street_number" placeholder="Street Number">
+    	<input type="text" id="plz" name="plz" placeholder="PLZ">
+    	<input type="text" id="city" name="city" placeholder="City">
+    	<input type="text" id="country" name="country" placeholder="Country">
     </div>
   </div>
   <div class="controls">

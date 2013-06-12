@@ -98,7 +98,13 @@ class PDO extends \Strong\Provider
             'id' => $user->id,
             'username' => $user->username,
             'email' => $user->email,
-            'address' => $user->address,
+            'name' => $user->name,
+            'lastname' => $user->lastname,
+            'street' => $user->street,
+            'street_number' => $user->street_number,
+            'plz' => $user->plz,
+            'country' => $user->country,
+            'city' => $user->city,
             'logged_in' => true
         );
 

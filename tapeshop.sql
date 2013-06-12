@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.3
+-- version 3.5.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Jun 2013 um 18:41
--- Server Version: 5.6.10
--- PHP-Version: 5.3.15
+-- Erstellungszeit: 10. Jun 2013 um 18:25
+-- Server Version: 5.5.29-log
+-- PHP-Version: 5.3.21
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `tapeshop`
 --
-CREATE DATABASE IF NOT EXISTS `tapeshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `tapeshop`;
 
 -- --------------------------------------------------------
 
@@ -156,7 +154,13 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `username` varchar(128) DEFAULT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `address` varchar(512) NOT NULL,
+  `name` varchar(512) NOT NULL,
+  `lastname` varchar(512) NOT NULL,
+  `street` varchar(512) NOT NULL,
+  `street_number` int(5) NOT NULL,
+  `plz` int(5) NOT NULL,
+  `city` varchar(512) NOT NULL,
+  `country` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
@@ -165,20 +169,20 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 -- Daten für Tabelle `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id`, `username`, `password`, `email`, `address`, `admin`) VALUES
-(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', 'test1@example.com', 'Max Muster<br/> Musterstraße 10<br/> 12345 Musterstadt<br/> Deutschland', 0),
-(6, 'test6', 'pass6', 'test6@example.com', '', 0),
-(18, 'test18', 'pass18', 'test18@example.com', '', 0),
-(19, 'test19', 'pass19', 'test19@example.com', '', 0),
-(20, 'test20', 'pass20', 'test20@example.com', '', 0),
-(21, 'test21', 'pass21', 'test21@example.com', '', 0),
-(22, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'hfjdksla\r\nfjdskhfdskalfhds\r\ndsklfjdsö\r\n', 0),
-(23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'hfjdksla\r\nfjdskhfdskalfhds\r\ndsklfjdsö\r\n', 0),
-(24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'hfjdksla\r\nfjdskhfdskalfhds\r\ndsklfjdsö\r\n', 0),
-(25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 'dasjfklsöfj\r\nfdskalöfjskdlö\r\nfjsdklöafs', 0),
-(26, NULL, 'bff149a0b87f5b0e00d9dd364e9ddaa0', 'asd', 'asdas', 0),
-(27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 'fhsjklaf', 0),
-(28, 'tape', '098f6bcd4621d373cade4e832627b4f6', '', '', 1);
+INSERT INTO `tbl_user` (`id`, `username`, `password`, `email`, `name`, `lastname`, `street`, `street_number`, `plz`, `city`, `country`, `admin`) VALUES
+(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', 'test1@example.com', 'Hans ', 'Wurst', 'teststr.', 5, 56142, 'Dortmund', 'Deutschland', 0),
+(6, 'test6', 'pass6', 'test6@example.com', 'Klaus', 'Müller', 'Ingostr.', 5, 14414, 'Darmstadt', 'Deutschland', 0),
+(18, 'test18', 'pass18', 'test18@example.com', 'Inga', 'Schmidt', 'Taunusstr.', 54, 51515, 'Köln', 'Deutschland', 0),
+(19, 'test19', 'pass19', 'test19@example.com', 'Horst', 'Meyer', 'Pommernstr.', 12, 51515, 'Haintchen', 'Deutschland', 0),
+(20, 'test20', 'pass20', 'test20@example.com', 'Klaus', 'Willert', 'Hauptstr.', 18, 51515, 'Frankfurt am Main', 'Deutschland', 0),
+(21, 'test21', 'pass21', 'test21@example.com', 'Monika', 'Meyer', 'Arkaden', 12, 51515, 'Berlin', 'Deutschland', 0),
+(22, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Martin', 'Bürgermeister', 'Duisbergstraße', 4, 60320, 'Frankfurt am Main', 'Deutschland', 0),
+(23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Robert', 'Kriese', 'Schwalbacher Straße', 12, 65185, 'Wiesbaden', 'Deutschland', 0),
+(24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Benny', 'Bilderberg', 'Büchnerweg', 12, 51515, 'Hannover', 'Deutschland', 0),
+(25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 'Richard', 'Wagner', 'Beethovenallee', 12, 51533, 'Bremen', 'Deutschland', 0),
+(26, NULL, 'bff149a0b87f5b0e00d9dd364e9ddaa0', 'asd', 'Klaus', 'Kinski', 'Draculaweg', 18, 51593, 'München', 'Deutschland', 0),
+(27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 'Hans', 'Urmel', 'Inselweg', 524, 98484, 'Trier', 'Deutschland', 0),
+(28, 'tape', '098f6bcd4621d373cade4e832627b4f6', '', '', '', '', 0, 0, '', '', 1);
 
 --
 -- Constraints der exportierten Tabellen

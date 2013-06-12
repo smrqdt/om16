@@ -3,7 +3,13 @@
 <h1>Review Order</h1>
 
 {$userObj->email}
-{$userObj->address}
+{$userObj->name}
+{$userObj->lastname}
+{$userObj->street}
+{$userObj->street_number}
+{$userObj->plz}
+{$userObj->city}
+{$userObj->country}
 
 {include file="shop/cartItems.tpl"}
 
