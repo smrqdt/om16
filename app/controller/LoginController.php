@@ -6,8 +6,6 @@ class LoginController extends Controller {
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'password'));
-			$v->rule('length', 'email', 4, 22);
-			$v->rule('length', 'password', 3, 11);
 			if ($v->validate()) {
 				if ($this->auth->login($this->post('email'), $this->post('password'))) {
 					$this->app->flash('info', 'Your login was successfull');
@@ -31,8 +29,8 @@ class LoginController extends Controller {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'address'));
 			$v->rule('email', 'email');
-			$v->rule('length', 'username', 4, 22);
-			$v->rule('length', 'password', 3, 11);
+			$v->rule('length', 'username', 3);
+			$v->rule('length', 'password', 6);
 			$v->rule('equals', 'password', 'password_verify');
 			if ($v->validate()) {
 				$u = new User();
