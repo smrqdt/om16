@@ -226,7 +226,7 @@
 				{$item->description}
 			</td>
 			<td>
-				{$item->price} €
+				{$item->price/100} €
 			</td>
 			<td>
 				{count($item->sizes)}

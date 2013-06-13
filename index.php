@@ -32,6 +32,7 @@ ActiveRecord\Config::initialize(function($cfg) {
 });
 
 session_start();
+
 \Slim\Slim::registerAutoloader();
 
 $smartyView = new \Slim\Extras\Views\Smarty();
@@ -88,4 +89,3 @@ $app->get('/admin', array($adminController, 'index'))->name('admin');
 
 
 $app->run();
-

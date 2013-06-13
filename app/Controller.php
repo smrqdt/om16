@@ -33,7 +33,6 @@ abstract class Controller {
 	}
 
 	public function render($template, $data = array(), $status = null){
-		$this->app->view()->appendData(array('auth' => $this->auth));
 		$data['path'] = APP_PATH;
 		$this->app->render($template, $data, $status);
 	}
@@ -51,6 +50,9 @@ abstract class Controller {
 	}
 	
 	// helper function needed accross controllers
+	/**
+	 * @return The current cart or a dummy (emphty array.)
+	 */
 	protected function getCart(){
 		$cart = array();
 		if (isset($_SESSION["cart"])) {
@@ -59,6 +61,9 @@ abstract class Controller {
 		return $cart;
 	}
 	
+	/**
+	 * @return A generated UUID.
+	 */
 	protected function gen_uuid() {
 		return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 				// 32 bits for "time_low"
@@ -81,6 +86,9 @@ abstract class Controller {
 		);
 	}
 	
+	/**
+	 * Check if the current user has admi privileges
+	 */
 	protected function checkAdmin(){
 		if(isset($this->user)){
 			$user= User::find($this->user["id"]);

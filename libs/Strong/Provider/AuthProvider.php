@@ -65,7 +65,8 @@ class AuthProvider extends \Strong\Provider {
 				'plz' => $user->plz,
 				'country' => $user->country,
 				'city' => $user->city,
-				'logged_in' => true
+				'logged_in' => true,
+				'admin' => $user->admin
 		);
 
 		return parent::completeLogin($userInfo);
