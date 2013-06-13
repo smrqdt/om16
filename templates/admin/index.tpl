@@ -75,7 +75,9 @@
 				<a href="{$path}index.php/admin/order/edit/{$order->id}" class="btn"><i class="icon-pencil"></i></a>
 			</td>
 			<td>
-				<a href="{$path}index.php/admin/order/delete/{$order->id}" class="btn"><i class="icon-trash"></i></a>
+				<form method="post" action="{$path}index.php/order/delete/{$order->id}" style="display:inline">
+					<button type="submit" class="btn"><i class="icon-trash"></i></button>
+				</form>
 			</td>
 		</tr>
 		{/foreach}
@@ -171,7 +173,9 @@
 			<a href="#" class="btn"><i class="icon-pencil"></i></a>
 		</td>
 		<td>
-			<a href="{$path}index.php/admin/user/delete/{$user->id}" class="btn btn-error"><i class="icon-trash"></i></a>
+			<form method="post" action="{$path}index.php/user/delete/{$user->id}" style="display:inline">
+				<button type="submit" class="btn"><i class="icon-trash"></i></button>
+			</form>
 		</td>
 	</tr>
 	{/foreach}
