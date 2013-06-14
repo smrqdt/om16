@@ -24,7 +24,19 @@ class ItemController extends Controller {
 		$item = Item::find($id);
 		if($item != null){
 			if($this->app->request()->isPost()){
-				//submit changes
+				$v = $this->validator($this->post());
+				$v->rule('required', array('name', 'price'));
+				$v->rule('numeric', array('price'));
+				if($v->validate()){
+					$item->name = $this->post("name");
+					$item->description = $this->post("description");
+					$item->price = $this->post("price") * 100;
+					// TODO image upload for items
+// 					$item->image = $this->post("image");
+					$item->save();
+				}else{
+					$this->app->flashNow('error', $this->errorOutput($v->errors()));
+				}
 			}
 			
 			$cart = $this->getCart();
@@ -41,12 +53,17 @@ class ItemController extends Controller {
 		}
 	}
 	
+	public function delete($id){
+		$item = Item::find($id);
+		$item->delete();
+		$this->redirect('adminitems');
+	}
+	
 	public function addSize($id){
 		$this->checkAdmin();
 		$item = Item::find($id);
 		if($item != null){
 			if($this->app->request()->isPost()){
-				//submit changes
 				$item->create_sizes(array(
 						"size" => $this->post("size")
 				));

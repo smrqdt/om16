@@ -88,13 +88,14 @@ $app->post('/user/delete/:id', array($userController, 'deleteUser'));
 $itemController = new ItemController();
 $app->get('/item/:id', array($itemController, 'show'));
 $app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
+$app->post('/item/delete/:id', array($itemController, 'delete'));
 $app->post('/item/:id/addsize', array($itemController, 'addSize'));
 $app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
 
 // Admin routings
 $adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
-$app->get('/admin/items', array($adminController, 'items'));
+$app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 
 
 $app->run();

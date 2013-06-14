@@ -20,7 +20,7 @@
 
 {if isset($smarty.session['auth_user']) && $smarty.session['auth_user']['admin']}
 <div class="span4 well">
-	<a href="#" class="btn"><i class="icon-pencil"></i> Edit</a>
+	<a href="{$path}index.php/item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> Edit</a>
 	<a href="#" class="btn btn-error"><i class="icon-trash"></i> Delete</a>
 </div>
 {/if}

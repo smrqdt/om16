@@ -3,14 +3,43 @@
 <div class="row-fluid">
 	<div>
 		<div class="span8">
-			<h4 class="muted">{$item->name}</h4>
-			<img src="{$item->image}" class="img-polaroid"
-				style="background-color: #ddd; height: 240px; width: 240px;" />
-			<p>{$item->description}</p>
-			{if $item->sizes} <b class="muted">Available sizes:</b> {foreach
-			$item->sizes as $size} {$size->size}{if ! $size@last}, {/if}
-			{/foreach} {/if}
-			<h5>{$item->price/100.0} €</h5>
+			<form method="post" action="{$path}index.php/item/edit/{$item->id}"
+				class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="name">Name</label>
+					<div class="controls">
+						<input type="text" name="name" placeholder="Name"
+							value="{$item->name}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="image">Image</label>
+					<div class="controls">
+						<img src="{$item->image}" class="img-polaroid"
+							style="background-color: #ddd; height: 240px; width: 240px;" /> <br />
+						<input type="file" id="image" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="description">Description</label>
+					<div class="controls">
+						<textarea rows="4" type="text" name="description"
+							placeholder="Description">{$item->description}</textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="price">Price</label>
+					<div class="controls">
+						<input type="text" name="price" placeholder="17.42"
+							value="{$item->price/100}"> €
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" value="Save" class="btn" />
+					</div>
+				</div>
+			</form>
 		</div>
 
 		<div class="span4 well">
@@ -32,8 +61,9 @@
 					</form>
 				</li> {/foreach} {/if}
 			</ul>
-			<form method="post" action="{$path}index.php/item/{$item->id}/addsize">
-				<input type="text" placeholder="size" name="size"/>
-				<input type="submit" value="+" class="btn" />
+			<form method="post"
+				action="{$path}index.php/item/{$item->id}/addsize">
+				<input type="text" placeholder="size" name="size" /> <input
+					type="submit" value="+" class="btn" />
 			</form>
 		</div>

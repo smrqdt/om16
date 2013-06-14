@@ -55,13 +55,16 @@
 				<img src="{$item->image}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 			</td>
 			<td>
-				<a href="#" class="btn"><i class="icon-share"></i></a>
+				<a href="{$path}index.php/item/{$item->id}" class="btn"><i class="icon-share"></i></a>
 			</td>
 			<td>
-				<a href="#" class="btn"><i class="icon-pencil"></i></a>
+				<a href="{$path}index.php/item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i></a>
 			</td>
 			<td>
-				<a href="#" class="btn btn-error"><i class="icon-trash"></i></a>
+			<form method="post"
+				action="{$path}index.php/item/delete/{$item->id}">
+				<button type="submit" class="btn"><i class="icon-trash"></i></button>
+			</form>
 			</td>
 		</tr>
 		{/foreach}
