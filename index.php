@@ -91,6 +91,7 @@ $app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
 $app->post('/item/delete/:id', array($itemController, 'delete'));
 $app->post('/item/:id/addsize', array($itemController, 'addSize'));
 $app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
+$app->map('/items/create', array($itemController, 'create'))->via('GET', 'POST');
 
 // Admin routings
 $adminController = new AdminController();

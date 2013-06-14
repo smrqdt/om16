@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
-
+<a href="{$path}index.php/items/create" class="btn"><i class="icon-plus"></i> New Item</a>
 <table class="table">
 	<thead>
 		<tr>
