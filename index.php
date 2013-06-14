@@ -23,6 +23,7 @@ require_once 'app/controller/ShopController.php';
 require_once 'app/controller/CartController.php';
 require_once 'app/controller/OrderController.php';
 require_once 'app/controller/UserController.php';
+require_once 'app/controller/ItemController.php';
 require_once 'app/controller/AdminController.php';
 require_once 'config.php';
 
@@ -83,9 +84,17 @@ $app->post('/cart/clear', array($cartController, 'clearCart'));
 $userController = new UserController();
 $app->post('/user/delete/:id', array($userController, 'deleteUser'));
 
+// item routings
+$itemController = new ItemController();
+$app->get('/item/:id', array($itemController, 'show'));
+$app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
+$app->post('/item/:id/addsize', array($itemController, 'addSize'));
+$app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
+
 // Admin routings
 $adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
+$app->get('/admin/items', array($adminController, 'items'));
 
 
 $app->run();
