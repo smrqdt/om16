@@ -10,7 +10,7 @@
 	<div class="controls">
 		<img src="{$item->image}" class="img-polaroid"
 			style="background-color: #ddd; height: 240px; width: 240px;" /> <br />
-		<input type="file" id="image" />
+		<input type="file" name="image"  id="image"/>
 	</div>
 </div>
 <div class="control-group">

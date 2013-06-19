@@ -4,12 +4,16 @@
 
 	<div class="span6">
 		<form method="post" action="{$path}index.php/item/edit/{$item->id}"
-			class="form-horizontal">{include file="item/itemform.tpl"}</form>
+			class="form-horizontal" enctype="multipart/form-data" >
+			{include file="item/itemform.tpl"}
+		</form>
 	</div>
 
 	<div class="span4 well">
-		<a href="#" class="btn"><i class="icon-pencil"></i> Edit</a> <a
-			href="#" class="btn btn-error"><i class="icon-trash"></i> Delete</a>
+		<form method="post" action="{$path}index.php/item/{$item->id}/removeimage">
+			 <button type="submit" value="+" class="btn"><i class="icon-remove"></i> Remove Image</button>
+		</form>
+		<a href="#" class="btn btn-error"><i class="icon-trash"></i> Delete</a>
 	</div>
 
 	<div class="span4 well">

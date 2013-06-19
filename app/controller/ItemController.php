@@ -31,8 +31,18 @@ class ItemController extends Controller {
 					$item->name = $this->post("name");
 					$item->description = $this->post("description");
 					$item->price = $this->post("price") * 100;
-					// TODO image upload for items
-					// 					$item->image = $this->post("image");
+					
+					$uploaddir = dirname(__FILE__).'/../../upload/';
+					print_r($_FILES);
+					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
+					
+					echo '<pre>';
+					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+						$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
+					} else {
+						$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+					}
+					
 					$item->save();
 				}else{
 					$this->app->flashNow('error', $this->errorOutput($v->errors()));
@@ -101,7 +111,7 @@ class ItemController extends Controller {
 			$v->rule('required', array('name', 'price'));
 			$v->rule('numeric', array('price'));
 			if($v->validate()){
-				$item = new Item;
+				$item = new Item()	;
 				$item->name = $this->post("name");
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
@@ -122,5 +132,27 @@ class ItemController extends Controller {
 				"noCartItems"=> count($cart)
 		);
 		$this->render('item/new.tpl', $data);
+	}
+	
+	public function removeImage($id){
+		$this->checkAdmin();
+		$item = Item::find($id);
+		if($item != null){
+			$item->image = '';
+			$item->save();
+
+			$cart = $this->getCart();
+
+			$data = array(
+					"user" => $this->user,
+					"item" => $item,
+					"noCartItems"=> count($cart)
+			);
+			// TODO remove image from file system
+			$this->show($id);
+		}else{
+			$this->app->flashNow('error', 'Item not found');
+			$this->redirect('home');
+		}
 	}
 }
