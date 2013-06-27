@@ -18,7 +18,7 @@
             </p>
             <ul class="nav">
               <li><a href="{$path}">Home</a></li>
-              <li><a href="{$path}index.php/cart">Cart <span class="badge">{$noCartItems}</span></a></li>
+              <li><a href="{$path}index.php/cart">Cart {if $noCartItems}<span class="badge">{$noCartItems}</span>{/if}</a></li>
               <li><a href="#contact">Contact</a></li>
               {if isset($smarty.session['auth_user']) && $smarty.session['auth_user']['admin']}
               	  <li><a href="{$path}index.php/admin">Admin</a></li>
