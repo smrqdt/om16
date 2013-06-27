@@ -43,8 +43,8 @@ class OrderController extends Controller{
 		);
 	
 		if($order == null){
-			$this->app->flashNow('error', "Order could not be found!");
-			$this->index();
+			$this->app->flashNow('warning', "Order could not be found!");
+			$this->redirect('home');
 		}else{
 			$cart = $this->getCart();
 	
