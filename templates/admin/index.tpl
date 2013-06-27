@@ -168,7 +168,7 @@
 			{count($user->getOrders())}
 		</td>
 		<td>
-			<a href="#" class="btn"><i class="icon-pencil"></i></a>
+			<a href="{$path}index.php/admin/user/edit/{$user->id}" class="btn"><i class="icon-pencil"></i></a>
 		</td>
 		<td>
 			<a href="{$path}index.php/admin/user/delete/{$user->id}" class="btn btn-error"><i class="icon-trash"></i></a>

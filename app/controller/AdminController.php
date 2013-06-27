@@ -21,6 +21,38 @@ class AdminController extends Controller{
 		$this->render("admin/index.tpl", $data);
 	}
 
+	public function editUser($id){
+		$this->checkAdmin();
+		$userObject = User::find($id);
+		$data = array(
+				"userObject" => $userObject
+			);
+		$this->render("admin/user/edit.tpl", $data);
+	}
+
+	// TODO check for correct password and change password.
+	public function saveUser($id){
+		$this->checkAdmin();
+
+		// $userObject = new Object();
+
+		$userObject = User::find($id);
+
+		// $userObject->email = $this->post("email");
+		// $userObject->name = $this->post("name");
+		// $userObject->lastname = $this->post("lastname");
+		// $userObject->street = $this->post("street");
+		// $userObject->street_number = $this->post("street_number");
+		// $userObject->plz = $this->post("plz");
+		// $userObject->city = $this->post("city");
+		// $userObject->country = $this->post("country");
+		// $userObject->password = md5($this->post("email").$this->post("plz"));
+
+		$userObject->save();
+
+		$this->redirect('admin');
+	}
+
 	private function getCart(){
 		$cart = array();
 		if (isset($_SESSION["cart"])) {
@@ -38,6 +70,8 @@ class AdminController extends Controller{
 		// TODO check for errors
 		$this->redirect('admin');
 	}
+
+
 
 	public function deleteUser($id){
 		$this->checkAdmin();

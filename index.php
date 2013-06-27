@@ -64,10 +64,12 @@ $app->get('/submitOrder', array($shopController, 'submitOrder'));
 $app->get('/order/:hash', array($shopController, "order"))->name("order");
 $app->post('/noSignup', array($shopController, "noSignup"));
 
+// Admin
 $app->get('/admin', array($adminController, 'index'))->name('admin');
 $app->get('/admin/order/delete/:id', array($adminController, 'deleteOrder'));
 $app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
-
+$app->get('/admin/user/edit/:id', array($adminController, 'editUser'));
+$app->get('/admin/user/save/:id', array($adminController, 'saveUser'))->via('GET', 'POST')->name('editUser');
 
 $app->run();
 
