@@ -80,6 +80,15 @@
 	</td>
 	<td>
 		{$item->item->name}
+		{if $item->item->numbered}
+			<br />Numbers: 
+			{foreach $item->itemnumbers as $in}
+				{$in->number}
+				{if not $in@last}
+				, 
+				{/if}
+			{/foreach}
+		{/if}
 	</td>
 	<td>
 		{$item->size}

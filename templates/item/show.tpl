@@ -38,9 +38,13 @@
 			{/foreach}
 			<select>
 		{/if}
-		<div class="btn-group">
-			<input type="submit" value="Add Item" class="btn btn-primary" />
-		</div>
+		{if $item->numbered && count($item->getFreeNumbers()) == 0}
+			<p class="text-error">Out of stock.</p>
+		{else}
+			<div class="btn-group">
+					<input type="submit" value="Add Item" class="btn btn-primary" />
+			</div>
+		{/if}
 		</form>
 </div>
 <div>
