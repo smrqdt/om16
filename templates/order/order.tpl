@@ -76,7 +76,7 @@
 {foreach from=$order->orderitems item=item}
 <tr>
 	<td>
-		<img src="{$item->item->image}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+		<img src="{if $item->item->image}$item->item->image{else}{$path}img/molumen_audio_cassette.svg{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 	</td>
 	<td>
 		{$item->item->name}

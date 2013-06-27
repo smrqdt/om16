@@ -11,7 +11,7 @@
 {$userObj->city}
 {$userObj->country}
 
-{include file="shop/cartItems.tpl"}
+{include file="cart/cartItems.tpl"}
 
 <form method="post" action="{$path}index.php/order" style="display:inline">
 	<button type="submit" class="btn">Submit Order</button>
