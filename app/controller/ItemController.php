@@ -31,24 +31,24 @@ class ItemController extends Controller {
 					$item->name = $this->post("name");
 					$item->description = $this->post("description");
 					$item->price = $this->post("price") * 100;
-					
-					$uploaddir = dirname(__FILE__).'/../../upload/';
-					print_r($_FILES);
-					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
-					
-					echo '<pre>';
-					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-						$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
-					} else {
-						$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+						
+					if($_FILES['image'] == '') {
+						$uploaddir = dirname(__FILE__).'/../../upload/';
+						$uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+						if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+							$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
+						} else {
+							$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+						}
 					}
-					
+						
 					$item->save();
 				}else{
 					$this->app->flashNow('error', $this->errorOutput($v->errors()));
 				}
 			}
-				
+
 			$cart = $this->getCart();
 
 			$data = array(
@@ -69,6 +69,10 @@ class ItemController extends Controller {
 		$this->redirect('adminitems');
 	}
 
+	/**
+	 * Add a size to an item.
+	 * @param unknown $id
+	 */
 	public function addSize($id){
 		$this->checkAdmin();
 		$item = Item::find($id);
@@ -93,6 +97,10 @@ class ItemController extends Controller {
 		}
 	}
 
+	/**
+	 * Delete a size for an item.
+	 * @param Item $id
+	 */
 	public function deleteSize($id){
 		$this->checkAdmin();
 
@@ -115,8 +123,18 @@ class ItemController extends Controller {
 				$item->name = $this->post("name");
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
-				// TODO image upload for items
-				// 					$item->image = $this->post("image");
+					
+				if($_FILES['image'] == '') {
+					$uploaddir = dirname(__FILE__).'/../../upload/';
+					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
+
+					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+						$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
+					} else {
+						$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+					}
+				}
+					
 				$item->save();
 				$this->redirect('adminitems');
 			}else{
@@ -133,7 +151,11 @@ class ItemController extends Controller {
 		);
 		$this->render('item/new.tpl', $data);
 	}
-	
+
+	/**
+	 * Remove the image of an Item
+	 * @param Item $id
+	 */
 	public function removeImage($id){
 		$this->checkAdmin();
 		$item = Item::find($id);
@@ -149,6 +171,137 @@ class ItemController extends Controller {
 					"noCartItems"=> count($cart)
 			);
 			// TODO remove image from file system
+			$this->show($id);
+		}else{
+			$this->app->flashNow('error', 'Item not found');
+			$this->redirect('home');
+		}
+	}
+	
+	/**
+	 * A more item numbers to the shop.
+	 * @param Item $id
+	 */
+	public function addNumbers($id){
+		$this->checkAdmin();
+		$item = Item::find($id);
+		$param = $this->post('amount');
+		if($item != null){
+			// FIXME I think this is kind of a bad idea, because it fails on concurrent creates.
+			// find max item number for this item
+			$maxItemnumber = Itemnumber::find_by_sql("SELECT max(number) as number FROM itemnumbers WHERE item_id=?",array($id));
+
+			for($i = 0; $i < $param; $i++){
+				$itemNumber = new Itemnumber();
+				$itemNumber->item_id = $item->id;
+				$itemNumber->number = $maxItemnumber[0]->number + $i + 1 ;
+				$itemNumber->save();
+			}
+			$this->app->flashNow('success', "$param item numbers added.");
+			$this->show($id);
+		}else{
+			$this->app->flashNow('error', 'Item not found');
+			$this->redirect('home');
+		}
+	}
+	
+	/**
+	 * Set item numbers to taken so they will not be given out be the shop.
+	 * @param Item $id
+	 */
+	public function takeNumbers($id){
+		$this->checkAdmin();
+		$item = Item::find($id);
+		$param = $this->post('numbers');
+		if($item != null){
+			$count = 0;
+			$numbers = preg_split('/[^\d-]+/',$param);
+			foreach($numbers as $number){
+				if(preg_match('/[\d]+/', $number)){
+					$itemNumber = Itemnumber::find(
+							'first',
+							array(
+									'conditions' => array(
+											'item_id'=> $item->id,
+											'number' => $number
+									)
+							)
+					);
+					// TODO check and warn if a number is already taken
+					$itemNumber->free = false;
+					$itemNumber->save();
+					$count++;
+				}elseif(preg_match('/[\d]+-[\d]+/', $number)){
+					$range = preg_split('[\-]', $number);
+					for ($i = min($range); $i < max($range) + 1; $i++){
+						$itemNumber = Itemnumber::find(
+								'first',
+								array(
+										'conditions' => array(
+												'item_id'=> $item->id,
+												'number' => $i
+										)
+								)
+						);
+						$itemNumber->free = false;
+						$itemNumber->save();
+						$count++;
+					}
+				}
+			}
+			$this->show($id);
+			$this->app->flashNow('success', "$count item numbers marked as taken.");
+		}else{
+			$this->app->flashNow('error', 'Item not found');
+			$this->redirect('home');
+		}
+	}
+	
+	/**
+	 * Set item numbers to invalid
+	 * @param Item $id
+	 */
+	public function invalidateNumbers($id){
+		$this->checkAdmin();
+		$item = Item::find($id);
+		$param = $this->post('numbers');
+		if($item != null){
+			$count = 0;
+			$numbers = preg_split('/[^\d-]+/',$param);
+
+			foreach($numbers as $number){
+				if(preg_match('/[\d]+/', $number)){
+					$itemNumber = Itemnumber::find(
+							'first',
+							array(
+									'conditions' => array(
+											'item_id'=> $item->id,
+											'number' => $number
+									)
+							)
+					);
+					$itemNumber->valid = false;
+					$itemNumber->save();
+					$count++;
+				}elseif(preg_match('/[\d]+-[\d]+/', $number)){
+					$range = preg_split('[\-]', $number);
+					for ($i = min($range); $i < max($range) + 1; $i++){
+						$itemNumber = Itemnumber::find(
+								'first',
+								array(
+										'conditions' => array(
+												'item_id'=> $item->id,
+												'number' => $i
+										)
+								)
+						);
+						$itemNumber->valid = false;
+						$itemNumber->save();
+						$count++;
+					}
+				}
+			}
+			$this->app->flashNow('success', "$count item numbers marked as invalid");
 			$this->show($id);
 		}else{
 			$this->app->flashNow('error', 'Item not found');

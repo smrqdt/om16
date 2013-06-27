@@ -6,4 +6,8 @@ class Orderitem extends ActiveRecord\Model {
 			array('item'),
 			array('order')
 	);
+	
+	static $has_many = array(
+			array('itemnumbers')
+	);
 }

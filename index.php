@@ -16,6 +16,7 @@ require_once 'app/model/Item.php';
 require_once 'app/model/User.php';
 require_once 'app/model/Order.php';
 require_once 'app/model/OrderItem.php';
+require_once 'app/model/ItemNumber.php';
 
 require_once 'app/Controller.php';
 require_once 'app/controller/LoginController.php';
@@ -91,6 +92,9 @@ $app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
 $app->post('/item/delete/:id', array($itemController, 'delete'));
 $app->post('/item/:id/addsize', array($itemController, 'addSize'));
 $app->post('/item/:id/removeimage', array($itemController, 'removeImage'));
+$app->post('/item/:id/addnumbers', array($itemController, 'addNumbers'));
+$app->post('/item/:id/takenumbers', array($itemController, 'takeNumbers'));
+$app->post('/item/:id/invalidatenumbers', array($itemController, 'invalidateNumbers'));
 $app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
 $app->map('/items/create', array($itemController, 'create'))->via('GET', 'POST');
 
