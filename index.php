@@ -16,6 +16,7 @@ require_once 'app/model/Item.php';
 require_once 'app/model/User.php';
 require_once 'app/model/Order.php';
 require_once 'app/model/OrderItem.php';
+require_once 'app/model/ItemNumber.php';
 
 require_once 'app/Controller.php';
 require_once 'app/controller/LoginController.php';
@@ -23,6 +24,7 @@ require_once 'app/controller/ShopController.php';
 require_once 'app/controller/CartController.php';
 require_once 'app/controller/OrderController.php';
 require_once 'app/controller/UserController.php';
+require_once 'app/controller/ItemController.php';
 require_once 'app/controller/AdminController.php';
 require_once 'config.php';
 
@@ -90,8 +92,22 @@ $app->post('/cart/clear', array($cartController, 'clearCart'));
 $userController = new UserController();
 $app->post('/user/delete/:id', array($userController, 'deleteUser'));
 
+// item routings
+$itemController = new ItemController();
+$app->get('/item/:id', array($itemController, 'show'));
+$app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
+$app->post('/item/delete/:id', array($itemController, 'delete'));
+$app->post('/item/:id/addsize', array($itemController, 'addSize'));
+$app->post('/item/:id/removeimage', array($itemController, 'removeImage'));
+$app->post('/item/:id/addnumbers', array($itemController, 'addNumbers'));
+$app->post('/item/:id/takenumbers', array($itemController, 'takeNumbers'));
+$app->post('/item/:id/invalidatenumbers', array($itemController, 'invalidateNumbers'));
+$app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
+$app->map('/items/create', array($itemController, 'create'))->via('GET', 'POST');
+
 // Admin routings
 $adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
+$app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 
 $app->run();

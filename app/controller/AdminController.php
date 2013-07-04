@@ -8,12 +8,10 @@ class AdminController extends Controller{
 		$orders = Order::all();
 		$cart = $this->getCart();
 		$users = User::all();
-		$items = Item::all();
 
 		$data = array(
 				"orders" => $orders,
 				"users" => $users,
-				"items" => $items,
 				"noCartItems"=> count($cart),
 				"user" => $this->user
 		);
@@ -51,5 +49,20 @@ class AdminController extends Controller{
 		$userObject->save();
 
 		$this->redirect('admin');
+	
+	public function items(){
+		$this->checkAdmin();
+		
+		$cart = $this->getCart();
+		$items = Item::all();
+		
+		$data = array(
+				"items" => $items,
+				"noCartItems"=> count($cart),
+				"user" => $this->user
+		);
+		
+		$this->render("admin/items.tpl", $data);
+		
 	}
 }
