@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Jun 2013 um 22:29
+-- Erstellungszeit: 04. Jul 2013 um 15:53
 -- Server Version: 5.6.10
 -- PHP-Version: 5.3.15
 
@@ -25,15 +25,48 @@ USE `tapeshop`;
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `itemnumbers`
+--
+
+CREATE TABLE IF NOT EXISTS `itemnumbers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `orderitem_id` int(11) DEFAULT NULL,
+  `number` int(11) NOT NULL,
+  `valid` tinyint(1) NOT NULL DEFAULT '1',
+  `free` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `item_id` (`item_id`,`orderitem_id`),
+  KEY `orderitem_id` (`orderitem_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Daten für Tabelle `itemnumbers`
+--
+
+INSERT INTO `itemnumbers` (`id`, `item_id`, `orderitem_id`, `number`, `valid`, `free`) VALUES
+(1, 1, NULL, 1, 0, 0),
+(2, 1, NULL, 2, 0, 1),
+(5, 1, NULL, 5, 1, 0),
+(6, 1, NULL, 6, 1, 0),
+(7, 1, NULL, 7, 1, 0),
+(8, 1, NULL, 8, 1, 1),
+(9, 1, NULL, 9, 1, 1),
+(10, 1, NULL, 10, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `items`
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
   `description` varchar(512) DEFAULT NULL,
-  `price` int(11) NOT NULL,
+  `price` int(11) DEFAULT NULL,
   `image` varchar(256) DEFAULT NULL,
+  `numbered` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
@@ -41,10 +74,10 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Daten für Tabelle `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `price`, `image`) VALUES
-(1, 'Ticket', 'The Ticket for the amazing event.', 2317, NULL),
-(2, 'T-Shirt', 'A T-Shirt with our amazing logo on it.', 1500, NULL),
-(3, 'Sweater', 'The amazing sweater, because you are so cool!', 2500, NULL);
+INSERT INTO `items` (`id`, `name`, `description`, `price`, `image`, `numbered`) VALUES
+(1, 'Ticket', 'The Ticket for the amazing event.', 2317, '', 1),
+(2, 'T-Shirt', 'A T-Shirt with our amazing logo on it.', 1600, NULL, 0),
+(3, 'Sweater', 'The amazing sweater, because you are so cool!', 2500, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -61,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
   KEY `order` (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Daten für Tabelle `orderitems`
@@ -78,9 +111,7 @@ INSERT INTO `orderitems` (`id`, `item_id`, `order_id`, `amount`, `size`) VALUES
 (8, 2, 41, 1, 'S'),
 (9, 3, 41, 1, 'L'),
 (10, 2, 42, 1, 'L'),
-(11, 1, 43, 1, NULL),
-(12, 2, 43, 1, 'S'),
-(13, 3, 43, 1, 'L');
+(29, 1, 77, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `hashlink_3` (`hashlink`),
   KEY `hashlink_4` (`hashlink`),
   KEY `hashlink_5` (`hashlink`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
 -- Daten für Tabelle `orders`
@@ -118,7 +149,7 @@ INSERT INTO `orders` (`id`, `user_id`, `number`, `bill`, `ordertime`, `paymentti
 (37, 1, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', 'af789838-ac49-4c30-898f-acfa2cfcae36'),
 (41, 1, 'asdf', 'asdf', '2013-06-09', '2013-06-10', '2013-06-10', 'shipped', '0ff65ac9-d6c2-46b7-b649-726342c86a0e'),
 (42, 24, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '497e0752-bcb9-46dd-9c3d-b2d0346b8468'),
-(43, 27, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '64b66406-4aa0-4267-a654-6d2d97afbbd9');
+(77, 28, 'asdf', 'asdf', NULL, NULL, NULL, 'new', '15b89af4-d6bf-4985-a404-9cef2f9aed33');
 
 -- --------------------------------------------------------
 
@@ -165,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `country` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Daten für Tabelle `users`
@@ -182,20 +213,26 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `name`, `lastname`, 
 (23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Robert', 'Kriese', 'Schwalbacher Straße', 12, 65185, 'Wiesbaden', 'Deutschland', 0),
 (24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Benny', 'Bilderberg', 'Büchnerweg', 12, 51515, 'Hannover', 'Deutschland', 0),
 (25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 'Richard', 'Wagner', 'Beethovenallee', 12, 51533, 'Bremen', 'Deutschland', 0),
-(26, NULL, 'bff149a0b87f5b0e00d9dd364e9ddaa0', 'asd', 'Klaus', 'Kinski', 'Draculaweg', 18, 51593, 'München', 'Deutschland', 0),
 (27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 'Hans', 'Urmel', 'Inselweg', 524, 98484, 'Trier', 'Deutschland', 0),
-(28, 'tape', '098f6bcd4621d373cade4e832627b4f6', '', '', '', '', 0, 0, '', '', 1);
+(28, 'tape', '$2a$12$rJkRgQhBHo6YTn4f7t8rG.T7NldB7clruytsYjt8nG1ByWbZeO0T6', '', 'Tape', 'Shop', '', 0, 0, '', '', 1);
 
 --
 -- Constraints der exportierten Tabellen
 --
 
 --
+-- Constraints der Tabelle `itemnumbers`
+--
+ALTER TABLE `itemnumbers`
+  ADD CONSTRAINT `itemnumbers_ibfk_1` FOREIGN KEY (`orderitem_id`) REFERENCES `orderitems` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `itemnumbers_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON UPDATE CASCADE;
+
+--
 -- Constraints der Tabelle `orderitems`
 --
 ALTER TABLE `orderitems`
-  ADD CONSTRAINT `orderitems_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orderitems_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderitems_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints der Tabelle `orders`
