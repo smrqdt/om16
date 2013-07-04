@@ -25,7 +25,7 @@ class AdminController extends Controller{
 		$data = array(
 				"userObject" => $userObject
 			);
-		$this->render("admin/user/edit.tpl", $data);
+		$this->render("user/edit.tpl", $data);
 	}
 
 	// TODO check for correct password and change password.
@@ -36,15 +36,14 @@ class AdminController extends Controller{
 
 		$userObject = User::find($id);
 
-		// $userObject->email = $this->post("email");
-		// $userObject->name = $this->post("name");
-		// $userObject->lastname = $this->post("lastname");
-		// $userObject->street = $this->post("street");
-		// $userObject->street_number = $this->post("street_number");
-		// $userObject->plz = $this->post("plz");
-		// $userObject->city = $this->post("city");
-		// $userObject->country = $this->post("country");
-		// $userObject->password = md5($this->post("email").$this->post("plz"));
+		$userObject->email = $this->post("email");
+		$userObject->name = $this->post("name");
+		$userObject->lastname = $this->post("lastname");
+		$userObject->street = $this->post("street");
+		$userObject->street_number = $this->post("street_number");
+		$userObject->plz = $this->post("plz");
+		$userObject->city = $this->post("city");
+		$userObject->country = $this->post("country");
 
 		$userObject->save();
 
