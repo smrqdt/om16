@@ -69,10 +69,11 @@ $app->get('/', array($shopController, 'index'))->name('home');
 $app->get('/checkout', array($shopController, 'checkout'));
 $app->post('/noSignup', array($shopController, "noSignup"));
 
-// Admin
+// Admin routings
+$adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
-$app->get('/admin/order/delete/:id', array($adminController, 'deleteOrder'));
-$app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
+$app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
+// $app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
 $app->get('/admin/user/edit/:id', array($adminController, 'editUser'));
 $app->get('/admin/user/save/:id', array($adminController, 'saveUser'))->via('GET', 'POST')->name('editUser');
 
@@ -105,9 +106,5 @@ $app->post('/item/:id/invalidatenumbers', array($itemController, 'invalidateNumb
 $app->post('/item/deletesize/:id', array($itemController, 'deleteSize'));
 $app->map('/items/create', array($itemController, 'create'))->via('GET', 'POST');
 
-// Admin routings
-$adminController = new AdminController();
-$app->get('/admin', array($adminController, 'index'))->name('admin');
-$app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 
 $app->run();

@@ -49,6 +49,8 @@ class AdminController extends Controller{
 		$userObject->save();
 
 		$this->redirect('admin');
+
+	}
 	
 	public function items(){
 		$this->checkAdmin();
