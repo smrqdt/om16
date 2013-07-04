@@ -4,13 +4,13 @@
 
 <div class="span5">
 <h6>Shipping address:</h6>
-{$order->getUser()->name}
-{$order->getUser()->lastname}
-{$order->getUser()->street}
-{$order->getUser()->street_number}
-{$order->getUser()->plz}
-{$order->getUser()->city}
-{$order->getUser()->country}
+{$order->user->name}
+{$order->user->lastname}
+{$order->user->street}
+{$order->user->street_number}
+{$order->user->plz}
+{$order->user->city}
+{$order->user->country}
 </div>
 
 <div class="span5">
@@ -73,13 +73,13 @@
 			</th>
 		</tr>
 	</thead>
-{foreach from=$order->getItems() item=item}
+{foreach from=$order->orderitems item=item}
 <tr>
 	<td>
-		<img src="{$item->getItem()->image}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+		<img src="{$item->item->image}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 	</td>
 	<td>
-		{$item->getItem()->name}
+		{$item->item->name}
 	</td>
 	<td>
 		{$item->size}
@@ -88,10 +88,10 @@
 		{$item->amount}
 	</td>
 	<td>
-		{$item->getItem()->price} €
+		{$item->item->price/100} €
 	</td>
 	<td>
-		{$item->amount * ($item->getItem()->price)} €
+		{$item->amount * ($item->item->price)/100} €
 	</td>
 </tr>
 {/foreach}
@@ -99,7 +99,7 @@
 	<td colspan="4"></td>
 	<td><b>Total</b></td>
 	<td>
-		<b>{$order->getSum()} €</b>
+		<b>{$order->getSum()/100} €</b>
 	</td>
 </tr>
 </table>

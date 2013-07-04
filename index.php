@@ -7,22 +7,32 @@ require_once 'libs/Slim/View.php';
 require_once 'libs/Slim/Middleware.php';
 require_once 'libs/Slim/Extras/Views/Smarty.php';
 require_once 'libs/Slim/Extras/Log/DateTimeFileWriter.php';
+require_once 'libs/ActiveRecord.php';
 require_once 'libs/Strong/Strong.php';
 require_once 'libs/Slim/Extras/Middleware/StrongAuth.php';
-require_once 'Database.php';
-require_once 'app/DBObject.php';
+
 require_once 'app/model/Size.php';
 require_once 'app/model/Item.php';
 require_once 'app/model/User.php';
 require_once 'app/model/Order.php';
 require_once 'app/model/OrderItem.php';
+
 require_once 'app/Controller.php';
 require_once 'app/controller/LoginController.php';
 require_once 'app/controller/ShopController.php';
+require_once 'app/controller/CartController.php';
+require_once 'app/controller/OrderController.php';
+require_once 'app/controller/UserController.php';
 require_once 'app/controller/AdminController.php';
 require_once 'config.php';
 
+ActiveRecord\Config::initialize(function($cfg) {
+	$cfg->set_model_directory('.');
+	$cfg->set_connections(array('development' => DB_PROVIDER.'://'.DB_USERNAME.':'.DB_PASSWORD.'@'.DB_HOSTNAME.'/'.DB_NAME));
+});
+
 session_start();
+
 \Slim\Slim::registerAutoloader();
 
 $smartyView = new \Slim\Extras\Views\Smarty();
@@ -34,8 +44,7 @@ $app = new \Slim\Slim(array(
 ));
 
 $authConfig = array(
-		'provider' => 'PDO',
-		'pdo' => new PDO(DB_PROVIDER.":host=".DB_HOSTNAME.";dbname=".DB_NAME, DB_USERNAME, DB_PASSWORD),
+		'provider' => 'AuthProvider',
 		'auth.type' => 'form',
 		'login.url' => APP_PATH.'index.php/login',
 		'security.urls' => array(
@@ -45,23 +54,17 @@ $authConfig = array(
 
 $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
-$loginController = new LoginController();
-$shopController = new ShopController();
-$adminController = new AdminController();
 
 // Login
+$loginController = new LoginController();
 $app->map('/login/', array($loginController, 'index'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
 $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 
 // Shop
+$shopController = new ShopController();
 $app->get('/', array($shopController, 'index'))->name('home');
-$app->post('/addItem/:id', array($shopController, 'addItem'));
-$app->get('/cart', array($shopController, 'cart'));
-$app->get('/clearCart', array($shopController, 'clearCart'));
 $app->get('/checkout', array($shopController, 'checkout'));
-$app->get('/submitOrder', array($shopController, 'submitOrder'));
-$app->get('/order/:hash', array($shopController, "order"))->name("order");
 $app->post('/noSignup', array($shopController, "noSignup"));
 
 // Admin
@@ -71,5 +74,24 @@ $app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
 $app->get('/admin/user/edit/:id', array($adminController, 'editUser'));
 $app->get('/admin/user/save/:id', array($adminController, 'saveUser'))->via('GET', 'POST')->name('editUser');
 
-$app->run();
+// order routings
+$orderController = new OrderController();
+$app->post('/order', array($orderController, 'submitOrder'));
+$app->get('/order/:hash', array($orderController, "order"))->name("order");
+$app->post('/order/delete/:id', array($orderController, 'deleteOrder'));
 
+// cart routings
+$cartController = new CartController();
+$app->post('/cart/addItem/:id', array($cartController, 'addItem'));
+$app->get('/cart', array($cartController, 'cart'));
+$app->post('/cart/clear', array($cartController, 'clearCart'));
+
+// user routings
+$userController = new UserController();
+$app->post('/user/delete/:id', array($userController, 'deleteUser'));
+
+// Admin routings
+$adminController = new AdminController();
+$app->get('/admin', array($adminController, 'index'))->name('admin');
+
+$app->run();

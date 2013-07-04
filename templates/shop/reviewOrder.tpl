@@ -13,4 +13,6 @@
 
 {include file="shop/cartItems.tpl"}
 
-<a href="{$path}index.php/submitOrder" class="btn">Submit Order</a>
+<form method="post" action="{$path}index.php/order" style="display:inline">
+	<button type="submit" class="btn">Submit Order</button>
+</form>

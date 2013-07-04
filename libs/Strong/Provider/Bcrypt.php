@@ -1,4 +1,5 @@
 <?php
+namespace Strong\Provider;
 class Bcrypt {
 	private $rounds;
 	public function __construct($rounds = 12) {
@@ -20,7 +21,6 @@ class Bcrypt {
 
 	public function verify($input, $existingHash) {
 		$hash = crypt($input, $existingHash);
-		print "<br> DEBUG bc new". $hash ." <br> DEBUG bc old". $existingHash;
 		return $hash === $existingHash;
 	}
 

@@ -49,7 +49,9 @@
 {/foreach}
 </table>
 Sum: {$sum} €
-<a href="{$path}index.php/clearCart" class="btn">Clear cart</a>
+<form method="post" action="{$path}index.php/cart/clear" style="display:inline">
+	<button type="submit" class="btn">Clear cart</button>
+</form>
 <a href="{$path}index.php/checkout" class="btn">Checkout</a>
 {else}
 No items in cart.
