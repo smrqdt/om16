@@ -74,6 +74,8 @@ $orderController = new OrderController();
 $app->post('/order', array($orderController, 'submitOrder'));
 $app->get('/order/:hash', array($orderController, "order"))->name("order");
 $app->post('/order/delete/:id', array($orderController, 'deleteOrder'));
+$app->post('/order/:id/payed', array($orderController, 'payed'));
+$app->post('/order/:id/shipped', array($orderController, 'shipped'));
 
 // cart routings
 $cartController = new CartController();
@@ -102,6 +104,7 @@ $app->map('/items/create', array($itemController, 'create'))->via('GET', 'POST')
 $adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
 $app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
+$app->get('/admin/orders', array($adminController, 'orders'))->name('adminorders');
 
 
 $app->run();
