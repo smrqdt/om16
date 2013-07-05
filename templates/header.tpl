@@ -10,6 +10,7 @@
     <!-- Le styles -->
     <link href="{$path}css/bootstrap.css" rel="stylesheet">
     <link href="{$path}css/styles.css" rel="stylesheet">
+    <link href="{$path}css/DT_bootstrap.css" rel="stylesheet">
     <link href="{$path}css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->

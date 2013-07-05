@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
 
-<table class="table">
+<table class="table" id="ordersTable">
 	<thead>
 		<tr>
 			<th>

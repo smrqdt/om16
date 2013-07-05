@@ -84,12 +84,14 @@ class OrderController extends Controller{
 		foreach($order->orderitems as $orderitem){
 			if($orderitem->item->numbered){
 				$freenumbers = $orderitem->item->getFreeNumbers();
+				// TODO handle numbers out of range
+				// this is more a dirty hack and this needs to be fixed properly with a good specification.
 				if(count($freenumbers) != 0){
-					$itemnumber = $freenumbers[0]; // TODO handle numbers out of range
+					$itemnumber = $freenumbers[0];
 					$itemnumber->orderitem_id = $orderitem->id;
 					$itemnumber->save();
 				}else{
-					$this->app->flashNow('error', 'Item number sout of range!');
+					$this->app->flashNow('error', 'Item ' . $orderitem->item->name . ' number sout of range!');
 				}
 			}
 		}
