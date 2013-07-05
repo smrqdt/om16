@@ -5,25 +5,22 @@
 	<thead>
 		<tr>
 			<th>
-				Status
-			</th>
-			<th>
-				id
+				status
 			</th>
 			<th>
 				number
 			</th>
 			<th>
-				bill
+				customer
 			</th>
 			<th>
-				user
+				items #
 			</th>
 			<th>
-				items
+				total
 			</th>
 			<th>
-				hash
+				last action
 			</th>
 			<th>
 				show
@@ -51,22 +48,25 @@
 				{$order->status}
 			</td>
 			<td>
-				{$order->id}
-			</td>
-			<td>
 				{$order->number}
 			</td>
 			<td>
-				{$order->bill}
-			</td>
-			<td>
-				{$order->user->email}
+				{$order->user->name} {$order->user->lastname}
 			</td>
 			<td>
 				{count($order->orderitems)}
 			</td>
 			<td>
-				{$order->hashlink}
+				{$order->getSum()/100} €
+			</td>
+			<td>
+				{if $order->shippingtime}
+					{$order->shippingtime->format('d.m.Y')}
+				{elseif $order->paymenttime}
+					{$order->paymenttime->format('d.m.Y')}
+				{else}
+					{$order->ordertime->format('d.m.Y')}
+				{/if}
 			</td>
 			<td>
 				<a href="{$path}index.php/order/{$order->hashlink}" class="btn"><i class="icon-share"></i></a>
