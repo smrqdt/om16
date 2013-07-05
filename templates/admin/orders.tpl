@@ -51,7 +51,7 @@
 				{$order->number}
 			</td>
 			<td>
-				{$order->user->name} {$order->user->lastname}
+				{$order->user->currentAddress()->name} {$order->user->currentAddress()->lastname}
 			</td>
 			<td>
 				{count($order->orderitems)}

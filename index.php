@@ -17,6 +17,7 @@ require_once 'app/model/User.php';
 require_once 'app/model/Order.php';
 require_once 'app/model/OrderItem.php';
 require_once 'app/model/ItemNumber.php';
+require_once 'app/model/Address.php';
 
 require_once 'app/Controller.php';
 require_once 'app/controller/LoginController.php';

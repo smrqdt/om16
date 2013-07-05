@@ -23,6 +23,8 @@ class AdminController extends Controller{
 		$this->checkAdmin();
 		$userObject = User::find($id);
 		$data = array(
+				"user" => $this->user,
+				"noCartItems" => count($this->getCart()),
 				"userObject" => $userObject
 			);
 		$this->render("user/edit.tpl", $data);
@@ -37,15 +39,23 @@ class AdminController extends Controller{
 		$userObject = User::find($id);
 
 		$userObject->email = $this->post("email");
-		$userObject->name = $this->post("name");
-		$userObject->lastname = $this->post("lastname");
-		$userObject->street = $this->post("street");
-		$userObject->street_number = $this->post("street_number");
-		$userObject->plz = $this->post("plz");
-		$userObject->city = $this->post("city");
-		$userObject->country = $this->post("country");
-
 		$userObject->save();
+		
+		$address = $userObject->currentAddress();
+		if($address->orders){
+			$address->current = false;
+			$address->save();
+			$address = new Address();
+			$address->user_id = $userObject->id;
+		}
+		$address->name = $this->post("name");
+		$address->lastname = $this->post("lastname");
+		$address->street = $this->post("street");
+		$address->building_number = $this->post("street_number");
+		$address->postcode = $this->post("plz");
+		$address->city = $this->post("city");
+		$address->country = $this->post("country");
+		$address->save();
 
 		$this->redirect('admin');
 

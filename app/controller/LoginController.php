@@ -34,18 +34,21 @@ class LoginController extends Controller {
 			$v->rule('equals', 'password', 'password_verify');
 			if ($v->validate()) {
 				$u = new User();
-				$u->name = $this->post('name');
 				$u->email = $this->post('email');
 				$u->username = $this->post('username');
-				$u->name = $this->post('name');
-				$u->lastname = $this->post('lastname');
-				$u->street = $this->post('street');
-				$u->street_number = $this->post('street_number');
-				$u->plz = $this->post('plz');
-				$u->city = $this->post('city');
-				$u->country = $this->post('country');
 				$u->password = $this->auth->getProvider()->initPassword($this->post('password'));
 				$u->save();
+				
+				$a = new Address();
+				$a->user_id = $u->id;
+				$a->name = $this->post('name');
+				$a->lastname = $this->post('lastname');
+				$a->street = $this->post('street');
+				$a->building_number = $this->post('street_number');
+				$a->postcode = $this->post('plz');
+				$a->city = $this->post('city');
+				$a->country = $this->post('country');
+				$a->save();
 
 				$this->app->flash('info', 'Your registration was successfull');
 				$this->auth->login($this->post('username'), $this->post('password'), $this->post('remember'));

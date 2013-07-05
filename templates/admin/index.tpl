@@ -23,10 +23,10 @@
 				street
 			</th>
 			<th>
-				street_number
+				building_number
 			</th>
 			<th>
-				plz
+				postcode
 			</th>
 			<th>
 				city
@@ -60,25 +60,25 @@
 			{$user->email}
 		</td>
 		<td>
-			{$user->name}
+			{$user->currentAddress()->name}
 		</td>
 		<td>
-			{$user->lastname}
+			{$user->currentAddress()->lastname}
 		</td>
 		<td>
-			{$user->street}
+			{$user->currentAddress()->street}
 		</td>
 		<td>
-			{$user->street_number}
+			{$user->currentAddress()->building_number}
 		</td>
 		<td>
-			{$user->plz}
+			{$user->currentAddress()->postcode}
 		</td>
 		<td>
-			{$user->city}
+			{$user->currentAddress()->city}
 		</td>
 		<td>
-			{$user->country}
+			{$user->currentAddress()->country}
 		</td>
 		<td>
 			{$user->admin}

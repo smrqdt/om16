@@ -104,6 +104,7 @@ class OrderController extends Controller{
 		$order = Order::find($id);
 		$order->shippingtime = new DateTime();
 		$order->status = 'shipped';
+		$order->address_id = $order->user->currentAddress()->id;
 		$order->save();
 
 		$this->order($order->hashlink);

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Jul 2013 um 15:53
+-- Erstellungszeit: 05. Jul 2013 um 15:40
 -- Server Version: 5.6.10
 -- PHP-Version: 5.3.15
 
@@ -21,6 +21,46 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `tapeshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `tapeshop`;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `addresses`
+--
+
+CREATE TABLE IF NOT EXISTS `addresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(512) NOT NULL,
+  `lastname` varchar(512) NOT NULL,
+  `street` varchar(512) NOT NULL,
+  `building_number` varchar(64) NOT NULL,
+  `postcode` varchar(64) NOT NULL,
+  `city` varchar(512) NOT NULL,
+  `country` varchar(256) NOT NULL,
+  `current` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- Daten für Tabelle `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `user_id`, `name`, `lastname`, `street`, `building_number`, `postcode`, `city`, `country`, `current`) VALUES
+(1, 1, 'Hans ', 'Wurst', 'teststr.', '6', '56142', 'Dortmund', 'Deutschland', 0),
+(2, 6, 'Klaus', 'Müller', 'Ingostr.', '5', '14414', 'Darmstadt', 'Deutschland', 1),
+(3, 18, 'Inga', 'Schmidt', 'Taunusstr.', '54', '51515', 'Köln', 'Deutschland', 1),
+(4, 19, 'Horst', 'Meyer', 'Pommernstr.', '12', '51515', 'Haintchen', 'Deutschland', 1),
+(5, 20, 'Klaus', 'Willert', 'Hauptstr.', '18', '51515', 'Frankfurt am Main', 'Deutschland', 1),
+(6, 21, 'Monika', 'Meyer', 'Arkaden', '12', '51515', 'Berlin', 'Deutschland', 1),
+(7, 22, 'Martin', 'Bürgermeister', 'Duisbergstraße', '4', '60320', 'Frankfurt am Main', 'Deutschland', 1),
+(8, 23, 'Robert', 'Kriese', 'Schwalbacher Straße', '12', '65185', 'Wiesbaden', 'Deutschland', 1),
+(9, 24, 'Benny', 'Bilderberg', 'Büchnerweg', '12', '51515', 'Hannover', 'Deutschland', 1),
+(10, 25, 'Richard', 'Wagner', 'Beethovenallee', '12', '51533', 'Bremen', 'Deutschland', 1),
+(11, 27, 'Hans', 'Urmel', 'Inselweg', '524', '98484', 'Trier', 'Deutschland', 1),
+(12, 28, 'Tape', 'Shop', '', '0', '0', '', '', 1),
+(19, 1, 'Hans ', 'Wurst', 'teststr.', '7', '56142', 'Dortmund', 'Deutschland', 1);
 
 -- --------------------------------------------------------
 
@@ -50,7 +90,7 @@ INSERT INTO `itemnumbers` (`id`, `item_id`, `orderitem_id`, `number`, `valid`, `
 (5, 1, NULL, 5, 1, 0),
 (6, 1, NULL, 6, 1, 0),
 (7, 1, NULL, 7, 1, 0),
-(8, 1, NULL, 8, 1, 1),
+(8, 1, 29, 8, 1, 1),
 (9, 1, NULL, 9, 1, 1),
 (10, 1, NULL, 10, 1, 1);
 
@@ -68,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `image` varchar(256) DEFAULT NULL,
   `numbered` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Daten für Tabelle `items`
@@ -94,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
   KEY `order` (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Daten für Tabelle `orderitems`
@@ -111,7 +151,15 @@ INSERT INTO `orderitems` (`id`, `item_id`, `order_id`, `amount`, `size`) VALUES
 (8, 2, 41, 1, 'S'),
 (9, 3, 41, 1, 'L'),
 (10, 2, 42, 1, 'L'),
-(29, 1, 77, 1, NULL);
+(29, 1, 77, 1, NULL),
+(30, 1, 78, 1, NULL),
+(31, 2, 78, 1, 'M'),
+(32, 2, 79, 1, 'S'),
+(33, 3, 80, 3, 'L'),
+(34, 2, 80, 1, 'S'),
+(35, 1, 81, 2, NULL),
+(36, 2, 81, 1, 'S'),
+(37, 3, 81, 1, 'L');
 
 -- --------------------------------------------------------
 
@@ -129,27 +177,33 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `shippingtime` date DEFAULT NULL,
   `status` varchar(64) NOT NULL DEFAULT 'new',
   `hashlink` varchar(64) NOT NULL,
+  `address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `hashlink` (`hashlink`),
   KEY `hashlink_2` (`hashlink`),
   KEY `hashlink_3` (`hashlink`),
   KEY `hashlink_4` (`hashlink`),
-  KEY `hashlink_5` (`hashlink`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+  KEY `hashlink_5` (`hashlink`),
+  KEY `address_id` (`address_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
 
 --
 -- Daten für Tabelle `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `number`, `bill`, `ordertime`, `paymenttime`, `shippingtime`, `status`, `hashlink`) VALUES
-(22, 1, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', 'f18be1fb-1f87-4b3a-8c88-cd70dec68e79'),
-(23, 1, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '054b6094-104f-4161-ac9b-eb522d6ed861'),
-(29, 1, 'asdf', 'asdf', '2013-06-09', '2013-06-10', NULL, 'payed', '63c45ca9-0eb0-4bbc-8015-b810e8a2bad8'),
-(37, 1, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', 'af789838-ac49-4c30-898f-acfa2cfcae36'),
-(41, 1, 'asdf', 'asdf', '2013-06-09', '2013-06-10', '2013-06-10', 'shipped', '0ff65ac9-d6c2-46b7-b649-726342c86a0e'),
-(42, 24, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '497e0752-bcb9-46dd-9c3d-b2d0346b8468'),
-(77, 28, 'asdf', 'asdf', NULL, NULL, NULL, 'new', '15b89af4-d6bf-4985-a404-9cef2f9aed33');
+INSERT INTO `orders` (`id`, `user_id`, `number`, `bill`, `ordertime`, `paymenttime`, `shippingtime`, `status`, `hashlink`, `address_id`) VALUES
+(22, 1, 'asdf', 'asdf', '2013-06-09', '2013-07-04', '2013-07-04', 'shipped', 'f18be1fb-1f87-4b3a-8c88-cd70dec68e79', NULL),
+(23, 1, 'asdf', 'asdf', '2013-06-09', NULL, '2013-07-05', 'shipped', '054b6094-104f-4161-ac9b-eb522d6ed861', 1),
+(29, 1, 'asdf', 'asdf', '2013-06-09', '2013-06-10', NULL, 'payed', '63c45ca9-0eb0-4bbc-8015-b810e8a2bad8', NULL),
+(37, 1, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', 'af789838-ac49-4c30-898f-acfa2cfcae36', NULL),
+(41, 1, 'asdf', 'asdf', '2013-06-09', '2013-06-10', '2013-06-10', 'shipped', '0ff65ac9-d6c2-46b7-b649-726342c86a0e', NULL),
+(42, 24, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '497e0752-bcb9-46dd-9c3d-b2d0346b8468', NULL),
+(77, 28, 'asdf', 'asdf', '2013-06-09', '2013-07-04', NULL, 'new', '15b89af4-d6bf-4985-a404-9cef2f9aed33', NULL),
+(78, 28, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '3d63752b-6793-4706-9df2-a00c6e62ea63', NULL),
+(79, 28, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '9e45490d-cc47-4701-86fc-2c37cce81f63', NULL),
+(80, 28, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '70c1004b-033c-425f-93b3-785c0f1dbac0', NULL),
+(81, 28, 'asdf', 'asdf', '2013-06-09', NULL, NULL, 'new', '1a908d16-2c73-45a9-9ee9-43a96d6218ad', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,38 +241,37 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(128) DEFAULT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `name` varchar(512) NOT NULL,
-  `lastname` varchar(512) NOT NULL,
-  `street` varchar(512) NOT NULL,
-  `street_number` int(5) NOT NULL,
-  `plz` int(5) NOT NULL,
-  `city` varchar(512) NOT NULL,
-  `country` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Daten für Tabelle `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `name`, `lastname`, `street`, `street_number`, `plz`, `city`, `country`, `admin`) VALUES
-(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', 'test1@example.com', 'Hans ', 'Wurst', 'teststr.', 5, 56142, 'Dortmund', 'Deutschland', 0),
-(6, 'test6', 'pass6', 'test6@example.com', 'Klaus', 'Müller', 'Ingostr.', 5, 14414, 'Darmstadt', 'Deutschland', 0),
-(18, 'test18', 'pass18', 'test18@example.com', 'Inga', 'Schmidt', 'Taunusstr.', 54, 51515, 'Köln', 'Deutschland', 0),
-(19, 'test19', 'pass19', 'test19@example.com', 'Horst', 'Meyer', 'Pommernstr.', 12, 51515, 'Haintchen', 'Deutschland', 0),
-(20, 'test20', 'pass20', 'test20@example.com', 'Klaus', 'Willert', 'Hauptstr.', 18, 51515, 'Frankfurt am Main', 'Deutschland', 0),
-(21, 'test21', 'pass21', 'test21@example.com', 'Monika', 'Meyer', 'Arkaden', 12, 51515, 'Berlin', 'Deutschland', 0),
-(22, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Martin', 'Bürgermeister', 'Duisbergstraße', 4, 60320, 'Frankfurt am Main', 'Deutschland', 0),
-(23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Robert', 'Kriese', 'Schwalbacher Straße', 12, 65185, 'Wiesbaden', 'Deutschland', 0),
-(24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 'Benny', 'Bilderberg', 'Büchnerweg', 12, 51515, 'Hannover', 'Deutschland', 0),
-(25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 'Richard', 'Wagner', 'Beethovenallee', 12, 51533, 'Bremen', 'Deutschland', 0),
-(27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 'Hans', 'Urmel', 'Inselweg', 524, 98484, 'Trier', 'Deutschland', 0),
-(28, 'tape', '$2a$12$rJkRgQhBHo6YTn4f7t8rG.T7NldB7clruytsYjt8nG1ByWbZeO0T6', '', 'Tape', 'Shop', '', 0, 0, '', '', 1);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `admin`) VALUES
+(1, 'test1', '098f6bcd4621d373cade4e832627b4f6', 'test1@example.com', 0),
+(6, 'test6', 'pass6', 'test6@example.com', 0),
+(18, 'test18', 'pass18', 'test18@example.com', 0),
+(19, 'test19', 'pass19', 'test19@example.com', 0),
+(20, 'test20', 'pass20', 'test20@example.com', 0),
+(21, 'test21', 'pass21', 'test21@example.com', 0),
+(22, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 0),
+(23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 0),
+(24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 0),
+(25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 0),
+(27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 0),
+(28, 'tape', '$2a$12$rJkRgQhBHo6YTn4f7t8rG.T7NldB7clruytsYjt8nG1ByWbZeO0T6', '', 1);
 
 --
 -- Constraints der exportierten Tabellen
 --
+
+--
+-- Constraints der Tabelle `addresses`
+--
+ALTER TABLE `addresses`
+  ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints der Tabelle `itemnumbers`
@@ -238,6 +291,7 @@ ALTER TABLE `orderitems`
 -- Constraints der Tabelle `orders`
 --
 ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

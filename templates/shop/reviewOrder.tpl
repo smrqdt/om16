@@ -2,14 +2,14 @@
 {include file="pagehead.tpl"}
 <h1>Review Order</h1>
 
-{$userObj->email}
-{$userObj->name}
-{$userObj->lastname}
-{$userObj->street}
-{$userObj->street_number}
-{$userObj->plz}
-{$userObj->city}
-{$userObj->country}
+{$userObj->email}<br />
+{$userObj->currentAddress()->name} 
+{$userObj->currentAddress()->lastname}<br />
+{$userObj->currentAddress()->street} 
+{$userObj->currentAddress()->building_number}<br />
+{$userObj->currentAddress()->postcode} 
+{$userObj->currentAddress()->city}<br />
+{$userObj->currentAddress()->country}
 
 {include file="cart/cartItems.tpl"}
 

@@ -32,7 +32,7 @@
             <label class="control-label" for="name">Name</label>
 
             <div class="controls">
-                <input type="text" name="name" class="input-block-level" value="{$userObject->name}">
+                <input type="text" name="name" class="input-block-level" value="{$userObject->currentAddress()->name}">
             </div>
 
         </div>
@@ -42,7 +42,7 @@
             <label class="control-label" for="lastname">Lastname</label>
 
             <div class="controls">
-                <input type="text" name="lastname" class="input-block-level" value="{$userObject->lastname}">
+                <input type="text" name="lastname" class="input-block-level" value="{$userObject->currentAddress()->lastname}">
             </div>
 
         </div>
@@ -52,27 +52,27 @@
             <label class="control-label" for="street">Street</label>
 
             <div class="controls">
-                <input type="text" name="street" class="input-block-level" value="{$userObject->street}">
+                <input type="text" name="street" class="input-block-level" value="{$userObject->currentAddress()->street}">
             </div>
 
         </div>
 
         <div class="control-group">
 
-            <label class="control-label" for="street_number">Street Number</label>
+            <label class="control-label" for="street_number">Building Number</label>
 
             <div class="controls">
-                <input type="text" name="street_number" class="input-block-level" value="{$userObject->street_number}">
+                <input type="text" name="street_number" class="input-block-level" value="{$userObject->currentAddress()->building_number}">
             </div>
 
         </div>
 
         <div class="control-group">
 
-            <label class="control-label" for="plz">PLZ</label>
+            <label class="control-label" for="plz">Postcode</label>
 
             <div class="controls">
-                <input type="text" name="plz" class="input-block-level" value="{$userObject->plz}">
+                <input type="text" name="plz" class="input-block-level" value="{$userObject->currentAddress()->postcode}">
             </div>
 
         </div>
@@ -82,7 +82,7 @@
             <label class="control-label" for="city">City</label>
 
             <div class="controls">
-                <input type="text" name="city" class="input-block-level" value="{$userObject->city}">
+                <input type="text" name="city" class="input-block-level" value="{$userObject->currentAddress()->city}">
             </div>
 
         </div>
@@ -92,7 +92,7 @@
             <label class="control-label" for="country">Country</label>
 
             <div class="controls">
-                <input type="text" name="country" class="input-block-level" value="{$userObject->country}">
+                <input type="text" name="country" class="input-block-level" value="{$userObject->currentAddress()->country}">
             </div>
 
         </div>

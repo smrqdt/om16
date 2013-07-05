@@ -4,13 +4,23 @@
 
 <div class="span5">
 <h6>Shipping address:</h6>
-{$order->user->name} 
-{$order->user->lastname}<br/>
-{$order->user->street} 
-{$order->user->street_number}<br/>
-{$order->user->plz} 
-{$order->user->city}<br/>
-{$order->user->country}
+{if $order->address}
+	{$order->address->name} 
+	{$order->address->lastname}<br/>
+	{$order->address->street} 
+	{$order->address->building_number}<br/>
+	{$order->address->postcode} 
+	{$order->address->city}<br/>
+	{$order->address->country}
+{else}
+	{$order->user->currentAddress()->name} 
+	{$order->user->currentAddress()->lastname}<br/>
+	{$order->user->currentAddress()->street} 
+	{$order->user->currentAddress()->building_number}<br/>
+	{$order->user->currentAddress()->postcode} 
+	{$order->user->currentAddress()->city}<br/>
+	{$order->user->currentAddress()->country}
+{/if}
 </div>
 
 <div class="span5">

@@ -3,7 +3,8 @@
 class Order extends ActiveRecord\Model {
 	
 	static $belongs_to = array(
-			array('user')
+			array('user'),
+			array('address')
 	);
 	
 	static $has_many = array(
