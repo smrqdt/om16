@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 05. Jul 2013 um 16:12
+-- Erstellungszeit: 05. Jul 2013 um 17:43
 -- Server Version: 5.6.10
 -- PHP-Version: 5.3.15
 
@@ -60,7 +60,7 @@ INSERT INTO `addresses` (`id`, `user_id`, `name`, `lastname`, `street`, `buildin
 (10, 25, 'Richard', 'Wagner', 'Beethovenallee', '12', '51533', 'Bremen', 'Deutschland', 1),
 (11, 27, 'Hans', 'Urmel', 'Inselweg', '524', '98484', 'Trier', 'Deutschland', 1),
 (12, 28, 'Tape', 'Shop', '', '0', '0', '', '', 1),
-(19, 1, 'Hans ', 'Wurst', 'teststr.', '7', '56142', 'Dortmund', 'Deutschland', 1);
+(19, 1, 'Hans ', 'Wurst', 'teststr.', '8', '56142', 'Dortmund', 'Deutschland', 1);
 
 -- --------------------------------------------------------
 
@@ -261,18 +261,11 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `admin`) VALUES
 (23, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 0),
 (24, NULL, '805748af1f06e479075be15c56bc7f73', 'rokr42@gmail.com', 0),
 (25, NULL, 'a780be915203eb4cf326bece37f9b37f', 'rokr@example.com', 0),
-(27, NULL, 'fc640f7fdfac30d9f91a5b29463ac35d', 'fhjslkd', 0),
 (28, 'tape', '$2a$12$rJkRgQhBHo6YTn4f7t8rG.T7NldB7clruytsYjt8nG1ByWbZeO0T6', '', 1);
 
 --
 -- Constraints der exportierten Tabellen
 --
-
---
--- Constraints der Tabelle `addresses`
---
-ALTER TABLE `addresses`
-  ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints der Tabelle `itemnumbers`
