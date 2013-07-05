@@ -15,7 +15,7 @@ class Order extends ActiveRecord\Model {
 	public function getSum(){
 		$sum = 0;
 		foreach ($this->orderitems as $item){
-			$sum += $item->amount * $item->item->price;
+			$sum += $item->amount * $item->price;
 		}
 		return $sum;
 	}

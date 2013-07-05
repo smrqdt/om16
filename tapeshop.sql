@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 05. Jul 2013 um 15:40
+-- Erstellungszeit: 05. Jul 2013 um 16:12
 -- Server Version: 5.6.10
 -- PHP-Version: 5.3.15
 
@@ -131,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `order_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `size` varchar(32) DEFAULT NULL,
+  `price` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
   KEY `order` (`order_id`)
@@ -140,26 +141,26 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
 -- Daten für Tabelle `orderitems`
 --
 
-INSERT INTO `orderitems` (`id`, `item_id`, `order_id`, `amount`, `size`) VALUES
-(1, 1, 22, 1, NULL),
-(2, 1, 23, 1, NULL),
-(3, 1, 29, 2, NULL),
-(4, 2, 29, 1, 'M'),
-(5, 3, 29, 1, 'L'),
-(6, 1, 37, 1, NULL),
-(7, 1, 41, 2, NULL),
-(8, 2, 41, 1, 'S'),
-(9, 3, 41, 1, 'L'),
-(10, 2, 42, 1, 'L'),
-(29, 1, 77, 1, NULL),
-(30, 1, 78, 1, NULL),
-(31, 2, 78, 1, 'M'),
-(32, 2, 79, 1, 'S'),
-(33, 3, 80, 3, 'L'),
-(34, 2, 80, 1, 'S'),
-(35, 1, 81, 2, NULL),
-(36, 2, 81, 1, 'S'),
-(37, 3, 81, 1, 'L');
+INSERT INTO `orderitems` (`id`, `item_id`, `order_id`, `amount`, `size`, `price`) VALUES
+(1, 1, 22, 1, NULL, 2317),
+(2, 1, 23, 1, NULL, 2317),
+(3, 1, 29, 2, NULL, 2317),
+(4, 2, 29, 1, 'M', 1600),
+(5, 3, 29, 1, 'L', 2500),
+(6, 1, 37, 1, NULL, 2317),
+(7, 1, 41, 2, NULL, 2317),
+(8, 2, 41, 1, 'S', 1600),
+(9, 3, 41, 1, 'L', 2500),
+(10, 2, 42, 1, 'L', 1600),
+(29, 1, 77, 1, NULL, 2317),
+(30, 1, 78, 1, NULL, 2317),
+(31, 2, 78, 1, 'M', 1600),
+(32, 2, 79, 1, 'S', 1600),
+(33, 3, 80, 3, 'L', 2500),
+(34, 2, 80, 1, 'S', 1600),
+(35, 1, 81, 2, NULL, 2317),
+(36, 2, 81, 1, 'S', 1600),
+(37, 3, 81, 1, 'L', 2500);
 
 -- --------------------------------------------------------
 

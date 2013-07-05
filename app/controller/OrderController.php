@@ -17,7 +17,8 @@ class OrderController extends Controller{
 			$order->create_orderitems(array(
 					"item_id" => $ci["item"]->id,
 					"amount" => $ci["amount"],
-					"size" => $ci["size"]
+					"size" => $ci["size"],
+					"price" => $ci["item"]->price
 			)
 			);
 		}

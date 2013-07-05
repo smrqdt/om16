@@ -120,10 +120,10 @@
 		{$item->amount}
 	</td>
 	<td>
-		{$item->item->price/100} €
+		{$item->price/100} €
 	</td>
 	<td>
-		{$item->amount * ($item->item->price)/100} €
+		{$item->amount * ($item->price)/100} €
 	</td>
 </tr>
 {/foreach}
