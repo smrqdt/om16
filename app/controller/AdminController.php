@@ -66,4 +66,20 @@ class AdminController extends Controller{
 		$this->render("admin/items.tpl", $data);
 		
 	}
+	
+	public function orders(){
+		$this->checkAdmin();
+		
+		$cart = $this->getCart();
+		
+		$orders = Order::all();
+		
+		$data = array(
+				"orders" => $orders,
+				"noCartItems" => count($cart),
+				"user" => $this->user
+		);
+		
+		$this->render("admin/orders.tpl", $data);
+	}
 }

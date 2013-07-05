@@ -4,12 +4,12 @@
 
 <div class="span5">
 <h6>Shipping address:</h6>
-{$order->user->name}
-{$order->user->lastname}
-{$order->user->street}
-{$order->user->street_number}
-{$order->user->plz}
-{$order->user->city}
+{$order->user->name} 
+{$order->user->lastname}<br/>
+{$order->user->street} 
+{$order->user->street_number}<br/>
+{$order->user->plz} 
+{$order->user->city}<br/>
 {$order->user->country}
 </div>
 
@@ -36,7 +36,15 @@
 			Payment received
 		</th>
 		<td>
-			{$order->paymenttime}
+			{if $order->paymenttime}
+				{$order->paymenttime}
+			{else}
+				{if isset($smarty.session['auth_user']) && $smarty.session['auth_user']['admin']}
+					<form method="post" action="{$path}index.php/order/{$order->id}/payed" style="display:inline">
+						<button type="submit" class="btn"><i class="icon-barcode"></i> Mark as payed</button>
+					</form>
+				{/if}
+			{/if}
 		</td>
 	</tr>
 	<tr>
@@ -44,7 +52,15 @@
 			Shipped
 		</th>
 		<td>
-			{$order->shippingtime}
+			{if $order->shippingtime}
+				{$order->shippingtime}
+			{else}
+				{if isset($smarty.session['auth_user']) && $smarty.session['auth_user']['admin']}
+					<form method="post" action="{$path}index.php/order/{$order->id}/shipped" style="display:inline">
+						<button type="submit" class="btn"><i class="icon-gift"></i> Mark as shipped</button>
+					</form>
+				{/if}
+			{/if}
 		</td>
 	</tr>
 </table>
@@ -83,10 +99,7 @@
 		{if $item->item->numbered}
 			<br />Numbers: 
 			{foreach $item->itemnumbers as $in}
-				{$in->number}
-				{if not $in@last}
-				, 
-				{/if}
+				{$in->number}{if not $in@last}, {/if}
 			{/foreach}
 		{/if}
 	</td>
