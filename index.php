@@ -76,8 +76,6 @@ $app->get('/admin', array($adminController, 'index'))->name('admin');
 $app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 $app->get('/admin/orders', array($adminController, 'orders'))->name('adminorders');
 // $app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
-$app->get('/admin/user/edit/:id', array($adminController, 'editUser'));
-$app->get('/admin/user/save/:id', array($adminController, 'saveUser'))->via('GET', 'POST')->name('editUser');
 
 // order routings
 $orderController = new OrderController();
@@ -95,7 +93,9 @@ $app->post('/cart/clear', array($cartController, 'clearCart'));
 
 // user routings
 $userController = new UserController();
-$app->post('/user/delete/:id', array($userController, 'deleteUser'));
+$app->post('/user/delete/:id', array($userController, 'delete'));
+$app->get('/admin/user/edit/:id', array($userController, 'edit'));
+$app->map('/admin/user/save/:id', array($userController, 'save'))->via('GET', 'POST')->name('editUser');
 
 // item routings
 $itemController = new ItemController();
