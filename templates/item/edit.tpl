@@ -10,12 +10,12 @@
 	</div>
 
 	<div class="span4 well">
-		<form method="post" action="{$path}index.php/item/{$item->id}/removeimage">
+		<form method="post" action="{$path}index.php/item/{$item->id}/removeimage" style="display:inline;">
 			 <button type="submit" value="+" class="btn"><i class="icon-remove"></i> Remove Image</button>
 		</form>
 		<form method="post"
-				action="{$path}index.php/item/delete/{$item->id}">
-			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
+				action="{$path}index.php/item/delete/{$item->id}" style="display:inline;">
+			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete Item</button>
 		</form>
 	</div>
 
@@ -42,18 +42,23 @@
 	<div class="span4 well">
 		<h5>Numberd</h5>
 		{if $item->numbered}
-		<table>
+		<table class="table">
 			<tr>
 				<th>Total</th>
-				<td>{count($item->itemnumbers)}</td>
-			</tr>
-			<tr>
 				<th>Free</th>
-				<td>{count($item->getFreeNumbers())}</td>
+				<th>Invalid</th>
+				<th>Unrequested</th>
 			</tr>
 			<tr>
-				<th>Invalid</th>
+				<td>{count($item->itemnumbers)}</td>
+				<td>{count($item->getFreeNumbers())}</td>
 				<td>{count($item->getInvalidNumbers())}</td>
+				{if $item->getUnrequestedNumberCount() <= 0}
+					<td class="text-error">
+				{else}
+					<td>
+				{/if}
+				{$item->getUnrequestedNumberCount()}</td>
 			</tr>
 		</table>
 		<form method="post" action="{$path}index.php/item/{$item->id}/addnumbers">

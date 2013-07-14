@@ -35,7 +35,11 @@
 	</thead>
 	<tbody>
 		{foreach from=$items item=item}
-		<tr>
+		{if $item-> numbered && $item->getUnrequestedNumberCount() <= 0}
+			<tr class="error">
+		{else}
+			<tr>
+		{/if}
 			<td>
 				{$item->id}
 			</td>
@@ -43,7 +47,16 @@
 				{$item->name}
 			</td>
 			<td>
-				{$item->description}
+				{$item->description} 
+				{if $item-> numbered}
+					{if $item->getUnrequestedNumberCount() <= 0}
+						<p class="text-error">
+					{else}
+						<p class="text-info">
+					{/if}
+					<em>{$item->getUnrequestedNumberCount()} left</em>
+				</p>
+				{/if}
 			</td>
 			<td>
 				{$item->price/100} €
