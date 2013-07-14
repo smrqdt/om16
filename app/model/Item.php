@@ -8,17 +8,8 @@ class Item extends ActiveRecord\Model {
 			array('itemnumbers')
 	);
 
-	/*
-	 * TODO: I think this can also be achieved with the OR mapper and a query, but I am to lazy to figure it out.
-	*/
 	function getFreeNumbers(){
-		$free = array();
-		foreach($this->itemnumbers as $n){
-			if($n->valid && $n->free){
-				array_push($free, $n);
-			}
-		}
-		return $free;
+		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and free = true', $this->id))); 
 	}
 	
 	function getUnrequestedNumberCount(){
@@ -37,16 +28,7 @@ class Item extends ActiveRecord\Model {
 		return $count;
 	}
 
-	/*
-	 * TODO: I think this can also be achieved with the OR mapper and a query, but I am to lazy to figure it out.
-	*/
 	function getInvalidNumbers(){
-		$invalid = array();
-		foreach($this->itemnumbers as $n){
-			if(!$n->valid){
-				array_push($invalid, $n);
-			}
-		}
-		return $invalid;
+		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = false', $this->id)));
 	}
 }
