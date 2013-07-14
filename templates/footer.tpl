@@ -1,5 +1,5 @@
-   </div><!--/row-->
-
+	</div><!--/row-->
+	<div class="clearfix"></div>
       <hr>
 
       <footer>

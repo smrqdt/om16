@@ -13,14 +13,14 @@
 		<h5>{$item->price/100.0} €</h5>
 		<form method="post" action="{$path}index.php/cart/addItem/{$item->id}">
 		{if $item->sizes}
-			<select id="size" name="size" class="btn span6">
+			<select id="size" name="size" class="btn span5">
 			{foreach from=$item->sizes item=size}
 				<option>{$size->size}</option>
 			{/foreach}
 			<select>
 		{/if}
 
-		{if $item->numbered && count($item->getFreeNumbers()) == 0}
+		{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
 			<div class="text-error">Out of stock.</div>
 		{else}
 			<div class="btn-group">

@@ -21,8 +21,7 @@
 {if isset($smarty.session['auth_user']) && $smarty.session['auth_user']['admin']}
 <div class="span4 well">
 	<a href="{$path}index.php/item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> Edit</a>
-	<br/><br/>
-	<form method="post" action="{$path}index.php/item/delete/{$item->id}">
+	<form method="post" action="{$path}index.php/item/delete/{$item->id}" style="display:inline;">
 		<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
 	</form>
 </div>
@@ -38,7 +37,7 @@
 			{/foreach}
 			<select>
 		{/if}
-		{if $item->numbered && count($item->getFreeNumbers()) == 0}
+		{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
 			<p class="text-error">Out of stock.</p>
 		{else}
 			<div class="btn-group">

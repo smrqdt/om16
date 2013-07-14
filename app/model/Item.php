@@ -20,6 +20,22 @@ class Item extends ActiveRecord\Model {
 		}
 		return $free;
 	}
+	
+	function getUnrequestedNumberCount(){
+		$numbers = array();
+		$count = count($this->getFreeNumbers());
+		
+		if($count == 0){
+			return 0;
+		}
+		
+		foreach($this->orderitems as $oi){
+			if($oi->order->status != 'payed'){
+				$count -= $oi->amount;
+			}
+		}
+		return $count;
+	}
 
 	/*
 	 * TODO: I think this can also be achieved with the OR mapper and a query, but I am to lazy to figure it out.
