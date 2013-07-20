@@ -1,0 +1,14 @@
+{
+    "require": {
+        "slim/slim": "2.*",
+        "slim/extras": "*",
+        "slim/strong": "*",
+        "php-activerecord/php-activerecord": "*",
+        "smarty/smarty": "*",
+        "vlucas/valitron": "*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+    	"classmap": ["app/"]
+    }
+}
