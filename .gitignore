@@ -1,7 +1,11 @@
+# eclipse noise
 .project
-templates_c/
-config.php
 .settings/
 .buildpath
+
+# project noise
+templates_c/
+config.php
 composer.lock
+upload/
 vendor/

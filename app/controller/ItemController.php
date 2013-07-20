@@ -31,9 +31,10 @@ class ItemController extends Controller {
 					$item->name = $this->post("name");
 					$item->description = $this->post("description");
 					$item->price = $this->post("price") * 100;
-						
-					if($_FILES['image'] == '') {
+					print_r($_FILES);
+					if($_FILES['image'] != '') {
 						$uploaddir = dirname(__FILE__).'/../../upload/';
+						print "<br> UPLOADDIR: ".$uploaddir;
 						$uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
 						if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
