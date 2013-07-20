@@ -2,5 +2,6 @@
 templates_c/
 config.php
 .settings/
+.buildpath
 composer.lock
 vendor/

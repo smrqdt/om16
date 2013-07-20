@@ -11,9 +11,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="{$path}js/jquery.dataTables.min.js"></script>
-    <script src="{$path}js/bootstrap.min.js"></script>
-    <script src="{$path}js/DT_bootstrap.js"></script>
+    <script src="{$path}assets/js/jquery.dataTables.min.js"></script>
+    <script src="{$path}assets/js/bootstrap.min.js"></script>
+    <script src="{$path}assets/js/DT_bootstrap.js"></script>
     <script type="text/javascript">
    
     /* orders table initialisation */

@@ -8,7 +8,7 @@
 		<h4 class="muted">
 			{$item->name}
 		</h4>
-		<img src="{if $item->image}$item->image{else}{$path}img/molumen_audio_cassette.svg{/if}" class="img-polaroid" style="background-color:#ddd; height:240px; width:240px;"/>
+		<img src="{if $item->image}$item->image{else}{$path}assets/img/molumen_audio_cassette.svg{/if}" class="img-polaroid" style="background-color:#ddd; height:240px; width:240px;"/>
 		<p>{$item->description}</p>
 		<h5>{$item->price/100.0} €</h5>
 		<form method="post" action="{$path}index.php/cart/addItem/{$item->id}">

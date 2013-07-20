@@ -8,14 +8,14 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="{$path}css/bootstrap.css" rel="stylesheet">
-    <link href="{$path}css/styles.css" rel="stylesheet">
-    <link href="{$path}css/DT_bootstrap.css" rel="stylesheet">
-    <link href="{$path}css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="{$path}assets/css/bootstrap.css" rel="stylesheet">
+    <link href="{$path}assets/css/styles.css" rel="stylesheet">
+    <link href="{$path}assets/css/DT_bootstrap.css" rel="stylesheet">
+    <link href="{$path}assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="{$path}js/html5shiv.js"></script>
+      <script src="{$path}assets/js/html5shiv.js"></script>
     <![endif]-->
   </head>
 
