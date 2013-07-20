@@ -27,20 +27,14 @@ class ShopController extends Controller {
 			$sum += ($item["item"]->price/100)*$item["amount"];
 		}
 
-		if(!isset($this->user) || $this->user == null){
-			$this->user = array("logged_in"=> false);
-		}
-
 		$data = array(
 				"cart" => $cart,
 				"noCartItems" => count($cart),
-				"sum" => $sum,
-				"user" => $this->user
+				"sum" => $sum
 		);
 
-		if(isset($this->user["id"])){
-			$user = User::find($this->user["id"]);
-			$data["userObj"] = $user;
+		if(isset($this->user)){
+			$data["user"] = $this->user;
 			$this->render("shop/reviewOrder.tpl", $data);
 		}else{
 			$this->render("shop/checkout.tpl", $data);
@@ -48,25 +42,31 @@ class ShopController extends Controller {
 	}
 
 	public function noSignup(){
-		// TODO add salt to generated password
 		$u = array(
 				"email" => $this->post("email"),
+				"password" => $this->auth->getProvider()->initPassword($this->gen_uuid())
+		);
+		$user = new User($u);
+		$user->save();
+		$this->user = $user;
+		
+		$a = array(
+				"user_id" => $user->id,
 				"name" => $this->post("name"),
 				"lastname" => $this->post("lastname"),
 				"street" => $this->post("street"),
-				"street_number" => $this->post("street_number"),
-				"plz" => $this->post("plz"),
+				"building_number" => $this->post("street_number"),
+				"postcode" => $this->post("plz"),
 				"city" => $this->post("city"),
 				"country" => $this->post("country"),
-				"password" => md5($this->post("email").$this->post("plz")),
-				"logged_in" => false
 		);
 
+		$address = new Address($a);
+		$address->save();
+		
 		// create session user object
-		$user = new User($u);
-		$user->save();
 		$u["id"] = $user->id;
-		$this->user = $u;
+		$u["logged_in"] = false;
 		$_SESSION["auth_user"] = $u;
 		$this->checkout();
 	}

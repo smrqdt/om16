@@ -3,10 +3,9 @@
 use ActiveRecord\DateTime;
 class OrderController extends Controller{
 	public function submitOrder(){
-		$user = User::find($this->user["id"]);
 	
 		// TODO: generate order and bill numbers
-		$order = $user->create_orders(array(
+		$order = $this->user->create_orders(array(
 				'number' => "asdf",
 				'bill' => "asdf",
 				'hashlink'=> $this->gen_uuid()
@@ -28,10 +27,11 @@ class OrderController extends Controller{
 				"order" => $order,
 				"noCartItems" => 0
 		);
-		if(!isset($this->user["logged_in"])){
+		$auth_user = $this->auth->getUser();
+		if(!$auth_user['logged_in']){
 			unset($_SESSION["auth_user"]);
 		}
-		// send email
+		// TODO send confirmation email
 		$url = $this->app->urlFor('order', array('hash'=> $order->hashlink));
 		$this->app->redirect($url);
 	}

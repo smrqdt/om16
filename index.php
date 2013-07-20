@@ -2,31 +2,7 @@
 define("APP_PATH", "http://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . "/../");
 date_default_timezone_set('Europe/Berlin');
 
-require_once 'libs/Slim/Slim.php';
-require_once 'libs/Slim/View.php';
-require_once 'libs/Slim/Middleware.php';
-require_once 'libs/Slim/Extras/Views/Smarty.php';
-require_once 'libs/Slim/Extras/Log/DateTimeFileWriter.php';
-require_once 'libs/ActiveRecord.php';
-require_once 'libs/Strong/Strong.php';
-require_once 'libs/Slim/Extras/Middleware/StrongAuth.php';
-
-require_once 'app/model/Size.php';
-require_once 'app/model/Item.php';
-require_once 'app/model/User.php';
-require_once 'app/model/Order.php';
-require_once 'app/model/OrderItem.php';
-require_once 'app/model/ItemNumber.php';
-require_once 'app/model/Address.php';
-
-require_once 'app/Controller.php';
-require_once 'app/controller/LoginController.php';
-require_once 'app/controller/ShopController.php';
-require_once 'app/controller/CartController.php';
-require_once 'app/controller/OrderController.php';
-require_once 'app/controller/UserController.php';
-require_once 'app/controller/ItemController.php';
-require_once 'app/controller/AdminController.php';
+require 'vendor/autoload.php';
 require_once 'config.php';
 
 ActiveRecord\Config::initialize(function($cfg) {
@@ -36,8 +12,8 @@ ActiveRecord\Config::initialize(function($cfg) {
 
 session_start();
 
-\Slim\Slim::registerAutoloader();
-
+\Slim\Extras\Views\Smarty::$smartyDirectory = 'vendor/smarty/smarty/distribution/libs';
+\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/view';
 $smartyView = new \Slim\Extras\Views\Smarty();
 
 $app = new \Slim\Slim(array(

@@ -3,13 +3,15 @@ use Valitron\Validator;
 
 abstract class Controller {
 	public $app;
+	protected $user;
 
 	public function __construct(){
 		$this->app = !empty($slim) ? $slim : \Slim\Slim::getInstance();
 		$this->auth = \Strong\Strong::getInstance();
 
 		if ($this->auth->loggedIn()) {
-			$this->user = $this->auth->getUser();
+			$auth_user = $this->auth->getUser();
+			$this->user = User::find($auth_user['id']);
 		}
 	}
 
@@ -91,8 +93,7 @@ abstract class Controller {
 	 */
 	protected function checkAdmin(){
 		if(isset($this->user)){
-			$user= User::find($this->user["id"]);
-			if($user->admin){
+			if($this->user->admin){
 				return;
 			}
 		}

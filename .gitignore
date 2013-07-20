@@ -2,3 +2,5 @@
 templates_c/
 config.php
 .settings/
+composer.lock
+vendor/
