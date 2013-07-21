@@ -1,9 +1,8 @@
 {include file="header.tpl"}
-    <div class="modal-backdrop login-backdrop">
-    <div class="container">
-    
+{include file="pagehead.tpl"}    
+    <div class="span6 offset3">
+      <h2 class="form-signin-heading">Please enter your data</h2>
       <form class="form-horizontal" method="post">
-        <h2 class="form-signin-heading">Please enter your data</h2>
         {include file="flash.tpl"}
         <div class="control-group">
 
@@ -113,12 +112,16 @@
             </div>
     
         </div>
-    
-        <label class="checkbox">    
-          <input type="checkbox" name="remember" value="remember-me"> Remember me
-        </label>
-		<a href="{$path}" class="btn btn-large">Back</a>
-        <button class="btn btn-large btn-primary" type="submit">Register</button>
+    	<div class="control-group">
+		    <div class="controls">
+		        <label class="checkbox">    
+		          <input type="checkbox" name="remember" value="remember-me"> Remember me
+		        </label>
+				<a href="{$path}" class="btn">Back</a>
+		        <button class="btn btn-primary" type="submit">Register</button>
+		    </div>
+	    </div>
       </form>
+	</div>
 
 {include file="footer.tpl"}

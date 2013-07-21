@@ -18,7 +18,7 @@
             </p>
             <ul class="nav">
               <li><a href="{$path}">Home</a></li>
-              <li><a href="{$path}index.php/cart">Cart {if $noCartItems}<span class="badge">{$noCartItems}</span>{/if}</a></li>
+              <li><a href="{$path}index.php/cart">Cart {if isset($noCartItems) && $noCartItems}<span class="badge">{$noCartItems}</span>{/if}</a></li>
               <li><a href="#contact">Contact</a></li>
               {if isset($smarty.session['auth_user']['logged_in']) && $smarty.session['auth_user']['logged_in'] && $user->admin}
               	<li class="divider-vertical"></li>
