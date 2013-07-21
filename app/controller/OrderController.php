@@ -24,8 +24,7 @@ class OrderController extends Controller{
 		$_SESSION["cart"] = array();
 	
 		$data = array(
-				"order" => $order,
-				"noCartItems" => 0
+				"order" => $order
 		);
 		$auth_user = $this->auth->getUser();
 		if(!$auth_user['logged_in']){
@@ -51,9 +50,7 @@ class OrderController extends Controller{
 			$cart = $this->getCart();
 	
 			$data = array(
-					"order" => $order,
-					"noCartItems"=> count($cart),
-					"user" => $this->user
+					"order" => $order
 			);
 	
 			$this->render("order/order.tpl", $data);

@@ -7,9 +7,7 @@ class ShopController extends Controller {
 		$cart = $this->getCart();
 
 		$data = array(
-				"items" => $items,
-				"noCartItems" => count($cart),
-				"user" => $this->user
+				"items" => $items
 		);
 
 		$this->render("shop/index.tpl", $data);
@@ -25,7 +23,6 @@ class ShopController extends Controller {
 
 		$data = array(
 				"cart" => $cart,
-				"noCartItems" => count($cart),
 				"sum" => $sum
 		);
 

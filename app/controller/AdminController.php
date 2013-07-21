@@ -6,14 +6,11 @@ class AdminController extends Controller{
 		$this->checkAdmin();
 
 		$orders = Order::all();
-		$cart = $this->getCart();
 		$users = User::all();
 
 		$data = array(
 				"orders" => $orders,
-				"users" => $users,
-				"noCartItems"=> count($cart),
-				"user" => $this->user
+				"users" => $users
 		);
 
 		$this->render("admin/index.tpl", $data);
@@ -22,13 +19,10 @@ class AdminController extends Controller{
 	public function items(){
 		$this->checkAdmin();
 		
-		$cart = $this->getCart();
 		$items = Item::all();
 		
 		$data = array(
-				"items" => $items,
-				"noCartItems"=> count($cart),
-				"user" => $this->user
+				"items" => $items
 		);
 		
 		$this->render("admin/items.tpl", $data);
@@ -38,14 +32,10 @@ class AdminController extends Controller{
 	public function orders(){
 		$this->checkAdmin();
 		
-		$cart = $this->getCart();
-		
 		$orders = Order::all();
 		
 		$data = array(
-				"orders" => $orders,
-				"noCartItems" => count($cart),
-				"user" => $this->user
+				"orders" => $orders
 		);
 		
 		$this->render("admin/orders.tpl", $data);

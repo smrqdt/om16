@@ -5,12 +5,8 @@ class ItemController extends Controller {
 	public function show($id){
 		$item = Item::find($id);
 		if($item != null){
-			$cart = $this->getCart();
-
 			$data = array(
-					"user" => $this->user,
-					"item" => $item,
-					"noCartItems"=> count($cart)
+					"item" => $item
 			);
 			$this->render('item/show.tpl', $data);
 		}else{
@@ -55,12 +51,8 @@ class ItemController extends Controller {
 				}
 			}
 
-			$cart = $this->getCart();
-
 			$data = array(
-					"user" => $this->user,
-					"item" => $item,
-					"noCartItems"=> count($cart)
+					"item" => $item
 			);
 			$this->render('item/edit.tpl', $data);
 		}else{
@@ -89,12 +81,8 @@ class ItemController extends Controller {
 				));
 			}
 
-			$cart = $this->getCart();
-
 			$data = array(
-					"user" => $this->user,
-					"item" => $item,
-					"noCartItems"=> count($cart)
+					"item" => $item
 			);
 			$this->show($id);
 		}else{
@@ -152,9 +140,7 @@ class ItemController extends Controller {
 		$cart = $this->getCart();
 
 		$data = array(
-				"user" => $this->user,
-				"item" => new Item(),
-				"noCartItems"=> count($cart)
+				"item" => new Item()
 		);
 		$this->render('item/new.tpl', $data);
 	}
@@ -173,9 +159,7 @@ class ItemController extends Controller {
 			$cart = $this->getCart();
 
 			$data = array(
-					"user" => $this->user,
-					"item" => $item,
-					"noCartItems"=> count($cart)
+					"item" => $item
 			);
 			// TODO remove image from file system
 			$this->show($id);

@@ -16,8 +16,6 @@ class UserController extends Controller{
 		$this->checkAdmin();
 		$userObject = User::find($id);
 		$data = array(
-				"user" => $this->user,
-				"noCartItems" => count($this->getCart()),
 				"userObject" => $userObject
 		);
 		$this->render("user/edit.tpl", $data);
@@ -51,6 +49,5 @@ class UserController extends Controller{
 		$address->save();
 	
 		$this->redirect('admin');
-	
 	}
 }

@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
 <h1>Cart</h1>
-{if $count > 0}
+{if $noCartItems > 0}
 {include file="cart/cartItems.tpl"}
 
 <form method="post" action="{$path}index.php/cart/clear" style="display:inline">

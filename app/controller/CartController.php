@@ -36,15 +36,12 @@ class CartController extends Controller{
 		}
 	
 		foreach ($cart as $item){
-			$sum += ($item["item"]->price/100)*$item["amount"];
+			$sum += ($item["item"]->price / 100) * $item["amount"];
 		}
 	
 		$data = array(
 				"cart" => $cart,
-				"count" => count($cart),
-				"noCartItems" => count($cart),
-				"sum" => $sum,
-				"user" => $this->user
+				"sum" => $sum
 		);
 		$this->render("cart/cart.tpl", $data);
 	}

@@ -37,6 +37,10 @@ abstract class Controller {
 
 	public function render($template, $data = array(), $status = null){
 		$data['path'] = APP_PATH;
+		$data = array_merge($data, array(
+				"noCartItems" => $this->getCartCount(),
+				"user" => $this->user
+		));
 		$data = array_merge($data, $this->responseData);
 		$this->app->render($template, $data, $status);
 	}
@@ -63,6 +67,17 @@ abstract class Controller {
 			$cart = $_SESSION["cart"];
 		}
 		return $cart;
+	}
+	
+	protected function getCartCount(){
+		$i = 0;
+		if (isset($_SESSION["cart"])) {
+			$cart = $_SESSION["cart"];
+			foreach ($cart as $item){
+				$i += $item['amount'];
+			}
+		}
+		return $i;
 	}
 	
 	/**
