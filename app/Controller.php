@@ -4,6 +4,7 @@ use Valitron\Validator;
 abstract class Controller {
 	public $app;
 	protected $user;
+	protected $responseData = array();
 
 	public function __construct(){
 		$this->app = !empty($slim) ? $slim : \Slim\Slim::getInstance();
@@ -36,6 +37,7 @@ abstract class Controller {
 
 	public function render($template, $data = array(), $status = null){
 		$data['path'] = APP_PATH;
+		$data = array_merge($data, $this->responseData);
 		$this->app->render($template, $data, $status);
 	}
 
@@ -98,5 +100,22 @@ abstract class Controller {
 			}
 		}
 		$this->redirect("home");
+	}
+	
+	/**
+	 * Get data from the request and put them into the response
+	 * @param string $name key of the session var to set
+	 * @param array $keys keys from the request
+	 */
+	protected function useDataFromRequest($name, $keys){
+		$map = array();
+		foreach($keys as $key){
+			if($this->app->request()->isPost()){
+				$map[$key] = $this->post($key);
+			}else{
+				$map[$key] = $this->get($key);
+			}
+		}
+		$this->responseData[$name] = $map;
 	}
 }

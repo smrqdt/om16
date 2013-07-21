@@ -36,7 +36,7 @@ $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
 // Login
 $loginController = new LoginController();
-$app->map('/login/', array($loginController, 'index'))->via('GET', 'POST')->name('login');
+$app->map('/login/', array($loginController, 'login'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
 $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 

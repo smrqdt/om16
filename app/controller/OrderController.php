@@ -50,10 +50,6 @@ class OrderController extends Controller{
 		}else{
 			$cart = $this->getCart();
 	
-			if(!isset($this->user) || $this->user == null){
-				$this->user = array("logged_in"=> false);
-			}
-	
 			$data = array(
 					"order" => $order,
 					"noCartItems"=> count($cart),

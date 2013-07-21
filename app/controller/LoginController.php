@@ -2,7 +2,7 @@
 
 class LoginController extends Controller {
 
-	public function index(){
+	public function login(){
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'password'));
@@ -27,7 +27,7 @@ class LoginController extends Controller {
 	public function signup(){
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
-			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'street_number', 'plz', 'city', 'country'));
+			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 			$v->rule('email', 'email');
 			$v->rule('length', 'username', 3, 128);
 			$v->rule('length', 'password', 6, 256);
@@ -44,8 +44,8 @@ class LoginController extends Controller {
 				$a->name = $this->post('name');
 				$a->lastname = $this->post('lastname');
 				$a->street = $this->post('street');
-				$a->building_number = $this->post('street_number');
-				$a->postcode = $this->post('plz');
+				$a->building_number = $this->post('building_number');
+				$a->postcode = $this->post('postcode');
 				$a->city = $this->post('city');
 				$a->country = $this->post('country');
 				$a->save();
@@ -55,6 +55,7 @@ class LoginController extends Controller {
 				$this->redirect('home');
 			}
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
+			$this->useDataFromRequest('signupform', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 		}
 		$this->render('login/signup.tpl');
 	}

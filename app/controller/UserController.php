@@ -27,14 +27,14 @@ class UserController extends Controller{
 	public function save($id){
 		$this->checkAdmin();
 	
-		// $userObject = new Object();
-	
 		$userObject = User::find($id);
 	
 		$userObject->email = $this->post("email");
 		$userObject->save();
 	
 		$address = $userObject->currentAddress();
+		
+		// if orders are associated with an adress, create a new adress
 		if($address->orders){
 			$address->current = false;
 			$address->save();

@@ -32,25 +32,25 @@
   <div class="control-group">
     <label class="control-label" for="email">Email</label>
     <div class="controls">
-      <input type="text" id="email" name="email" placeholder="Email">
+      <input type="text" id="email" name="email" placeholder="Email" value="{if isset($checkoutform)}{$checkoutform['email']}{/if}">
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="name">Name</label>
     <label class="control-label" for="lastname">Lastname</label>
     <label class="control-label" for="street">Street</label>
-    <label class="control-label" for="street_number">Street Number</label>
-    <label class="control-label" for="plz">PLZ</label>
+    <label class="control-label" for="building_number">Building Number</label>
+    <label class="control-label" for="postcode">Postcode</label>
     <label class="control-label" for="city">City</label>
     <label class="control-label" for="country">Country</label>
     <div class="controls">
-    	<input type="text" id="name" name="name" placeholder="Name">
-    	<input type="text" id="lastname" name="lastname" placeholder="Lastname">
-    	<input type="text" id="street" name="street" placeholder="Street">
-    	<input type="text" id="street_number" name="street_number" placeholder="Street Number">
-    	<input type="text" id="plz" name="plz" placeholder="PLZ">
-    	<input type="text" id="city" name="city" placeholder="City">
-    	<input type="text" id="country" name="country" placeholder="Country">
+    	<input type="text" id="name" name="name" placeholder="Name" value="{if isset($checkoutform)}{$checkoutform['name']}{/if}">
+    	<input type="text" id="lastname" name="lastname" placeholder="Lastname" value="{if isset($checkoutform)}{$checkoutform['lastname']}{/if}">
+    	<input type="text" id="street" name="street" placeholder="Street" value="{if isset($checkoutform)}{$checkoutform['street']}{/if}">
+    	<input type="text" id="bulding_number" name="building_number" placeholder="Building Number" value="{if isset($checkoutform)}{$checkoutform['building_number']}{/if}">
+    	<input type="text" id="postcode" name="postcode" placeholder="Postcode" value="{if isset($checkoutform)}{$checkoutform['postcode']}{/if}">
+    	<input type="text" id="city" name="city" placeholder="City" value="{if isset($checkoutform)}{$checkoutform['city']}{/if}">
+    	<input type="text" id="country" name="country" placeholder="Country" value="{if isset($checkoutform)}{$checkoutform['country']}{/if}">
     </div>
   </div>
   <div class="controls">

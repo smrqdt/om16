@@ -2,7 +2,7 @@
 	<label class="control-label" for="name">Name</label>
 	<div class="controls">
 		<input type="text" name="name" placeholder="Name"
-			value="{$item->name}">
+			value="{if isset($itemform)}{$itemform['name']}{else}{$item->name}{/if}">
 	</div>
 </div>
 <div class="control-group">
@@ -17,14 +17,14 @@
 	<label class="control-label" for="description">Description</label>
 	<div class="controls">
 		<textarea rows="4" type="text" name="description"
-			placeholder="Description">{$item->description}</textarea>
+			placeholder="Description">{if isset($itemform)}{$itemform['description']}{else}{$item->description}{/if}</textarea>
 	</div>
 </div>
 <div class="control-group">
 	<label class="control-label" for="price">Price</label>
 	<div class="controls">
 		<input type="text" name="price" placeholder="17.42"
-			value="{$item->price/100}"> €
+			value="{if isset($itemform)}{$itemform['price']}{else}{$item->price/100}{/if}"> €
 	</div>
 </div>
 <div class="control-group">

@@ -24,28 +24,33 @@ class ItemController extends Controller {
 		$item = Item::find($id);
 		if($item != null){
 			if($this->app->request()->isPost()){
+				// update image
+				if($_FILES['image'] != '') {
+					$uploaddir = dirname(__FILE__).'/../../upload/';
+					print "<br> UPLOADDIR: ".$uploaddir;
+					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
+				
+					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+						$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
+					} else {
+						$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+					}
+				}
+				$item->save();
+				
+				// validate form fields
 				$v = $this->validator($this->post());
 				$v->rule('required', array('name', 'price'));
 				$v->rule('numeric', array('price'));
 				if($v->validate()){
+					// update item
 					$item->name = $this->post("name");
 					$item->description = $this->post("description");
 					$item->price = $this->post("price") * 100;
-					print_r($_FILES);
-					if($_FILES['image'] != '') {
-						$uploaddir = dirname(__FILE__).'/../../upload/';
-						print "<br> UPLOADDIR: ".$uploaddir;
-						$uploadfile = $uploaddir . basename($_FILES['image']['name']);
-
-						if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-							$item->image = APP_PATH.'upload/'.basename($_FILES['image']['name']);
-						} else {
-							$this->app->flashNow('error', 'Something went wrong while uploading the image.');
-						}
-					}
 						
 					$item->save();
 				}else{
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
 					$this->app->flashNow('error', $this->errorOutput($v->errors()));
 				}
 			}
@@ -140,6 +145,7 @@ class ItemController extends Controller {
 				$this->redirect('adminitems');
 			}else{
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
 			}
 		}
 			
