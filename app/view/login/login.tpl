@@ -4,6 +4,7 @@
       <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         {include file="flash.tpl"}
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
         <input type="text" name="email" class="input-block-level" placeholder="Email address">
         <input type="password" name="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">

@@ -33,6 +33,8 @@ $authConfig = array(
 
 $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
+$app->add(new \Slim\Extras\Middleware\CsrfGuard());
+
 
 // Login
 $loginController = new LoginController();

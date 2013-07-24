@@ -7,6 +7,7 @@
       <form action="../save/{$userObject->id}" class="form-horizontal" method="post">
         <h2 class="form-signin-heading">Please enter the data you want to change {$userObject->email} </h2>
         {include file="flash.tpl"}
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
         <div class="control-group">
 
             <label class="control-label" for="email">E-Mail</label>

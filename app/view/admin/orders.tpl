@@ -76,6 +76,7 @@
 			</td>
 			<td>
 				<form method="post" action="{$path}index.php/order/delete/{$order->id}" style="display:inline">
+					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 					<button type="submit" class="btn"><i class="icon-trash"></i></button>
 				</form>
 			</td>

@@ -4,6 +4,7 @@
       <h2 class="form-signin-heading">Please enter your data</h2>
       <form class="form-horizontal" method="post">
         {include file="flash.tpl"}
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
         <div class="control-group">
 
             <label class="control-label" for="email">E-Mail Adress</label>

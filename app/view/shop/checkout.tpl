@@ -4,6 +4,7 @@
 	<h2>Login</h2>
 	<form class="form-horizontal" method="post"
 		action="{$path}index.php/login">
+		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		<div class="control-group">
 			<label class="control-label" for="email">Email</label>
 			<div class="controls">
@@ -30,6 +31,7 @@
 	<h2>Continue without login</h2>
 	<form class="form-horizontal" method="post"
 		action="{$path}index.php/noSignup">
+		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		<div class="control-group">
 			<label class="control-label" for="email">Email</label>
 			<div class="controls">

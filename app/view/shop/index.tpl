@@ -12,6 +12,7 @@
 		<p>{$item->description}</p>
 		<h5>{$item->price/100.0} €</h5>
 		<form method="post" action="{$path}index.php/cart/addItem/{$item->id}">
+			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		{if $item->sizes}
 			<select id="size" name="size" class="btn span5">
 			{foreach from=$item->sizes item=size}

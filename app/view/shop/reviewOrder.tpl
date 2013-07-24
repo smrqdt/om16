@@ -14,5 +14,6 @@
 {include file="cart/cartItems.tpl"}
 
 <form method="post" action="{$path}index.php/order" style="display:inline">
+	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 	<button type="submit" class="btn">Submit Order</button>
 </form>

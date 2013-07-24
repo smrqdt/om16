@@ -5,6 +5,7 @@
 {include file="cart/cartItems.tpl"}
 
 <form method="post" action="{$path}index.php/cart/clear" style="display:inline">
+	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 	<button type="submit" class="btn">Clear cart</button>
 </form>
 <a href="{$path}index.php/checkout" class="btn">Checkout</a>
