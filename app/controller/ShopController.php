@@ -4,7 +4,6 @@ class ShopController extends Controller {
 
 	public function index(){
 		$items = Item::all();
-		$cart = $this->getCart();
 
 		$data = array(
 				"items" => $items
@@ -39,31 +38,40 @@ class ShopController extends Controller {
 		$v->rule('required', array('email', 'name', 'street', 'city'));
 		
 		if($v->validate()){
-			$u = array(
-					"email" => $this->post("email"),
-					"password" => $this->auth->getProvider()->initPassword($this->gen_uuid())
-			);
-			$user = new User($u);
-			$user->save();
-			$this->user = $user;
-			
-			$a = array(
-					"user_id" => $user->id,
-					"name" => $this->post("name"),
-					"lastname" => $this->post("lastname"),
-					"street" => $this->post("street"),
-					"building_number" => $this->post("building_number"),
-					"postcode" => $this->post("postcode"),
-					"city" => $this->post("city"),
-					"country" => $this->post("country"),
-			);
-	
-			$address = new Address($a);
-			$address->save();
-			// create session user object
-			$u["id"] = $user->id;
-			$u["logged_in"] = false;
-			$_SESSION["auth_user"] = $u;
+			$c = User::connection();
+			$c->transaction();
+			try{
+				$u = array(
+						"email" => $this->post("email"),
+						"password" => $this->auth->getProvider()->initPassword($this->gen_uuid())
+				);
+				$user = new User($u);
+				$user->save();
+				$this->user = $user;
+				
+				$a = array(
+						"user_id" => $user->id,
+						"name" => $this->post("name"),
+						"lastname" => $this->post("lastname"),
+						"street" => $this->post("street"),
+						"building_number" => $this->post("building_number"),
+						"postcode" => $this->post("postcode"),
+						"city" => $this->post("city"),
+						"country" => $this->post("country"),
+				);
+		
+				$address = new Address($a);
+				$address->save();
+				
+				// create session user object
+				$u["id"] = $user->id;
+				$u["logged_in"] = false;
+				$_SESSION["auth_user"] = $u;
+				$c->commit();
+			}catch(ActiveRecord\ActiveRecordException $e){
+				$c->rollback();
+				$this->app->flashNow('error', 'An error occured! Please try again.' . $this->errorOutput($e));
+			}
 		}else{
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
 			$this->useDataFromRequest('checkoutform', array('email', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));

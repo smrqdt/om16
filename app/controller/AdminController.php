@@ -26,7 +26,6 @@ class AdminController extends Controller{
 		);
 		
 		$this->render("admin/items.tpl", $data);
-		
 	}
 	
 	public function orders(){

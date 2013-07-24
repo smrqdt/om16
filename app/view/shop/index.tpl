@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
-
+{include file="flash.tpl"}
 <h1>Shop</h1>
 <div class="row-fluid">
 	{foreach from=$items item=item}

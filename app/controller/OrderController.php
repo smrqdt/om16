@@ -5,22 +5,31 @@ class OrderController extends Controller{
 	public function submitOrder(){
 	
 		// TODO: generate order and bill numbers
-		$order = $this->user->create_orders(array(
-				'number' => "asdf",
-				'bill' => "asdf",
-				'hashlink'=> $this->gen_uuid()
-		));
-	
-		$cart = $this->getCart();
-		foreach($cart as $ci){
-			$order->create_orderitems(array(
-					"item_id" => $ci["item"]->id,
-					"amount" => $ci["amount"],
-					"size" => $ci["size"],
-					"price" => $ci["item"]->price
-			)
-			);
+		$c = Order::connection();
+		try{
+			$c->transaction();
+			$order = $this->user->create_orders(array(
+					'number' => "asdf",
+					'bill' => "asdf",
+					'hashlink'=> $this->gen_uuid()
+			));
+		
+			$cart = $this->getCart();
+			foreach($cart as $ci){
+				$order->create_orderitems(array(
+						"item_id" => $ci["item"]->id,
+						"amount" => $ci["amount"],
+						"size" => $ci["size"],
+						"price" => $ci["item"]->price
+				));
+			}
+			$c->commit();
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$c->rollback();
+			$this->app->flash('error', "Could not create order! " . $this->errorOutput($e));
+			$this->redirect('checkout');
 		}
+		
 		$_SESSION["cart"] = array();
 	
 		$data = array(
@@ -47,7 +56,6 @@ class OrderController extends Controller{
 			$this->app->flash('warn', "Order could not be found!");
 			$this->redirect('home');
 		}else{
-			$cart = $this->getCart();
 	
 			$data = array(
 					"order" => $order
@@ -59,47 +67,91 @@ class OrderController extends Controller{
 	
 	public function deleteOrder($id){
 		$this->checkAdmin();
+		
+		try {
+			$order = Order::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', "Order not found!");
+			$this->redirect('adminorders');
+		}
+		
+		try{
+			$order->delete();
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$this->app->flash('error', "Could not delete order! " . $this->errorOutput($e));
+			$this->redirect('adminorders');
+		}
 	
-		$order = Order::find($id);
-		$order->delete();
-	
-		// TODO check for errors
-		$this->redirect('admin');
+		$this->redirect('adminorders');
 	}
 	
+	/**
+	 * Mark an order as payed.
+	 * @param unknown $id
+	 */
 	public function payed($id){
 		$this->checkAdmin();
 		
-		$order = Order::find($id);
+		try{
+			$order = Order::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'Order not found!');
+			$this->redirect('adminorders');
+		}
+		
 		$order->paymenttime = new DateTime();
 		$order->status = 'payed';
-		$order->save();
+		
+		try{
+			$order->save();
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$this->app->flashNow('error', 'Could not update status!');
+			$this->order($order->hashlink);
+		}
 		
 		foreach($order->orderitems as $orderitem){
 			if($orderitem->item->numbered){
 				$freenumbers = $orderitem->item->getFreeNumbers();
-				// TODO handle numbers out of range
 				// this is more a dirty hack and this needs to be fixed properly with a good specification.
 				if(count($freenumbers) != 0){
 					$itemnumber = $freenumbers[0];
 					$itemnumber->orderitem_id = $orderitem->id;
-					$itemnumber->save();
+					try{
+						$itemnumber->save();
+					}catch(ActiveRecord\ActiveRecordException $e){
+						$this->app->flash('error', 'Could not assign item number!');
+					}
 				}else{
-					$this->app->flashNow('error', 'Item ' . $orderitem->item->name . ' number sout of range!');
+					$this->app->flashNow('error', 'Item ' . $orderitem->item->name . ' not enough numbers left!');
 				}
 			}
 		}
 		$this->order($order->hashlink);
 	}
 	
+	/**
+	 * Mark an order as shipped.
+	 * @param int $id
+	 */
 	public function shipped($id){
 		$this->checkAdmin();
 		
-		$order = Order::find($id);
+		try {
+			$order = Order::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'Order not found!');
+			$this->redirect('adminorders');
+		}
+		
 		$order->shippingtime = new DateTime();
 		$order->status = 'shipped';
 		$order->address_id = $order->user->currentAddress()->id;
-		$order->save();
+		
+		try{
+			$order->save();
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$this->app->flashNow('error', 'Could not update status!');
+		}
 
 		$this->order($order->hashlink);
 	}

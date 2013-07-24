@@ -37,7 +37,13 @@ class LoginController extends Controller {
 				$u->email = $this->post('email');
 				$u->username = $this->post('username');
 				$u->password = $this->auth->getProvider()->initPassword($this->post('password'));
-				$u->save();
+				try{
+					$u->save();
+				}catch(ActiveRecord\ActiveRecordException $e){
+					$this->app->flashNow('error', 'Could not create user! ' . $this->errorOutput($e));	
+					$this->useDataFromRequest('signupform', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
+					$this->render('login/signup.tpl');
+				}
 				
 				$a = new Address();
 				$a->user_id = $u->id;
@@ -48,7 +54,11 @@ class LoginController extends Controller {
 				$a->postcode = $this->post('postcode');
 				$a->city = $this->post('city');
 				$a->country = $this->post('country');
-				$a->save();
+				try{
+					$a->save();
+				}catch(ActiveRecord\ActiveRecordException $e){
+					$this->app->flashNow('error', 'Error saving the adress! Please verify it in the user settings. ' . $this->errorOutput($e));
+				}
 
 				$this->app->flash('info', 'Your registration was successfull');
 				$this->auth->login($this->post('username'), $this->post('password'), $this->post('remember'));
@@ -61,7 +71,7 @@ class LoginController extends Controller {
 	}
 
 	public function logout(){
-		$this->app->flash('info', 'Come back sometime soon');
+		$this->app->flash('info', 'Come back sometime soon!');
 		$this->auth->logout(true);
 		$this->redirect('home');
 	}

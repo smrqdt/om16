@@ -4,17 +4,32 @@ class UserController extends Controller{
 	
 	public function delete($id){
 		$this->checkAdmin();
+		
+		try{
+			$user = User::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'User not found!');
+			$this->redirect('admin');
+		}
+
+		try{
+			$user->delete();
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$this->app->flash('error', 'Could not delete user! ' . $this->errorOutput($e));
+		}
 	
-		$user = User::find($id);
-		$user->delete();
-	
-		// TODO check for errors
 		$this->redirect('admin');
 	}
 	
 	public function edit($id){
 		$this->checkAdmin();
-		$userObject = User::find($id);
+		try{
+			$userObject = User::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'User not found!');
+			$this->redirect('admin');
+		}
+		
 		$data = array(
 				"userObject" => $userObject
 		);
@@ -22,11 +37,18 @@ class UserController extends Controller{
 	}
 	
 	// TODO check for correct password and change password.
+	// TODO missing input validation
+	// TODO missing error checks
 	public function save($id){
 		$this->checkAdmin();
-	
-		$userObject = User::find($id);
-	
+		
+		try{
+			$userObject = User::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'User not found!');
+			$this->redirect('admin');
+		}
+		
 		$userObject->email = $this->post("email");
 		$userObject->save();
 	

@@ -45,7 +45,7 @@ $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->na
 // Shop
 $shopController = new ShopController();
 $app->get('/', array($shopController, 'index'))->name('home');
-$app->get('/checkout', array($shopController, 'checkout'));
+$app->get('/checkout', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup', array($shopController, "noSignup"));
 
 // Admin routings
