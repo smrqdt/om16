@@ -118,7 +118,7 @@ class ItemController extends Controller {
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
 					
-				if($_FILES['image'] == '') {
+				if(isset($_FILES['image']) && $_FILES['image'] == '') {
 					$uploaddir = dirname(__FILE__).'/../../upload/';
 					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
