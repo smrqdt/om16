@@ -36,7 +36,9 @@ class OrderController extends Controller{
 		if(!$auth_user['logged_in']){
 			unset($_SESSION["auth_user"]);
 		}
-		// TODO send confirmation email
+		
+		EmailOutbound::sendNotification($order);
+		
 		$url = $this->app->urlFor('order', array('hash'=> $order->hashlink));
 		$this->app->redirect($url);
 	}
@@ -123,6 +125,9 @@ class OrderController extends Controller{
 				}
 			}
 		}
+		
+		EmailOutbound::sendNotification($order);
+		
 		$this->order($order->hashlink);
 	}
 	
@@ -150,6 +155,8 @@ class OrderController extends Controller{
 			$this->app->flashNow('error', 'Could not update status!');
 		}
 
+		EmailOutbound::sendNotification($order);
+		
 		$this->order($order->hashlink);
 	}
 	
