@@ -27,9 +27,8 @@ class ItemController extends Controller {
 		
 		if($this->app->request()->isPost()){
 			// update image
-			if($_FILES['image'] != '') {
+			if($_FILES['image']['name'] != '') {
 				$uploaddir = dirname(__FILE__).'/../../upload/';
-				print "<br> UPLOADDIR: ".$uploaddir;
 				$uploadfile = $uploaddir . basename($_FILES['image']['name']);
 			
 				if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
@@ -41,6 +40,7 @@ class ItemController extends Controller {
 			
 			try{
 				$item->save();
+				$this->app->flashNow('success', 'Item saved.');
 			}catch(ActiveRecord\ActiveRecordException $e){
 				$this->app->flash('error', 'Could not save Image: ' . $this->errorOutput($e));
 			}

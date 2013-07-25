@@ -1,6 +1,5 @@
 <?php
 define("APP_PATH", "http://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . "/../");
-date_default_timezone_set('Europe/Berlin');
 
 require 'vendor/autoload.php';
 require_once 'config.php';
