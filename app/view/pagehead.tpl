@@ -11,9 +11,6 @@
             <p class="navbar-text pull-right">
               {if isset($smarty.session['auth_user']['logged_in']) && $smarty.session['auth_user']['logged_in']}
               	  Logged in as {$user->email} <a href="{$path}index.php/logout" id="logoutButton" class="btn btn-small btn-inverse navbar-link">Logout</a>
-              {else}
-	              <a href="{$path}index.php/signup" id="signupButton" class="btn btn-small btn-inverse navbar-link">Signup</a>
-	              <a href="{$path}index.php/login" id="loginButton" class="btn btn-small btn-inverse navbar-link">Login</a>
               {/if}
             </p>
             <ul class="nav">
