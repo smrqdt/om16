@@ -1,8 +1,7 @@
-{include file="header.tpl"} {include file="pagehead.tpl"}
+{include file="header.tpl"}
+{include file="pagehead.tpl"}
 <h1>Checkout</h1>
-
-<div class="span5 well">
-	<h2>Continue without login</h2>
+<div class="well">
 	<form class="form-horizontal" method="post"
 		action="{$path}index.php/noSignup">
 		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">

@@ -41,13 +41,18 @@ class ShopController extends Controller {
 			$c = User::connection();
 			$c->transaction();
 			try{
-				$u = array(
-						"email" => $this->post("email"),
-						"password" => $this->auth->getProvider()->initPassword($this->gen_uuid())
-				);
-				$user = new User($u);
-				$user->save();
-				$this->user = $user;
+				$user = User::find_by_email($this->post('email'));
+				
+				if($user == null){
+					$u = array(
+							"email" => $this->post("email"),
+							"password" => $this->auth->getProvider()->initPassword($this->gen_uuid())
+					);
+					
+					$user = new User($u);
+					$user->save();
+					$this->user = $user;
+				}
 				
 				$a = array(
 						"user_id" => $user->id,
