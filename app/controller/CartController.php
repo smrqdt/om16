@@ -51,4 +51,46 @@ class CartController extends Controller{
 		$_SESSION["cart"] = array();
 		$this->redirect('home');
 	}
+	
+	public function increase(){
+		$cart = $this->getCart();
+		$id = $this->post("id");
+		$size = $this->post("size");
+		
+		foreach($cart as &$item){
+			if($item["item"]->id == $id && $item["size"] == $size){
+				$item["amount"]++;
+			}
+		}
+		$_SESSION["cart"] = $cart;
+		$this->cart();
+	}
+	
+	public function decrease(){
+		$cart = $this->getCart();
+		$id = $this->post("id");
+		$size = $this->post("size");
+		
+		foreach($cart as &$item){
+			if($item["item"]->id == $id && $item["size"] == $size){
+				$item["amount"] = max(array(1, --$item["amount"]));
+			}
+		}
+		$_SESSION["cart"] = $cart;
+		$this->cart();
+	}
+	public function remove(){
+		$cart = $this->getCart();
+		$newCart = array();
+		$id = $this->post("id");
+		$size = $this->post("size");
+		
+		foreach($cart as $item){
+			if(!($item["item"]->id == $id && $item["size"] == $size)){
+				array_push($newCart, $item);
+			}
+		}
+		$_SESSION["cart"] = $newCart;
+		$this->cart();
+	}
 }
