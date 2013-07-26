@@ -21,6 +21,7 @@ class OrderController extends Controller{
 				));
 			}
 			$c->commit();
+			EmailOutbound::sendNotification($order);
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$c->rollback();
 			$this->app->flash('error', "Could not create order! " . $this->errorOutput($e));
@@ -37,7 +38,6 @@ class OrderController extends Controller{
 			unset($_SESSION["auth_user"]);
 		}
 		
-		EmailOutbound::sendNotification($order);
 		
 		$url = $this->app->urlFor('order', array('hash'=> $order->hashlink));
 		$this->app->redirect($url);
@@ -103,6 +103,7 @@ class OrderController extends Controller{
 		
 		try{
 			$order->save();
+			EmailOutbound::sendNotification($order);
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!');
 			$this->order($order->hashlink);
@@ -126,7 +127,6 @@ class OrderController extends Controller{
 			}
 		}
 		
-		EmailOutbound::sendNotification($order);
 		
 		$this->order($order->hashlink);
 	}
@@ -151,11 +151,11 @@ class OrderController extends Controller{
 		
 		try{
 			$order->save();
+			EmailOutbound::sendNotification($order);
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!');
 		}
 
-		EmailOutbound::sendNotification($order);
 		
 		$this->order($order->hashlink);
 	}
