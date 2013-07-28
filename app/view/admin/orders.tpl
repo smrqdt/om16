@@ -8,9 +8,6 @@
 				status
 			</th>
 			<th>
-				number
-			</th>
-			<th>
 				customer
 			</th>
 			<th>
@@ -46,9 +43,6 @@
 		{/if}
 			<td>
 				{$order->status}
-			</td>
-			<td>
-				{$order->number}
 			</td>
 			<td>
 				{$order->user->currentAddress()->name} {$order->user->currentAddress()->lastname}

@@ -30,7 +30,7 @@
 			Billing#
 		</th>
 		<td>
-			{$order->bill}
+			TS-{$order->id}
 		</td>
 	</tr>
 	<tr>

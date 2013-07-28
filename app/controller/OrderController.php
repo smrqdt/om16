@@ -4,13 +4,10 @@ use ActiveRecord\DateTime;
 class OrderController extends Controller{
 	public function submitOrder(){
 	
-		// TODO: generate order and bill numbers
 		$c = Order::connection();
 		try{
 			$c->transaction();
 			$order = $this->user->create_orders(array(
-					'number' => "asdf",
-					'bill' => "asdf",
 					'hashlink'=> $this->gen_uuid()
 			));
 		
