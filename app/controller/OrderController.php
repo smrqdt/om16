@@ -152,4 +152,13 @@ class OrderController extends Controller{
 
 		$this->order($order->hashlink);
 	}
+	
+	public static function updateStatus(){
+		$date = new DateTime();
+		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new DateInterval("P14D")))));
+		foreach ($orders as $order){
+			$order->status = 'overdue';
+			$order->save();
+		}
+	}
 }
