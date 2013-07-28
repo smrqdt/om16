@@ -8,6 +8,9 @@
 				status
 			</th>
 			<th>
+				billing #
+			</th>
+			<th>
 				customer
 			</th>
 			<th>
@@ -43,6 +46,9 @@
 		{/if}
 			<td>
 				{$order->status}
+			</td>
+			<td>
+				TS-{$order->id}
 			</td>
 			<td>
 				{$order->user->currentAddress()->name} {$order->user->currentAddress()->lastname}
