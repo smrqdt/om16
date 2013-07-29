@@ -42,7 +42,6 @@ class ShopController extends Controller {
 			$c->transaction();
 			try{
 				$user = User::find_by_email($this->post('email'));
-				
 				if($user == null){
 					$u = array(
 							"email" => $this->post("email"),
@@ -51,8 +50,13 @@ class ShopController extends Controller {
 					
 					$user = new User($u);
 					$user->save();
-					$this->user = $user;
+				}else{
+					$oldAddress = $user->currentAddress();
+					$oldAddress->current = false;
+					$oldAddress->save();
 				}
+				$this->user = $user;
+				
 				
 				$a = array(
 						"user_id" => $user->id,
@@ -62,7 +66,7 @@ class ShopController extends Controller {
 						"building_number" => $this->post("building_number"),
 						"postcode" => $this->post("postcode"),
 						"city" => $this->post("city"),
-						"country" => $this->post("country"),
+						"country" => $this->post("country")
 				);
 		
 				$address = new Address($a);
@@ -82,6 +86,6 @@ class ShopController extends Controller {
 			$this->useDataFromRequest('checkoutform', array('email', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 		}
 
-		$this->checkout();
+		$this->redirect('checkout');
 	}
 }
