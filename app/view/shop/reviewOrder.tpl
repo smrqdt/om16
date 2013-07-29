@@ -63,3 +63,5 @@ Sum: {$sum} €
 	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 	<button type="submit" class="btn">Submit Order</button>
 </form>
+
+{include file="footer.tpl"}
