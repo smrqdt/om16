@@ -12,6 +12,10 @@ class Order extends ActiveRecord\Model {
 			array('items', 'through' => 'orderitems')
 	);
 	
+	public function getShippingCosts(){
+		return 100;
+	}
+
 	public function getSum(){
 		$sum = 0;
 		foreach ($this->orderitems as $item){
