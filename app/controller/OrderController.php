@@ -21,6 +21,15 @@ class OrderController extends Controller{
 				));
 			}
 			$c->commit();
+			$order->reload();
+			$mailSuccess = EmailOutbound::sendNotification($order);
+
+			if($mailSuccess){
+				$this->app->flash('success', 'Notification Mail was sent!');
+			}else{
+				$this->app->flash('error', 'Could not send Notification Mail!');
+			}
+
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$c->rollback();
 			$this->app->flash('error', "Could not create order! " . $this->errorOutput($e));
@@ -36,7 +45,8 @@ class OrderController extends Controller{
 		if(!$auth_user['logged_in']){
 			unset($_SESSION["auth_user"]);
 		}
-		// TODO send confirmation email
+		
+		
 		$url = $this->app->urlFor('order', array('hash'=> $order->hashlink));
 		$this->app->redirect($url);
 	}
@@ -101,6 +111,14 @@ class OrderController extends Controller{
 		
 		try{
 			$order->save();
+			$mailSuccess = EmailOutbound::sendNotification($order);
+
+			if($mailSuccess){
+				$this->app->flash('success', 'Notification Mail was sent!');
+			}else{
+				$this->app->flash('error', 'Could not send Notification Mail!');
+			}
+
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!');
 			$this->order($order->hashlink);
@@ -123,6 +141,8 @@ class OrderController extends Controller{
 				}
 			}
 		}
+		
+		
 		$this->order($order->hashlink);
 	}
 	
@@ -146,10 +166,19 @@ class OrderController extends Controller{
 		
 		try{
 			$order->save();
+			$mailSuccess = EmailOutbound::sendNotification($order);
+
+			if($mailSuccess){
+				$this->app->flash('success', 'Notification Mail was sent!');
+			}else{
+				$this->app->flash('error', 'Could not send Notification Mail!');
+			}
+
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!');
 		}
 
+		
 		$this->order($order->hashlink);
 	}
 	
