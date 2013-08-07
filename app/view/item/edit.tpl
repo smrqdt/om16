@@ -38,9 +38,11 @@
 			</li> {/foreach} {/if}
 		</ul>
 		<form method="post" action="{$path}index.php/item/{$item->id}/addsize">
-			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-			<input type="text" placeholder="size" name="size" /> <input
-				type="submit" value="+" class="btn" />
+			<div class="input-append">
+				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+				<input type="text" placeholder="size" name="size" />
+				<button type="submit" class="btn"><i class="icon-plus"></i></button>
+			</div>
 		</form>
 	</div>
 	
