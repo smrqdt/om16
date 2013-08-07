@@ -89,7 +89,7 @@
 		</form>
 		
 		{else}
-		<form method="post" action="{$path}index.php/item/{$item->id}/numbered">
+		<form method="post" action="{$path}index.php/item/{$item->id}/makenumbered">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<button type="submit" class="btn"><i class="icon-tags"></i> Add item numbers</button>
 		</form>

@@ -372,4 +372,24 @@ class ItemController extends Controller {
 			$this->app->flashNow('warn', "Number $number does not exist!");
 		}
 	}
+	
+	function makeNumbered($id){
+		$this->checkAdmin();
+		try{
+			$item = Item::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'Item not found');
+			$this->redirect('home');
+		}
+		
+		try{
+			$item->numbered = true;
+			$item->save();
+			$this->app->flashNow('success', "Item saved.");
+		}catch(ActiveRecord\ActiveRecordException $e){
+			$this->app->flashNow('error', 'Could not add item numbers! ' . $this->errorOutput($e));
+		}
+		
+		$this->show($id);
+	}
 }
