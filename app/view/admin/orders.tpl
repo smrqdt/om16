@@ -26,9 +26,6 @@
 				show
 			</th>
 			<th>
-				edit
-			</th>
-			<th>
 				delete
 			</th>
 		</tr>
@@ -70,9 +67,6 @@
 			</td>
 			<td>
 				<a href="{$path}index.php/order/{$order->hashlink}" class="btn"><i class="icon-share"></i></a>
-			</td>
-			<td>
-				<a href="{$path}index.php/order/edit/{$order->id}" class="btn"><i class="icon-pencil"></i></a>
 			</td>
 			<td>
 				<form method="post" action="{$path}index.php/order/delete/{$order->id}" style="display:inline">
