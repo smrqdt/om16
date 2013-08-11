@@ -129,11 +129,20 @@
 	</td>
 </tr>
 {/foreach}
+
+<tr>
+	<td colspan="4"></td>
+	<td><b>Shipping</b></td>
+	<td>
+		<b>{$order->shipping/100} €</b>
+	</td>
+
+</tr>
 <tr>
 	<td colspan="4"></td>
 	<td><b>Total</b></td>
 	<td>
-		<b>{$order->getSum()/100} €</b>
+		<b>{$order->getSum() / 100} €</b>
 	</td>
 </tr>
 </table>

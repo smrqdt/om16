@@ -3,7 +3,7 @@
 use ActiveRecord\DateTime;
 class OrderController extends Controller{
 	public function submitOrder(){
-	
+		$shipping = 0;
 		$c = Order::connection();
 		try{
 			$c->transaction();
@@ -19,7 +19,11 @@ class OrderController extends Controller{
 						"size" => $ci["size"],
 						"price" => $ci["item"]->price
 				));
+				
+				$shipping = max(array($shipping, $ci["item"]->shipping));
 			}
+			$order->shipping = $shipping;
+			$order->save();
 			$c->commit();
 			$order->reload();
 			$mailSuccess = EmailOutbound::sendNotification($order);

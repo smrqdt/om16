@@ -56,8 +56,22 @@
 	</td>
 </tr>
 {/foreach}
+<tr>
+	<td colspan="4"></td>
+	<td><b>Shipping</b></td>
+	<td>
+		<b>{$shipping/100} €</b>
+	</td>
+
+</tr>
+<tr>
+	<td colspan="4"></td>
+	<td><b>Total</b></td>
+	<td>
+		<b>{$sum} €</b>
+	</td>
+</tr>
 </table>
-Sum: {$sum} €
 
 <form method="post" action="{$path}index.php/order" style="display:inline">
 	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">

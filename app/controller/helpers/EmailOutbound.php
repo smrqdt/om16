@@ -31,7 +31,7 @@ Rechnungs-/Kundennummer: TS-".$order->id;
 		}
 
 		$messageOrderItems = $messageOrderItems.
-"1 x Pauschale für Verpackung und Versand - ".(($order->getShippingCosts())/100).",- €\n
+"1 x Pauschale für Verpackung und Versand - ".(($order->shipping)/100).",- €\n
 ------------------------------------------------------------------------------------------\n
 Gesamtbetrag: ".(($order->getSum())/100).",- €";
 

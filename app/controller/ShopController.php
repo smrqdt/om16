@@ -15,13 +15,16 @@ class ShopController extends Controller {
 	public function checkout(){
 		$cart = $this->getCart();
 		$sum = 0;
+		$shipping = 0;
 
 		foreach ($cart as $item){
 			$sum += ($item["item"]->price / 100) * $item["amount"];
+			$shipping = max(array($shipping, $item["item"]->shipping));
 		}
-
+		$sum += ($shipping / 100);
 		$data = array(
 				"cart" => $cart,
+				"shipping" => $shipping,
 				"sum" => $sum
 		);
 

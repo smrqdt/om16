@@ -28,6 +28,13 @@
 	</div>
 </div>
 <div class="control-group">
+	<label class="control-label" for="shipping">Shipping</label>
+	<div class="controls">
+		<input type="text" name="shipping" placeholder="17.42"
+			value="{if isset($itemform)}{$itemform['shipping']}{else}{$item->shipping/100}{/if}"> €
+	</div>
+</div>
+<div class="control-group">
 	<div class="controls">
 		<input type="submit" value="Save" class="btn" />
 	</div>

@@ -48,21 +48,22 @@ class ItemController extends Controller {
 			// validate form fields
 			$v = $this->validator($this->post());
 			$v->rule('required', array('name', 'price'));
-			$v->rule('numeric', array('price'));
+			$v->rule('numeric', array('price', 'shipping'));
 			if($v->validate()){
 				// update item
 				$item->name = $this->post("name");
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
+				$item->shipping = $this->post("shipping") * 100;
 
 				try{					
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
 					$this->app->flashNow('error', 'Changes could not be saved! ' . $this->errorOutput($e));
-					$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping'));
 				}
 			}else{
-				$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping'));
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
 			}
 		}
