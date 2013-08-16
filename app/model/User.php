@@ -7,6 +7,10 @@ class User extends ActiveRecord\Model{
 	);
 	
 	function currentAddress(){
-		return Address::find('first', array('conditions' => array('user_id = ? AND current = ?',$this->id, 1)));
+		$address = Address::find('first', array('conditions' => array('user_id = ? AND current = ?',$this->id, 1)));
+		if($address){
+			return $address;
+		} 
+		return new Address();
 	}
 }
