@@ -91,4 +91,8 @@ class ShopController extends Controller {
 
 		$this->redirect('checkout');
 	}
+	
+	public function ticketscript(){
+		$this->render('ticketscript.tpl');
+	}
 }

@@ -55,15 +55,16 @@ class ItemController extends Controller {
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
 				$item->shipping = $this->post("shipping") * 100;
+				$item->ticketscript = $this->post("ticketscript");
 
 				try{					
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
 					$this->app->flashNow('error', 'Changes could not be saved! ' . $this->errorOutput($e));
-					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping'));
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping', 'ticketscript'));
 				}
 			}else{
-				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping'));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
 			}
 		}
@@ -147,6 +148,8 @@ class ItemController extends Controller {
 				$item->name = $this->post("name");
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
+				$item->shipping = $this->post("shipping") * 100;
+				$item->ticketscript = $this->post("ticketscript");
 					
 				if(isset($_FILES['image']) && $_FILES['image'] == '') {
 					$uploaddir = dirname(__FILE__).'/../../upload/';
@@ -163,14 +166,14 @@ class ItemController extends Controller {
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
 					$this->flash('error', 'Could not create Item! '. $this->errorOutput($e));
-					$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
 					$this->render('item/new.tpl', $data);
 				}
 				
 				$this->redirect('adminitems');
 			}else{
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
-				$this->useDataFromRequest('itemform', array('name', 'description', 'price'));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
 			}
 		}
 

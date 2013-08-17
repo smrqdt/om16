@@ -1,4 +1,5 @@
-{include file="header.tpl"} {include file="pagehead.tpl"}
+{include file="header.tpl"}
+{include file="pagehead.tpl"}
 
 <div class="row-fluid">
 

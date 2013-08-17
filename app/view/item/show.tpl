@@ -46,6 +46,9 @@
 					<input type="submit" value="Add Item" class="btn btn-primary" />
 			</div>
 		{/if}
+		{if $item->ticketscript}
+			<a href="{$path}index.php/ticketscript" class="btn btn-success">Buy Onlineticket</a>
+		{/if}
 		</form>
 </div>
 <div>
