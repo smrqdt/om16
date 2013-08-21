@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `current` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 CREATE TABLE IF NOT EXISTS `itemnumbers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   `image` varchar(256) DEFAULT NULL,
   `numbered` tinyint(1) NOT NULL DEFAULT '0',
   `shipping` int(11) NOT NULL,
-  `ticketscript` tinyint(1) NOT NULL DEFAULT '0',
+  `ticketscript` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 CREATE TABLE IF NOT EXISTS `orderitems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

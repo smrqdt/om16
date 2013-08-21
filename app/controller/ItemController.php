@@ -142,7 +142,7 @@ class ItemController extends Controller {
 		if($this->app->request()->isPost()){
 			$v = $this->validator($this->post());
 			$v->rule('required', array('name', 'price'));
-			$v->rule('numeric', array('price'));
+			$v->rule('numeric', array('price', 'shipping'));
 			if($v->validate()){
 				$item = new Item()	;
 				$item->name = $this->post("name");
@@ -165,9 +165,8 @@ class ItemController extends Controller {
 				try{
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->app->flash('error', 'Could not create Item! '. $this->errorOutput($e));
+					$this->app->flash('error', 'Could not create Item! '. $e->getMessage());
 					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
-					$this->render('item/new.tpl', $data);
 				}
 				
 				$this->redirect('adminitems');
