@@ -58,10 +58,13 @@ body {
 	margin-top: 0px;
 }
 
+.item a{
+	text-decoration:none;
+}
+
 @media(min-width: 767px) {
 	.item {
 		max-width: 260px;
 		float:left;
 	}
 }
-
