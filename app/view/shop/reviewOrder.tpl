@@ -75,7 +75,7 @@
 
 <form method="post" action="{$path}index.php/order" style="display:inline">
 	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-	<button type="submit" class="btn">Submit Order</button>
+	<button type="submit" class="btn"><i class="icon-ok"></i> Submit Order</button>
 </form>
 
 {include file="footer.tpl"}
