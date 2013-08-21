@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="span4 well">
-		<h5>Sizes</h5>
+		<h5>Variations</h5>
 		<ul>
 			{if $item->sizes} {foreach from=$item->sizes item=size}
 			<li>{$size->size}
@@ -48,7 +48,7 @@
 	</div>
 	
 	<div class="span4 well">
-		<h5>Numberd</h5>
+		<h5>Item numbers</h5>
 		{if $item->numbered}
 		<table class="table">
 			<tr>

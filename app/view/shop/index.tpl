@@ -5,7 +5,7 @@
 <div class="row-fluid">
 	{foreach from=$items item=item}
 	<div class="container-fluid item">
-		<a href="{$path}/index.php/item/{$item->id}">
+		<a href="{$path}index.php/item/{$item->id}">
 			<h4 class="muted">
 				{$item->name}
 			</h4>

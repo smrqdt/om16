@@ -10,7 +10,7 @@
 			<img src="{if $item->image}{$item->image}{else}{$path}assets/img/molumen_audio_cassette.svg{/if}" class="img-polaroid" style="background-color:#ddd;"/>
 			<p>{$item->description}</p>
 			{if $item->sizes}
-				<b class="muted">Available sizes:</b>
+				<b class="muted">Available in:</b>
 				{foreach $item->sizes as $size}
 					{$size->size}{if ! $size@last}, {/if}
 				{/foreach}
