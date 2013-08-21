@@ -108,7 +108,7 @@ class ItemController extends Controller {
 						"size" => $this->post("size")
 				));
 			}catch(ActiveRecord\ActiveRecordException $e){
-				$this->flash('error', 'Could not add size.' . $this->errorOutput($e));
+				$this->app->flash('error', 'Could not add size.' . $this->errorOutput($e));
 			}
 		}
 
@@ -165,7 +165,7 @@ class ItemController extends Controller {
 				try{
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->flash('error', 'Could not create Item! '. $this->errorOutput($e));
+					$this->app->flash('error', 'Could not create Item! '. $this->errorOutput($e));
 					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
 					$this->render('item/new.tpl', $data);
 				}
