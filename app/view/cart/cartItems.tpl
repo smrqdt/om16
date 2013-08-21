@@ -73,7 +73,7 @@
 </tr>
 {/foreach}
 <tr>
-	<td colspan="4"></td>
+	<td colspan="4" style="border-top:none;"></td>
 	<td><b>Shipping</b></td>
 	<td>
 		<b>{$shipping/100} €</b>
@@ -81,7 +81,7 @@
 
 </tr>
 <tr>
-	<td colspan="4"></td>
+	<td colspan="4" style="border-top:none;"></td>
 	<td><b>Total</b></td>
 	<td>
 		<b>{$sum} €</b>
