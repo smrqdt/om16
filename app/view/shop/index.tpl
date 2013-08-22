@@ -5,14 +5,14 @@
 <div class="row-fluid">
 	{foreach from=$items item=item}
 	<div class="container-fluid item">
-		<a href="{$path}index.php/item/{$item->id}">
+		<a href="{$path}item/{$item->id}">
 			<h4 class="muted">
 				{$item->name}
 			</h4>
 			<img src="{if $item->image}{$item->image}{else}{$path}assets/img/molumen_audio_cassette.svg{/if}" class="img-polaroid" style="background-color:#ddd; "/>
 		</a>
 		<h5>{$item->price/100.0} €</h5>
-		<form method="post" action="{$path}index.php/cart/addItem/{$item->id}">
+		<form method="post" action="{$path}cart/addItem/{$item->id}">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		{if $item->sizes}
 			<select id="size" name="size" class="btn span5">
@@ -30,7 +30,7 @@
 			</div>
 		{/if}
 		{if $item->ticketscript}
-			<a href="{$path}index.php/ticketscript" class="btn btn-success">Onlineticket</a>
+			<a href="{$path}ticketscript" class="btn btn-success">Onlineticket</a>
 		{/if}
 		</form>
 	</div>

@@ -50,7 +50,7 @@
 				{$order->paymenttime}
 			{else}
 				{if isset($smarty.session['auth_user']) && $user->admin}
-					<form method="post" action="{$path}index.php/order/{$order->id}/payed" style="display:inline">
+					<form method="post" action="{$path}order/{$order->id}/payed" style="display:inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn"><i class="icon-barcode"></i> Mark as payed</button>
 					</form>
@@ -67,7 +67,7 @@
 				{$order->shippingtime}
 			{else}
 				{if isset($smarty.session['auth_user']) && $user->admin}
-					<form method="post" action="{$path}index.php/order/{$order->id}/shipped" style="display:inline">
+					<form method="post" action="{$path}order/{$order->id}/shipped" style="display:inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn"><i class="icon-gift"></i> Mark as shipped</button>
 					</form>

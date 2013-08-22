@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 {include file="pagehead.tpl"}
-<a href="{$path}index.php/items/create" class="btn"><i class="icon-plus"></i> New Item</a>
+<a href="{$path}items/create" class="btn"><i class="icon-plus"></i> New Item</a>
 <table class="table">
 	<thead>
 		<tr>
@@ -68,14 +68,14 @@
 				<img src="{if $item->image}{$item->image}{else}{$path}assets/img/molumen_audio_cassette.svg{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 			</td>
 			<td>
-				<a href="{$path}index.php/item/{$item->id}" class="btn"><i class="icon-share"></i></a>
+				<a href="{$path}item/{$item->id}" class="btn"><i class="icon-share"></i></a>
 			</td>
 			<td>
-				<a href="{$path}index.php/item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i></a>
+				<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i></a>
 			</td>
 			<td>
 			<form method="post"
-				action="{$path}index.php/item/delete/{$item->id}">
+				action="{$path}item/delete/{$item->id}">
 				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 				<button type="submit" class="btn"><i class="icon-trash"></i></button>
 			</form>

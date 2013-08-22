@@ -20,8 +20,8 @@
 	
 	{if isset($smarty.session['auth_user']) && $user->admin}
 	<div class="span4 well">
-		<a href="{$path}index.php/item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> Edit</a>
-		<form method="post" action="{$path}index.php/item/delete/{$item->id}" style="display:inline;">
+		<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> Edit</a>
+		<form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
 		</form>
@@ -30,7 +30,7 @@
 	
 	<div class="span4 well">
 	<h5>{$item->price/100.0} €</h5>
-			<form method="post" action="{$path}index.php/cart/addItem/{$item->id}">
+			<form method="post" action="{$path}cart/addItem/{$item->id}">
 				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			{if $item->sizes}
 				<select id="size" name="size" class="btn span6">
@@ -47,7 +47,7 @@
 				</div>
 			{/if}
 			{if $item->ticketscript}
-				<a href="{$path}index.php/ticketscript" class="btn btn-success">Buy Onlineticket</a>
+				<a href="{$path}ticketscript" class="btn btn-success">Buy Onlineticket</a>
 			{/if}
 			</form>
 	</div>

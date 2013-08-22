@@ -87,10 +87,10 @@
 			{count($user->orders)}
 		</td>
 		<td>
-			<a href="{$path}index.php/admin/user/edit/{$user->id}" class="btn"><i class="icon-pencil"></i></a>
+			<a href="{$path}admin/user/edit/{$user->id}" class="btn"><i class="icon-pencil"></i></a>
 		</td>
 		<td>
-			<form method="post" action="{$path}index.php/user/delete/{$user->id}" style="display:inline">
+			<form method="post" action="{$path}user/delete/{$user->id}" style="display:inline">
 				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 				<button type="submit" class="btn"><i class="icon-trash"></i></button>
 			</form>

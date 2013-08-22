@@ -24,7 +24,7 @@ $app = new \Slim\Slim(array(
 $authConfig = array(
 		'provider' => 'AuthProvider',
 		'auth.type' => 'form',
-		'login.url' => APP_PATH.'index.php/login',
+		'login.url' => APP_PATH.'login',
 		'security.urls' => array(
 				array('path' => '/admin'),
 		),

@@ -3,7 +3,7 @@
 <h1>Checkout</h1>
 <div class="well">
 	<form class="form-horizontal" method="post"
-		action="{$path}index.php/noSignup">
+		action="{$path}noSignup">
 		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		<div class="control-group">
 			<label class="control-label" for="email">Email</label>

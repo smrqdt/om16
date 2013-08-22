@@ -37,7 +37,7 @@
 	</td>
 	<td>
 		{$item["amount"]} 
-		<form method="post" action="{$path}index.php/cart/increase" class="pull-right" style="display:inline;">
+		<form method="post" action="{$path}cart/increase" class="pull-right" style="display:inline;">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<input type="hidden" name="id" value="{$item["item"]->id}">
 			<input type="hidden" name="size" value="{$item["size"]}">
@@ -45,7 +45,7 @@
 				<i class="icon-plus"></i>
 			</button>
 		</form>
-		<form method="post" class="pull-right" action="{$path}index.php/cart/decrease" style="display:inline;">
+		<form method="post" class="pull-right" action="{$path}cart/decrease" style="display:inline;">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<input type="hidden" name="id" value="{$item["item"]->id}">
 			<input type="hidden" name="size" value="{$item["size"]}">
@@ -61,7 +61,7 @@
 		{$item["amount"] * ($item["item"]->price/100)} €
 	</td>
 	<td>
-		<form method="post" class="pull-right" action="{$path}index.php/cart/remove" style="display:inline;">
+		<form method="post" class="pull-right" action="{$path}cart/remove" style="display:inline;">
 		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<input type="hidden" name="id" value="{$item["item"]->id}">
 			<input type="hidden" name="size" value="{$item["size"]}">

@@ -66,10 +66,10 @@
 				{/if}
 			</td>
 			<td>
-				<a href="{$path}index.php/order/{$order->hashlink}" class="btn"><i class="icon-share"></i></a>
+				<a href="{$path}order/{$order->hashlink}" class="btn"><i class="icon-share"></i></a>
 			</td>
 			<td>
-				<form method="post" action="{$path}index.php/order/delete/{$order->id}" style="display:inline">
+				<form method="post" action="{$path}order/delete/{$order->id}" style="display:inline">
 					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 					<button type="submit" class="btn"><i class="icon-trash"></i></button>
 				</form>

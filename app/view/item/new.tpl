@@ -3,7 +3,7 @@
 <div class="row-fluid">
 
 	<div class="span8">
-		<form method="post" action="{$path}index.php/items/create"
+		<form method="post" action="{$path}items/create"
 			class="form-horizontal">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			{include file="item/itemform.tpl"}

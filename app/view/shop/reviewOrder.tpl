@@ -73,7 +73,7 @@
 </tr>
 </table>
 
-<form method="post" action="{$path}index.php/order" style="display:inline">
+<form method="post" action="{$path}order" style="display:inline">
 	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 	<button type="submit" class="btn"><i class="icon-ok"></i> Submit Order</button>
 </form>
