@@ -8,7 +8,8 @@ class OrderController extends Controller{
 		try{
 			$c->transaction();
 			$order = $this->user->create_orders(array(
-					'hashlink'=> $this->gen_uuid()
+					'hashlink'=> $this->gen_uuid(),
+					'address_id' => $this->user->currentAddress()->id
 			));
 		
 			$cart = $this->getCart();
@@ -36,7 +37,8 @@ class OrderController extends Controller{
 
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$c->rollback();
-			$this->app->flash('error', "Could not create order! " . $this->errorOutput($e));
+			$this->app->flash('error', "Could not create order! " . $e->getMessage());
+			print_r($e->getTrace());
 			$this->redirect('checkout');
 		}
 		
@@ -98,7 +100,7 @@ class OrderController extends Controller{
 	
 	/**
 	 * Mark an order as payed.
-	 * @param unknown $id
+	 * @param int $id
 	 */
 	public function payed($id){
 		$this->checkAdmin();
@@ -124,8 +126,7 @@ class OrderController extends Controller{
 			}
 
 		}catch(ActiveRecord\ActiveRecordException $e){
-			$this->app->flashNow('error', 'Could not update status!');
-			$this->order($order->hashlink);
+			$this->app->flashNow('error', 'Could not update status!' . $e->getMessage() . $e->getTrace());
 		}
 		
 		foreach($order->orderitems as $orderitem){

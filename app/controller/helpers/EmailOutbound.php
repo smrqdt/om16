@@ -77,7 +77,7 @@ Web: http://www.tapefabrik.de\n";
 
 		$subject = "Bezahlung für Bestellung ".$order->id." ist bei uns eingegangen !";
 
-		$message = 	"Hallo ".$order->adress->name.",\n
+		$message = 	"Hallo ".$order->address->name.",\n
 Der Gesamtbetrag für deine Bestellung mit der Nummer".$order->id." ist bei uns eingegangen.\n
 \n
 Vielen Dank !\n
@@ -93,7 +93,7 @@ Deine Bestellung wird baldmöglichst verschickt, sobald das passiert ist bekomms
 
 		$subject = "Die Bestellung ".$order->id." wurde versendet !";
 
-		$message = 	"Hallo ".$order->adress->name.",\n
+		$message = 	"Hallo ".$order->address->name.",\n
 Deine Bestellung mit der Nummer".$order->id." wurde versendet.\n
 \n
 Vielen Dank für deine Bestellung bei un!\n
