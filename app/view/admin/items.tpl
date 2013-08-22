@@ -65,7 +65,7 @@
 				{count($item->sizes)}
 			</td>
 			<td>
-				<img src="{if $item->image}{$item->image}{else}{$path}assets/img/molumen_audio_cassette.svg{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+				<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 			</td>
 			<td>
 				<a href="{$path}item/{$item->id}" class="btn"><i class="icon-share"></i></a>
