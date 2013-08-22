@@ -27,7 +27,7 @@
 {foreach from=$cart item=item}
 <tr>
 	<td>
-		<img src="{if $item['item']->image}$item['item']->image{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+		<img src="{if $item['item']->image}{$item['item']->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 	</td>
 	<td>
 		{$item["item"]->name}
