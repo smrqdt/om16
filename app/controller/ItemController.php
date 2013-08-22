@@ -151,7 +151,7 @@ class ItemController extends Controller {
 				$item->shipping = $this->post("shipping") * 100;
 				$item->ticketscript = $this->post("ticketscript");
 					
-				if(isset($_FILES['image']) && $_FILES['image'] == '') {
+				if($_FILES['image']['name'] != '') {
 					$uploaddir = dirname(__FILE__).'/../../upload/';
 					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
