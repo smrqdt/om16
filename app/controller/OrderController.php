@@ -57,7 +57,7 @@ class OrderController extends Controller{
 		$this->app->redirect($url);
 	}
 	
-	public function order($hash){
+	public function order($hash, $print = false){
 		$order = Order::find(
 				'first',
 				array(
@@ -73,8 +73,11 @@ class OrderController extends Controller{
 			$data = array(
 					"order" => $order
 			);
-	
-			$this->render("order/order.tpl", $data);
+			if(!$print){
+				$this->render("order/order.tpl", $data);
+			}else{
+				$this->render("order/order_print.tpl", $data);				
+			}
 		}
 	}
 	
