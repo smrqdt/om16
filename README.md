@@ -35,6 +35,8 @@ If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```
        define( "SHOPADRESS", "shop@example.com");
        define ("SUPPORTADRESS", "support@example.com");
 
-4. Run the ```tapeshop.sql```against your databse to load the DB structure.
+
+5. Create the directorys ```upload``` and ```templates_c``` in the Tapeshop directory and grant read, write, and execute permissions.
+5. Run the ```tapeshop.sql```against your databse to load the DB structure.
 5. Point your browser to ```http://your.domain.tld/path/to/tapeshop/singup``` and fill out the form to create a user.
 6. Use the database management tool of yout choice and find the users table. It should contain only the user you just created. Update the record and set the admin flag to ```true```or ```1```.
