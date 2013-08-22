@@ -9,3 +9,6 @@ config.php
 composer.lock
 upload/
 vendor/
+
+# webserver config
+.htaccess
