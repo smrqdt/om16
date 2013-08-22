@@ -42,7 +42,7 @@ class ItemController extends Controller {
 				$item->save();
 				$this->app->flashNow('success', 'Item saved.');
 			}catch(ActiveRecord\ActiveRecordException $e){
-				$this->app->flash('error', 'Could not save Image: ' . $this->errorOutput($e));
+				$this->app->flash('error', 'Could not save Image: ' . $e->getMessage());
 			}
 			
 			// validate form fields
@@ -60,7 +60,7 @@ class ItemController extends Controller {
 				try{					
 					$item->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->app->flashNow('error', 'Changes could not be saved! ' . $this->errorOutput($e));
+					$this->app->flashNow('error', 'Changes could not be saved! ' . $e->getMessage());
 					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping', 'ticketscript'));
 				}
 			}else{
@@ -91,7 +91,7 @@ class ItemController extends Controller {
 
 	/**
 	 * Add a size to an item.
-	 * @param unknown $id
+	 * @param int $id
 	 */
 	public function addSize($id){
 		$this->checkAdmin();
@@ -112,28 +112,26 @@ class ItemController extends Controller {
 			}
 		}
 
-		$data = array(
-				"item" => $item
-		);
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 
 	/**
 	 * Delete a size for an item.
-	 * @param Item $id
+	 * @param Size $id
 	 */
 	public function deleteSize($id){
 		$this->checkAdmin();
+		$itemid;
 		
 		try{
 			$size = Size::find($id);
 			$itemid = $size->item_id;
 			$size->delete();
 		}catch(ActiveRecord\ActiveRecordException $e){
-			$this->flashNow('error', 'Could not delete size! '. $this->errorOutput($e));
+			$this->flashNow('error', 'Could not delete size! '. $e->getMessage());
 		}
 		
-		$this->show($itemid);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $itemid)), false);
 	}
 
 	public function create(){
@@ -209,7 +207,7 @@ class ItemController extends Controller {
 				"item" => $item
 		);
 
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 	
 	/**
@@ -247,7 +245,7 @@ class ItemController extends Controller {
 			$this->app->flashNow('error', 'Could not add item numbers! ' . $this->errorOutput($e));		
 		}
 		
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 	
 	/**
@@ -278,7 +276,7 @@ class ItemController extends Controller {
 			}
 		}
 		
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);	
 	}
 	
 	/**
@@ -341,7 +339,7 @@ class ItemController extends Controller {
 			}
 		}
 		
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 	
 	/**
@@ -393,6 +391,6 @@ class ItemController extends Controller {
 			$this->app->flashNow('error', 'Could not add item numbers! ' . $this->errorOutput($e));
 		}
 		
-		$this->show($id);
+		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 }

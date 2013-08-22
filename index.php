@@ -82,7 +82,7 @@ $app->map('/admin/user/save/:id', array($userController, 'save'))->via('GET', 'P
 // item routings
 $itemController = new ItemController();
 $app->get('/item/:id', array($itemController, 'show'));
-$app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST');
+$app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST')->name('editItem');
 $app->post('/item/delete/:id', array($itemController, 'delete'));
 $app->post('/item/:id/addsize', array($itemController, 'addSize'));
 $app->post('/item/:id/removeimage', array($itemController, 'removeImage'));
