@@ -154,7 +154,7 @@ class OrderController extends Controller{
 		$this->order($order->hashlink);
 	}
 
-	function createBilling($id){
+	function billing($id){
 		$billing = new Billing('P','mm','A4');
 		$billing->AddPage();
 		$billing->Output();

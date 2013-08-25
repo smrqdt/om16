@@ -62,6 +62,7 @@ $app->post('/order', array($orderController, 'submitOrder'));
 $app->get('/order/:hash(/:print)', array($orderController, "order"))->name("order");
 $app->post('/order/delete/:id', array($orderController, 'deleteOrder'));
 $app->post('/order/:id/payed', array($orderController, 'payed'));
+$app->post('/order/:id/billing', array($orderController, 'billing'));
 $app->post('/order/:id/shipped', array($orderController, 'shipped'));
 
 // cart routings

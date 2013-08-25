@@ -14,23 +14,6 @@
     <script src="{$path}assets/js/jquery.dataTables.min.js"></script>
     <script src="{$path}assets/js/bootstrap.min.js"></script>
     <script src="{$path}assets/js/DT_bootstrap.js"></script>
-    <script type="text/javascript">
-	    /* orders table initialisation */
-	    $(document).ready(function() {
-	    	$('#ordersTable').dataTable();
-	    } );
-	</script>
-	
-	<script>
-		$(function() {
-			window.updateIframe = function() {
-	     		var h = $(window).height();
-	     		$("[name='ticketshop']").height(h);
-	   		}
-	   		window.updateIframe();
-	   		window.resize(window.updateIframe);
-	 	});
-	</script>
-    
+    	    
   </body>
 </html>
