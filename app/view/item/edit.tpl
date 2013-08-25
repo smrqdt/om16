@@ -100,4 +100,16 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="assets/js/snapeditor.js"></script>
+<script type="text/javascript">
+  // "editor" is the id of the textarea.
+  var formEditor = new SnapEditor.Form("editor", {
+    imageServer: {
+      uploadUrl: "http://images.snapeditor.com/snapimage_api",
+      publicUrl: "http://images.snapeditor.com/images",
+      directory: "my-directory"
+    }
+  });
+</script>
+
 {include file="footer.tpl"}

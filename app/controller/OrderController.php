@@ -153,6 +153,12 @@ class OrderController extends Controller{
 		
 		$this->order($order->hashlink);
 	}
+
+	function createBilling($id){
+		$billing = new Billing('P','mm','A4');
+		$billing->AddPage();
+		$billing->Output();
+	}
 	
 	/**
 	 * Mark an order as shipped.

@@ -1,6 +1,5 @@
 {include file="header.tpl"}
-{include file="pagehead.tpl"}
-<h1>Rechnung</h1>
+<h2>Rechnung</h2>
 
 <div class="span5">
 <h6>Shipping address:</h6>
@@ -146,5 +145,3 @@
 	</td>
 </tr>
 </table>
-
-{include file="footer.tpl"}

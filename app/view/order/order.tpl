@@ -75,6 +75,21 @@
 			{/if}
 		</td>
 	</tr>
+	<tr>
+		<th>
+			Billing .PDF
+		</th>
+		<td>
+			{if $order->paymenttime}
+				{if isset($smarty.session['auth_user']) && $user->admin}
+					<form method="post" action="{$path}order/{$order->id}/billing" style="display:inline">
+						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+						<button type="submit" class="btn"><i class="icon-credit"></i> Create Billing .PDF</button>
+					</form>
+				{/if}
+			{/if}
+		</td>
+	</tr>
 </table>
 </div>
 

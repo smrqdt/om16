@@ -1,0 +1,13 @@
+body { 
+  background: url(http://tapefabrik.de/tapeshop/assets/img/background_orders_print.jpg) no-repeat top center !important; 
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.hintergrund.jpg', sizingMethod='scale') !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='hintergrund.jpg', sizingMethod='scale')" !important;
+
+
+  padding-top: 40%;
+  padding-left: 13%;
+}

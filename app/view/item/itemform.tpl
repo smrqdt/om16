@@ -16,7 +16,7 @@
 <div class="control-group">
 	<label class="control-label" for="description">Description</label>
 	<div class="controls">
-		<textarea rows="4" type="text" name="description"
+		<textarea id="description" rows="4" type="text" name="description"
 			placeholder="Description">{if isset($itemform)}{$itemform['description']}{else}{$item->description}{/if}</textarea>
 	</div>
 </div>
@@ -45,3 +45,16 @@
 		<input type="submit" value="Save" class="btn" />
 	</div>
 </div>
+
+<!-- <script type="text/javascript" src="{$path}assets/js/snapeditor.js"></script>
+<script type="text/javascript">
+  // "editor" is the id of the textarea.
+  var formEditor = new SnapEditor.Form("description", {
+    imageServer: {
+      uploadUrl: "http://images.snapeditor.com/snapimage_api",
+      publicUrl: "http://images.snapeditor.com/images",
+      directory: "my-directory"
+    }
+  });
+</script>
+ -->
