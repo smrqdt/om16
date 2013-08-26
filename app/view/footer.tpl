@@ -1,5 +1,5 @@
-	</div><!--/row-->
-	<div class="clearfix"></div>
+  </div><!--/row-->
+  <div class="clearfix"></div>
       <hr>
 
       <footer>
@@ -14,6 +14,24 @@
     <script src="{$path}assets/js/jquery.dataTables.min.js"></script>
     <script src="{$path}assets/js/bootstrap.min.js"></script>
     <script src="{$path}assets/js/DT_bootstrap.js"></script>
-    	    
+    {literal}
+    <script type="text/javascript">
+      /* orders table initialisation */
+      $(document).ready(function() {
+        $('#ordersTable').dataTable();
+      } );
+  </script>
+  
+  <script>
+    $(function() {
+      window.updateIframe = function() {
+          var h = $(window).height();
+          $("[name='ticketshop']").height(h);
+        }
+        window.updateIframe();
+        window.resize(window.updateIframe);
+    });
+  </script>
+    {/literal}
   </body>
 </html>

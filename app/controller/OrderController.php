@@ -158,6 +158,7 @@ class OrderController extends Controller{
 		$billing = new Billing('P','mm','A4');
 		$billing->AddPage();
 		$billing->Output();
+		$app->response()->header("Content-Type", "application/pdf");
 	}
 	
 	/**

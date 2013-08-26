@@ -1,6 +1,6 @@
 <?php
 
-class Billing extends FPDF {
+class Billing extends fpdf\FPDF {
 
 	function Meta(){
 		$this->AddFont('Sanchez','','sanchez.php');
@@ -40,7 +40,7 @@ Bis zum 25. Januar - Dein Tapefabrik Team !\n";
 
 		// Print the Header
 		$this->SetFont('Sanchez','',10);
-		$this->Image('Ticketbestellungen.png',0,0,-150,-150);
+		$this->Image('http://www.tapefabrik.de/tapeshop/assets/img/Ticketbestellungen.png',0,0,-150,-150);
   		$this->SetTextColor(255,255,255);
 
   		$this->Ln(49.5);

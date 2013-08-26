@@ -46,7 +46,8 @@
 	</div>
 </div>
 
-<!-- <script type="text/javascript" src="{$path}assets/js/snapeditor.js"></script>
+<script type="text/javascript" src="{$path}assets/js/snapeditor.js"></script>
+{literal}
 <script type="text/javascript">
   // "editor" is the id of the textarea.
   var formEditor = new SnapEditor.Form("description", {
@@ -57,4 +58,4 @@
     }
   });
 </script>
- -->
+{/literal}
