@@ -74,7 +74,7 @@ class OrderController extends Controller{
 					"order" => $order
 			);
 			if(!$print){
-				$this->render("order/order.tpl", $data);
+				$this->render("order/order.html", $data);
 			}else{
 				$this->render("order/order_print.tpl", $data);				
 			}

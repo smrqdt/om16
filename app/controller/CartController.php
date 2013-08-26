@@ -48,7 +48,7 @@ class CartController extends Controller{
 				"shipping" => $shipping,
 				"sum" => $sum
 		);
-		$this->render("cart/cart.tpl", $data);
+		$this->render("cart/cart.html", $data);
 	}
 	
 	public function clearCart(){

@@ -13,7 +13,7 @@ class AdminController extends Controller{
 				"users" => $users
 		);
 
-		$this->render("admin/index.tpl", $data);
+		$this->render("admin/users.html", $data);
 	}
 	
 	public function items(){
@@ -25,7 +25,7 @@ class AdminController extends Controller{
 				"items" => $items
 		);
 		
-		$this->render("admin/items.tpl", $data);
+		$this->render("admin/items.html", $data);
 	}
 	
 	public function orders(){
@@ -37,6 +37,6 @@ class AdminController extends Controller{
 				"orders" => $orders
 		);
 		
-		$this->render("admin/orders.tpl", $data);
+		$this->render("admin/orders.html", $data);
 	}
 }

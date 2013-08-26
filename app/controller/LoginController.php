@@ -21,7 +21,7 @@ class LoginController extends Controller {
 			}
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
 		}
-		$this->render('login/login.tpl');
+		$this->render('login/login.html');
 	}
 
 	public function signup(){
@@ -67,7 +67,7 @@ class LoginController extends Controller {
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
 			$this->useDataFromRequest('signupform', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 		}
-		$this->render('login/signup.tpl');
+		$this->render('login/signup.html');
 	}
 
 	public function logout(){

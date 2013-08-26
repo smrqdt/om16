@@ -33,7 +33,7 @@ class UserController extends Controller{
 		$data = array(
 				"userObject" => $userObject
 		);
-		$this->render("user/edit.tpl", $data);
+		$this->render("user/edit.html", $data);
 	}
 	
 	// TODO check for correct password and change password.

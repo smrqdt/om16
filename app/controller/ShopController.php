@@ -9,7 +9,7 @@ class ShopController extends Controller {
 				"items" => $items
 		);
 
-		$this->render("shop/index.tpl", $data);
+		$this->render("shop/index.html", $data);
 	}
 
 	public function checkout(){
@@ -30,9 +30,9 @@ class ShopController extends Controller {
 
 		if(isset($this->user)){
 			$data["user"] = $this->user;
-			$this->render("shop/reviewOrder.tpl", $data);
+			$this->render("shop/reviewOrder.html", $data);
 		}else{
-			$this->render("shop/checkout.tpl", $data);
+			$this->render("shop/checkout.html", $data);
 		}
 	}
 
@@ -93,6 +93,6 @@ class ShopController extends Controller {
 	}
 	
 	public function ticketscript(){
-		$this->render('ticketscript.tpl');
+		$this->render('ticketscript.html');
 	}
 }

@@ -1,8 +1,6 @@
-{include file="header.tpl"}
-{include file="pagehead.tpl"}
+{extends file="baseWithNav.html"}
 
-<div class="container container-fluid">
-
+{block name=content}
 	<div class="span8">
 			<h4 class="muted">
 				{$item->name}
@@ -51,5 +49,4 @@
 			{/if}
 			</form>
 	</div>
-<div>
-{include file="footer.tpl"}
+{/block}

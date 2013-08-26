@@ -1,6 +1,6 @@
-{include file="header.tpl"}
-{include file="pagehead.tpl"}
-{include file="flash.tpl"}
+{extends file="baseWithNav.html"}
+
+{block name=content}
 <h1>Shop</h1>
 <div class="row-fluid">
 	{foreach from=$items item=item}
@@ -37,5 +37,4 @@
 	{/foreach}
 
 </div><!--/row-->
-   
-{include file="footer.tpl"}
+{/block}

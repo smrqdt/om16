@@ -1,0 +1,14 @@
+{extends file="baseWithNav.html"}
+
+{block name=content}
+	<div class="row-fluid">
+		<div class="span8">
+			<form method="post" action="{$path}items/create"
+				class="form-horizontal" enctype="multipart/form-data">
+				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+				{include file="item/itemform.html"}
+			</form>
+		</div>
+	
+	</div>
+{/block}

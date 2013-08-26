@@ -8,7 +8,7 @@ class ItemController extends Controller {
 			$data = array(
 					"item" => $item
 			);
-			$this->render('item/show.tpl', $data);
+			$this->render('item/show.html', $data);
 		}catch(ActiveRecord\RecordNotFound $e){
 			$this->app->flash('error', 'Item not found');
 			$this->redirect('home');
@@ -72,7 +72,7 @@ class ItemController extends Controller {
 		$data = array(
 				"item" => $item
 		);
-		$this->render('item/edit.tpl', $data);
+		$this->render('item/edit.html', $data);
 	}
 
 	public function delete($id){
@@ -177,7 +177,7 @@ class ItemController extends Controller {
 		$data = array(
 				"item" => new Item()
 		);
-		$this->render('item/new.tpl', $data);
+		$this->render('item/new.html', $data);
 	}
 
 	/**
