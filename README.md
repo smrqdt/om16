@@ -36,6 +36,11 @@ If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```
        define ("SUPPORTADRESS", "support@example.com");
 
 
+       /*
+        * FPDF
+        */
+       define('FPDF_FONTPATH','assets/fonts/');
+
 5. Create the directorys ```upload``` and ```templates_c``` in the Tapeshop directory and grant read, write, and execute permissions.
 5. Run the ```tapeshop.sql```against your databse to load the DB structure.
 5. Point your browser to ```http://your.domain.tld/path/to/tapeshop/singup``` and fill out the form to create a user.
