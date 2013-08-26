@@ -57,7 +57,7 @@ class OrderController extends Controller{
 		$this->app->redirect($url);
 	}
 	
-	public function order($hash, $print = false){
+	public function order($hash){
 		$order = Order::find(
 				'first',
 				array(
@@ -73,11 +73,7 @@ class OrderController extends Controller{
 			$data = array(
 					"order" => $order
 			);
-			if(!$print){
-				$this->render("order/order.tpl", $data);
-			}else{
-				$this->render("order/order_print.tpl", $data);				
-			}
+			$this->render("order/order.tpl", $data);
 		}
 	}
 	
@@ -155,7 +151,17 @@ class OrderController extends Controller{
 	}
 
 	function billing($id){
+		$this->checkAdmin();
+
+		try {
+			$order = Order::find($id);
+		}catch(ActiveRecord\RecordNotFound $e){
+			$this->app->flash('error', 'Order not found!');
+			$this->redirect('adminorders');
+		}
+
 		$billing = new Billing('P','mm','A4');
+		$billing->order = $order;
 		$billing->AddPage();
 		$billing->Output();
 		$app->response()->header("Content-Type", "application/pdf");
