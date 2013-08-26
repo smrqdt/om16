@@ -14,6 +14,7 @@
     <script src="{$path}assets/js/jquery.dataTables.min.js"></script>
     <script src="{$path}assets/js/bootstrap.min.js"></script>
     <script src="{$path}assets/js/DT_bootstrap.js"></script>
+    {literal}
     <script type="text/javascript">
 	    /* orders table initialisation */
 	    $(document).ready(function() {
@@ -31,6 +32,6 @@
 	   		window.resize(window.updateIframe);
 	 	});
 	</script>
-    
+    {/literal}
   </body>
 </html>
