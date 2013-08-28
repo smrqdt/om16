@@ -91,12 +91,12 @@ Deine Bestellung wird baldmöglichst verschickt, sobald das passiert ist bekomms
 		// Get Adress (and Name) of the user that ordered
 		$adress = $order->user->currentAddress();
 
-		$subject = "Die Bestellung ".$order->id." wurde versendet !";
+		$subject = "Die Bestellung T-04-".$order->id." wurde versendet !";
 
 		$message = 	"Hallo ".$order->address->name.",\n
-Deine Bestellung mit der Nummer".$order->id." wurde versendet.\n
+Deine Bestellung mit der Nummer T-04-".$order->id." wurde versendet.\n
 \n
-Vielen Dank für deine Bestellung bei un!\n
+Vielen Dank für deine Bestellung bei uns!\n
 \n";
 		return EmailOutbound::sendNotificationMail($order->user->email, $subject, $message);
 	}
