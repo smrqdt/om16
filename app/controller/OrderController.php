@@ -91,7 +91,7 @@ class OrderController extends Controller{
 		try{
 			$order->delete();
 		}catch(ActiveRecord\ActiveRecordException $e){
-			$this->app->flash('error', "Could not delete order! " . $this->errorOutput($e));
+			$this->app->flash('error', "Could not delete order! " . $e->getMessage());
 			$this->redirect('adminorders');
 		}
 	

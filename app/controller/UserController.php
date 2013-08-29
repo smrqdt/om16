@@ -15,7 +15,7 @@ class UserController extends Controller{
 		try{
 			$user->delete();
 		}catch(ActiveRecord\ActiveRecordException $e){
-			$this->app->flash('error', 'Could not delete user! ' . $this->errorOutput($e));
+			$this->app->flash('error', 'Could not delete user! ' . $e->getMessage());
 		}
 	
 		$this->redirect('admin');

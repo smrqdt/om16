@@ -83,7 +83,7 @@ class ItemController extends Controller {
 				$this->app->flash('success', "Item deleted!");
 			}
 		}catch (ActiveRecord\ActiveRecordException $e){
-			$this->app->flash('error', 'Deletion failed! '. $this->errorOutput($e));
+			$this->app->flash('error', 'Deletion failed! '. $e->getMessage());
 		}
 
 		$this->redirect('adminitems');
@@ -108,7 +108,7 @@ class ItemController extends Controller {
 						"size" => $this->post("size")
 				));
 			}catch(ActiveRecord\ActiveRecordException $e){
-				$this->app->flash('error', 'Could not add size.' . $this->errorOutput($e));
+				$this->app->flash('error', 'Could not add size.' . $e->getMessage());
 			}
 		}
 
@@ -198,7 +198,7 @@ class ItemController extends Controller {
 		try {
 			$item->save();
 		}catch (ActiveRecord\ActiveRecordException $e){
-			$this->app->flash('error', 'Could not remove image! ' . $this->errorOutput($e));
+			$this->app->flash('error', 'Could not remove image! ' . $e->getMessage());
 		}
 
 		$cart = $this->getCart();
@@ -242,7 +242,7 @@ class ItemController extends Controller {
 			$this->app->flashNow('success', "$param item numbers added.");
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$c->rollback();
-			$this->app->flashNow('error', 'Could not add item numbers! ' . $this->errorOutput($e));		
+			$this->app->flashNow('error', 'Could not add item numbers! ' . $e->getMessage());		
 		}
 		
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
@@ -388,7 +388,7 @@ class ItemController extends Controller {
 			$item->save();
 			$this->app->flashNow('success', "Item saved.");
 		}catch(ActiveRecord\ActiveRecordException $e){
-			$this->app->flashNow('error', 'Could not add item numbers! ' . $this->errorOutput($e));
+			$this->app->flashNow('error', 'Could not add item numbers! ' . $e->getMessage());
 		}
 		
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);

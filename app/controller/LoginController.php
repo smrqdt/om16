@@ -40,7 +40,7 @@ class LoginController extends Controller {
 				try{
 					$u->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->app->flashNow('error', 'Could not create user! ' . $this->errorOutput($e));	
+					$this->app->flashNow('error', 'Could not create user! ' . $e->getMessage());	
 					$this->useDataFromRequest('signupform', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 					$this->render('login/signup.tpl');
 				}
@@ -57,7 +57,7 @@ class LoginController extends Controller {
 				try{
 					$a->save();
 				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->app->flashNow('error', 'Error saving the adress! Please verify it in the user settings. ' . $this->errorOutput($e));
+					$this->app->flashNow('error', 'Error saving the adress! Please verify it in the user settings. ' . $e->getMessage());
 				}
 
 				$this->app->flash('info', 'Your registration was successfull');

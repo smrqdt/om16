@@ -82,7 +82,7 @@ class ShopController extends Controller {
 				$c->commit();
 			}catch(ActiveRecord\ActiveRecordException $e){
 				$c->rollback();
-				$this->app->flashNow('error', 'An error occured! Please try again.' . $this->errorOutput($e));
+				$this->app->flashNow('error', 'An error occured! Please try again.' . $e->getMessage());
 			}
 		}else{
 			$this->app->flashNow('error', $this->errorOutput($v->errors()));
