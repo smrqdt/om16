@@ -8,38 +8,38 @@ To install Tapeshop from the source you need [composer](http://www.getcomposer.o
 1. Download or checkout the sources of Tapeshop
 2. Install composer dependencies and generate autoloader 
  ```composer.phar install```
-2. Configure mod rewrite in your .htaccess file.
+2. Configure mod rewrite in your .htaccess file. If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```in the first line.
 
-       RewriteEngine On
-       RewriteBase /path/to/tapeshop/
-       RewriteCond %{REQUEST_FILENAME} !-f
-       RewriteRule ^ index.php [QSA,L]
-If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```in the first line.
-
+        RewriteEngine On
+        RewriteBase /path/to/tapeshop/
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^ index.php [QSA,L]
 3. ~~Point your Browser to ```http://your.domain.tld/path/to/tapeshop/install.php```~~ For some reason this does not work all the time. If it works (which will result in a running application) you can stop here.
 4. Change config.php to fit your database credentials and enter the email addresses for user notification and for support inquiries.
 
-       <?php
-       /**
-        * Database Details
-        */
-       define( "DB_HOSTNAME", "localhost" );
-       define( "DB_USERNAME", "root" );
-       define( "DB_PASSWORD", "" );
-       define( "DB_NAME", "tapeshop" );
-       define( "DB_PROVIDER", "mysql" );
-       
-       /*
-        * Email
-        */
-       define( "SHOPADRESS", "shop@example.com");
-       define ("SUPPORTADRESS", "support@example.com");
 
+        <?php
+        /*
+         * Database Details
+         */
+        define( "DB_HOSTNAME", "localhost" );
+        define( "DB_USERNAME", "root" );
+        define( "DB_PASSWORD", "" );
+        define( "DB_NAME", "tapeshop" );
+        define( "DB_PROVIDER", "mysql" );
+        
+        /*
+         * Email
+         */
+        define( "SHOPADRESS", "shop@example.com");
+        define ("SUPPORTADRESS", "support@example.com");
+        
+        /*
+         * FPDF
+         */
+        define('FPDF_FONTPATH','assets/fonts/');
+     
 
-       /*
-        * FPDF
-        */
-       define('FPDF_FONTPATH','assets/fonts/');
 
 5. Create the directorys ```upload``` and ```templates_c``` in the Tapeshop directory and grant read, write, and execute permissions.
 5. Run the ```tapeshop.sql```against your databse to load the DB structure.
