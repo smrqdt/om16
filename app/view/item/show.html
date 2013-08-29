@@ -6,14 +6,6 @@
 				{$item->name}
 			</h4>
 			<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-polaroid" style="background-color:#ddd;"/>
-			<p>{$item->description}</p>
-			{if $item->sizes}
-				<b class="muted">Available in:</b>
-				{foreach $item->sizes as $size}
-					{$size->size}{if ! $size@last}, {/if}
-				{/foreach}
-			{/if}
-			<h5>{$item->price/100.0} €</h5>
 	</div>
 	
 	{if isset($smarty.session['auth_user']) && $user->admin}
@@ -48,5 +40,13 @@
 				<a href="{$path}ticketscript" class="btn btn-success">Buy Onlineticket</a>
 			{/if}
 			</form>
+			<p>{$item->description}</p>
+			{if $item->sizes}
+				<b class="muted">Available in:</b>
+				{foreach $item->sizes as $size}
+					{$size->size}{if ! $size@last}, {/if}
+				{/foreach}
+			{/if}
+			<h5>{$item->price/100.0} €</h5>
 	</div>
 {/block}

@@ -84,7 +84,7 @@ class OrderController extends Controller{
 		try {
 			$order = Order::find($id);
 		}catch(ActiveRecord\RecordNotFound $e){
-			$this->app->flash('error', "Order not found!");
+			$this->app->flash('error', "Order not found1!");
 			$this->redirect('adminorders');
 		}
 		
@@ -108,7 +108,7 @@ class OrderController extends Controller{
 		try{
 			$order = Order::find($id);
 		}catch(ActiveRecord\RecordNotFound $e){
-			$this->app->flash('error', 'Order not found!');
+			$this->app->flash('error', 'Order not found2!');
 			$this->redirect('adminorders');
 		}
 		
@@ -151,21 +151,26 @@ class OrderController extends Controller{
 		$this->order($order->hashlink);
 	}
 
-	function billing($id){
+	function billing($hash){
 		$this->checkAdmin();
 
-		try {
-			$order = Order::find($id);
-		}catch(ActiveRecord\RecordNotFound $e){
-			$this->app->flash('error', 'Order not found!');
-			$this->redirect('adminorders');
+		$order = Order::find(
+				'first',
+				array(
+						'hashlink' => $hash
+				)
+		);
+	
+		if($order == null){
+			$this->app->flash('warn', "Order could not be found!");
+			$this->redirect('home');
+		}else{
+			$billing = new Billing('P','mm','A4');
+			$billing->order = $order;
+			$billing->AddPage();
+			$billing->Output();
+			$app->response()->header("Content-Type", "application/pdf");
 		}
-
-		$billing = new Billing('P','mm','A4');
-		$billing->order = $order;
-		$billing->AddPage();
-		$billing->Output();
-		$app->response()->header("Content-Type", "application/pdf");
 	}
 	
 	/**
@@ -178,7 +183,7 @@ class OrderController extends Controller{
 		try {
 			$order = Order::find($id);
 		}catch(ActiveRecord\RecordNotFound $e){
-			$this->app->flash('error', 'Order not found!');
+			$this->app->flash('error', 'Order not found3!');
 			$this->redirect('adminorders');
 		}
 		
