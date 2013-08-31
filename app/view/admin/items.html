@@ -59,7 +59,7 @@
 					{/if}
 				</td>
 				<td>
-					{$item->price/100} €
+					{($item->price/100)|number_format:2:",":"."} €
 				</td>
 				<td>
 					{count($item->sizes)}

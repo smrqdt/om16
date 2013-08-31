@@ -11,7 +11,7 @@
 			</h4>
 			<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-polaroid" style="background-color:#ddd; "/>
 		</a>
-		<h5>{$item->price/100.0} €</h5>
+		<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 		<form method="post" action="{$path}cart/addItem/{$item->id}">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		{if $item->sizes}
