@@ -1,10 +1,10 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<h1>Order status</h1>
+	<h1>{_("order.title")}</h1>
 	
 	<div class="span5">
-		<h6>Shipping address:</h6>
+		<h6>{_("order.shippingaddress")}:</h6>
 		{if $order->address} {$order->address->name}
 		{$order->address->lastname}<br /> {$order->address->street}
 		{$order->address->building_number}<br /> {$order->address->postcode}
@@ -21,50 +21,50 @@
 	<div class="span5">
 		<table class="table">
 			<tr>
-				<th>Billing#</th>
+				<th>{_("order.billingnumber")}</th>
 				<td>TS-{$order->id}</td>
 			</tr>
 			<tr>
-				<th>Ordered</th>
+				<th>{_("order.status.ordered")}</th>
 				<td>{$order->ordertime}</td>
 			</tr>
 			<tr>
-				<th>Payment received</th>
+				<th>order.status.paymentreceived</th>
 				<td>{if $order->paymenttime} {$order->paymenttime} {else} {if
 					isset($smarty.session['auth_user']) && $user->admin}
 					<form method="post" action="{$path}order/{$order->id}/payed"
 						style="display: inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn">
-							<i class="icon-barcode"></i> Mark as payed
+							<i class="icon-barcode"></i> {_("order.status.markaspayed")}
 						</button>
 					</form> {/if} {/if}
 				</td>
 			</tr>
 			<tr>
-				<th>Shipped</th>
+				<th>{_("order.status.shipped")}</th>
 				<td>{if $order->shippingtime} {$order->shippingtime} {else} {if
 					isset($smarty.session['auth_user']) && $user->admin}
 					<form method="post" action="{$path}order/{$order->id}/shipped"
 						style="display: inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn">
-							<i class="icon-gift"></i> Mark as shipped
+							<i class="icon-gift"></i> {_("order.status.markasshipped")}
 						</button>
 					</form> {/if} {/if}
 				</td>
 			</tr>
 			{if isset($smarty.session['auth_user']) && $user->admin}
 			<tr>
-				<th>Billing .PDF</th>
+				<th>{_("order.billingpdf")}</th>
 				<td>{if $order->paymenttime}
 					<form method="get" action="{$path}order/billing/{$order->hashlink}"
 						style="display: inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn">
-							<i class="icon-barcode"></i> Create Billing .PDF
+							<i class="icon-barcode"></i> {_("order.button.createbillingpdf")}
 						</button>
-					</form> {/if} {else} Mark as Payed First. 
+					</form> {/if} {else} {_("order.status.markaspayedfirst")}
 				</td>
 			</tr>
 			{/if}
@@ -77,11 +77,11 @@
 				<th>
 					<!-- image column -->
 				</th>
-				<th>Item</th>
-				<th>Size</th>
-				<th>Amount</th>
-				<th>Price</th>
-				<th>Sum</th>
+				<th>{_("cart.item")}</th>
+				<th>{_("item.variation")}</th>
+				<th>{_("cart.amount")}</th>
+				<th>{_("item.price")}</th>
+				<th>{_("order.total")}</th>
 			</tr>
 		</thead>
 		{foreach from=$order->orderitems item=item}
@@ -91,7 +91,7 @@
 				class="img-square"
 				style="background-color: #ddd; height: 50px; width: 50px;" />
 			</td>
-			<td>{$item->item->name} {if $item->item->numbered} <br />Numbers:
+			<td>{$item->item->name} {if $item->item->numbered} <br />{_("item.numbers")}:
 				{foreach $item->itemnumbers as $in} {$in->number}{if not $in@last},
 				{/if} {/foreach} {/if}
 			</td>
@@ -104,14 +104,14 @@
 	
 		<tr>
 			<td colspan="4"></td>
-			<td><b>Shipping</b></td>
+			<td><b>{_("order.shipping")}</b></td>
 			<td><b>{$order->shipping/100} €</b>
 			</td>
 	
 		</tr>
 		<tr>
 			<td colspan="4"></td>
-			<td><b>Total</b></td>
+			<td><b>{_("order.total")}</b></td>
 			<td><b>{$order->getSum() / 100} €</b>
 			</td>
 		</tr>

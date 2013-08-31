@@ -4,23 +4,44 @@ define("APP_PATH", "http://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . 
 require 'vendor/autoload.php';
 require_once 'config.php';
 
+/*
+ * I18N support
+ */
+
+$language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+setlocale(LC_ALL, $language, 'en');
+
+$domain = 'messages';
+bindtextdomain($domain, "assets/locale");
+textdomain($domain);
+
+/*
+ * Configure phpactiverecord
+ */
 ActiveRecord\Config::initialize(function($cfg) {
 	$cfg->set_model_directory('.');
 	$cfg->set_connections(array('development' => DB_PROVIDER.'://'.DB_USERNAME.':'.DB_PASSWORD.'@'.DB_HOSTNAME.'/'.DB_NAME));
 });
 
-session_start();
-
+/*
+ * Configure Smarty
+ */
 \Slim\Extras\Views\Smarty::$smartyDirectory = 'vendor/smarty/smarty/distribution/libs';
 \Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/view';
 $smartyView = new \Slim\Extras\Views\Smarty();
 
+/*
+ * Set up Slim application
+ */
 $app = new \Slim\Slim(array(
 		'view' => $smartyView,
 		'log.level' => 4,
 		'log.enabled' => true
 ));
 
+/*
+ * Configure authentication
+ */
 $authConfig = array(
 		'provider' => 'AuthProvider',
 		'auth.type' => 'form',
@@ -30,10 +51,15 @@ $authConfig = array(
 		),
 );
 
+// add authentication 
 $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
+// add CSRF protection
 $app->add(new \Slim\Extras\Middleware\CsrfGuard());
 
+/*
+ * Set up routes
+ */
 
 // Login
 $loginController = new LoginController();
@@ -53,7 +79,6 @@ $adminController = new AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
 $app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 $app->get('/admin/orders', array($adminController, 'orders'))->name('adminorders');
-// $app->get('/admin/user/delete/:id', array($adminController, 'deleteUser'));
 
 // order routings
 $orderController = new OrderController();

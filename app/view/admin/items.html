@@ -1,35 +1,35 @@
 {extends file="baseWithNav.html"}
 {block name=content}
-	<a href="{$path}items/create" class="btn"><i class="icon-plus"></i> New Item</a>
+	<a href="{$path}items/create" class="btn"><i class="icon-plus"></i> {_("button.item.new")}</a>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>
-					id
+					{_("item.id")}
 				</th>
 				<th>
-					name
+					{_("item.name")}
 				</th>
 				<th>
-					description
+					{_("item.description")}
 				</th>
 				<th>
-					price
+					{_("item.price")}
 				</th>
 				<th>
-					sizes
+					{_("item.variation")}
 				</th>
 				<th>
-					image
+					{_("item.image")}
 				</th>
 				<th>
-					show
+					{_("show")}
 				</th>
 				<th>
-					edit
+					{_("edit")}
 				</th>
 				<th>
-					delete
+					{_("delete")}
 				</th>
 			</tr>
 		</thead>
@@ -54,7 +54,7 @@
 						{else}
 							<p class="text-info">
 						{/if}
-						<em>{$item->getUnrequestedNumberCount()} left</em>
+						<em>{$item->getUnrequestedNumberCount()} {_("item.left")}</em>
 					</p>
 					{/if}
 				</td>

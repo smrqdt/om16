@@ -4,13 +4,13 @@
 	<div class="modal-backdrop login-backdrop">
     <div class="container">
     	<form class="form-signin" method="post">
-        	<h2 class="form-signin-heading">Please sign in</h2>
+        	<h2 class="form-signin-heading">{_("login.text")}</h2>
         	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-        	<input type="text" name="email" class="input-block-level" placeholder="Email address">
-        	<input type="password" name="password" class="input-block-level" placeholder="Password">
+        	<input type="text" name="email" class="input-block-level" placeholder="{_('login.email')}">
+        	<input type="password" name="password" class="input-block-level" placeholder="{_('login.password')}">
         	<label class="checkbox">
-          		<input type="checkbox" name="remember" value="remember-me"> Remember me
+          		<input type="checkbox" name="remember" value="remember-me"> {_("login.rememberme")}
         	</label>
-        	<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        	<button class="btn btn-large btn-primary" type="submit">{_("login.signin")}</button>
       	</form>
 {/block}

@@ -2,12 +2,12 @@
 
 {block name=content}
 	<div class="span6 offset3">
-		<h2 class="form-signin-heading">Please enter your data</h2>
+		<h2 class="form-signin-heading">{_("signup.text")}</h2>
 		<form class="form-horizontal" method="post">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			<div class="control-group">
 	
-				<label class="control-label" for="email">E-Mail Adress</label>
+				<label class="control-label" for="email">{_("user.email")}</label>
 	
 				<div class="controls">
 					<input type="text" name="email" class="input-block-level"
@@ -18,7 +18,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="username">Username</label>
+				<label class="control-label" for="username">{_("user.username")}</label>
 	
 				<div class="controls">
 					<input type="text" name="username" class="input-block-level"
@@ -29,7 +29,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="password">Password</label>
+				<label class="control-label" for="password">{_("login.password")}</label>
 	
 				<div class="controls">
 					<input type="password" name="password" class="input-block-level"
@@ -40,7 +40,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="password_verify">Reenter Password</label>
+				<label class="control-label" for="password_verify">{_("signup.reenterpassword")}</label>
 	
 				<div class="controls">
 					<input type="password" name="password_verify"
@@ -52,7 +52,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="name">Name</label>
+				<label class="control-label" for="name">{_("user.firstname")}</label>
 	
 				<div class="controls">
 					<input type="text" name="name" class="input-block-level"
@@ -63,7 +63,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="lastname">Lastname</label>
+				<label class="control-label" for="lastname">{_("user.lastname")}</label>
 	
 				<div class="controls">
 					<input type="text" name="lastname" class="input-block-level"
@@ -74,7 +74,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="street">Street</label>
+				<label class="control-label" for="street">{_("address.street")}</label>
 	
 				<div class="controls">
 					<input type="text" name="street" class="input-block-level"
@@ -85,7 +85,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="building_number">Street Number</label>
+				<label class="control-label" for="building_number">{_("address.buildingnumber")}</label>
 	
 				<div class="controls">
 					<input type="text" name="building_number" class="input-block-level"
@@ -96,7 +96,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="plz">Postcode</label>
+				<label class="control-label" for="plz">{_("address.postcode")}</label>
 	
 				<div class="controls">
 					<input type="text" name="postcode" class="input-block-level"
@@ -107,7 +107,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="city">City</label>
+				<label class="control-label" for="city">{_("address.city")}</label>
 	
 				<div class="controls">
 					<input type="text" name="city" class="input-block-level"
@@ -117,7 +117,7 @@
 	
 			<div class="control-group">
 	
-				<label class="control-label" for="country">Country</label>
+				<label class="control-label" for="country">{_("address.country")}</label>
 	
 				<div class="controls">
 					<input type="text" name="country" class="input-block-level"
@@ -128,9 +128,9 @@
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox"> <input type="checkbox" name="remember"
-						value="remember-me"> Remember me
-					</label> <a href="{$path}" class="btn">Back</a>
-					<button class="btn btn-primary" type="submit">Register</button>
+						value="remember-me"> {_("login.rememberme")}
+					</label> <a href="{$path}" class="btn">{_("signup.button.back")}</a>
+					<button class="btn btn-primary" type="submit">{_("singup.button.register")}</button>
 				</div>
 			</div>
 		</form>

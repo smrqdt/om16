@@ -1,7 +1,7 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<h1>Review Order</h1>
+	<h1>{_("shop.review.title")}</h1>
 	
 	{$user->email}
 	<br />
@@ -20,11 +20,11 @@
 				<th>
 					<!-- image column -->
 				</th>
-				<th>Item</th>
-				<th>Size</th>
-				<th>Amount</th>
-				<th>Price</th>
-				<th>Sum</th>
+				<th>{_("cart.item")}</th>
+				<th>{_("item.variation")}</th>
+				<th>{_("cart.amount")}</th>
+				<th>{_("item.price")}</th>
+				<th>{_("order.total")}</th>
 			</tr>
 		</thead>
 		{foreach from=$cart item=item}
@@ -43,14 +43,14 @@
 		{/foreach}
 		<tr>
 			<td colspan="4" style="border-top: none;"></td>
-			<td><b>Shipping</b></td>
+			<td><b>{_("order.shipping")}</b></td>
 			<td><b>{$shipping/100} €</b>
 			</td>
 	
 		</tr>
 		<tr>
 			<td colspan="4" style="border-top: none;"></td>
-			<td><b>Total</b></td>
+			<td><b>{_("order.total")}</b></td>
 			<td><b>{$sum} €</b>
 			</td>
 		</tr>
@@ -59,7 +59,7 @@
 	<form method="post" action="{$path}order" style="display: inline">
 		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 		<button type="submit" class="btn">
-			<i class="icon-ok"></i> Submit Order
+			<i class="icon-ok"></i> {_("order.submit")}
 		</button>
 	</form>
 {/block}

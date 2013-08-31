@@ -1,0 +1,429 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-31 10:29+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:44
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:44
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:44
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:81
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:174
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:38
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:50
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:44
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:81
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:44
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:38
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:50
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:44
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:44
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:44
+msgid "shop.title"
+msgstr "Tapeshop"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:169
+msgid "order.status"
+msgstr "Order status"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:173
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:201
+msgid "order.billingnumber"
+msgstr "Billing #"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:177
+msgid "order.customer"
+msgstr "Customer"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:181
+msgid "item.count"
+msgstr "Amount"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:185
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:210
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:250
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:287
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:341
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:191
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:286
+msgid "order.total"
+msgstr "Total"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:189
+msgid "order.lastaction"
+msgstr "Last action"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:193
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:196
+msgid "show"
+msgstr "Show"
+
+#: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:197
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:221
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:204
+msgid "delete"
+msgstr "Delete"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:169
+msgid "user.id"
+msgstr "Id"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:173
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:141
+msgid "user.username"
+msgstr "Username"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:177
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:128
+msgid "user.email"
+msgstr "Email"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:181
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:181
+msgid "user.firstname"
+msgstr "Name"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:185
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:194
+msgid "user.lastname"
+msgstr "Lastname"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:189
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:207
+msgid "address.street"
+msgstr "Street"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:193
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:220
+msgid "address.buildingnumber"
+msgstr "Building number"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:197
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:233
+msgid "address.postcode"
+msgstr "Postcode"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:201
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:246
+msgid "address.city"
+msgstr "City"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:205
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:258
+msgid "address.country"
+msgstr "Country"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:209
+msgid "shop.adminflag"
+msgstr "Admin"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:213
+msgid "order.count"
+msgstr "Orders"
+
+#: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:217
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:200
+msgid "edit"
+msgstr "Edit"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:86
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:86
+msgid "shop.loggedinas"
+msgstr "Logged in as"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:89
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:89
+msgid "shop.button.logout"
+msgstr "Logout"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:95
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:95
+msgid "shop.nav.home"
+msgstr "Home"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:98
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:98
+msgid "shop.nav.cart"
+msgstr "Cart"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:101
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:101
+msgid "shop.nav.contact"
+msgstr "Contact"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:106
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:106
+msgid "shop.nav.users"
+msgstr "Customers"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:109
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:109
+msgid "shop.nav.items"
+msgstr "Items"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:112
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:112
+msgid "shop.nav.orders"
+msgstr "Orders"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:216
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:219
+msgid "item.outofstock"
+msgstr "Out of Stock."
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:220
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:223
+msgid "item.add"
+msgstr "Add item"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:226
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:229
+msgid "ticketscript.buybutton"
+msgstr "Onlineticket"
+
+#: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:240
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:274
+msgid "shop.poweredby"
+msgstr "Powered by"
+
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:122
+msgid "login.text"
+msgstr "Sign in"
+
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:127
+msgid "login.email"
+msgstr "Email"
+
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:129
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:154
+msgid "login.password"
+msgstr "Password"
+
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:132
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:271
+msgid "login.rememberme"
+msgstr "Remember me"
+
+#: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:135
+msgid "login.signin"
+msgstr "Sign in"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:211
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:214
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:366
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:176
+msgid "item.name"
+msgstr "Name"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:222
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:376
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:192
+msgid "item.image"
+msgstr "Image"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:232
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:236
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:386
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:180
+msgid "item.description"
+msgstr "Description"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:243
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:208
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:285
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:396
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:184
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:187
+msgid "item.price"
+msgstr "Price"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:253
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:406
+msgid "item.shipping"
+msgstr "Shipping"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:263
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:416
+msgid "ticketscript"
+msgstr "Ticketscript"
+
+#: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:271
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:424
+msgid "item.save"
+msgstr "Save"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:174
+msgid "shop.review.title"
+msgstr "Review order"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:202
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:279
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:175
+msgid "cart.item"
+msgstr "Item"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:204
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:281
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:243
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:188
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:179
+msgid "item.variation"
+msgstr "Variation"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:206
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:283
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:183
+msgid "cart.amount"
+msgstr "Amount"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:241
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:332
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:276
+msgid "order.shipping"
+msgstr "Shipping"
+
+#: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:264
+msgid "order.submit"
+msgstr "Submit order"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:165
+msgid "order.title"
+msgstr "Order status"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:169
+msgid "order.shippingaddress"
+msgstr "Shipping address"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:207
+msgid "order.status.ordered"
+msgstr "Ordered at"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:224
+msgid "order.status.markaspayed"
+msgstr "Payed at"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:231
+msgid "order.status.shipped"
+msgstr "Shipped at"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:243
+msgid "order.status.markasshipped"
+msgstr "Mark as shipped"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:251
+msgid "order.billingpdf"
+msgstr "Download invoice (.pdf)"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:262
+msgid "order.button.createbillingpdf"
+msgstr "Create invoice"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:265
+msgid "order.status.markaspayedfirst"
+msgstr "Mark as payed first"
+
+#: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:305
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:251
+msgid "item.numbers"
+msgstr "Item numbers"
+
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:120
+msgid "signup.text"
+msgstr "Register"
+
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:167
+msgid "signup.reenterpassword"
+msgstr "Verify password"
+
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:274
+msgid "signup.button.back"
+msgstr "Back"
+
+#: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:276
+msgid "singup.button.register"
+msgstr "Register"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:197
+msgid "item.image.remove"
+msgstr "Remove image"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:212
+msgid "item.variations"
+msgstr "Variations"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:256
+msgid "item.numbers.total"
+msgstr "Total"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:258
+msgid "item.numbers.free"
+msgstr "Free"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:260
+msgid "item.numbers.invalid"
+msgstr "Invalid"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:262
+msgid "item.numbers.unrequested"
+msgstr "Unrequested"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:288
+msgid "item.numbers.amount"
+msgstr "Amount"
+
+#: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:323
+msgid "item.numbers.addnumbers"
+msgstr "Add Itemnumbers"
+
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:166
+msgid "button.item.new"
+msgstr "New item"
+
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:172
+msgid "item.id"
+msgstr "Id"
+
+#: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:238
+msgid "item.left"
+msgstr "left"
+
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:179
+msgid "item.edit"
+msgstr "Edit"
+
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:187
+msgid "item.delete"
+msgstr "Delete"
+
+#: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:236
+msgid "item.availablein"
+msgstr "Availeable in"
+
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:165
+msgid "cart.heading"
+msgstr "Cart"
+
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:301
+msgid "cart.clear"
+msgstr "Clear cart"
+
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:305
+msgid "cart.checkout"
+msgstr "Checkout"
+
+#: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:308
+msgid "cart.noitems"
+msgstr "There are no items in your cart"

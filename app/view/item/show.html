@@ -10,10 +10,10 @@
 	
 	{if isset($smarty.session['auth_user']) && $user->admin}
 	<div class="span4 well">
-		<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> Edit</a>
+		<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> {_("item.edit")}</a>
 		<form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
 			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
+			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {_("item.delete")}</button>
 		</form>
 	</div>
 	{/if}
@@ -30,19 +30,19 @@
 				<select>
 			{/if}
 			{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
-				<p class="text-error">Out of stock.</p>
+				<p class="text-error">{_("item.outofstock")}</p>
 			{else}
 				<div class="btn-group">
-						<input type="submit" value="Add Item" class="btn btn-primary" />
+						<input type="submit" value="{_('item.add')}" class="btn btn-primary" />
 				</div>
 			{/if}
 			{if $item->ticketscript}
-				<a href="{$path}ticketscript" class="btn btn-success">Buy Onlineticket</a>
+				<a href="{$path}ticketscript" class="btn btn-success">{_("ticketscript.buybutton")}</a>
 			{/if}
 			</form>
 			<p>{$item->description}</p>
 			{if $item->sizes}
-				<b class="muted">Available in:</b>
+				<b class="muted">{_("item.availablein")}</b>
 				{foreach $item->sizes as $size}
 					{$size->size}{if ! $size@last}, {/if}
 				{/foreach}
