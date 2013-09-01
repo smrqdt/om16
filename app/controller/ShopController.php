@@ -85,7 +85,7 @@ class ShopController extends Controller {
 				$this->app->flashNow('error', 'An error occured! Please try again.' . $e->getMessage());
 			}
 		}else{
-			$this->app->flashNow('error', $this->errorOutput($v->errors()));
+			$this->app->flash('error', $this->errorOutput($v->errors()));
 			$this->useDataFromRequest('checkoutform', array('email', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 		}
 
