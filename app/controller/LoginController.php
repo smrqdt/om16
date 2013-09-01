@@ -1,7 +1,12 @@
 <?php
-
+/**
+ * Handle authentication operations.
+ */
 class LoginController extends Controller {
 
+	/**
+	 * Login an user.
+	 */
 	public function login(){
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
@@ -24,6 +29,9 @@ class LoginController extends Controller {
 		$this->render('login/login.html');
 	}
 
+	/**
+	 * Register a new user.
+	 */
 	public function signup(){
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
@@ -70,17 +78,12 @@ class LoginController extends Controller {
 		$this->render('login/signup.html');
 	}
 
+	/**
+	 * Logout the current user.
+	 */
 	public function logout(){
 		$this->app->flash('info', 'Come back sometime soon!');
 		$this->auth->logout(true);
 		$this->redirect('home');
-	}
-
-	public function forgot(){
-		// TODO
-		if ($this->auth->loggedIn()) {
-			$this->redirect('/', false);
-		}
-		$this->render('login/forgot');
 	}
 }

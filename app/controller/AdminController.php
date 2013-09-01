@@ -1,7 +1,12 @@
 <?php
-
+/**
+ * Controller to handle administrative views.
+ */
 class AdminController extends Controller{
-
+	
+	/**
+	 * Show list of all users/customers.
+	 */
 	public function index(){
 		$this->checkAdmin();
 
@@ -16,6 +21,9 @@ class AdminController extends Controller{
 		$this->render("admin/users.html", $data);
 	}
 	
+	/**
+	 * Show list of all items/articles.
+	 */
 	public function items(){
 		$this->checkAdmin();
 		
@@ -28,6 +36,9 @@ class AdminController extends Controller{
 		$this->render("admin/items.html", $data);
 	}
 	
+	/**
+	 * Show list of all orders.
+	 */
 	public function orders(){
 		$this->checkAdmin();
 		
