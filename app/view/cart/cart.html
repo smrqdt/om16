@@ -61,10 +61,10 @@
 					</form>
 				</td>
 				<td>
-					{$item["item"]->price/100} €
+					{($item["item"]->price/100)|number_format:2:",":"."} €
 				</td>
 				<td>
-					{$item["amount"] * ($item["item"]->price/100)} €
+					{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €
 				</td>
 				<td>
 					<form method="post" class="pull-right" action="{$path}cart/remove" style="display:inline;">
@@ -82,7 +82,7 @@
 				<td colspan="4" style="border-top:none;"></td>
 				<td><b>{_("order.shipping")}</b></td>
 				<td>
-					<b>{$shipping/100} €</b>
+					<b>{($shipping/100)|number_format:2:",":"."} €</b>
 				</td>
 			
 			</tr>
@@ -90,7 +90,7 @@
 				<td colspan="4" style="border-top:none;"></td>
 				<td><b>{_("order.total")}</b></td>
 				<td>
-					<b>{$sum} €</b>
+					<b>{$sum|number_format:2:",":"."} €</b>
 				</td>
 			</tr>
 		</tbody>

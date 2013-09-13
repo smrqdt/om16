@@ -1,7 +1,12 @@
 <?php
-
+/**
+ * Handle shop operations.
+ */
 class ShopController extends Controller {
 
+	/**
+	 * Show list of all items.
+	 */
 	public function index(){
 		$items = Item::all();
 
@@ -12,6 +17,9 @@ class ShopController extends Controller {
 		$this->render("shop/index.html", $data);
 	}
 
+	/**
+	 * Check if a user is authenticated and redirect them to Input the shipping address, or review the order.
+	 */
 	public function checkout(){
 		$cart = $this->getCart();
 		$sum = 0;
@@ -36,6 +44,9 @@ class ShopController extends Controller {
 		}
 	}
 
+	/**
+	 * Handles the address input of a user and creates a new user on the fly.
+	 */
 	public function noSignup(){
 		$v = $this->validator($this->post());
 		$v->rule('required', array('email', 'name', 'street', 'city'));
@@ -59,7 +70,6 @@ class ShopController extends Controller {
 					$oldAddress->save();
 				}
 				$this->user = $user;
-				
 				
 				$a = array(
 						"user_id" => $user->id,
@@ -85,13 +95,16 @@ class ShopController extends Controller {
 				$this->app->flashNow('error', 'An error occured! Please try again.' . $e->getMessage());
 			}
 		}else{
-			$this->app->flashNow('error', $this->errorOutput($v->errors()));
+			$this->app->flash('error', $this->errorOutput($v->errors()));
 			$this->useDataFromRequest('checkoutform', array('email', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 		}
 
 		$this->redirect('checkout');
 	}
 	
+	/**
+	 * Show Ticketscript page.
+	 */
 	public function ticketscript(){
 		$this->render('ticketscript.html');
 	}

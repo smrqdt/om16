@@ -1,7 +1,13 @@
 <?php
-
+/**
+ * Handle orders.
+ */
 use ActiveRecord\DateTime;
 class OrderController extends Controller{
+	
+	/**
+	 * Submit a new order. Get all items form the cart and add them as OrderItem
+	 */
 	public function submitOrder(){
 		$shipping = 0;
 		$c = Order::connection();
@@ -38,25 +44,24 @@ class OrderController extends Controller{
 		}catch(ActiveRecord\ActiveRecordException $e){
 			$c->rollback();
 			$this->app->flash('error', "Could not create order! " . $e->getMessage());
-			print_r($e->getTrace());
 			$this->redirect('checkout');
 		}
 		
 		$_SESSION["cart"] = array();
 	
-		$data = array(
-				"order" => $order
-		);
 		$auth_user = $this->auth->getUser();
 		if(!$auth_user['logged_in']){
 			unset($_SESSION["auth_user"]);
 		}
 		
-		
 		$url = $this->app->urlFor('order', array('hash'=> $order->hashlink));
 		$this->app->redirect($url);
 	}
 	
+	/**
+	 * Show an order and its details.
+	 * @param String $hash Hash (UUID) of the order.
+	 */
 	public function order($hash){
 		$order = Order::find(
 				'first',
@@ -78,6 +83,10 @@ class OrderController extends Controller{
 		}
 	}
 	
+	/**
+	 * Delete an order.
+	 * @param int $id Id of the order.
+	 */
 	public function deleteOrder($id){
 		$this->checkAdmin();
 		
@@ -147,10 +156,13 @@ class OrderController extends Controller{
 			}
 		}
 		
-		
 		$this->order($order->hashlink);
 	}
 
+	/**
+	 * Generate invoice PDF.
+	 * @param String $hash Hash (UUID) of the order
+	 */
 	function billing($hash){
 		$this->checkAdmin();
 
@@ -209,6 +221,9 @@ class OrderController extends Controller{
 		$this->order($order->hashlink);
 	}
 	
+	/**
+	 * Update the status for orders not payed after 14 days.
+	 */
 	public static function updateStatus(){
 		$date = new DateTime();
 		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new DateInterval("P14D")))));

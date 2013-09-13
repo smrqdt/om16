@@ -97,22 +97,22 @@
 			</td>
 			<td>{$item->size}</td>
 			<td>{$item->amount}</td>
-			<td>{$item->price/100} €</td>
-			<td>{$item->amount * ($item->price)/100} €</td>
+			<td>{($item->price/100)|number_format:2:",":"."} €</td>
+			<td>{($item->amount * ($item->price)/100)|number_format:2:",":"."} €</td>
 		</tr>
 		{/foreach}
 	
 		<tr>
 			<td colspan="4"></td>
 			<td><b>{_("order.shipping")}</b></td>
-			<td><b>{$order->shipping/100} €</b>
+			<td><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
 			</td>
 	
 		</tr>
 		<tr>
 			<td colspan="4"></td>
 			<td><b>{_("order.total")}</b></td>
-			<td><b>{$order->getSum() / 100} €</b>
+			<td><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
 			</td>
 		</tr>
 	</table>

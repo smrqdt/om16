@@ -1,6 +1,13 @@
 <?php
-
+/**
+ * Handle shopping cart functionality.
+ */
 class CartController extends Controller{
+	
+	/**
+	 * Add an item to the shopping cart.
+	 * @param int $id Id of the item.
+	 */
 	public function addItem($id){
 		try{
 			$item = Item::find($id);
@@ -27,11 +34,14 @@ class CartController extends Controller{
 		
 			$_SESSION["cart"] = $cart;
 		}catch(ActiveRecord\RecordNotFound $e){
-			$this->app->flash('error', 'Could not add Item to cart, because the Item was not found!');
+			$this->app->flash('error', 'Could not add item to cart, because the item was not found!');
 		}
 		$this->redirect('home');
 	}
 	
+	/**
+	 * Show the shopping cart and its contents.
+	 */
 	public function cart(){
 		$cart = $this->getCart();
 		$sum = 0;
@@ -51,11 +61,19 @@ class CartController extends Controller{
 		$this->render("cart/cart.html", $data);
 	}
 	
+	/**
+	 * Remove all items from the shopping cart. Redirects to Home screen.
+	 */
 	public function clearCart(){
 		$_SESSION["cart"] = array();
 		$this->redirect('home');
 	}
 	
+	/**
+	 * Increase the amount of an ordered item.
+	 * @param POST id Id of the item
+	 * @param POST size Variation of the item
+	 */
 	public function increase(){
 		$cart = $this->getCart();
 		$id = $this->post("id");
@@ -70,6 +88,11 @@ class CartController extends Controller{
 		$this->cart();
 	}
 	
+	/**
+	 * Decrease the amount of an ordered item, to the minimum of 1.
+	 * @param POST id Id of the item
+	 * @param POST size Variation of the item
+	 */
 	public function decrease(){
 		$cart = $this->getCart();
 		$id = $this->post("id");
@@ -83,6 +106,12 @@ class CartController extends Controller{
 		$_SESSION["cart"] = $cart;
 		$this->cart();
 	}
+	
+	/**
+	 * Remove an item from the shopping cart
+	 * @param POST id Id of the item
+	 * @param POST size variation of the item
+	 */
 	public function remove(){
 		$cart = $this->getCart();
 		$newCart = array();

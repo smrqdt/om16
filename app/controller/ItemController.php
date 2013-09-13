@@ -1,7 +1,13 @@
 <?php
-
+/**
+ * Handle item operations.
+ */
 class ItemController extends Controller {
 
+	/**
+	 * Show item.
+	 * @param int $id Id of the item
+	 */
 	public function show($id){
 		try{
 			$item = Item::find($id);
@@ -15,6 +21,16 @@ class ItemController extends Controller {
 		}
 	}
 
+	/**
+	 * Edit an item.
+	 * @param int $id
+	 * @param POST $_FILES['image']
+	 * @param POST name
+	 * @param POST price
+	 * @param POST shipping
+	 * @param POST description
+	 * @param POST ticketscript
+	 */
 	public function edit($id){
 		$this->checkAdmin();
 		
@@ -75,6 +91,10 @@ class ItemController extends Controller {
 		$this->render('item/edit.html', $data);
 	}
 
+	/**
+	 * Delete an item.
+	 * @param int $id Id of the item.
+	 */
 	public function delete($id){
 		$item = Item::find($id);
 		
@@ -134,6 +154,9 @@ class ItemController extends Controller {
 		$this->redirect($this->app->urlFor('editItem', array('id' => $itemid)), false);
 	}
 
+	/**
+	 * Create a new item.
+	 */
 	public function create(){
 		$this->checkAdmin();
 
@@ -374,6 +397,10 @@ class ItemController extends Controller {
 		}
 	}
 	
+	/**
+	 * Add item numbers to an item
+	 * @param int $id Id of the item
+	 */
 	function makeNumbered($id){
 		$this->checkAdmin();
 		try{

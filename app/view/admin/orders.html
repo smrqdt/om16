@@ -54,7 +54,7 @@
 					{count($order->orderitems)}
 				</td>
 				<td>
-					{$order->getSum()/100} €
+					{($order->getSum()/100)|number_format:2:",":"."} €
 				</td>
 				<td>
 					{if $order->shippingtime}

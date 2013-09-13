@@ -19,7 +19,7 @@
 	{/if}
 	
 	<div class="span4 well">
-	<h5>{$item->price/100.0} €</h5>
+	<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 			<form method="post" action="{$path}cart/addItem/{$item->id}">
 				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 			{if $item->sizes}
@@ -47,6 +47,6 @@
 					{$size->size}{if ! $size@last}, {/if}
 				{/foreach}
 			{/if}
-			<h5>{$item->price/100.0} €</h5>
+			<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 	</div>
 {/block}
