@@ -46,7 +46,7 @@ Bis zum 25. Januar - Dein Tapefabrik Team !\n";
 
 		// Print the Header
 		$this->SetFont('Sanchez','',10);
-		$this->Image('http://www.tapefabrik.de/tapeshop/assets/img/Ticketbestellungen.png',0,0,-150,-150);
+		$this->Image(APP_PATH.'assets/img/Ticketbestellungen.png',0,0,-150,-150);
   		$this->SetTextColor(255,255,255);
 
   		$this->Ln(49.5);

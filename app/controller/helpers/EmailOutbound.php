@@ -53,13 +53,15 @@ Viele Grüße, wir freuen uns auf dich !\n";
 
 	public static function sendNotificationMail($adress, $subject, $message){
 
-		$headers   = array();
-		$headers[] = "MIME-Version: 1.0";
-		$headers[] = "Content-type: text/plain; charset=utf-8";
-		$headers[] = "From: Tapeshop ".SHOPADRESS;
-		$headers[] = "Reply-To: Tapeshop Support ".SUPPORTADRESS;
-		$headers[] = "Subject: ".$subject;
-		$headers[] = "X-Mailer: PHP/".phpversion();
+		// $headers   = array();
+		// $headers[] = "MIME-Version: 1.0";
+		// $headers[] = "Content-type: text/plain; charset=utf-8";
+		// $headers[] = "From: Tapeshop ".SHOPADRESS;
+		// $headers[] = "Reply-To: Tapeshop Support ".SUPPORTADRESS;
+		// $headers[] = "Subject: ".$subject;
+		// $headers[] = "X-Mailer: PHP/".phpversion();
+
+		$header = 'From: '."tickets@fund-music.com"."\r\n".'Reply-To: '."tickets@fund-music.com"."\r\n".'X-Mailer: PHP/'.phpversion();
 
 		$message = $message."Maximilian Schneider-Ludorff\n
 -------------------------------------------------------\n
@@ -68,7 +70,7 @@ TAPEFABRIK // Logistik\n
 E-Mail: ".SUPPORTADRESS."\n
 Web: http://www.tapefabrik.de\n";
 
-		return mail($adress, $subject, $message, implode("\r\n", $headers));
+		return mail($adress, $subject, $message, $header);
 	}
 
 	public static function sendPaymentConfirmation($order){
