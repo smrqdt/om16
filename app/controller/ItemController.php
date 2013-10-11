@@ -10,11 +10,16 @@ class ItemController extends Controller {
 	 */
 	public function show($id){
 		try{
-			$item = Item::find($id);
-			$data = array(
-					"item" => $item
-			);
-			$this->render('item/show.html', $data);
+			$item = Item::find($id, array("conditions" => array("deleted = false")));
+			if ($item == null){
+				$this->app->flash('error', 'Item not found');
+				$this->redirect('home');
+			}else{
+				$data = array(
+						"item" => $item
+				);
+				$this->render('item/show.html', $data);
+			}
 		}catch(ActiveRecord\RecordNotFound $e){
 			$this->app->flash('error', 'Item not found');
 			$this->redirect('home');
@@ -97,11 +102,12 @@ class ItemController extends Controller {
 	 */
 	public function delete($id){
 		$item = Item::find($id);
-		
-		try{
-			if($item->delete()){
-				$this->app->flash('success', "Item deleted!");
-			}
+
+		$item->deleted = true;
+
+ 		try{
+			$item->save();
+			$this->app->flash('success', "Item deleted!");
 		}catch (ActiveRecord\ActiveRecordException $e){
 			$this->app->flash('error', 'Deletion failed! '. $e->getMessage());
 		}

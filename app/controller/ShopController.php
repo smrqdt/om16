@@ -8,8 +8,8 @@ class ShopController extends Controller {
 	 * Show list of all items.
 	 */
 	public function index(){
-		$items = Item::all();
-
+		$items = Item::all(array("conditions" => array("deleted = false")));
+		
 		$data = array(
 				"items" => $items
 		);

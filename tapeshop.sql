@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `numbered` tinyint(1) NOT NULL DEFAULT '0',
   `shipping` int(11) NOT NULL,
   `ticketscript` tinyint(1) DEFAULT '0',
+  `deleted` tinyint(1) DEFAULT '0', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 

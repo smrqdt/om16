@@ -27,7 +27,7 @@ class AdminController extends Controller{
 	public function items(){
 		$this->checkAdmin();
 		
-		$items = Item::all();
+		$items = Item::all(array("conditions" => array("deleted = false")));
 		
 		$data = array(
 				"items" => $items
