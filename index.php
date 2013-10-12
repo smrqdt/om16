@@ -8,7 +8,9 @@ require_once 'config.php';
  * I18N support
  */
 
-$language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+// $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$language = getenv('HTTP_ACCEPT_LANGUAGE');
+echo $language;
 setlocale(LC_ALL, $language, 'en');
 
 $domain = 'messages';
@@ -56,6 +58,9 @@ $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
 // add CSRF protection
 $app->add(new \Slim\Extras\Middleware\CsrfGuard());
+
+// add Sofortüberweisung
+$app->add(new SofortPayment());
 
 /*
  * Set up routes

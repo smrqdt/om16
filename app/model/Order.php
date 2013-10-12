@@ -19,4 +19,8 @@ class Order extends ActiveRecord\Model {
 		}
 		return ($sum + $this->shipping);
 	}
+	
+	public function getOrderId(){
+		return ORDER_PREFIX . $this->id;
+	}
 }

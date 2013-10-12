@@ -116,4 +116,15 @@
 			</td>
 		</tr>
 	</table>
+	<form method="post" action="{$path}payment/sofort/pay">
+	<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+	<input type="hidden" name="orderId" value="{$order->id}" />
+	<label>{_("payment.sofort.account.holder")}</label>
+	<input type="text" name="accountHolder" />
+	<label>{_("payment.sofort.account.number")}</label>
+	<input type="text" name="accountNumber" />
+	<label>{_("payment.sofort.bankcode")}</label>
+	<input type="text" name="bankcode" />
+	<button type="submit" class="btn">{_("payment.sofort.pay")}</button>	
+	</form>
 {/block}
