@@ -38,7 +38,7 @@
 						<button type="submit" class="btn">
 							<i class="icon-barcode"></i> {_("order.status.markaspayed")}
 						</button>
-					</form> {/if} {/if}
+					</form> {else} - {/if} {/if}
 				</td>
 			</tr>
 			<tr>
@@ -51,20 +51,24 @@
 						<button type="submit" class="btn">
 							<i class="icon-gift"></i> {_("order.status.markasshipped")}
 						</button>
-					</form> {/if} {/if}
+					</form> {else} - {/if} {/if}
 				</td>
 			</tr>
 			{if isset($smarty.session['auth_user']) && $user->admin}
 			<tr>
 				<th>{_("order.billingpdf")}</th>
-				<td>{if $order->paymenttime}
+				<td>
+				{if $order->paymenttime}
 					<form method="get" action="{$path}order/billing/{$order->hashlink}"
 						style="display: inline">
 						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<button type="submit" class="btn">
 							<i class="icon-barcode"></i> {_("order.button.createbillingpdf")}
 						</button>
-					</form> {/if} {else} {_("order.status.markaspayedfirst")}
+					</form>
+				{else}
+				{_("order.status.markaspayedfirst")}
+				{/if}
 				</td>
 			</tr>
 			{/if}
