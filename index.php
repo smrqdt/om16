@@ -7,9 +7,7 @@ require_once 'config.php';
 /*
  * I18N support
  */
-
-$language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-setlocale(LC_ALL, $language, 'en');
+setlocale(LC_ALL, 'de_DE.utf8', 'en_US.utf8');
 
 $domain = 'messages';
 bindtextdomain($domain, "assets/locale");
