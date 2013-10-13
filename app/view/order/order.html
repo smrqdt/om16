@@ -26,11 +26,11 @@
 			</tr>
 			<tr>
 				<th>{_("order.status.ordered")}</th>
-				<td>{$order->ordertime}</td>
+				<td>{$order->ordertime->format('d.m.Y, H:i')} Uhr</td>
 			</tr>
 			<tr>
 				<th>order.status.paymentreceived</th>
-				<td>{if $order->paymenttime} {$order->paymenttime} {else} {if
+				<td>{if $order->paymenttime} {$order->paymenttime->format('d.m.Y, H:i')} Uhr {else} {if
 					isset($smarty.session['auth_user']) && $user->admin}
 					<form method="post" action="{$path}order/{$order->id}/payed"
 						style="display: inline">
@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<th>{_("order.status.shipped")}</th>
-				<td>{if $order->shippingtime} {$order->shippingtime} {else} {if
+				<td>{if $order->shippingtime} {$order->shippingtime->format('d.m.Y, H:i')} Uhr {else} {if
 					isset($smarty.session['auth_user']) && $user->admin}
 					<form method="post" action="{$path}order/{$order->id}/shipped"
 						style="display: inline">
