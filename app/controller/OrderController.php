@@ -141,14 +141,16 @@ class OrderController extends Controller{
 		foreach($order->orderitems as $orderitem){
 			if($orderitem->item->numbered){
 				$freenumbers = $orderitem->item->getFreeNumbers();
-				// this is more a dirty hack and this needs to be fixed properly with a good specification.
-				if(count($freenumbers) != 0){
-					$itemnumber = $freenumbers[0];
-					$itemnumber->orderitem_id = $orderitem->id;
-					try{
-						$itemnumber->save();
-					}catch(ActiveRecord\ActiveRecordException $e){
-						$this->app->flash('error', 'Could not assign item number!');
+
+				if(count($freenumbers) >= $orderitem->amount){
+					for($i = 0; $i < $orderitem->amount; $i++){
+						$itemnumber = $freenumbers[$i];
+						$itemnumber->orderitem_id = $orderitem->id;
+						try{
+							$itemnumber->save();
+						}catch(ActiveRecord\ActiveRecordException $e){
+							$this->app->flashNow('error', 'Could not assign item number!');
+						}
 					}
 				}else{
 					$this->app->flashNow('error', 'Item ' . $orderitem->item->name . ' not enough numbers left!');
