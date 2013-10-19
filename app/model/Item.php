@@ -21,7 +21,7 @@ class Item extends ActiveRecord\Model {
 		}
 		
 		foreach($this->orderitems as $oi){
-			if($oi->order->status == 'new'){
+			if($oi->order->status != 'overdue'){
 				$count -= $oi->amount;
 			}
 		}
