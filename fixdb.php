@@ -23,7 +23,7 @@ foreach($orders as $order){
 						try{
 							$itemnumber->save();
 						}catch(ActiveRecord\ActiveRecordException $e){
-							echo "Could not addign item number for  " . $orderitem->item->name . "\n";
+							echo "Could not assign item number for  " . $orderitem->item->name . "\n";
 						}
 					}
 				}else{
