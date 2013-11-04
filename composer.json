@@ -14,13 +14,13 @@
         "php": ">=5.3.0",
         "slim/slim": "2.*",
         "slim/extras": "*",
-        "slim/strong": "*",
+        "slim/strong": "dev-master",
         "php-activerecord/php-activerecord": "*",
         "smarty/smarty": "*",
         "vlucas/valitron": "*",
         "itbz/fpdf": "dev-master"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
     	"classmap": ["app/"]
     }
