@@ -11,8 +11,6 @@ class SofortPayment extends \Slim\Middleware {
 	}
 
 	public function pay(){
-		// 		$l = new SofortLibLogger();
-		// 		$l->log('test', '/Users/robert/Sites/tapeshop/log.txt');
 		$req = $this->app->request();
 		$order = Order::find($req->post('orderId'));
 		$v = new \Valitron\Validator($req->post());
@@ -30,8 +28,7 @@ class SofortPayment extends \Slim\Middleware {
 			$Sofort->setAmount(number_format(($order->getSum() + $order->getFeeFor('sofort'))/100.0, 2));
 			$Sofort->setReason(SOFORT_REASON, $order->getOrderId());
 
-			//TODO fix bank code
-			$Sofort->setSenderAccount('88888888', $accountNumber, $accountHolder);
+			$Sofort->setSenderAccount($bankcode, $accountNumber, $accountHolder);
 
 			$url = "http://" . $_SERVER["SERVER_NAME"] . $this->app->urlFor('payment.sofort.success', array("hash" => $order->hashlink));
 			$Sofort->setSuccessUrl($url);
@@ -45,10 +42,10 @@ class SofortPayment extends \Slim\Middleware {
 				
 			if($Sofort->isError()) {
 				// remote API responded with error
-// 				$this->app->flash('error', $Sofort->getError());
-// 				$url = APP_PATH . "order/". $order->hashlink;
-// 				$this->app->redirect($url);
-echo $Sofort->getError();
+				$msg = $Sofort->getError();
+				$this->app->flash('error', $msg);
+				$url = APP_PATH . "order/". $order->hashlink;
+				$this->app->redirect($url);
 			} else {
 				// set payment infos
 				$order->payment_id = $Sofort->getTransactionId();
@@ -73,9 +70,6 @@ echo $Sofort->getError();
 	}
 	
 	public function notification(){
-		//TODO: fix logging
-		$l = new SofortLibLogger();
-		$l->log('notification received', '/var/www/vhosts/euleule.name/httpdocs/tapeshop/log.txt');
 		$notification = new SofortLib_Notification($this->app->request()->getBody());
 		$notification->getNotification();
 
