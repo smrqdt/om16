@@ -109,7 +109,7 @@ echo $Sofort->getError();
 			$oder->payment_status = $transactionData->getStatusReason();
 		}
 		$order->save();
-		echo "Received status " . $transactionData->getStatusReason() . " with reaseon ".$transactionData->getStatusReason();
+		echo "Received status " . $transactionData->getStatus() . " with reaseon ".$transactionData->getStatusReason();
 	}
 
 	public function timeout($hash){
