@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 10:29+0200\n"
+"POT-Creation-Date: 2013-11-15 22:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,23 +32,50 @@ msgstr ""
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:44
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:44
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:44
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:44
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:81
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:44
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:81
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:44
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:81
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:174
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:38
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:44
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:81 
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:44
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:81
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:50
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:87
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:44
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:81
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:44
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:81
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:44
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:81
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:44
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:81
 msgid "shop.title"
 msgstr "Tapeshop"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:169
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:178
 msgid "order.status"
 msgstr "Bestell Status"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:173
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:201
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:186
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:210
 msgid "order.billingnumber"
 msgstr "Rechnungsnummer"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:177
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:190
 msgid "order.customer"
 msgstr "Kunde"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:181
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:194
 msgid "item.count"
 msgstr "Anzahl"
 
@@ -59,165 +86,323 @@ msgstr "Anzahl"
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:341
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:191
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:286
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:198
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:210
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:250
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:296
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:357
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:200
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:295
 msgid "order.total"
 msgstr "Gesamt"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:189
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:202
 msgid "order.lastaction"
 msgstr "Letzte Aktion"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:193
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:196
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:206
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:205
 msgid "show"
 msgstr "Anzeigen"
 
 #: ../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:197
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:221
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:204
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:210
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:230
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:213
 msgid "delete"
 msgstr "L&ouml;schen"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:169
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:178
 msgid "user.id"
 msgstr "Id"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:173
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:141
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:182
 msgid "user.username"
 msgstr "Benutzername"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:177
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:128
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:186
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:183
 msgid "user.email"
 msgstr "Email"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:181
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:181
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:190
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:192
 msgid "user.firstname"
 msgstr "Vorname"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:185
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:194
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:194
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:201
 msgid "user.lastname"
 msgstr "Nachname"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:189
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:207
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:198
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:211
 msgid "address.street"
 msgstr "Straße"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:193
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:220
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:202
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:220
 msgid "address.buildingnumber"
 msgstr "Hausnummer"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:197
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:233
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:206
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:230
 msgid "address.postcode"
 msgstr "PLZ"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:201
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:246
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:210
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:240
 msgid "address.city"
 msgstr "Stadt"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:205
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:258
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:214
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:249
 msgid "address.country"
 msgstr "Land"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:209
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:218
 msgid "shop.adminflag"
 msgstr "Admin"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:213
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:222
 msgid "order.count"
 msgstr "Bestellungen"
 
 #: ../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:217
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:200
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:226
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:209
 msgid "edit"
 msgstr "Bearbeiten"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:86
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:86
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:85
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:86
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:86
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:86
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:86
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:86
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:92
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:86
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:86
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:86
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:85
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:86
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:85
 msgid "shop.loggedinas"
 msgstr "Angemeldet als"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:89
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:89
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:88
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:89
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:89
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:89
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:89
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:89
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:95
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:89
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:89
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:89
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:88
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:89
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:88
 msgid "shop.button.logout"
 msgstr "Abmelden"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:95
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:95
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:95
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:95
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:95
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:95
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:95
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:101
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:95
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:95
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:95
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:95
 msgid "shop.nav.home"
 msgstr "Home"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:98
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:98
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:99
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:98
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:98
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:98
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:98
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:98
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:104
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:98
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:98
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:98
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:99
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:98
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:99
 msgid "shop.nav.cart"
 msgstr "Warenkorb"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:101
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:101
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:104
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:101
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:101
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:101
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:101
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:101
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:107
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:101
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:101
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:101
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:104
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:101
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:104
 msgid "shop.nav.contact"
 msgstr "Kontakt"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:106
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:106
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:109
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:106
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:106
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:106
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:106
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:106
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:112
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:106
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:106
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:106
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:109
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:106
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:109
 msgid "shop.nav.users"
 msgstr "Kunden"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:109
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:109
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:112
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:109
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:109
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:109
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:109
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:109
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:115
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:109
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:109
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:109
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:112
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:109
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:112
 msgid "shop.nav.items"
 msgstr "Artikel"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:112
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:112
+#: ../../../../templates_c/019b51d1debce85d50a2a272ad19a5fd13334928.file.agb.html.php:115
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:112
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:112
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:112
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:112
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:112
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:118
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:112
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:112
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:112
+#: ../../../../templates_c/c8c9055f7724b1c8064351c33ce0cd73c4d2f42a.file.home.html.php:115
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:112
+#: ../../../../templates_c/eb7501168366ec73c14964536d078ff08eeee41a.file.kontakt.html.php:115
 msgid "shop.nav.orders"
 msgstr "Bestellungen"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:216
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:219
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:216
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:228
 msgid "item.outofstock"
 msgstr "Nicht auf Lager"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:220
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:223
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:220
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:232
 msgid "item.add"
 msgstr "Hinzuf&uuml;gen"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:226
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:229
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:226
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:238
 msgid "ticketscript.buybutton"
 msgstr "Onlineticket"
 
 #: ../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:240
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:274
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:292
+#: ../../../../templates_c/0e7164498da1688d2cab3c9878d02397b8926dee.file.users.html.php:313
+#: ../../../../templates_c/11f8de1e468928dfe3eff5fa87062aaa7a1be95c.file.index.html.php:240
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:144
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:274
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:410
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:344
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:296
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:269
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:326
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:269
 msgid "shop.poweredby"
 msgstr "Powered by"
 
 #: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:122
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:122
 msgid "login.text"
 msgstr "Anmelden"
 
 #: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:127
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:127
 msgid "login.email"
 msgstr "Email"
 
 #: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:129
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:154
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:129
 msgid "login.password"
 msgstr "Passwort"
 
 #: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:132
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:271
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:132
 msgid "login.rememberme"
 msgstr "Angemeldet bleiben"
 
 #: ../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:135
+#: ../../../../templates_c/1721ae2d86f9c6b2c88e954c13824822d488a89d.file.login.html.php:135
 msgid "login.signin"
 msgstr "Registrieren"
 
@@ -225,12 +410,17 @@ msgstr "Registrieren"
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:214
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:366
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:176
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:376
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:379
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:185
 msgid "item.name"
 msgstr "Bezeichnung"
 
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:222
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:376
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:192
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:387
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:201
 msgid "item.image"
 msgstr "Artikelbild"
 
@@ -238,6 +428,9 @@ msgstr "Artikelbild"
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:236
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:386
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:180
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:397
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:401
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:189
 msgid "item.description"
 msgstr "Beschreibung"
 
@@ -247,31 +440,43 @@ msgstr "Beschreibung"
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:396
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:184
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:187
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:208
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:294
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:408
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:193
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:196
 msgid "item.price"
 msgstr "Preis"
 
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:253
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:406
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:418
 msgid "item.shipping"
 msgstr "Versandgeb&uuml;hren"
 
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:263
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:416
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:428
 msgid "ticketscript"
 msgstr "Ticketscript"
 
 #: ../../templates_c/2b35a6e7a057b641569349f80630ac9435167572.file.new.html.php:271
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:424
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:436
 msgid "item.save"
 msgstr "Speichern"
 
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:174
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:174
 msgid "shop.review.title"
 msgstr "Bestellung pr&uuml;fen"
 
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:202
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:279
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:175
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:202
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:288
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:184
 msgid "cart.item"
 msgstr "Artikel"
 
@@ -280,63 +485,86 @@ msgstr "Artikel"
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:243
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:188
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:179
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:204
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:290
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:252
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:197
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:188
 msgid "item.variation"
 msgstr "Variante"
 
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:206
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:283
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:183
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:206
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:292
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:192
 msgid "cart.amount"
 msgstr "Anzahl"
 
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:241
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:332
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:276
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:241
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:341
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:285
 msgid "order.shipping"
 msgstr "Versandkosten"
 
 #: ../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:264
+#: ../../../../templates_c/3bf21140827234d2b2c7ff84bcc7b93d51a4b7cb.file.reviewOrder.html.php:264
 msgid "order.submit"
 msgstr "Bestellung absenden"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:165
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:174
 msgid "order.title"
 msgstr "Bestellung"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:169
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:178
 msgid "order.shippingaddress"
 msgstr "Versandadresse"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:207
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:216
 msgid "order.status.ordered"
 msgstr "Bestellt am"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:224
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:233
 msgid "order.status.markaspayed"
 msgstr "Als bezahlt markieren"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:231
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:240
 msgid "order.status.shipped"
 msgstr "Versand am"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:243
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:252
 msgid "order.status.markasshipped"
 msgstr "Als versand markieren"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:251
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:260
 msgid "order.billingpdf"
 msgstr "Rechnung (.pdf)"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:262
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:271
 msgid "order.button.createbillingpdf"
 msgstr "Rechnung erstellen"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:265
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:274
 msgid "order.status.markaspayedfirst"
 msgstr "Zuerst als bezahlt markieren"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:305
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:251
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:314
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:260
 msgid "item.numbers"
 msgstr "Nummerierung"
 
@@ -357,73 +585,127 @@ msgid "singup.button.register"
 msgstr "Registrieren"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:197
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:206
 msgid "item.image.remove"
 msgstr "Bild l&ouml;schen"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:212
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:221
 msgid "item.variations"
 msgstr "Variationen"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:256
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:265
 msgid "item.numbers.total"
 msgstr "Alle"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:258
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:267
 msgid "item.numbers.free"
 msgstr "Frei"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:260
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:269
 msgid "item.numbers.invalid"
 msgstr "Ung&uuml;ltig"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:262
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:271
 msgid "item.numbers.unrequested"
 msgstr "Unbestellt"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:288
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:297
 msgid "item.numbers.amount"
 msgstr "Anzahl"
 
 #: ../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:323
+#: ../../../../templates_c/737aa90571de441067f9afa13b1c403f7a366d4d.file.edit.html.php:332
 msgid "item.numbers.addnumbers"
 msgstr "Artikel nummerieren"
 
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:166
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:175
 msgid "button.item.new"
 msgstr "Neuer Artikel"
 
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:172
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:181
 msgid "item.id"
 msgstr "Id"
 
 #: ../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:238
+#: ../../../../templates_c/7539ec043f4990d13f9da8a7503f158a25d8efca.file.items.html.php:247
 msgid "item.left"
 msgstr " &uuml;brig"
 
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:179
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:188
 msgid "item.edit"
 msgstr "Bearbeiten"
 
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:187
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:196
 msgid "item.delete"
 msgstr "L&ouml;schen"
 
 #: ../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:236
+#: ../../../../templates_c/7d5d56eaf95bfc96df39d1bee922c4ad20455fcd.file.show.html.php:245
 msgid "item.availablein"
 msgstr "Verf&uuml;gbar in"
 
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:165
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:174
 msgid "cart.heading"
 msgstr "Warenkorb"
 
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:301
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:310
 msgid "cart.clear"
 msgstr "Warenkorb leeren"
 
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:305
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:314
 msgid "cart.checkout"
 msgstr "Bestellen"
 
 #: ../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:308
+#: ../../../../templates_c/ae07f050770a0e09bac270fc0cb9cbfd22168df9.file.cart.html.php:317
 msgid "cart.noitems"
 msgstr "Der Warenkorb ist leer."
+
+#: ../../../../templates_c/076aebb5c2b877806610c1ced738c60d3029eb51.file.orders.html.php:182
+msgid "order.paymentstatus"
+msgstr "Bezahlstatus"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:349
+msgid "order.fees"
+msgstr "Geb&uuml;hren"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:378
+msgid "payment.sofort.header"
+msgstr "SOFORT &Uuml;berweisung"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:388
+msgid "payment.sofort.account.holder"
+msgstr "Kontoinhaber"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:390
+msgid "payment.sofort.account.number"
+msgstr "Kontonummer"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:392
+msgid "payment.sofort.bankcode"
+msgstr "Bankleitzahl"
+
+#: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:398
+msgid "payment.sofort.pay"
+msgstr "Jetzt bezahlen"
+
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:174
+msgid "shop.checkout"
+msgstr "Daten eingeben"
+
+#: ../../../../templates_c/e20415413dade2975544d75d80b16e640df4bb1c.file.checkout.html.php:258
+msgid "checkout.continue"
+msgstr "Weiter"
