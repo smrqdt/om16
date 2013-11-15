@@ -3,7 +3,7 @@
 {block name=content}
 	<h1>{_("order.title")}</h1>
 	
-	<div class="span5">
+	<div class="span6">
 		<h6>{_("order.shippingaddress")}:</h6>
 		{if $order->address} {$order->address->name}
 		{$order->address->lastname}<br /> {$order->address->street}
@@ -18,7 +18,7 @@
 		{$order->user->currentAddress()->country} {/if}
 	</div>
 	
-	<div class="span5">
+	<div class="span6">
 		<table class="table">
 			<tr>
 				<th>{_("order.billingnumber")}</th>
@@ -107,17 +107,51 @@
 		{/foreach}
 	
 		<tr>
-			<td colspan="4"></td>
+			<td colspan="4" style="border-top:none"></td>
 			<td><b>{_("order.shipping")}</b></td>
 			<td><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
 			</td>
-	
 		</tr>
 		<tr>
-			<td colspan="4"></td>
+			<td colspan="4" style="border-top:none"></td>
+			<td><b>{_("order.fees")}</b></td>
+			<td><b>{($order->payment_fee / 100)|number_format:2:",":"."} €</b>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-top:none"></td>
 			<td><b>{_("order.total")}</b></td>
 			<td><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
 			</td>
 		</tr>
 	</table>
+	{if $order->status != payed && $order->payment_id == null}
+	<div id="paymentMethods">
+		Jetzt bezahlen:
+		<a href="#sofortModal" role="button" class="btn" data-toggle="modal"><img src="{$path}assets/img/SOFORT_Ueberweisung/icon-48x32.png">
+		+ {($order->getFeeFor('sofort') / 100)|number_format:2:",":"."} €</a>
+	</div>
+
+	<div id="sofortModal" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">{_("payment.sofort.header")}</h3>
+		</div>
+		<form method="post" action="{$path}payment/sofort/pay" style="display:inline">
+			<div class="modal-body">
+				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+				<input type="hidden" name="orderId" value="{$order->id}" /> <label>{_("payment.sofort.account.holder")}</label>
+				<input type="text" name="accountHolder" /> <label>{_("payment.sofort.account.number")}</label>
+				<input type="text" name="accountNumber" /> <label>{_("payment.sofort.bankcode")}</label>
+				<input type="text" name="bankcode" />
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" class="btn">{_("payment.sofort.pay")}</button>
+			</div>
+		</form>
+	</div>
+{/if}
 {/block}
