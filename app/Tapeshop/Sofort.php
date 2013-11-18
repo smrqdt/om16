@@ -1,4 +1,6 @@
 <?php
+namespace Tapeshop;
+
 use ActiveRecord\DateTime;
 require_once ("lib/SofortLib_1.5.5/library/sofortLib.php");
 

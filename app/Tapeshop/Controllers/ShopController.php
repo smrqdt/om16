@@ -1,8 +1,13 @@
 <?php
+namespace Tapeshop\Controllers;
+
+use \Tapeshop\Models\Item;
+use \Tapeshop\Models\Address;
+use \Tapeshop\Models\User;
 /**
  * Handle shop operations.
  */
-class ShopController extends Controller {
+class ShopController extends \Tapeshop\Controller {
 
 	/**
 	 * Show list of all items.

@@ -1,6 +1,9 @@
 <?php
+namespace Tapeshop\Controllers;
 
-class UserController extends Controller{
+use \Tapeshop\Models\User;
+
+class UserController extends \Tapeshop\Controller{
 	
 	public function delete($id){
 		$this->checkAdmin();

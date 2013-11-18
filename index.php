@@ -25,7 +25,7 @@ ActiveRecord\Config::initialize(function($cfg) {
  * Configure Smarty
  */
 \Slim\Extras\Views\Smarty::$smartyDirectory = 'vendor/smarty/smarty/distribution/libs';
-\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/view';
+\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/Tapeshop/Views';
 $smartyView = new \Slim\Extras\Views\Smarty();
 
 /*
@@ -60,26 +60,26 @@ $app->add(new \Slim\Extras\Middleware\CsrfGuard());
  */
 
 // Login
-$loginController = new LoginController();
+$loginController = new Tapeshop\Controllers\LoginController();
 $app->map('/login/', array($loginController, 'login'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
 $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 
 // Shop
-$shopController = new ShopController();
+$shopController = new Tapeshop\Controllers\ShopController();
 $app->get('/', array($shopController, 'index'))->name('home');
 $app->get('/checkout', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup', array($shopController, "noSignup"));
 $app->get('/ticketscript', array($shopController, "ticketscript"));
 
 // Admin routings
-$adminController = new AdminController();
+$adminController = new Tapeshop\Controllers\AdminController();
 $app->get('/admin', array($adminController, 'index'))->name('admin');
 $app->get('/admin/items', array($adminController, 'items'))->name('adminitems');
 $app->get('/admin/orders', array($adminController, 'orders'))->name('adminorders');
 
 // order routings
-$orderController = new OrderController();
+$orderController = new \Tapeshop\Controllers\OrderController();
 $orderController::updateStatus();
 $app->post('/order', array($orderController, 'submitOrder'));
 $app->get('/order/:hash', array($orderController, "order"))->name("order");
@@ -89,7 +89,7 @@ $app->get('/order/billing/:hash', array($orderController, 'billing'));
 $app->post('/order/:id/shipped', array($orderController, 'shipped'));
 
 // cart routings
-$cartController = new CartController();
+$cartController = new \Tapeshop\Controllers\CartController();
 $app->post('/cart/addItem/:id', array($cartController, 'addItem'));
 $app->get('/cart', array($cartController, 'cart'));
 $app->post('/cart/clear', array($cartController, 'clearCart'));
@@ -98,13 +98,13 @@ $app->post('/cart/decrease', array($cartController, 'decrease'));
 $app->post('/cart/remove', array($cartController, 'remove'));
 
 // user routings
-$userController = new UserController();
+$userController = new \Tapeshop\Controllers\UserController();
 $app->post('/user/delete/:id', array($userController, 'delete'));
 $app->get('/admin/user/edit/:id', array($userController, 'edit'));
 $app->map('/admin/user/save/:id', array($userController, 'save'))->via('GET', 'POST')->name('editUser');
 
 // item routings
-$itemController = new ItemController();
+$itemController = new \Tapeshop\Controllers\ItemController();
 $app->get('/item/:id', array($itemController, 'show'));
 $app->map('/item/edit/:id', array($itemController, 'edit'))->via('GET', 'POST')->name('editItem');
 $app->post('/item/delete/:id', array($itemController, 'delete'));

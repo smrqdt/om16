@@ -1,8 +1,11 @@
 <?php
+namespace Tapeshop\Controllers;
+use Tapeshop\Models\User;
+
 /**
  * Handle authentication operations.
  */
-class LoginController extends Controller {
+class LoginController extends \Tapeshop\Controller {
 
 	/**
 	 * Login an user.

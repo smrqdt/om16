@@ -1,4 +1,6 @@
 <?php
+namespace Tapeshop\Controllers\Helpers;
+
 /**
  * Helper class for Email notifications.
  */

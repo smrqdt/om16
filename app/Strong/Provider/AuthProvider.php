@@ -1,5 +1,8 @@
 <?php
 namespace Strong\Provider;
+
+use \Tapeshop\Models\User;
+
 class AuthProvider extends \Strong\Provider {
 
 	/**
@@ -21,7 +24,7 @@ class AuthProvider extends \Strong\Provider {
 	 */
 	public function login($username, $password) {
 		if(! is_object($username)) {
-			$user = \User::find_by_username($username);
+			$user = User::find_by_username($username);
 		}
 		if($user == null){
 			return false;
@@ -51,7 +54,7 @@ class AuthProvider extends \Strong\Provider {
 	 * @return boolean
 	 */
 	protected function completeLogin($user) {
-		$users = \User::find($user->id);
+		$users = User::find($user->id);
 		$users->save();
 
 		$userInfo = array(

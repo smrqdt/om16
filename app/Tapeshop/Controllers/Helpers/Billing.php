@@ -1,4 +1,5 @@
 <?php
+namespace Tapeshop\Controllers\Helpers;
 
 class Billing extends fpdf\FPDF {
 

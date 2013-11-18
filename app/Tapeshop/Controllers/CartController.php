@@ -1,8 +1,12 @@
 <?php
+namespace Tapeshop\Controllers;
+
+use \Tapeshop\Models\Item;
+
 /**
  * Handle shopping cart functionality.
  */
-class CartController extends Controller{
+class CartController extends \Tapeshop\Controller{
 	
 	/**
 	 * Add an item to the shopping cart.

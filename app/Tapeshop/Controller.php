@@ -1,4 +1,7 @@
 <?php
+namespace Tapeshop;
+
+use Tapeshop\Models\User;
 use Valitron\Validator;
 
 abstract class Controller {

@@ -1,6 +1,7 @@
 <?php
+namespace Tapeshop\Models;
 
-class Order extends ActiveRecord\Model {
+class Order extends \ActiveRecord\Model {
 	
 	static $belongs_to = array(
 			array('user'),

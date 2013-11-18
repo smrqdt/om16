@@ -1,8 +1,14 @@
 <?php
+namespace Tapeshop\Controllers;
+
+use \Tapeshop\Models\Item;
+use \Tapeshop\Models\Order;
+use \Tapeshop\Models\User;
+
 /**
  * Controller to handle administrative views.
  */
-class AdminController extends Controller{
+class AdminController extends \Tapeshop\Controller{
 	
 	/**
 	 * Show list of all users/customers.

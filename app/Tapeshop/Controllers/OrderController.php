@@ -1,9 +1,15 @@
 <?php
+namespace Tapeshop\Controllers;
+
+use ActiveRecord\DateTime;
+use \Tapeshop\Models\Order;
+use \Tapeshop\Controllers\Helpers\EmailOutbound;
+use \Tapeshop\Controllers\Helpers\Billing;
+
 /**
  * Handle orders.
  */
-use ActiveRecord\DateTime;
-class OrderController extends Controller{
+class OrderController extends \Tapeshop\Controller{
 	
 	/**
 	 * Submit a new order. Get all items form the cart and add them as OrderItem
@@ -228,7 +234,7 @@ class OrderController extends Controller{
 	 */
 	public static function updateStatus(){
 		$date = new DateTime();
-		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new DateInterval("P14D")))));
+		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new \DateInterval("P14D")))));
 		foreach ($orders as $order){
 			$order->status = 'overdue';
 			$order->save();

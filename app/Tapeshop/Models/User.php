@@ -1,6 +1,7 @@
 <?php
+namespace Tapeshop\Models;
 
-class User extends ActiveRecord\Model{
+class User extends \ActiveRecord\Model{
 	static $has_many = array(
 			array('orders'),
 			array('addresses')

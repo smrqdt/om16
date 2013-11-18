@@ -1,6 +1,8 @@
 <?php
 
-class Address extends ActiveRecord\Model{
+namespace Tapeshop\Models;
+
+class Address extends \ActiveRecord\Model{
 	
 	static $table_name = "addresses";
 	
