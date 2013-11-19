@@ -29,7 +29,7 @@
 				<td>{$order->ordertime->format('d.m.Y, H:i')} Uhr</td>
 			</tr>
 			<tr>
-				<th>order.status.paymentreceived</th>
+				<th>{_("order.status.paymentreceived")}</th>
 				<td>{if $order->paymenttime} {$order->paymenttime->format('d.m.Y, H:i')} Uhr {else} {if
 					isset($smarty.session['auth_user']) && $user->admin}
 					<form method="post" action="{$path}order/{$order->id}/payed"
