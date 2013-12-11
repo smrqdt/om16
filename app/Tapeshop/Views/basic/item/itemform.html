@@ -24,14 +24,14 @@
 	<label class="control-label" for="price">{_("item.price")}</label>
 	<div class="controls">
 		<input type="text" name="price" placeholder="17.42"
-			value="{if isset($itemform)}{$itemform['price']}{else}{$item->price/100}{/if}"> €
+			value="{if isset($itemform)}{$itemform['price']}{else}{($item->price/100)|number_format:2:".":""}{/if}"> €
 	</div>
 </div>
 <div class="control-group">
 	<label class="control-label" for="shipping">{_("item.shipping")}</label>
 	<div class="controls">
 		<input type="text" name="shipping" placeholder="17.42"
-			value="{if isset($itemform)}{$itemform['shipping']}{else}{$item->shipping/100}{/if}"> €
+			value="{if isset($itemform)}{$itemform['shipping']}{else}{($item->shipping/100)|number_format:2:".":""}{/if}"> €
 	</div>
 </div>
 <div class="control-group">
