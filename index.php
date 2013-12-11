@@ -17,7 +17,7 @@ textdomain($domain);
  * Configure phpactiverecord
  */
 ActiveRecord\Config::initialize(function($cfg) {
-	$cfg->set_model_directory('.');
+	$cfg->set_model_directory('app/');
 	$cfg->set_connections(array('development' => DB_PROVIDER.'://'.DB_USERNAME.':'.DB_PASSWORD.'@'.DB_HOSTNAME.'/'.DB_NAME));
 });
 

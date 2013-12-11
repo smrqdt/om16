@@ -9,7 +9,7 @@ class Order extends \ActiveRecord\Model {
 	);
 	
 	static $has_many = array(
-			array('orderitems'),
+			array('orderitems', 'class_name' => '\Tapeshop\Models\Orderitem'),
 			array('items', 'through' => 'orderitems')
 	);
 
@@ -29,6 +29,9 @@ class Order extends \ActiveRecord\Model {
 		switch($method){
 			case 'sofort':
 				$pm = PaymentMethod::find('first', array("conditions" => array("name = 'sofort'")));
+				return $pm->fix + $this->getSum() * $pm->fee;
+			case 'paypal':
+				$pm = PaymentMethod::find('first', array("conditions" => array("name = 'paypal'")));
 				return $pm->fix + $this->getSum() * $pm->fee;
 			default:
 				return 0;
