@@ -25,7 +25,7 @@ ActiveRecord\Config::initialize(function($cfg) {
  * Configure Smarty
  */
 \Slim\Extras\Views\Smarty::$smartyDirectory = 'vendor/smarty/smarty/distribution/libs';
-\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/Tapeshop/Views';
+\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/Tapeshop/Views/' . VIEW;
 $smartyView = new \Slim\Extras\Views\Smarty();
 
 /*
