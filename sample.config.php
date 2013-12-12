@@ -40,3 +40,8 @@ define('ORDER_PREFIX', 'TS-');
 define('SOFORT_CONFIG', ''); //your configkey or userid:projektid:apikey
 define('SOFORT_REASON', 'Tapeshop order');
 
+/*
+ * Paypal settings 
+ */
+define('PAYPAL_EMAIL', ''); // your paypal email.
+define('PAYPAL_MERCHANT_ID', '');

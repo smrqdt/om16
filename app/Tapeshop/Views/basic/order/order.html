@@ -131,7 +131,7 @@
 		<a href="#sofortModal" role="button" class="btn" data-toggle="modal"><img src="{$path}assets/img/SOFORT_Ueberweisung/icon-48x32.png">
 		+ {($order->getFeeFor('sofort') / 100)|number_format:2:",":"."} €</a>
 		
-		<script src="{$path}assets/js/paypal-button.min.js?merchant=rokr42@googlemail.com" 
+		<script src="{$path}assets/js/paypal-button.min.js?merchant={$paypal_merchant_id}" 
     	data-button="buynow" 
     	data-name="{$order->id}" 
     	data-amount="{(($order->getSum() + $order->getFeeFor('paypal')) / 100)|number_format:2:".":""}"

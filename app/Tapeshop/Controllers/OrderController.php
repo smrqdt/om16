@@ -82,7 +82,8 @@ class OrderController extends \Tapeshop\Controller{
 		}else{
 	
 			$data = array(
-					"order" => $order
+					"order" => $order,
+					"paypal_merchant_id" => PAYPAL_MERCHANT_ID
 			);
 
 			$this->render("order/order.html", $data);

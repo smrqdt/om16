@@ -20,4 +20,6 @@ $app = new \Slim\Slim();
 
 $app->add(new \Tapeshop\SofortPayment());
 
+$app->add(new \Tapeshop\PaypalPayment());
+
 $app->run();

@@ -2,8 +2,8 @@
 namespace Tapeshop;
 
 use ActiveRecord\DateTime;
+
 use Tapeshop\Models\Order;
-use Tapeshop\Controllers\OrderController;
 use Tapeshop\Models\PaymentMethod;
 
 class PaypalPayment extends \Slim\Middleware {
@@ -15,111 +15,95 @@ class PaypalPayment extends \Slim\Middleware {
 	}
 
 	public function notification(){
+		// Array containing configuration parameters. (not required if config file is used)
+		$config = array(
+				// values: 'sandbox' for testing
+				//         'live' for production
+				"mode" => "sandbox"
 
-		// Send an empty HTTP 200 OK response to acknowledge receipt of the notification
-		header('HTTP/1.1 200 OK');
+				// These values are defaulted in SDK. If you want to override default values, uncomment it and add your value.
+				// "http.ConnectionTimeOut" => "5000",
+				// "http.Retry" => "2",
+		);
 
-		// 		Extract variables from the notification for later processing.
-		// 		Note that how you process a particular notification depends on its type. For example, if a notification applies to a completed payment, you could extract these variables from the message:
+		$ipnMessage = new \PPIPNMessage(null, $config);
+		$data = $ipnMessage->getRawData();
 
-		// Assign payment notification values to local variables
-		$item_name        = $_POST['item_name'];
-		$item_number      = $_POST['item_number'];
-		$payment_status   = $_POST['payment_status'];
-		$payment_amount   = $_POST['mc_gross'];
-		$payment_currency = $_POST['mc_currency'];
-		$txn_id           = $_POST['txn_id'];
-		$receiver_email   = $_POST['receiver_email'];
-		$payer_email      = $_POST['payer_email'];
-
-		//Use the notification to build the acknowledgement message required by the IPN authentication protocol.
-		// Build the required acknowledgement message out of the notification just received
-		$req = 'cmd=_notify-validate';               // Add 'cmd=_notify-validate' to beginning of the acknowledgement
-
-		foreach ($_POST as $key => $value) {         // Loop through the notification NV pairs
-			$value = urlencode(stripslashes($value));  // Encode these values
-			$req  .= "&$key=$value";                   // Add the NV pairs to the acknowledgement
+		foreach($ipnMessage->getRawData() as $key => $value) {
+			error_log("IPN: $key => $value");
 		}
-		//Post the acknowledgement back to PayPal, so PayPal can determine whether the original notification was tampered with.
-		// Set up the acknowledgement request headers
-		$header  = "POST /cgi-bin/webscr HTTP/1.1\r\n";                    // HTTP POST request
-		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-		$header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 
-		// Open a socket for the acknowledgement request
-		$fp = fsockopen('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
-
-		// Send the HTTP POST request back to PayPal for validation
-		fputs($fp, $header . $req);
-		//Parse PayPal's response to your acknowledgement to determine whether the original notification was OK - if so, process it.
-		while (!feof($fp)) {                     // While not EOF
-			$res = fgets($fp, 1024);               // Get the acknowledgement response
-			if (strcmp ($res, "VERIFIED") == 0) {  // Response contains VERIFIED - process notification
-
-				// Send an email announcing the IPN message is VERIFIED
-				$mail_From    = "IPN@example.com";
-				$mail_To      = "rokr42@gmail.com"; //TODO: set email addresses
-				$mail_Subject = "VERIFIED IPN";
-				$mail_Body    = $req;
-				mail($mail_To, $mail_Subject, $mail_Body, $mail_From);
-
-				// Authentication protocol is complete - OK to process notification contents
-
-				// Possible processing steps for a payment include the following:
-
-				// Check that txn_id has not been previously processed
-		/*		$order = Order::find('first', array("conditions" => array("payment_id = ?", $txn_id)));
+		if($ipnMessage->validate()) {
+			error_log("Success: Got valid IPN data");
+			// 		Extract variables from the notification for later processing.
+			// 		Note that how you process a particular notification depends on its type. For example, if a notification applies to a completed payment, you could extract these variables from the message:
+			// Assign payment notification values to local variables
+			$item_name        = $data['item_name'];
+			$item_number      = $data['item_number'];
+			$payment_status   = $data['payment_status'];
+			$payment_amount   = $data['mc_gross'];
+			$payment_currency = $data['mc_currency'];
+			$txn_id           = $data['txn_id'];
+			$receiver_email   = $data['receiver_email'];
+			$payer_email      = $data['payer_email'];
 				
-				if($order != null){
-					print "Transaction ID already used.";
-					return;
-				}
+			// Send an email announcing the IPN message is VERIFIED
+// 			$mail_From    = "robert.krause@tapefabrik.de";
+// 			$mail_To      = "rokr42@gmail.com"; //TODO: set email addresses
+// 			$mail_Subject = "VERIFIED IPN";
+// 			$mail_Body    = $req;
+// 			if(mail($mail_To, $mail_Subject, $mail_Body, $mail_From)){
+// 				error_log("Mail was send\n");
+// 			}else{
+// 				error_log("Mail was not send\n");
+// 			}
 				
-				// Check that receiver_email is your Primary PayPal email
-				// Check that payment_amount/payment_currency are correct
-
-				// TODO: extract paypal fees from value
-				// update payment method and payment fee
-				$order = Order::find($item_name);
+			// Authentication protocol is complete - OK to process notification contents
 				
-				if($order->getSum() + $order->getFeeFor('paypal') == $payment_amount){
-					
-				}
+			// Possible processing steps for a payment include the following:
 				
+			// Check that txn_id has not been previously processed
+			$order = Order::find('first', array("conditions" => array("payment_id = ?", $txn_id)));
 				
-				$order->payment_method_id = 1;
-				$order->payment_status = $payment_status;
-				$order->payment_id = $txn_id;
-				$order->payment_fee = ($payment_amount * 100) - $order->getSum();
-
+			if($order != null){
+				error_log("Transaction ID already used");
+				return;
+			}
+			
+			if($receiver_email != PAYPAL_EMAIL){
+				error_log("Wrong receiver email");
+				return;
+			}
+				
+			$order = Order::find($item_name);
+			
+			if($order == null){
+				error_log("No order with id " . $item_name ." found.");
+				return;
+			}
+				
+			if($order->getSum() + $order->getFeeFor('paypal') <= $payment_amount){
 				// Check that the payment_status is Completed
 				if($payment_status == "Completed"){
 					$order->status = 'payed';
 				}
-
-				try{
-					$order->save();
-					$mailSuccess = EmailOutbound::sendNotification($order);
-				}catch(Exception $e){
-					print $e;
-				}
-		*/
-			}else if (strcmp ($res, "INVALID") == 0) { //Response contains INVALID - reject notification
-
-				// Authentication protocol is complete - begin error handling
-
-				// Send an email announcing the IPN message is INVALID
-				$mail_From    = "IPN@example.com";
-				$mail_To      = "rokr42@gmail.com"; //TODO: set email addresses
-				$mail_Subject = "INVALID IPN";
-				$mail_Body    = $req;
-
-				mail($mail_To, $mail_Subject, $mail_Body, $mail_From);
 			}
+				
+			// update payment method and payment fee
+			$order->payment_method_id = 1;
+			$order->payment_status = $payment_status;
+			$order->payment_id = $txn_id;
+			$order->payment_fee = $order->getFeeFor('paypal');
+				
+			try{
+				$order->save();
+				$mailSuccess = EmailOutbound::sendNotification($order);
+			}catch(Exception $e){
+				error_log($e->getMessage());
+			}
+		} else {
+			error_log("Error: Got invalid IPN data");
 		}
-
-		// 		Close the file and end the PHP script.
-		fclose($fp);  // Close the file
 	}
 
 	public function addRoutes(){

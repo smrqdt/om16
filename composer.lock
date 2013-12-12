@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f14fc040645df2478aa73c3df0a600dc",
+    "hash": "fed1e3dfde97bc26873f6ca2adba4ac6",
     "packages": [
         {
             "name": "itbz/fpdf",
@@ -35,6 +35,49 @@
             "description": "Unofficial PSR-0 compliant version of the FPDF library",
             "homepage": "http://www.fpdf.org/",
             "time": "2013-11-18 18:39:51"
+        },
+        {
+            "name": "paypal/sdk-core-php",
+            "version": "v1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/sdk-core-php.git",
+                "reference": "2ee73c75be510af7c2c153ff2eaba086972c8bf7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/sdk-core-php/zipball/2ee73c75be510af7c2c153ff2eaba086972c8bf7",
+                "reference": "2ee73c75be510af7c2c153ff2eaba086972c8bf7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/sdk-core-php/contributors"
+                }
+            ],
+            "description": "PayPal Core SDK for PHP",
+            "homepage": "https://github.com/paypal/sdk-core-php",
+            "keywords": [
+                "paypal",
+                "php",
+                "sdk"
+            ],
+            "time": "2013-09-11 14:22:45"
         },
         {
             "name": "php-activerecord/php-activerecord",
@@ -312,7 +355,8 @@
         "itbz/fpdf": 20
     },
     "platform": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "ext-curl": "*"
     },
     "platform-dev": [
 
