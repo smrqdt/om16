@@ -18,6 +18,6 @@ ActiveRecord\Config::initialize(function($cfg) {
  */
 $app = new \Slim\Slim();
 
-$app->add(new SofortPayment());
+$app->add(new \Tapeshop\SofortPayment());
 
 $app->run();

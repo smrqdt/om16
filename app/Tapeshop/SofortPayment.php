@@ -1,6 +1,9 @@
 <?php
 namespace Tapeshop;
 
+use \Tapeshop\Models\Order;
+
+
 use ActiveRecord\DateTime;
 require_once ("lib/SofortLib_1.5.5/library/sofortLib.php");
 
@@ -24,7 +27,7 @@ class SofortPayment extends \Slim\Middleware {
 			$accountNumber = $req->post('accountNumber');
 			$accountHolder = $req->post('accountHolder');
 				
-			$Sofort = new SofortLib_Multipay(SOFORT_CONFIG);
+			$Sofort = new \SofortLib_Multipay(SOFORT_CONFIG);
 			$Sofort->setSofortueberweisung();
 			echo ($order->getSum() + $order->getFeeFor('sofort'))/100.0;
 			$Sofort->setAmount(number_format(($order->getSum() + $order->getFeeFor('sofort'))/100.0, 2));
@@ -45,7 +48,7 @@ class SofortPayment extends \Slim\Middleware {
 			if($Sofort->isError()) {
 				// remote API responded with error
 				$msg = $Sofort->getError();
-				$this->app->flash('error', $msg);
+				$this->app->flashNow('error', $msg);
 				$url = APP_PATH . "order/". $order->hashlink;
 				$this->app->redirect($url);
 			} else {
@@ -65,14 +68,14 @@ class SofortPayment extends \Slim\Middleware {
 			foreach ($v->errors() as $key => $value) {
 				$outputErrors[] = $value[0];
 			}
-			$this->app->flash('error', $outputErrors);
+			$this->app->flashNow('error', $outputErrors);
 			$url = APP_PATH . "order/". $order->hashlink;
 			$this->app->redirect($url);
 		}
 	}
 	
 	public function notification(){
-		$notification = new SofortLib_Notification($this->app->request()->getBody());
+		$notification = new \SofortLib_Notification($this->app->request()->getBody());
 		$notification->getNotification();
 
 		$transactionId = $notification->getTransactionId();
@@ -90,7 +93,7 @@ class SofortPayment extends \Slim\Middleware {
 		}
 
 		// fetch some information for the transaction id retrieved above
-		$transactionData = new SofortLib_TransactionData(SOFORT_CONFIG);
+		$transactionData = new \SofortLib_TransactionData(SOFORT_CONFIG);
 		$transactionData->setTransaction($transactionId);
 		$transactionData->sendRequest();
 
