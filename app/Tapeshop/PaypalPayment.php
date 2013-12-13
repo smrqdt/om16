@@ -86,6 +86,7 @@ class PaypalPayment extends \Slim\Middleware {
 				// Check that the payment_status is Completed
 				if($payment_status == "Completed"){
 					$order->status = 'payed';
+					$order->paymenttime = new DateTime();
 				}
 			}
 				
