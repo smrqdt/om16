@@ -21,17 +21,11 @@ ActiveRecord\Config::initialize(function($cfg) {
 });
 
 /*
- * Configure Smarty
- */
-\Slim\Extras\Views\Smarty::$smartyDirectory = 'vendor/smarty/smarty/distribution/libs';
-\Slim\Extras\Views\Smarty::$smartyTemplatesDirectory = 'app/Tapeshop/Views/' . VIEW;
-$smartyView = new \Slim\Extras\Views\Smarty();
-
-/*
  * Set up Slim application
  */
 $app = new \Slim\Slim(array(
-		'view' => $smartyView,
+		'view' => new \Slim\Views\Smarty(),
+		'templates.path' => 'app/Tapeshop/Views/' . VIEW,
 		'log.level' => 4,
 		'log.enabled' => true
 ));

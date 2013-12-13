@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "slim/slim": "2.2.*",
+        "slim/slim": "2.*",
+        "slim/views": "*",
         "slim/extras": "*",
         "slim/strong": "dev-master",
         "php-activerecord/php-activerecord": "*",
