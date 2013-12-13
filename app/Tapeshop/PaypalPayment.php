@@ -14,6 +14,9 @@ class PaypalPayment extends \Slim\Middleware {
 		$this->next->call();
 	}
 
+	/**
+	 * Handle Paypal IPN requests.
+	 */
 	public function notification(){
 		// Array containing configuration parameters. (not required if config file is used)
 		$config = array(
@@ -33,10 +36,11 @@ class PaypalPayment extends \Slim\Middleware {
 			error_log("IPN: $key => $value");
 		}
 
+		// Authentication protocol is complete - OK to process notification contents
 		if($ipnMessage->validate()) {
 			error_log("Success: Got valid IPN data");
-			// 		Extract variables from the notification for later processing.
-			// 		Note that how you process a particular notification depends on its type. For example, if a notification applies to a completed payment, you could extract these variables from the message:
+			// Extract variables from the notification for later processing.
+			// Note that how you process a particular notification depends on its type. For example, if a notification applies to a completed payment, you could extract these variables from the message:
 			// Assign payment notification values to local variables
 			$item_name        = $data['item_name'];
 			$item_number      = $data['item_number'];
@@ -46,42 +50,26 @@ class PaypalPayment extends \Slim\Middleware {
 			$txn_id           = $data['txn_id'];
 			$receiver_email   = $data['receiver_email'];
 			$payer_email      = $data['payer_email'];
-				
-			// Send an email announcing the IPN message is VERIFIED
-// 			$mail_From    = "robert.krause@tapefabrik.de";
-// 			$mail_To      = "rokr42@gmail.com"; //TODO: set email addresses
-// 			$mail_Subject = "VERIFIED IPN";
-// 			$mail_Body    = $req;
-// 			if(mail($mail_To, $mail_Subject, $mail_Body, $mail_From)){
-// 				error_log("Mail was send\n");
-// 			}else{
-// 				error_log("Mail was not send\n");
-// 			}
-				
-			// Authentication protocol is complete - OK to process notification contents
-				
-			// Possible processing steps for a payment include the following:
-				
-			// Check that txn_id has not been previously processed
+
 			$order = Order::find('first', array("conditions" => array("payment_id = ?", $txn_id)));
-				
+
 			if($order != null){
 				error_log("Transaction ID already used");
 				return;
 			}
-			
+				
 			if($receiver_email != PAYPAL_EMAIL){
 				error_log("Wrong receiver email");
 				return;
 			}
-				
+
 			$order = Order::find($item_name);
-			
+				
 			if($order == null){
 				error_log("No order with id " . $item_name ." found.");
 				return;
 			}
-				
+
 			if($order->getSum() + $order->getFeeFor('paypal') <= $payment_amount){
 				// Check that the payment_status is Completed
 				if($payment_status == "Completed"){
@@ -89,13 +77,13 @@ class PaypalPayment extends \Slim\Middleware {
 					$order->paymenttime = new DateTime();
 				}
 			}
-				
+
 			// update payment method and payment fee
 			$order->payment_method_id = 1;
 			$order->payment_status = $payment_status;
 			$order->payment_id = $txn_id;
 			$order->payment_fee = $order->getFeeFor('paypal');
-				
+
 			try{
 				$order->save();
 				$mailSuccess = EmailOutbound::sendNotification($order);
