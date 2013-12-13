@@ -9,7 +9,7 @@ class Order extends \ActiveRecord\Model {
 	);
 	
 	static $has_many = array(
-			array('orderitems', 'class_name' => '\Tapeshop\Models\Orderitem'),
+			array('orderitems'),
 			array('items', 'through' => 'orderitems')
 	);
 
