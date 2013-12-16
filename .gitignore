@@ -8,6 +8,7 @@ templates_c/
 config.php
 upload/
 vendor/
+build/
 
 # webserver config
 .htaccess
