@@ -25,3 +25,6 @@ all:
 	rm -rf `find build/ -type d -name .git`
 	rm -rf `find build/ -type d -name examples`
 	
+clean:
+	rm -rf build/
+	
