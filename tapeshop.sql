@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `current` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `itemnumbers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `itemnumbers` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`orderitem_id`),
   KEY `orderitem_id` (`orderitem_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `ticketscript` tinyint(1) DEFAULT '0',
   `deleted` tinyint(1) DEFAULT '0', 
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `orderitems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
   KEY `order` (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -70,12 +70,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `hashlink` (`hashlink`),
-  KEY `hashlink_2` (`hashlink`),
-  KEY `hashlink_3` (`hashlink`),
-  KEY `hashlink_4` (`hashlink`),
-  KEY `hashlink_5` (`hashlink`),
   KEY `address_id` (`address_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=111 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `sizes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -83,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `sizes` (
   `size` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

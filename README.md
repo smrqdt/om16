@@ -6,15 +6,16 @@ A lightweight shop system. This is in early development and I would not recommen
 To install Tapeshop from the source you need [composer](http://www.getcomposer.org).
 
 1. Download or checkout the sources of Tapeshop
-2. Install composer dependencies and generate autoloader 
- ```composer.phar install```
-2. Configure mod rewrite in your .htaccess file. If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```in the first line.
+2. Install composer dependencies and generate autoloader  
+ ```composer.phar install```  
+ or run ```make``` to generate a clean build
+3. Configure mod rewrite in your .htaccess file. If you get a ```Error 403``` you might need to add ```Options +FollowSymlinks```in the first line.
 
         RewriteEngine On
         RewriteBase /path/to/tapeshop/
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteRule ^ index.php [QSA,L]
-3. ~~Point your Browser to ```http://your.domain.tld/path/to/tapeshop/install.php```~~ For some reason this does not work all the time. If it works (which will result in a running application) you can stop here.
+        
 4. Change config.php to fit your database credentials and enter the email addresses for user notification and for support inquiries.
 
 
@@ -27,6 +28,11 @@ To install Tapeshop from the source you need [composer](http://www.getcomposer.o
         define( "DB_PASSWORD", "" );
         define( "DB_NAME", "tapeshop" );
         define( "DB_PROVIDER", "mysql" );
+
+		/*
+		 * Template to use
+		 */
+		define('VIEW', 'basic'); // basic
         
         /*
          * Email
@@ -38,6 +44,29 @@ To install Tapeshop from the source you need [composer](http://www.getcomposer.o
          * FPDF
          */
         define('FPDF_FONTPATH','assets/fonts/');
+        
+        /*
+		 * Example Image when no Article Image was passed.
+		 */
+		define('ITEM_PLACEHOLDER','assets/img/placeholder.jpg');
+
+		/*
+		 * Order number prefix
+		 */
+		define('ORDER_PREFIX', 'TS-');
+
+		/*
+		 * Sofortüberweisung config key
+		 */
+
+		define('SOFORT_CONFIG', ''); //your configkey or userid:projektid:apikey
+		define('SOFORT_REASON', 'Tapeshop order');
+
+		/*
+		 * Paypal settings
+		 */
+		define('PAYPAL_EMAIL', ''); // your paypal email.
+		define('PAYPAL_MERCHANT_ID', '');
      
 
 
