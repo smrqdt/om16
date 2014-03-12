@@ -23,6 +23,7 @@
 
   <body>
   {block name="pagehead"}{/block}
+  <div class="container-fluid">
     {if isset($flash['error'])}
 		<div class="alert alert-error">
 			{foreach from=$flash['error'] item=msg}
@@ -54,7 +55,7 @@
 			{/foreach}
 		</div>
 	{/if}
-  	<div class="container-fluid">
+  	
   		{block name=content}{/block}
   	
 	  	<div class="clearfix"></div>
