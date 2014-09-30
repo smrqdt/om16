@@ -1,6 +1,8 @@
 <?php
 namespace Tapeshop\Models;
 
-class PaymentMethod extends \ActiveRecord\Model{
-	
+use ActiveRecord\Model;
+
+class PaymentMethod extends Model {
+
 }

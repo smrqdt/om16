@@ -1,35 +1,44 @@
 <?php
 namespace Tapeshop\Models;
 
+/**
+ * @property String name
+ * @property String description
+ * @property int price
+ * @property int shipping
+ * @property boolean ticketscript
+ * @property String image
+ * @property int id
+ * @property array orderitems
+ */
 class Item extends \ActiveRecord\Model {
 
 	static $has_many = array(
-			array('sizes'),
-			array('orderitems'),
-			array('itemnumbers')
+		array('sizes'),
+		array('orderitems'),
+		array('itemnumbers')
 	);
 
-	function getFreeNumbers(){
-		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and free = true', $this->id))); 
-	}
-	
-	function getUnrequestedNumberCount(){
-		$numbers = array();
+	function getUnrequestedNumberCount() {
 		$count = count($this->getFreeNumbers());
-		
-		if($count == 0){
+
+		if ($count == 0) {
 			return 0;
 		}
-		
-		foreach($this->orderitems as $oi){
-			if($oi->order->status != 'overdue'){
+
+		foreach ($this->orderitems as $oi) {
+			if ($oi->order->status != 'overdue') {
 				$count -= $oi->amount;
 			}
 		}
 		return $count;
 	}
 
-	function getInvalidNumbers(){
+	function getFreeNumbers() {
+		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and free = true', $this->id)));
+	}
+
+	function getInvalidNumbers() {
 		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = false', $this->id)));
 	}
 }

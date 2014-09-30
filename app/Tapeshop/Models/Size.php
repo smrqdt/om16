@@ -1,9 +1,11 @@
 <?php
 namespace Tapeshop\Models;
 
-class Size extends \ActiveRecord\Model {
-	
+use ActiveRecord\Model;
+
+class Size extends Model {
+
 	static $belongs_to = array(
-			array('item')
+		array('item')
 	);
 }

@@ -1,17 +1,20 @@
 <?php
 namespace Tapeshop\Controllers;
-use Tapeshop\Models\User;
+
+use ActiveRecord\ActiveRecordException;
+use Tapeshop\Controller;
 use Tapeshop\Models\Address;
+use Tapeshop\Models\User;
 
 /**
  * Handle authentication operations.
  */
-class LoginController extends \Tapeshop\Controller {
+class LoginController extends Controller {
 
 	/**
 	 * Login an user.
 	 */
-	public function login(){
+	public function login() {
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'password'));
@@ -20,9 +23,9 @@ class LoginController extends \Tapeshop\Controller {
 					$this->app->flash('info', 'Your login was successfull');
 					$u = $this->auth->getUser();
 					$user = User::find($u["id"]);
-					if($user->admin > 0){
+					if ($user->admin > 0) {
 						$this->redirect("admin");
-					}else{
+					} else {
 						$this->redirect('home');
 					}
 				}
@@ -36,7 +39,7 @@ class LoginController extends \Tapeshop\Controller {
 	/**
 	 * Register a new user.
 	 */
-	public function signup(){
+	public function signup() {
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
@@ -49,14 +52,14 @@ class LoginController extends \Tapeshop\Controller {
 				$u->email = $this->post('email');
 				$u->username = $this->post('username');
 				$u->password = $this->auth->getProvider()->initPassword($this->post('password'));
-				try{
+				try {
 					$u->save();
-				}catch(ActiveRecord\ActiveRecordException $e){
-					$this->app->flashNow('error', 'Could not create user! ' . $e->getMessage());	
+				} catch (ActiveRecordException $e) {
+					$this->app->flashNow('error', 'Could not create user! ' . $e->getMessage());
 					$this->useDataFromRequest('signupform', array('email', 'username', 'password', 'password_verify', 'name', 'lastname', 'street', 'building_number', 'postcode', 'city', 'country'));
 					$this->render('login/signup.tpl');
 				}
-				
+
 				$a = new Address();
 				$a->user_id = $u->id;
 				$a->name = $this->post('name');
@@ -66,9 +69,9 @@ class LoginController extends \Tapeshop\Controller {
 				$a->postcode = $this->post('postcode');
 				$a->city = $this->post('city');
 				$a->country = $this->post('country');
-				try{
+				try {
 					$a->save();
-				}catch(ActiveRecord\ActiveRecordException $e){
+				} catch (ActiveRecordException $e) {
 					$this->app->flashNow('error', 'Error saving the adress! Please verify it in the user settings. ' . $e->getMessage());
 				}
 
@@ -85,7 +88,7 @@ class LoginController extends \Tapeshop\Controller {
 	/**
 	 * Logout the current user.
 	 */
-	public function logout(){
+	public function logout() {
 		$this->app->flash('info', 'Come back sometime soon!');
 		$this->auth->logout(true);
 		$this->redirect('home');

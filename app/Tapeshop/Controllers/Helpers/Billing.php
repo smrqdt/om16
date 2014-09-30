@@ -1,20 +1,51 @@
 <?php
 namespace Tapeshop\Controllers\Helpers;
 
-class Billing extends fpdf\FPDF {
+use fpdf\FPDF;
 
-	function Meta(){
-		$this->AddFont('Sanchez','','sanchez.php');
+/**
+ * @property \Tapeshop\Models\Order order
+ */
+class Billing extends FPDF {
+
+	function Header() {
+		$this->Meta();
+
+		// Print the Header
+		$this->SetFont('Sanchez', '', 10);
+		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
+		$this->SetTextColor(255, 255, 255);
+
+		$this->Ln(49.5);
+		$this->Cell(16.5);
+
+		$this->Cell(472, 3, utf8_decode($this->order->address->name . " " . $this->order->address->lastname));
+		$this->Ln(6);
+
+		$this->Cell(16.5);
+		$this->Cell(472, 3, utf8_decode($this->order->address->street . " " . $this->order->address->building_number));
+		$this->Ln(6);
+
+		$this->Cell(16.5);
+		$this->Cell(472, 3, utf8_decode($this->order->address->postcode . " " . $this->order->address->city));
+
+		$this->Body();
 	}
-	
-	function Body(){
+
+	function Meta() {
+		$this->AddFont('Sanchez', '', 'sanchez.php');
+	}
+
+	function Body() {
 
 		$this->Ln(37);
-  		$this->Cell(16.5);
+		$this->Cell(16.5);
 
-		$this->SetTextColor(0,0,0);
-		$message = 
-"Hallo ".$this->order->address->name.",\n
+		$this->SetTextColor(0, 0, 0);
+
+		// TODO use templates, e.g. smarty
+		$message =
+			"Hallo " . $this->order->address->name . ",\n
 \n
 wir möchten uns bei dir noch einmal für deine Bestellung bedanken.\n
 \n
@@ -29,42 +60,15 @@ unter:\n
 \n
 Wenn du möchtest lade doch bei Facebook noch deine Leute ein, uns hilft jeder Besucher !\n
 \n
-Hier deine Bestellung mit der Rechnungsnummer T-04-".$this->order->id.".\n
+Hier deine Bestellung mit der Rechnungsnummer T-04-" . $this->order->id . ".\n
 \n";
 
-foreach($this->order->orderitems as $orderitem){
-	$message = $message.$orderitem->amount." x - '".$orderitem->item->name."'\n\n";
-}
+		foreach ($this->order->orderitems as $orderitem) {
+			$message = $message . $orderitem->amount . " x - '" . $orderitem->item->name . "'\n\n";
+		}
 
-$message=$message."\n
+		$message = $message . "\n
 Bis zum 25. Januar - Dein Tapefabrik Team !\n";
-		$this->MultiCell(0,2.2,utf8_decode($message));
-	}
-
-
-	function Header(){
-		$this->Meta();
-
-		// Print the Header
-		$this->SetFont('Sanchez','',10);
-		$this->Image(APP_PATH.'assets/img/Ticketbestellungen.png',0,0,-150,-150);
-  		$this->SetTextColor(255,255,255);
-
-  		$this->Ln(49.5);
-  		$this->Cell(16.5);
-
-		$this->Cell(472,3,utf8_decode($this->order->address->name." ".$this->order->address->lastname));
-		$this->Ln(6);
-
-  		$this->Cell(16.5);
-		$this->Cell(472,3,utf8_decode($this->order->address->street." ".$this->order->address->building_number));
-		$this->Ln(6);
-
-  		$this->Cell(16.5);
-		$this->Cell(472,3,utf8_decode($this->order->address->postcode." ".$this->order->address->city));
-
-		$this->Body();
+		$this->MultiCell(0, 2.2, utf8_decode($message));
 	}
 }
-
-?>

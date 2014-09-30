@@ -1,7 +1,24 @@
 <?php
 namespace Tapeshop\Models;
 
-class Order extends \ActiveRecord\Model {
+use ActiveRecord\DateTime;
+use ActiveRecord\Model;
+
+/**
+ * @property array orderitems
+ * @property \Tapeshop\Models\Address address
+ * @property int id
+ * @property String status
+ * @property \Tapeshop\Models\User user
+ * @property int shipping
+ * @property DateTime shippingtime
+ * @property int address_id
+ * @property String hashlink
+ * @property String payment_id
+ * @property int payment_fee
+ * @property int payment_method_id
+ */
+class Order extends Model {
 	
 	static $belongs_to = array(
 			array('user'),
