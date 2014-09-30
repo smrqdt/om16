@@ -3,6 +3,10 @@
 .settings/
 .buildpath
 
+# idea noise
+.idea/
+tapeshop.iml
+
 # project noise
 templates_c/
 config.php
