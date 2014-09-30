@@ -1,6 +1,7 @@
 <?php
 namespace Tapeshop\Controllers;
 use Tapeshop\Models\User;
+use Tapeshop\Models\Address;
 
 /**
  * Handle authentication operations.
