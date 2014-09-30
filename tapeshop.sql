@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `current` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1o ;
 
 CREATE TABLE IF NOT EXISTS `itemnumbers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,6 +67,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `hashlink` varchar(64) NOT NULL,
   `address_id` int(11) DEFAULT NULL,
   `shipping` int(11) NOT NULL,
+  `payment_method_id` int(11) NOT NULL,
+  `payment_id` varchar(64) NULL DEFAULT NULL,
+  `payment_fee` int(11) NOT NULL DEFAULT 0,
+  `payment_status` varchar( 32 ) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `hashlink` (`hashlink`),
@@ -90,6 +94,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
+CREATE TABLE IF NOT EXISTS `payment_methods` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `fix` int(5) NOT NULL,
+  `fee` float(5,3) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+INSERT INTO `payment_methods` (`id`, `name`, `fix`, `fee`) VALUES
+(1, 'paypal', 35, 0.019),
+(2, 'sofort', 25, 0.009),
+(3, 'prepay', 0, 0.000);
 
 ALTER TABLE `itemnumbers`
   ADD CONSTRAINT `itemnumbers_ibfk_1` FOREIGN KEY (`orderitem_id`) REFERENCES `orderitems` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
