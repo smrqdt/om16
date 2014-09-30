@@ -2,14 +2,17 @@
 namespace Tapeshop\Controllers;
 
 use ActiveRecord\DateTime;
-use \Tapeshop\Models\Order;
-use \Tapeshop\Controllers\Helpers\EmailOutbound;
-use \Tapeshop\Controllers\Helpers\Billing;
+use Tapeshop\Controller;
+use Tapeshop\Controllers\Helpers\Billing;
+use Tapeshop\Controllers\Helpers\EmailOutbound;
+use Tapeshop\Models\Order;
+use ActiveRecord\ActiveRecordException;
+use ActiveRecord\RecordNotFound;
 
 /**
  * Handle orders.
  */
-class OrderController extends \Tapeshop\Controller{
+class OrderController extends Controller{
 	
 	/**
 	 * Submit a new order. Get all items form the cart and add them as OrderItem
@@ -39,7 +42,7 @@ class OrderController extends \Tapeshop\Controller{
 			$order->save();
 			$c->commit();
 			$order->reload();
-			$mailSuccess = EmailOutbound::sendNotification($order);
+			$mailSuccess = EmailOutbound::sendBilling($order);
 
 			if($mailSuccess){
 				$this->app->flash('success', 'Notification Mail was sent!');
@@ -47,11 +50,13 @@ class OrderController extends \Tapeshop\Controller{
 				$this->app->flash('error', 'Could not send Notification Mail!');
 			}
 
-		}catch(ActiveRecord\ActiveRecordException $e){
+		}catch(ActiveRecordException $e){
 			$c->rollback();
 			$this->app->flash('error', "Could not create order! " . $e->getMessage());
 			$this->redirect('checkout');
-		}
+		}catch(\Exception $e){
+            echo $e;
+        }
 		
 		$_SESSION["cart"] = array();
 	
@@ -99,14 +104,14 @@ class OrderController extends \Tapeshop\Controller{
 		
 		try {
 			$order = Order::find($id);
-		}catch(ActiveRecord\RecordNotFound $e){
+		}catch(RecordNotFound $e){
 			$this->app->flash('error', "Order not found1!");
 			$this->redirect('adminorders');
 		}
 		
 		try{
 			$order->delete();
-		}catch(ActiveRecord\ActiveRecordException $e){
+		}catch(ActiveRecordException $e){
 			$this->app->flash('error', "Could not delete order! " . $e->getMessage());
 			$this->redirect('adminorders');
 		}
@@ -123,7 +128,7 @@ class OrderController extends \Tapeshop\Controller{
 		
 		try{
 			$order = Order::find($id);
-		}catch(ActiveRecord\RecordNotFound $e){
+		}catch(RecordNotFound $e){
 			$this->app->flash('error', 'Order not found2!');
 			$this->redirect('adminorders');
 		}
@@ -133,7 +138,7 @@ class OrderController extends \Tapeshop\Controller{
 		
 		try{
 			$order->save();
-			$mailSuccess = EmailOutbound::sendNotification($order);
+			$mailSuccess = EmailOutbound::sendPaymentConfirmation($order);
 
 			if($mailSuccess){
 				$this->app->flash('success', 'Notification Mail was sent!');
@@ -141,7 +146,7 @@ class OrderController extends \Tapeshop\Controller{
 				$this->app->flash('error', 'Could not send Notification Mail!');
 			}
 
-		}catch(ActiveRecord\ActiveRecordException $e){
+		}catch(ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!' . $e->getMessage() . $e->getTrace());
 		}
 		
@@ -155,7 +160,7 @@ class OrderController extends \Tapeshop\Controller{
 						$itemnumber->orderitem_id = $orderitem->id;
 						try{
 							$itemnumber->save();
-						}catch(ActiveRecord\ActiveRecordException $e){
+						}catch(ActiveRecordException $e){
 							$this->app->flashNow('error', 'Could not assign item number!');
 						}
 					}
@@ -190,7 +195,7 @@ class OrderController extends \Tapeshop\Controller{
 			$billing->order = $order;
 			$billing->AddPage();
 			$billing->Output();
-			$app->response()->header("Content-Type", "application/pdf");
+			$this->app->response()->header("Content-Type", "application/pdf");
 		}
 	}
 	
@@ -203,7 +208,7 @@ class OrderController extends \Tapeshop\Controller{
 		
 		try {
 			$order = Order::find($id);
-		}catch(ActiveRecord\RecordNotFound $e){
+		}catch(RecordNotFound $e){
 			$this->app->flash('error', 'Order not found3!');
 			$this->redirect('adminorders');
 		}
@@ -214,7 +219,7 @@ class OrderController extends \Tapeshop\Controller{
 		
 		try{
 			$order->save();
-			$mailSuccess = EmailOutbound::sendNotification($order);
+			$mailSuccess = EmailOutbound::sendShippedConfirmation($order);
 
 			if($mailSuccess){
 				$this->app->flash('success', 'Notification Mail was sent!');
@@ -222,7 +227,7 @@ class OrderController extends \Tapeshop\Controller{
 				$this->app->flash('error', 'Could not send Notification Mail!');
 			}
 
-		}catch(ActiveRecord\ActiveRecordException $e){
+		}catch(ActiveRecordException $e){
 			$this->app->flashNow('error', 'Could not update status!');
 		}
 
