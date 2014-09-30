@@ -5,9 +5,9 @@ use ActiveRecord\Model;
 
 /**
  * @property String email
- * @property String username
  * @property String password
  * @property int id
+ * @property boolean admin
  */
 class User extends Model {
 	static $has_many = array(

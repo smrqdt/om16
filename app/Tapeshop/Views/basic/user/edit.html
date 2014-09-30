@@ -1,112 +1,102 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<form action="../save/{$userObject->id}" class="form-horizontal"
-		method="post">
-	<h2 class="form-signin-heading">Please enter the data you want to
-		change {$userObject->email}</h2>
-	<input type="hidden" name="{$csrf_key}"
-		value="{$csrf_token}">
-	<div class="control-group">
+<form action="../save/{$userObject->id}" class="form-horizontal"
+      method="post">
+    <h2 class="form-signin-heading">Please enter the data you want to
+        change {$userObject->email}</h2>
+    <input type="hidden" name="{$csrf_key}"
+           value="{$csrf_token}">
 
-		<label class="control-label" for="email">E-Mail</label>
+    <div class="control-group">
 
-		<div class="controls">
-			<input type="text" name="email" class="input-block-level"
-				value="{$userObject->email}">
-		</div>
+        <label class="control-label" for="email">E-Mail</label>
 
-	</div>
+        <div class="controls">
+            <input type="text" name="email" class="input-block-level"
+                   value="{$userObject->email}">
+        </div>
 
-	<div class="control-group">
-	
-			<label class="control-label" for="userObjectname">Username</label>
-	
-			<div class="controls">
-				<input type="text" name="userObjectname" class="input-block-level"
-					value="{$userObject->username}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="name">Name</label>
-	
-			<div class="controls">
-				<input type="text" name="name" class="input-block-level"
-					value="{$userObject->currentAddress()->name}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="lastname">Lastname</label>
-	
-			<div class="controls">
-				<input type="text" name="lastname" class="input-block-level"
-					value="{$userObject->currentAddress()->lastname}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="street">Street</label>
-	
-			<div class="controls">
-				<input type="text" name="street" class="input-block-level"
-					value="{$userObject->currentAddress()->street}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="street_number">Building Number</label>
-	
-			<div class="controls">
-				<input type="text" name="street_number" class="input-block-level"
-					value="{$userObject->currentAddress()->building_number}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="plz">Postcode</label>
-	
-			<div class="controls">
-				<input type="text" name="plz" class="input-block-level"
-					value="{$userObject->currentAddress()->postcode}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="city">City</label>
-	
-			<div class="controls">
-				<input type="text" name="city" class="input-block-level"
-					value="{$userObject->currentAddress()->city}">
-			</div>
-	
-		</div>
-	
-		<div class="control-group">
-	
-			<label class="control-label" for="country">Country</label>
-	
-			<div class="controls">
-				<input type="text" name="country" class="input-block-level"
-					value="{$userObject->currentAddress()->country}">
-			</div>
-	
-		</div>
-	
-		<a href="{$path}" class="btn btn-large">Back</a>
-		<button class="btn btn-large btn-primary" type="submit">Save</button>
-	</form>
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="name">Name</label>
+
+        <div class="controls">
+            <input type="text" name="name" class="input-block-level"
+                   value="{$userObject->currentAddress()->name}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="lastname">Lastname</label>
+
+        <div class="controls">
+            <input type="text" name="lastname" class="input-block-level"
+                   value="{$userObject->currentAddress()->lastname}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="street">Street</label>
+
+        <div class="controls">
+            <input type="text" name="street" class="input-block-level"
+                   value="{$userObject->currentAddress()->street}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="street_number">Building Number</label>
+
+        <div class="controls">
+            <input type="text" name="street_number" class="input-block-level"
+                   value="{$userObject->currentAddress()->building_number}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="plz">Postcode</label>
+
+        <div class="controls">
+            <input type="text" name="plz" class="input-block-level"
+                   value="{$userObject->currentAddress()->postcode}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="city">City</label>
+
+        <div class="controls">
+            <input type="text" name="city" class="input-block-level"
+                   value="{$userObject->currentAddress()->city}">
+        </div>
+
+    </div>
+
+    <div class="control-group">
+
+        <label class="control-label" for="country">Country</label>
+
+        <div class="controls">
+            <input type="text" name="country" class="input-block-level"
+                   value="{$userObject->currentAddress()->country}">
+        </div>
+
+    </div>
+
+    <a href="{$path}" class="btn btn-large">Back</a>
+    <button class="btn btn-large btn-primary" type="submit">Save</button>
+</form>
 {/block}

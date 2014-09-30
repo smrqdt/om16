@@ -763,7 +763,7 @@ msgstr "Nummerierung"
 
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:120
 msgid "signup.text"
-msgstr "Registrieren"
+msgstr "Admin Konto erstellen"
 
 #: ../../templates_c/54234de7286b7ffd1b980499a32ad99ea226b14f.file.signup.html.php:167
 msgid "signup.reenterpassword"

@@ -2,8 +2,9 @@
 namespace Strong\Provider;
 
 use \Tapeshop\Models\User;
+use \Strong\Provider;
 
-class AuthProvider extends \Strong\Provider {
+class AuthProvider extends Provider {
 
 	/**
 	 * User login check based on provider
@@ -18,19 +19,21 @@ class AuthProvider extends \Strong\Provider {
 	 * To authenticate user based on username
 	 * and password
 	 *
-	 * @param string $username
+	 * @param string $email
 	 * @param string $password
 	 * @return boolean
 	 */
-	public function login($username, $password) {
-		if(! is_object($username)) {
-			$user = User::find_by_username($username);
+	public function login($email, $password) {
+		/** @var $user \Tapeshop\Models\User */
+		$user = null;
+		if(! is_object($email)) {
+			$user = User::find_by_email($email);
 		}
 		if($user == null){
 			return false;
 		}
 
-		if(($user->username === $username) && $this->verify($user, $password)) {
+		if(($user->email === $email) && $this->verify($user, $password)) {
 			return $this->completeLogin($user);
 		}
 
@@ -50,7 +53,7 @@ class AuthProvider extends \Strong\Provider {
 	/**
 	 * Login and store user details in Session
 	 *
-	 * @param array $user
+	 * @param \Tapeshop\Models\User $user
 	 * @return boolean
 	 */
 	protected function completeLogin($user) {
@@ -59,7 +62,6 @@ class AuthProvider extends \Strong\Provider {
 
 		$userInfo = array(
 				'id' => $user->id,
-				'username' => $user->username,
 				'logged_in' => true
 		);
 

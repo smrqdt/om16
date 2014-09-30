@@ -1,138 +1,52 @@
 {extends file="base.html"}
 
 {block name=content}
-	<div class="span6 offset3">
-		<h2 class="form-signin-heading">{_("signup.text")}</h2>
-		<form class="form-horizontal" method="post">
-			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-			<div class="control-group">
-	
-				<label class="control-label" for="email">{_("user.email")}</label>
-	
-				<div class="controls">
-					<input type="text" name="email" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['email']}{/if}"">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="username">{_("user.username")}</label>
-	
-				<div class="controls">
-					<input type="text" name="username" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['username']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="password">{_("login.password")}</label>
-	
-				<div class="controls">
-					<input type="password" name="password" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['password']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="password_verify">{_("signup.reenterpassword")}</label>
-	
-				<div class="controls">
-					<input type="password" name="password_verify"
-						class="input-block-level"
-						value="{if isset($signupform)}{$signupform['password_verify']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="name">{_("user.firstname")}</label>
-	
-				<div class="controls">
-					<input type="text" name="name" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['name']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="lastname">{_("user.lastname")}</label>
-	
-				<div class="controls">
-					<input type="text" name="lastname" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['lastname']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="street">{_("address.street")}</label>
-	
-				<div class="controls">
-					<input type="text" name="street" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['street']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="building_number">{_("address.buildingnumber")}</label>
-	
-				<div class="controls">
-					<input type="text" name="building_number" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['building_number']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="plz">{_("address.postcode")}</label>
-	
-				<div class="controls">
-					<input type="text" name="postcode" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['postcode']}{/if}">
-				</div>
-	
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="city">{_("address.city")}</label>
-	
-				<div class="controls">
-					<input type="text" name="city" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['city']}{/if}">
-				</div>
-			</div>
-	
-			<div class="control-group">
-	
-				<label class="control-label" for="country">{_("address.country")}</label>
-	
-				<div class="controls">
-					<input type="text" name="country" class="input-block-level"
-						value="{if isset($signupform)}{$signupform['country']}{/if}">
-				</div>
-	
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<label class="checkbox"> <input type="checkbox" name="remember"
-						value="remember-me"> {_("login.rememberme")}
-					</label> <a href="{$path}" class="btn">{_("signup.button.back")}</a>
-					<button class="btn btn-primary" type="submit">{_("singup.button.register")}</button>
-				</div>
-			</div>
-		</form>
-	</div>
+<div class="span6 offset3">
+    <h2 class="form-signin-heading">{_("signup.text")}</h2>
+
+    <form class="form-horizontal" method="post">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+
+        <div class="control-group">
+
+            <label class="control-label" for="email">{_("user.email")}</label>
+
+            <div class="controls">
+                <input type="text" id="email" name="email" class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['email']}{/if}">
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <label class="control-label" for="password">{_("login.password")}</label>
+
+            <div class="controls">
+                <input type="password" id="password" name="password" class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['password']}{/if}">
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <label class="control-label" for="password_verify">{_("signup.reenterpassword")}</label>
+
+            <div class="controls">
+                <input type="password" id="password_verify" name="password_verify"
+                       class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['password_verify']}{/if}">
+            </div>
+
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox"> <input type="checkbox" name="remember"
+                                                value="remember-me"> {_("login.rememberme")}
+                </label> <a href="{$path}" class="btn">{_("signup.button.back")}</a>
+                <button class="btn btn-primary" type="submit">{_("singup.button.register")}</button>
+            </div>
+        </div>
+    </form>
+</div>
 {/block}
