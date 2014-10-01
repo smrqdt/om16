@@ -27,7 +27,7 @@
 				{foreach from=$item->sizes item=size}
 					<option>{$size->size}</option>
 				{/foreach}
-				<select>
+				</select>
 			{/if}
 			{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
 				<p class="text-error">{_("item.outofstock")}</p>

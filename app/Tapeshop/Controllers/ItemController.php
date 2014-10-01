@@ -19,7 +19,7 @@ class ItemController extends Controller {
 	 */
 	public function show($id) {
 		try {
-			$item = Item::find($id, array("conditions" => array("deleted = false")));
+			$item = Item::find_by_pk($id, array("conditions" => array("deleted = false")));
 			if ($item == null) {
 				$this->app->flash('error', 'Item not found');
 				$this->redirect('home');
