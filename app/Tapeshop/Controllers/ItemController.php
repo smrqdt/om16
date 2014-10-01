@@ -107,8 +107,14 @@ class ItemController extends Controller {
 	 * @param int $id Id of the item.
 	 */
 	public function delete($id) {
-		//TODO catch RecordNotFound exception
-		$item = Item::find($id);
+		$item = null;
+
+		try{
+			$item = Item::find($id);
+		}catch(RecordNotFound $e){
+			$this->app->flashNow("error", gettext("error.item.notfound"));
+			$this->app->redirect('adminitems');
+		}
 
 		$item->deleted = true;
 
@@ -287,7 +293,7 @@ class ItemController extends Controller {
 	}
 
 	/**
-	 * Set item numbers to taken so they will not be given out be the shop.
+	 * Set item numbers to taken so they will not be given out by the shop.
 	 * @param Item $id
 	 */
 	public function takeNumbers($id) {
