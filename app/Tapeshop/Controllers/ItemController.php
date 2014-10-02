@@ -109,9 +109,9 @@ class ItemController extends Controller {
 	public function delete($id) {
 		$item = null;
 
-		try{
+		try {
 			$item = Item::find($id);
-		}catch(RecordNotFound $e){
+		} catch (RecordNotFound $e) {
 			$this->app->flashNow("error", gettext("error.item.notfound"));
 			$this->app->redirect('adminitems');
 		}
@@ -308,21 +308,41 @@ class ItemController extends Controller {
 			$this->redirect('home');
 		}
 
-		$param = $this->post('numbers');
+		$numbers = $this->getNumbers();
 
-		$numbers = preg_split('/[^\d-]+/', $param);
 		foreach ($numbers as $number) {
-			if (preg_match('/[\d]+/', $number)) {
-				$this->takeNumber($item, $number);
-			} elseif (preg_match('/[\d]+-[\d]+/', $number)) {
-				$range = preg_split('[\-]', $number);
-				for ($i = min($range); $i < max($range) + 1; $i++) {
-					$this->takeNumber($item, $i);
-				}
-			}
+			$this->takeNumber($item, $number);
 		}
 
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
+	}
+
+	/**
+	 * Get the numbers property from a POST request and split it into single numbers that can be processed.
+	 * @return array
+	 */
+	private function getNumbers() {
+		$numbers = array();
+
+		$param = $this->post('numbers');
+		// remove whitespace
+		$param = preg_replace('/\s+/', '', $param);
+		// spilt numbers and ranges at delimiter
+		$parts = preg_split('/,/', $param);
+
+		foreach ($parts as $number) {
+			// check for range
+			if (preg_match('/[\d]+-[\d]+/', $number)) {
+				$range = preg_split('[\-]', $number);
+				for ($i = min($range); $i < max($range) + 1; $i++) {
+					array_push($numbers, $i);
+				}
+				// check for single number
+			} elseif (preg_match('/[\d]+/', $number)) {
+				array_push($numbers, $number);
+			}
+		}
+		return $numbers;
 	}
 
 	/**
@@ -373,18 +393,10 @@ class ItemController extends Controller {
 			$this->redirect('home');
 		}
 
-		$param = $this->post('numbers');
-		$numbers = preg_split('/[^\d-]+/', $param);
+		$numbers = $this->getNumbers();
 
 		foreach ($numbers as $number) {
-			if (preg_match('/[\d]+/', $number)) {
-				$this->invalidateNumber($item, $number);
-			} elseif (preg_match('/[\d]+-[\d]+/', $number)) {
-				$range = preg_split('[\-]', $number);
-				for ($i = min($range); $i < max($range) + 1; $i++) {
-					$this->invalidateNumber($item, $i);
-				}
-			}
+			$this->invalidateNumber($item, $number);
 		}
 
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
