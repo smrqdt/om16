@@ -62,6 +62,15 @@ body {
 	text-decoration:none;
 }
 
+.item {
+    margin-right: 25px;
+    height: 560px;
+}
+
+.item:last-child {
+    margin-right: 0px;
+}
+
 @media(min-width: 767px) {
 	.item {
 		max-width: 260px;

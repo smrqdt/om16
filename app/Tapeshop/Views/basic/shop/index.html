@@ -1,42 +1,46 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-<div class="container span9" style="margin: 0 auto">
-<h1>{_("shop.title")}</h1>
-<div class="row-fluid">
-	{foreach from=$items item=item}
-	<div class="container-fluid item">
-		<a href="{$path}item/{$item->id}">
-			<h4 class="muted">
-				{$item->name}
-			</h4>
-			<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-polaroid" style="background-color:#ddd; "/>
-		</a>
-		<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
-		<form method="post" action="{$path}cart/addItem/{$item->id}">
-			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-		{if $item->sizes}
-			<select id="size" name="size" class="btn span5">
-			{foreach from=$item->sizes item=size}
-				<option>{$size->size}</option>
-			{/foreach}
-			<select>
-		{/if}
+<div class="container-fluid">
+    <h1>{_("shop.title")}</h1>
 
-		{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
-			<div class="text-error">{_("item.outofstock")}</div>
-		{else}
-			<div class="btn-group">
-					<input type="submit" value="{_('item.add')}" class="btn btn-primary" />
-			</div>
-		{/if}
-		{if $item->ticketscript}
-			<a href="{$path}ticketscript" class="btn btn-success">{_("ticketscript.buybutton")}</a>
-		{/if}
-		</form>
-	</div>
-	{/foreach}
+    <div class="row-fluid">
+        {foreach from=$items item=item}
+        <div class="container item">
+            <a href="{$path}item/{$item->id}">
+                <h4 class="muted">
+                    {$item->name}
+                </h4>
+                <img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-polaroid"
+                     style="background-color:#ddd; "/>
+            </a>
+            <h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 
-</div><!--/row-->
+            <form method="post" action="{$path}cart/addItem/{$item->id}">
+                <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                {if $item->sizes}
+                <select id="size" name="size" class="btn span5">
+                    {foreach from=$item->sizes item=size}
+                    <option>{$size->size}</option>
+                    {/foreach}
+                    <select>
+                        {/if}
+
+                        {if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
+                        <div class="text-error">{_("item.outofstock")}</div>
+                        {else}
+                        <div class="btn-group">
+                            <input type="submit" value="{_('item.add')}" class="btn btn-primary"/>
+                        </div>
+                        {/if}
+                        {if $item->ticketscript}
+                        <a href="{$path}ticketscript" class="btn btn-success">{_("ticketscript.buybutton")}</a>
+                        {/if}
+            </form>
+        </div>
+        {/foreach}
+
+    </div>
+    <!--/row-->
 </div>
 {/block}

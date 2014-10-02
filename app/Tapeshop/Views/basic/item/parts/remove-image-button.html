@@ -1,0 +1,4 @@
+<form method="post" action="{$path}item/{$item->id}/removeimage" style="display:inline;">
+    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+    <button type="submit" value="+" class="btn"><i class="icon-remove"></i> {_("item.image.remove")}</button>
+</form>

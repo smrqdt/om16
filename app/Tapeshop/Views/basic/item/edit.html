@@ -12,91 +12,16 @@
 		</div>
 	
 		<div class="span4 well">
-			<form method="post" action="{$path}item/{$item->id}/removeimage" style="display:inline;">
-				 <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-				 <button type="submit" value="+" class="btn"><i class="icon-remove"></i> {_("item.image.remove")}</button>
-			</form>
-			<form method="post"
-					action="{$path}item/delete/{$item->id}" style="display:inline;">
-				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-				<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {_("item.delete")}</button>
-			</form>
+            {include file="item/parts/remove-image-button.html"}
+            {include file="item/parts/remove-item-button.html"}
 		</div>
 	
 		<div class="span4 well">
-			<h5>{_("item.variations")}</h5>
-			<ul>
-				{if $item->sizes} {foreach from=$item->sizes item=size}
-				<li>{$size->size}
-					<form method="post"
-						action="{$path}item/deletesize/{$size->id}"
-						style="display: inline">
-						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-						<button type="submit" class="btn btn-mini">
-							<i class="icon-trash"></i>
-						</button>
-					</form>
-				</li> {/foreach} {/if}
-			</ul>
-			<form method="post" action="{$path}item/{$item->id}/addsize">
-				<div class="input-append">
-					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-					<input type="text" placeholder="{_('item.variation')}" name="size" />
-					<button type="submit" class="btn"><i class="icon-plus"></i></button>
-				</div>
-			</form>
+            {include file="item/parts/variations.html"}
 		</div>
 		
 		<div class="span4 well">
-			<h5>{_("item.numbers")}</h5>
-			{if $item->numbered}
-			<table class="table">
-				<tr>
-					<th>{_("item.numbers.total")}</th>
-					<th>{_("item.numbers.free")}</th>
-					<th>{_("item.numbers.invalid")}</th>
-					<th>{_("item.numbers.unrequested")}</th>
-				</tr>
-				<tr>
-					<td>{count($item->itemnumbers)}</td>
-					<td>{count($item->getFreeNumbers())}</td>
-					<td>{count($item->getInvalidNumbers())}</td>
-					{if $item->getUnrequestedNumberCount() <= 0}
-						<td class="text-error">
-					{else}
-						<td>
-					{/if}
-					{$item->getUnrequestedNumberCount()}</td>
-				</tr>
-			</table>
-			<form method="post" action="{$path}item/{$item->id}/addnumbers">
-				<div class="input-append">
-					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-					<input type="number" placeholder="{_('item.numbers.amount')}" name="amount" />
-					<button type="submit" class="btn"><i class="icon-plus"></i></button>
-				</div>
-			</form>
-			<form method="post" action="{$path}item/{$item->id}/takenumbers">
-				<div class="input-append">
-					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-					<input type="text" placeholder="1,2,3,5-7" name="numbers" />
-					<button type="submit" class="btn"><i class="icon-ok"></i></button>
-				</div>
-			</form>
-			<form method="post" action="{$path}item/{$item->id}/invalidatenumbers">
-				<div class="input-append">
-					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-					<input type="text" placeholder="1,2,3,5-7" name="numbers" />
-					<button type="submit" class="btn"><i class="icon-remove"></i></button>
-				</div>
-			</form>
-			
-			{else}
-			<form method="post" action="{$path}item/{$item->id}/makenumbered">
-				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-				<button type="submit" class="btn"><i class="icon-tags"></i> {_("item.numbers.addnumbers")}</button>
-			</form>
-			{/if}
+            {include file="item/parts/meta.html"}
 		</div>
 	</div>
 {/block}
