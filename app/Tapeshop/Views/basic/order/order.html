@@ -1,8 +1,9 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<h1>{_("order.title")}</h1>
-	
+<h1>{_("order.title")}</h1>
+
+<div class="row">
 	<div class="span6">
 		<h6>{_("order.shippingaddress")}:</h6>
 		{if $order->address} {$order->address->name}
@@ -74,7 +75,9 @@
 			{/if}
 		</table>
 	</div>
-	
+</div>
+<br />
+
 	<table class="table">
 		<thead>
 			<tr>
