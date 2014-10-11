@@ -69,7 +69,7 @@ class CartController extends Controller {
 			}
 		}
 		$_SESSION["cart"] = $cart;
-		$this->cart();
+		$this->redirect('cart');
 	}
 
 	/**
@@ -97,7 +97,7 @@ class CartController extends Controller {
 	/**
 	 * Decrease the amount of an ordered item, to the minimum of 1.
 	 * @param POST int id Id of the item
-	 * @param POST String size Variation of the item
+	 * @param POST String size Variant of the item
 	 */
 	public function decrease() {
 		$cart = $this->getCart();
@@ -110,7 +110,28 @@ class CartController extends Controller {
 			}
 		}
 		$_SESSION["cart"] = $cart;
-		$this->cart();
+		$this->redirect('cart');
+	}
+
+	/**
+	 * Change the size/variant of an item in the cart.
+	 * @param POST int id Id of the item
+	 * @param POST String currentSize Current variant of the item.
+	 * @param POST String newSize New variant of the item.
+	 */
+	public function changeSize(){
+		$cart = $this->getCart();
+		$id = $this->post("id");
+		$currentSize = $this->post("currentSize");
+		$newSize = $this->post("newSize");
+
+		foreach($cart as &$item){
+			if ($item["item"]->id == $id && $item["size"] == $currentSize) {
+				$item["size"] = $newSize;
+			}
+		}
+		$_SESSION["cart"] = $cart;
+		$this->redirect('cart');
 	}
 
 	/**
@@ -130,6 +151,10 @@ class CartController extends Controller {
 			}
 		}
 		$_SESSION["cart"] = $newCart;
-		$this->cart();
+		if(count($newCart) > 0){
+			$this->redirect('cart');
+		}else{
+			$this->redirect('home');
+		}
 	}
 }

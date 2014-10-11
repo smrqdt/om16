@@ -84,11 +84,12 @@ $app->post('/order/:id/shipped', array($orderController, 'shipped'));
 // cart routings
 $cartController = new \Tapeshop\Controllers\CartController();
 $app->post('/cart/addItem/:id', array($cartController, 'addItem'));
-$app->get('/cart', array($cartController, 'cart'));
+$app->get('/cart', array($cartController, 'cart'))->name('cart');
 $app->post('/cart/clear', array($cartController, 'clearCart'));
 $app->post('/cart/increase', array($cartController, 'increase'));
 $app->post('/cart/decrease', array($cartController, 'decrease'));
 $app->post('/cart/remove', array($cartController, 'remove'));
+$app->post('/cart/changesize', array($cartController, 'changeSize'));
 
 // user routings
 $userController = new \Tapeshop\Controllers\UserController();
