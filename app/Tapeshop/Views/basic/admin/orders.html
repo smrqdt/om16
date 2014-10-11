@@ -86,8 +86,11 @@
 	</table>
 {/block}
 
+{block name=moreStyles}
+    <link href="{$path}assets/css/DT_bootstrap.css" rel="stylesheet" media="all">
+{/block}
 {block name=moreScripts}
-    <script src="{$path}assets/js/jquery.dataTables.min.js"></script>
+    <script src="{$path}node_modules/drmonty-datatables/js/jquery.dataTables.min.js"></script>
     <script src="{$path}assets/js/DT_bootstrap.js"></script>
 {literal}
 	<script type="text/javascript">

@@ -27,17 +27,10 @@
 {/block}
 
 {block name=moreScripts}
-	<script type="text/javascript" src="{$path}assets/js/snapeditor.js"></script>
+	<script src="{$path}node_modules/tinymce/tinymce.min.js"></script>
 {literal}
-	<script type="text/javascript">
-	  // "editor" is the id of the textarea.
-	  var formEditor = new SnapEditor.Form("description", {
-	    imageServer: {
-	      uploadUrl: "http://images.snapeditor.com/snapimage_api",
-	      publicUrl: "http://images.snapeditor.com/images",
-	      directory: "my-directory"
-	    }
-	  });
+	<script>
+	  tinymce.init({selector:'textarea'});
 	</script>
 {/literal}
 {/block}
