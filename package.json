@@ -1,0 +1,22 @@
+{
+  "name": "tapeshop",
+  "version": "0.0.0",
+  "description": "A lightweight shop system. This is in early development and I would not recommend using it in production right know, since it is not tested and has some known security issues.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/euleule/tapeshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euleule/tapeshop/issues"
+  },
+  "homepage": "https://github.com/euleule/tapeshop"
+}

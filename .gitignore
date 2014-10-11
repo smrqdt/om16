@@ -13,6 +13,7 @@ config.php
 upload/
 vendor/
 build/
+node_modules/
 
 # webserver config
 .htaccess
