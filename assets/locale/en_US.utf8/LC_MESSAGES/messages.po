@@ -930,3 +930,6 @@ msgstr "Continue"
 #: ../../../../templates_c/92f76fabdc29e228677753663e609ef4e9be6217.file.order.html.php:222
 msgid "order.status.paymentreceived"
 msgstr "Payment received"
+
+msgid "singup.email.error.message"
+msgstr "This email adress is already in use!"
