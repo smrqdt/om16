@@ -13,7 +13,8 @@ class Billing extends FPDF {
 
 		// Print the Header
 		$this->SetFont('Sanchez', '', 10);
-		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
+		//TODO
+//		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
 		$this->SetTextColor(255, 255, 255);
 
 		$this->Ln(49.5);

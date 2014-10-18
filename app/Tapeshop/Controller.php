@@ -63,8 +63,8 @@ abstract class Controller {
 	 */
 	protected function errorOutput(array $errors = array()) {
 		$outputErrors = array();
-		foreach ($errors as $key => $value) {
-			$outputErrors[] = ucfirst($key) . ' ' . $value[0];
+		foreach ($errors as $value) {
+			$outputErrors[] = $value[0];
 		}
 		return $outputErrors;
 	}
