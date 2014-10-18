@@ -26,12 +26,6 @@ abstract class Controller {
 		}
 	}
 
-	public function response($body) {
-		$response = $this->app->response();
-		$response['Content-Type'] = 'application/json';
-		$response->body(json_encode(array($body)));
-	}
-
 	public function render($template, $data = array(), $status = null) {
 		$data['path'] = APP_PATH;
 		$data['item_placeholder'] = APP_PATH . ITEM_PLACEHOLDER;

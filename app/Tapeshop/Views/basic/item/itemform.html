@@ -1,7 +1,7 @@
 <div class="control-group">
 	<label class="control-label" for="name">{_("item.name")}</label>
 	<div class="controls">
-		<input type="text" name="name" placeholder="{_('item.name')}"
+		<input type="text" id="name" name="name" placeholder="{_('item.name')}"
 			value="{if isset($itemform)}{$itemform['name']}{else}{$item->name}{/if}">
 	</div>
 </div>
@@ -23,19 +23,19 @@
 <div class="control-group">
 	<label class="control-label" for="price">{_("item.price")}</label>
 	<div class="controls">
-		<input type="text" name="price" placeholder="17.42"
+		<input type="text" id="price" name="price" placeholder="17.42"
 			value="{if isset($itemform)}{$itemform['price']}{else}{($item->price/100)|number_format:2:".":""}{/if}"> €
 	</div>
 </div>
 <div class="control-group">
 	<label class="control-label" for="shipping">{_("item.shipping")}</label>
 	<div class="controls">
-		<input type="text" name="shipping" placeholder="17.42"
+		<input type="text" id="shipping" name="shipping" placeholder="17.42"
 			value="{if isset($itemform)}{$itemform['shipping']}{else}{($item->shipping/100)|number_format:2:".":""}{/if}"> €
 	</div>
 </div>
 <div class="control-group">
-	<label class="control-label" for="ticketscript">{_("ticketscript")}</label>
+	<label class="control-label" id="ticketscript" for="ticketscript">{_("ticketscript")}</label>
 	<div class="controls">
 		<input type="checkbox" name="ticketscript" value="1" {if isset($itemform) && $itemform['ticketscript']}checked}{else}{if $item->ticketscript}checked{/if}{/if}>
 	</div>

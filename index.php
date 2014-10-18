@@ -111,4 +111,9 @@ $app->post('/item/:id/makenumbered', array($itemController, 'makeNumbered'));
 $app->post('/item/deletesize/:id/', array($itemController, 'deleteSize'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
 
+// REST
+
+$items = new \Tapeshop\Rest\Items();
+$app->get('/items/:id', array($items, 'get'));
+
 $app->run();
