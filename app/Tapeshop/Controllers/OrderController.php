@@ -7,8 +7,10 @@ use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Controllers\Helpers\Billing;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
+use Tapeshop\Models\Item;
 use Tapeshop\Models\Order;
 use Tapeshop\Models\Size;
+use Tapeshop\OutOfStockException;
 
 /**
  * Handle orders.
@@ -45,14 +47,42 @@ class OrderController extends Controller {
 
 			$cart = $this->getCart();
 			foreach ($cart as $ci) {
+				/** @var $item Item */
+				$item = null;
+				/** @var $size Size */
+				$size = null;
+
+				$item = Item::find_by_pk($ci["item"]->id, array());
+				if (!empty($ci["size"])) {
+					$size = Size::find('first', array('conditions' => array("size LIKE ? and item_id = ?", $ci["size"], $ci["item"]->id)));
+				}
+
+				if ($item->manage_stock) {
+					if ($size == null) {
+						if ($item->stock > 1) {
+							$item->stock--;
+							$item->save();
+						} else {
+							throw new OutOfStockException(gettext("item.error.outofstock"), $item);
+						}
+					} else {
+						if ($size->stock > 1) {
+							$size->stock--;
+							$size->save();
+						} else {
+							throw new OutOfStockException(gettext("size.error.outofstock"), $item, $size);
+						}
+					}
+				}
+
 				$order->create_orderitems(array(
-					"item_id" => $ci["item"]->id,
+					"item_id" => $item->id,
 					"amount" => $ci["amount"],
-					"size_id" => Size::find('first', array('conditions'=> array("size LIKE ? and item_id = ?",$ci["size"], $ci["item"]->id)))->id,
+					"size_id" => $size == null ? "" : $size->id,
 					"price" => $ci["item"]->price
 				));
 
-				$shipping = max(array($shipping, $ci["item"]->shipping));
+				$shipping = max($shipping, $ci["item"]->shipping);
 			}
 			$order->shipping = $shipping;
 			$order->save();
@@ -65,10 +95,18 @@ class OrderController extends Controller {
 			} else {
 				$this->app->flash('error', 'Could not send Notification Mail!');
 			}
+		} catch (RecordNotFound $e) {
+			$c->rollback();
+			$this->app->flash('error', gettext("item.error.notfound"));
+			$this->redirect('cart');
 		} catch (ActiveRecordException $e) {
 			$c->rollback();
 			$this->app->flash('error', "Could not create order! " . $e->getMessage());
-			$this->redirect('checkout');
+			$this->redirect('cart');
+		} catch (OutOfStockException $e) {
+			$c->rollback();
+			$this->app->flash('warn', $e->getMessage());
+			$this->redirect('cart');
 		} catch (\Exception $e) {
 			echo $e;
 		}
