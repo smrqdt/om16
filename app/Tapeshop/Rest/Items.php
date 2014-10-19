@@ -16,4 +16,24 @@ class Items extends RestController {
 			$this->response(array("error" => "Item with id " . $id . " not found!"), 404);
 		}
 	}
+
+	public function updateManageStock($id) {
+		$this->checkAdmin();
+
+		$item = null;
+		$manage_stock = $this->params()->manage_stock;
+		try {
+			/** @var $item Item */
+			$item = Item::find_by_pk($id, array());
+			if ($manage_stock == true) {
+				$item->manage_stock = 1;
+			} else {
+				$item->manage_stock = 0;
+			}
+			$item->save();
+			$this->response($item->to_json());
+		} catch (RecordNotFound $e) {
+			$this->response(array("error" => "Item with id " . $id . " not found!"), 404);
+		}
+	}
 }

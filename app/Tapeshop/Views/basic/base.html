@@ -7,7 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <base href="{$path}">
+
+      <!-- Le styles -->
     <link href="{$path}assets/css/bootstrap.css" rel="stylesheet" media="all">
     <link href="{$path}assets/css/styles.css" rel="stylesheet" media="all">
     <link href="{$path}assets/css/bootstrap-responsive.css" rel="stylesheet" media="all">
@@ -70,6 +72,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{$path}node_modules/jquery/dist/jquery.min.js"></script>
     <script src="{$path}node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    {block name=moreScripts}{/block}
+    <script src="{$path}node_modules/angular/lib/angular.min.js"></script>
+  {block name=moreScripts}{/block}
   </body>
 </html>

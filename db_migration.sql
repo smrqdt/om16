@@ -1,0 +1,4 @@
+ALTER TABLE `sizes` ADD `stock` INT NOT NULL DEFAULT '0';
+ALTER TABLE `items` ADD `stock` INT NOT NULL DEFAULT '0';
+
+ALTER TABLE  `items` ADD  `manage_stock` BOOLEAN NOT NULL DEFAULT FALSE;

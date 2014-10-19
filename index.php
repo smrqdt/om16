@@ -46,7 +46,7 @@ $authConfig = array(
 $app->add(new \Slim\Extras\Middleware\StrongAuth($authConfig));
 
 // add CSRF protection
-$app->add(new \Slim\Extras\Middleware\CsrfGuard());
+$app->add(new \Tapeshop\Middleware\CsrfGuard());
 
 /*
  * Set up routes
@@ -114,6 +114,15 @@ $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST'
 // REST
 
 $items = new \Tapeshop\Rest\Items();
-$app->get('/items/:id', array($items, 'get'));
+$app->get('/items/:id/', array($items, 'get'));
+$app->put('/items/:id/manage/', array($items, 'updateManageStock'));
+
+$stocks = new \Tapeshop\Rest\StocksAPI();
+$app->put('/stocks/item/:id/', array($stocks, 'addItem'));
+$app->put('/stocks/variation/:id/', array($stocks,'addVariation'));
+
+$variations = new \Tapeshop\Rest\VariationsAPI();
+$app->post('/variations/', array($variations, 'add'));
+$app->delete('/variations/:id/', array($variations, 'delete'));
 
 $app->run();

@@ -11,6 +11,7 @@ class RestController {
 	public $app;
 	protected $user;
 	protected $responseData = array();
+	protected $params;
 
 	public function __construct() {
 		$this->app = !empty($slim) ? $slim : Slim::getInstance();
@@ -26,8 +27,11 @@ class RestController {
 		}
 	}
 
-	public function params($name = null) {
-		return $this->app->request()->params($name);
+	public function params() {
+		if(!isset($params)){
+			$params = json_decode($this->app->request()->getBody());
+		}
+		return $params;
 	}
 
 	/**

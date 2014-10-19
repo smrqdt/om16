@@ -1,17 +1,22 @@
 <?php
 namespace Tapeshop\Models;
 
+use ActiveRecord\Model;
+
 /**
  * @property String name
  * @property String description
  * @property int price
  * @property int shipping
+ * @property int stock
+ * @property boolean manage_stock
  * @property boolean ticketscript
  * @property String image
  * @property int id
  * @property array orderitems
+ * @property $sizes Size
  */
-class Item extends \ActiveRecord\Model {
+class Item extends Model {
 
 	static $has_many = array(
 		array('sizes'),

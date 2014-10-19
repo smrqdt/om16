@@ -1,7 +1,7 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<div class="row-fluid">
+	<div class="row-fluid" ng-app="tapeshop">
 	
 		<div class="span6">
 			<form method="post" action="{$path}item/edit/{$item->id}"
@@ -19,6 +19,59 @@
 		<div class="span4 well">
             {include file="item/parts/variations.html"}
 		</div>
+
+        <div class="span4 well" ng-controller="stockController">
+        {* TODO extract angular templates*}
+        {literal}
+
+            <h2>{{ item.id }}</h2>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="item.manage_stock" ng-change="updateManageStock(item)"> Manage stock
+                </label>
+            </div>
+            <div ng-show="item.manage_stock && ! item.sizes">
+                Stock: {{ item.stock }}
+                <div class="input-append">
+                    <input type="addStock" placeholder="Amount" name="amount" ng-model="amount">
+                    <button type="submit" class="btn" ng-click="addStock(item, amount)"><i class="icon-plus"></i></button>
+                </div>
+            </div>
+
+            <div>
+                <h5>
+        {/literal}
+            {_("item.variations")}
+        {literal}
+                </h5>
+                <ul>
+                    <li ng-repeat="variation in item.sizes | orderBy:'size'">
+                        {{ variation.size }}
+                        <div ng-show="item.manage_stock">
+                            {{ variation.stock }}
+                            <div class="input-append">
+                                <input type="addStock" placeholder="Amount" name="amount" ng-model="amount">
+                                <button type="submit" class="btn" ng-click="addVariationStock(variation, amount)"><i class="icon-plus"></i></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-mini" ng-click="deleteVariation(variation)">
+                            <i class="icon-trash"></i>
+                        </button>
+                    </li>
+                </ul>
+                    <div class="input-append">
+                        <input type="text" placeholder="
+        {/literal}
+            {_("item.variations")}
+        {literal}
+                        " ng-model="variationName" name="size"/>
+                        <button type="submit" class="btn" ng-click="addVariation(item, variationName)"><i class="icon-plus"></i></button>
+                    </div>
+            </div>
+
+            <pre>{{item | json}}</pre>
+        {/literal}
+        </div>
 		
 		<div class="span4 well">
             {include file="item/parts/meta.html"}
@@ -28,6 +81,7 @@
 
 {block name=moreScripts}
 	<script src="{$path}node_modules/tinymce/tinymce.min.js"></script>
+    <script src="assets/js/itemEdit.js"></script>
 {literal}
 	<script>
 	  tinymce.init({selector:'textarea'});
