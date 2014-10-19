@@ -17,7 +17,7 @@ class StocksAPI extends RestController {
 			$size = Size::find_by_pk($id, array());
 			$size->stock = max(0, $size->stock + $stock);
 			$size->save();
-			updateItemStock($size->item);
+			$this->updateItemStock($size->item);
 		} catch (RecordNotFound $e) {
 			$this->haltReponse(array("error" => "Size with id " . $id . "not found!"), 404);
 		}

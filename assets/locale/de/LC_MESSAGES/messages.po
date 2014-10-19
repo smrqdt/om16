@@ -933,3 +933,6 @@ msgstr "Zahlung erhalten am"
 
 msgid "singup.email.error.message"
 msgstr "Diese E-Mail Adresse wird bereits verwendet!"
+
+msgid "item.stock.amount"
+msgstr "Anzahl"

@@ -33,7 +33,11 @@
             <div ng-show="item.manage_stock && ! item.sizes">
                 Stock: {{ item.stock }}
                 <div class="input-append">
-                    <input type="addStock" placeholder="Amount" name="amount" ng-model="amount">
+                    <input type="text" placeholder="
+        {/literal}
+            {_("item.stock.amount")}
+        {literal}
+                    " name="amount" ng-model="amount">
                     <button type="submit" class="btn" ng-click="addStock(item, amount)"><i class="icon-plus"></i></button>
                 </div>
             </div>
@@ -50,7 +54,12 @@
                         <div ng-show="item.manage_stock">
                             {{ variation.stock }}
                             <div class="input-append">
-                                <input type="addStock" placeholder="Amount" name="amount" ng-model="amount">
+                                <input type="addStock" placeholder="
+
+        {/literal}
+            {_("item.stock.amount")}
+        {literal}
+                                " name="amount" ng-model="amount">
                                 <button type="submit" class="btn" ng-click="addVariationStock(variation, amount)"><i class="icon-plus"></i></button>
                             </div>
                         </div>
