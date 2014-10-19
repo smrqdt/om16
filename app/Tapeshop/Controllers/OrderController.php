@@ -8,6 +8,7 @@ use Tapeshop\Controller;
 use Tapeshop\Controllers\Helpers\Billing;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Models\Order;
+use Tapeshop\Models\Size;
 
 /**
  * Handle orders.
@@ -47,7 +48,7 @@ class OrderController extends Controller {
 				$order->create_orderitems(array(
 					"item_id" => $ci["item"]->id,
 					"amount" => $ci["amount"],
-					"size" => $ci["size"],
+					"size_id" => Size::find('first', array('conditions'=> array("size LIKE ? and item_id = ?",$ci["size"], $ci["item"]->id)))->id,
 					"price" => $ci["item"]->price
 				));
 

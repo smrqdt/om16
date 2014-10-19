@@ -102,7 +102,7 @@
 				{foreach $item->itemnumbers as $in} {$in->number}{if not $in@last},
 				{/if} {/foreach} {/if}
 			</td>
-			<td>{$item->size}</td>
+			<td>{if $item->size}{$item->size->size}{/if}</td>
 			<td>{$item->amount}</td>
 			<td>{($item->price/100)|number_format:2:",":"."} €</td>
 			<td>{($item->amount * ($item->price)/100)|number_format:2:",":"."} €</td>
