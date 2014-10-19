@@ -17,11 +17,13 @@
             <h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 
             <form method="post" action="{$path}cart/addItem/{$item->id}">
+                {if ($item->numbered && $item->getUnrequestedNumberCount() <= 0) || ($item->manage_stock && $item->stock < 1)}
+                <div class="text-error">{_("item.outofstock")}</div>
+                {else}
                 <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
                 {if $item->sizes}
                 <select name="size" class="span12">
                     {foreach from=$item->sizes item=size}
-
                         {if !$item->manage_stock || ($item->manage_stock && $size->stock > 0)}
                         <option>{$size->size}</option>
                         {/if}
@@ -29,9 +31,7 @@
                 </select>
                 {/if}
 
-                {if ($item->numbered && $item->getUnrequestedNumberCount() <= 0) || ($item->manage_stock && $item->stock < 1)}
-                <div class="text-error">{_("item.outofstock")}</div>
-                {else}
+
                 <div class="btn-group">
                     <input type="submit" value="{_('item.add')}" class="btn btn-primary"/>
                 </div>

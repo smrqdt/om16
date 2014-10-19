@@ -1,10 +1,15 @@
 angular.module("tapeshop", []);
 
 angular.module("tapeshop").value("baseUrl", jQuery("base").attr("href"));
+angular.module("tapeshop").value("itemId", jQuery("#itemId").data("itemId"));
 
-angular.module("tapeshop").controller("stockController", function ($scope, itemsAPI, stockAPI, variationsAPI) {
+angular.module("tapeshop").controller("stockController", function ($scope, itemsAPI, stockAPI, variationsAPI, itemId) {
+    console.log("item "+itemId);
+
     $scope.reloadItem = function () {
-        itemsAPI.get(11).success(function (item) {
+        console.log("reload "+itemId);
+        itemsAPI.get(itemId).success(function (item) {
+            console.log(item);
             $scope.item = item;
             $scope.item.manage_stock = !!$scope.item.manage_stock;
         });
