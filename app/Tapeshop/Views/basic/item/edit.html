@@ -33,7 +33,7 @@
             <div ng-show="item.manage_stock && ! item.sizes">
                 Stock: {{ item.stock }}
                 <div class="input-append">
-                    <input type="text" placeholder="
+                    <input type="number" placeholder="
         {/literal}
             {_("item.stock.amount")}
         {literal}
@@ -48,34 +48,32 @@
             {_("item.variations")}
         {literal}
                 </h5>
-                <ul>
-                    <li ng-repeat="variation in item.sizes | orderBy:'size'">
-                        {{ variation.size }}
-                        <div ng-show="item.manage_stock">
-                            {{ variation.stock }}
-                            <div class="input-append">
-                                <input type="addStock" placeholder="
+                <div ng-repeat="variation in item.sizes | orderBy:'size'">
+                    {{ variation.size }}
+                    <span ng-show="item.manage_stock">
+                        {{ variation.stock }}
+                        <div class="input-append">
+                            <input type="number" placeholder="
 
         {/literal}
             {_("item.stock.amount")}
         {literal}
-                                " name="amount" ng-model="amount">
-                                <button type="submit" class="btn" ng-click="addVariationStock(variation, amount)"><i class="icon-plus"></i></button>
-                            </div>
+                            " name="amount" ng-model="amount">
+                            <button type="submit" class="btn" ng-click="addVariationStock(variation, amount)"><i class="icon-plus"></i></button>
                         </div>
-                        <button type="submit" class="btn btn-mini" ng-click="deleteVariation(variation)">
-                            <i class="icon-trash"></i>
-                        </button>
-                    </li>
-                </ul>
-                    <div class="input-append">
-                        <input type="text" placeholder="
+                    </span>
+                    <button type="submit" class="btn btn-mini" ng-click="deleteVariation(variation)">
+                        <i class="icon-trash"></i>
+                    </button>
+                </div>
+                <div class="input-append">
+                    <input type="text" placeholder="
         {/literal}
             {_("item.variations")}
         {literal}
-                        " ng-model="variationName" name="size"/>
-                        <button type="submit" class="btn" ng-click="addVariation(item, variationName)"><i class="icon-plus"></i></button>
-                    </div>
+                    " ng-model="variationName" name="size"/>
+                    <button type="submit" class="btn" ng-click="addVariation(item, variationName)"><i class="icon-plus"></i></button>
+                </div>
             </div>
 
             <pre>{{item | json}}</pre>

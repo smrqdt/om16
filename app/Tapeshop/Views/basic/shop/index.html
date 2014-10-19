@@ -21,12 +21,15 @@
                 {if $item->sizes}
                 <select name="size" class="span12">
                     {foreach from=$item->sizes item=size}
-                    <option>{$size->size}</option>
+
+                        {if !$item->manage_stock || ($item->manage_stock && $size->stock > 0)}
+                        <option>{$size->size}</option>
+                        {/if}
                     {/foreach}
                 </select>
                 {/if}
 
-                {if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
+                {if ($item->numbered && $item->getUnrequestedNumberCount() <= 0) || ($item->manage_stock && $item->stock < 1)}
                 <div class="text-error">{_("item.outofstock")}</div>
                 {else}
                 <div class="btn-group">
