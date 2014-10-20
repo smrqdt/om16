@@ -166,9 +166,11 @@ class ItemController extends Controller {
 		$itemid = 0;;
 
 		try {
+			/** @var $size Size*/
 			$size = Size::find($id);
 			$itemid = $size->item_id;
-			$size->delete();
+			$size->deleted = true;
+			$size->save();
 		} catch (ActiveRecordException $e) {
 			$this->app->flashNow('error', 'Could not delete size! ' . $e->getMessage());
 		}

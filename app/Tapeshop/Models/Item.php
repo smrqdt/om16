@@ -46,4 +46,8 @@ class Item extends Model {
 	function getInvalidNumbers() {
 		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = false', $this->id)));
 	}
+
+	function getSizesCount(){
+		return array_filter( $this->sizes, function($object) { return !$object->deleted; } );
+	}
 }

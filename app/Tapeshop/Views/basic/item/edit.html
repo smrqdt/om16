@@ -15,10 +15,6 @@
             {include file="item/parts/remove-image-button.html"}
             {include file="item/parts/remove-item-button.html"}
 		</div>
-	
-		<div class="span4 well">
-            {include file="item/parts/variations.html"}
-		</div>
 
         <div class="span4 well" ng-controller="stockController">
             <span id="itemId" data-item-id="{$item->id}" style="display:none"></span>
@@ -47,7 +43,7 @@
             {_("item.variations")}
         {literal}
                 </h5>
-                <div ng-repeat="variation in item.sizes | orderBy:'size'">
+                <div ng-repeat="variation in item.sizes | filter:{deleted:0} | orderBy:'size'">
                     {{ variation.size }}
                     <span ng-show="item.manage_stock">
                         {{ variation.stock }}

@@ -46,7 +46,9 @@ class StocksAPI extends RestController {
 
 		/** @var $size Size */
 		foreach ($item->sizes as $size) {
-			$stock += $size->stock;
+			if(!$size->deleted){
+				$stock += $size->stock;
+			}
 		}
 		$item->stock = $stock;
 		try {

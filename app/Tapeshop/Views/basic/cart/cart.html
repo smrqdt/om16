@@ -35,7 +35,11 @@
 		</thead>
 		<tbody>
 		{foreach from=$cart item=item}
-			<tr>
+        {if in_array($item["item"]->id, $outofstock['items'])||in_array($item["size"], $outofstock['sizes'])}
+			<tr class="error">
+        {else}
+            <tr>
+        {/if}
 				<td>
 					<img src="{if $item['item']->image}{$item['item']->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
 				</td>
@@ -49,10 +53,15 @@
                         <input type="hidden" name="currentSize" value="{$item["size"]}">
                         <select class="new-size" name="newSize" class="btn">
                         {foreach from=$item["item"]->sizes item=size}
-                            {if $item["size"] == $size->size}
-                            <option selected>{$size->size}</option>
-                            {else}
-                            <option>{$size->size}</option>
+                            {if !$size->deleted && (!$item["item"]->manage_stock || ($item["item"]->manage_stock && ($size->stock > 1||$item["size"]==$size->id)))}
+                                <option
+                                {if $item["size"] == $size->id}
+                                selected
+                                    {if $size->stock < 1}
+                                    disabled
+                                    {/if}
+                                {/if}
+                            >{$size->size}</option>
                             {/if}
                         {/foreach}
                         <select>

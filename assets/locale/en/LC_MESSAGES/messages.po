@@ -936,3 +936,6 @@ msgstr "This email adress is already in use!"
 
 msgid "item.stock.amount"
 msgstr "Amount"
+
+msgid "cart.error.outofstock"
+msgstr "We just ran out of stock on some items."

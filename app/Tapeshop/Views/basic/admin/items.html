@@ -62,7 +62,7 @@
 					{($item->price/100)|number_format:2:",":"."} €
 				</td>
 				<td>
-					{count($item->sizes)}
+					{count($item->getSizesCount())}
 				</td>
 				<td>
 					<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />

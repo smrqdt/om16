@@ -9,6 +9,7 @@ use ActiveRecord\Model;
  * @property \Tapeshop\Models\Item item
  * @property int id
  * @property int item_id
+ * @property boolean deleted
  */
 class Size extends Model {
 

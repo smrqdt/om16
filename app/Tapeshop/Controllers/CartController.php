@@ -4,6 +4,7 @@ namespace Tapeshop\Controllers;
 use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Models\Item;
+use Tapeshop\Models\Size;
 
 /**
  * Handle shopping cart functionality.
@@ -17,11 +18,11 @@ class CartController extends Controller {
 	public function addItem($id) {
 		try {
 			$item = Item::find($id);
-			$size = $this->post("size");
+			$size = Size::find('first', array('conditions'=>array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
 			$cart = $this->getCart();
 			$incart = false;
 			foreach ($cart as $i => $ci) {
-				if ($item->id == $ci["item"]->id && $size == $ci["size"]) {
+				if ($item->id == $ci["item"]->id && $size->id == $ci["size"]) {
 					$incart = true;
 					$cart[$i]["amount"] = $ci["amount"] + 1;
 					print_r($ci);
@@ -32,7 +33,7 @@ class CartController extends Controller {
 			if (!$incart) {
 				$a = array(
 					"item" => $item,
-					"size" => $size,
+					"size" => $size->id,
 					"amount" => 1
 				);
 				array_push($cart, $a);
@@ -76,6 +77,13 @@ class CartController extends Controller {
 	 * Show the shopping cart and its contents.
 	 */
 	public function cart() {
+
+		$outofstock = array('items' => array(), 'sizes' => array());
+		if (isset($_SESSION['out_of_stock'])) {
+			$outofstock = $_SESSION['out_of_stock'];
+			unset($_SESSION['out_of_stock']);
+		}
+
 		$cart = $this->getCart();
 		$sum = 0;
 		$shipping = 0;
@@ -89,8 +97,10 @@ class CartController extends Controller {
 		$data = array(
 			"cart" => $cart,
 			"shipping" => $shipping,
-			"sum" => $sum
+			"sum" => $sum,
+			"outofstock" => $outofstock
 		);
+
 		$this->render("cart/cart.html", $data);
 	}
 
@@ -119,13 +129,13 @@ class CartController extends Controller {
 	 * @param POST String currentSize Current variant of the item.
 	 * @param POST String newSize New variant of the item.
 	 */
-	public function changeSize(){
+	public function changeSize() {
 		$cart = $this->getCart();
 		$id = $this->post("id");
 		$currentSize = $this->post("currentSize");
 		$newSize = $this->post("newSize");
 
-		foreach($cart as &$item){
+		foreach ($cart as &$item) {
 			if ($item["item"]->id == $id && $item["size"] == $currentSize) {
 				$item["size"] = $newSize;
 			}
@@ -151,9 +161,9 @@ class CartController extends Controller {
 			}
 		}
 		$_SESSION["cart"] = $newCart;
-		if(count($newCart) > 0){
+		if (count($newCart) > 0) {
 			$this->redirect('cart');
-		}else{
+		} else {
 			$this->redirect('home');
 		}
 	}

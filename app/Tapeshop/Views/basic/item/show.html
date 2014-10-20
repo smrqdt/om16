@@ -28,7 +28,7 @@
                 {if $item->sizes}
                 <select id="size" name="size" class="btn span6">
                     {foreach from=$item->sizes item=size}
-                    {if !$item->manage_stock || ($item->manage_stock && $size->stock > 0)}
+                    {if !$size->deleted && (!$item->manage_stock || ($item->manage_stock && $size->stock > 0))}
                     <option>{$size->size}</option>
                     {/if}
                     {/foreach}

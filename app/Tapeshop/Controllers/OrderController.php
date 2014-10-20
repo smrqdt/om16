@@ -46,6 +46,10 @@ class OrderController extends Controller {
 			));
 
 			$cart = $this->getCart();
+			$outofstock = array(
+				'items' => array(),
+				'sizes' => array()
+			);
 			foreach ($cart as $ci) {
 				/** @var $item Item */
 				$item = null;
@@ -54,7 +58,7 @@ class OrderController extends Controller {
 
 				$item = Item::find_by_pk($ci["item"]->id, array());
 				if (!empty($ci["size"])) {
-					$size = Size::find('first', array('conditions' => array("size LIKE ? and item_id = ?", $ci["size"], $ci["item"]->id)));
+					$size = Size::find_by_pk($ci["size"], array());
 				}
 
 				if ($item->manage_stock) {
@@ -63,14 +67,16 @@ class OrderController extends Controller {
 							$item->stock--;
 							$item->save();
 						} else {
-							throw new OutOfStockException(gettext("item.error.outofstock"), $item);
+							array_push($outofstock['items'],$item->id);
+							continue;
 						}
 					} else {
 						if ($size->stock > 1) {
 							$size->stock--;
 							$size->save();
 						} else {
-							throw new OutOfStockException(gettext("size.error.outofstock"), $item, $size);
+							array_push($outofstock['sizes'],$size->id);
+							continue;
 						}
 					}
 				}
@@ -84,6 +90,11 @@ class OrderController extends Controller {
 
 				$shipping = max($shipping, $ci["item"]->shipping);
 			}
+
+			if(!empty($outofstock['items']) || !empty($outofstock['sizes'])){
+				throw new OutOfStockException(gettext("cart.error.outofstock"));
+			}
+
 			$order->shipping = $shipping;
 			$order->save();
 			$c->commit();
@@ -106,6 +117,7 @@ class OrderController extends Controller {
 		} catch (OutOfStockException $e) {
 			$c->rollback();
 			$this->app->flash('warn', $e->getMessage());
+			$_SESSION['out_of_stock'] = $outofstock;
 			$this->redirect('cart');
 		} catch (\Exception $e) {
 			echo $e;
