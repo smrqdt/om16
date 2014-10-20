@@ -125,4 +125,7 @@ $variations = new \Tapeshop\Rest\VariationsAPI();
 $app->post('/variations/', array($variations, 'add'));
 $app->delete('/variations/:id/', array($variations, 'delete'));
 
+$numbers = new \Tapeshop\Rest\NumbersAPI();
+$app->put('/items/:id/numbered/', array($numbers, 'updateManageNumbers'));
+
 $app->run();

@@ -76,6 +76,20 @@
 		<div class="span4 well">
             {include file="item/parts/meta.html"}
 		</div>
+
+        <div class="span4 well" ng-controller="numbersController">
+            {literal}
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="item.numbered" ng-change="updateManageNumbers(item)"> Manage stock
+                </label>
+            </div>
+            <div ng-show="item.numbered">
+
+            </div>
+            {{ item | json }}
+            {/literal}
+        </div>
 	</div>
 {/block}
 

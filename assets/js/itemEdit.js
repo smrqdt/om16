@@ -3,13 +3,10 @@ angular.module("tapeshop", []);
 angular.module("tapeshop").value("baseUrl", jQuery("base").attr("href"));
 angular.module("tapeshop").value("itemId", jQuery("#itemId").data("itemId"));
 
-angular.module("tapeshop").controller("stockController", function ($scope, itemsAPI, stockAPI, variationsAPI, itemId) {
-    console.log("item "+itemId);
+angular.module("tapeshop").controller("stockController", function ($scope, itemsAPI, variationsAPI, itemId) {
 
     $scope.reloadItem = function () {
-        console.log("reload "+itemId);
         itemsAPI.get(itemId).success(function (item) {
-            console.log(item);
             $scope.item = item;
             $scope.item.manage_stock = !!$scope.item.manage_stock;
         });
@@ -99,9 +96,32 @@ angular.module("tapeshop").factory("variationsAPI", function ($http, baseUrl) {
     return variationsAPI;
 });
 
-angular.module("tapeshop").factory("stockAPI", function ($http, baseUrl) {
-    var stockAPI = {
-
+angular.module("tapeshop").controller("numbersController", function($scope, itemsAPI, numbersAPI, itemId){
+    $scope.reloadItem = function () {
+        itemsAPI.get(itemId).success(function (item) {
+            $scope.item = item;
+            $scope.item.numbered = !!$scope.item.numbered;
+        });
     };
-    return stockAPI;
+
+    $scope.updateManageNumbers = function(item){
+      numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));
+    };
+
+    $scope.reloadItem();
+});
+
+angular.module("tapeshop").factory("numbersAPI", function($http, baseUrl){
+    var numbersAPI = {
+        updateManageNumbers: function (item) {
+        return $http({
+            url: baseUrl + "items/" + item.id + "/numbered",
+            method: "PUT",
+            data: {
+                numbered: item.numbered
+            }
+        });
+    }
+    };
+    return numbersAPI;
 });
