@@ -97,12 +97,99 @@ angular.module("tapeshop").factory("variationsAPI", function ($http, baseUrl) {
 });
 
 angular.module("tapeshop").controller("numbersController", function($scope, itemsAPI, numbersAPI, itemId){
+
     $scope.reloadItem = function () {
         itemsAPI.get(itemId).success(function (item) {
             $scope.item = item;
             $scope.item.numbered = !!$scope.item.numbered;
+            $scope.item.itemnumbers.sort(function(a,b){return a.number - b.number;});
+            $scope.freeNumberBlocks = $scope.getFreeNumberBlocks(item);
+            $scope.freeNumbers = $scope.getFreeNumbers(item);
+            $scope.invalidNumberBlocks = $scope.getInvalidBlocks(item);
+            $scope.invalidNumbers = $scope.getInvalidNumbers(item);
         });
     };
+
+    $scope.getFreeNumbers= function(item){
+        var i = 0;
+        angular.forEach(item.itemnumbers, function(value, key){
+            if(value.valid) {
+                i++;
+            }
+        });
+        return i;
+    };
+
+    $scope.getInvalidNumbers= function(item){
+        var i = 0;
+        angular.forEach(item.itemnumbers, function(value, key){
+            if(!value.valid) {
+                i++;
+            }
+        });
+        return i;
+    };
+
+    $scope.getFreeNumberBlocks = function(item){
+        var blocks = [];
+        var block = null;
+        angular.forEach(item.itemnumbers, function(value, key){
+            if(value.valid) {
+                if (block == null) {
+                    block = {
+                        numbers: [key],
+                        low: value.number,
+                        high: value.number
+                    };
+                } else {
+                    if (value.number == block.high + 1) {
+                        block.numbers.push(key);
+                        block.high = value.number;
+                    } else {
+                        blocks.push(block);
+                        block = {
+                            numbers: [key],
+                            low: value.number,
+                            high: value.number
+                        };
+                    }
+                }
+            }
+        });
+        blocks.push(block);
+        return blocks;
+    };
+
+    $scope.getInvalidBlocks= function(item){
+        var blocks = [];
+        var block = null;
+        angular.forEach(item.itemnumbers, function(value, key){
+            if(!value.valid) {
+                if (block == null) {
+                    block = {
+                        numbers: [key],
+                        low: value.number,
+                        high: value.number
+                    };
+                } else {
+                    if (value.number == block.high + 1) {
+                        block.numbers.push(key);
+                        block.high = value.number;
+                    } else {
+                        blocks.push(block);
+                        block = {
+                            numbers: [key],
+                            low: value.number,
+                            high: value.number
+                        };
+                    }
+                }
+            }
+        });
+        blocks.push(block);
+        return blocks;
+    };
+
 
     $scope.updateManageNumbers = function(item){
       numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));

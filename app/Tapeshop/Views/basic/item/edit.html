@@ -85,8 +85,21 @@
                 </label>
             </div>
             <div ng-show="item.numbered">
+                <h5>Nummernblöcke</h5>
+                Kontingent: {{ freeNumbers }} Nummern
+                <div ng-repeat="numberBlock in freeNumberBlocks">
+                    <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
+                    <span ng-show="numberBlock.low != numberBlock.high">{{numberBlock.low}} - {{numberBlock.high}}</span>
+                </div>
 
+                <h5>Gesperrte Nummern</h5>
+                Gesperrt: {{ invalidNumbers }} Nummern
+                <div ng-repeat="numberBlock in invalidNumberBlocks">
+                    <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
+                    <span ng-show="numberBlock.low != numberBlock.high">{{numberBlock.low}} - {{numberBlock.high}}</span>
+                </div>
             </div>
+            
             {{ item | json }}
             {/literal}
         </div>

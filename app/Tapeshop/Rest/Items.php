@@ -11,7 +11,7 @@ class Items extends RestController {
 		$item = null;
 		try {
 			$item = Item::find_by_pk($id, array("conditions" => array("deleted = false")));
-			$this->response($item->to_json(array('include' => array('sizes'))));
+			$this->response($item->to_json(array('include' => array('sizes', 'itemnumbers'))));
 		} catch (RecordNotFound $e) {
 			$this->response(array("error" => "Item with id " . $id . " not found!"), 404);
 		}
