@@ -113,7 +113,7 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
     $scope.getFreeNumbers= function(item){
         var i = 0;
         angular.forEach(item.itemnumbers, function(value, key){
-            if(value.valid) {
+            if(value.valid && value.orderitem_id == null) {
                 i++;
             }
         });
@@ -134,7 +134,7 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
         var blocks = [];
         var block = null;
         angular.forEach(item.itemnumbers, function(value, key){
-            if(value.valid) {
+            if(value.valid && value.orderitem_id == null) {
                 if (block == null) {
                     block = {
                         numbers: [key],
@@ -195,6 +195,10 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
       numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));
     };
 
+    $scope.updateNumbers = function(item, numberString){
+      numbersAPI.updateNumbers(item, numberString).success($scope.reloadItem.bind($scope));
+    };
+
     $scope.reloadItem();
 });
 
@@ -208,7 +212,17 @@ angular.module("tapeshop").factory("numbersAPI", function($http, baseUrl){
                 numbered: item.numbered
             }
         });
-    }
+    },
+        updateNumbers: function(item, numberString){
+            console.log("update "+item.id+ " "+numberString);
+            return $http({
+                url: baseUrl + "numbers/"+item.id,
+                method: "PUT",
+                data:{
+                    numberString: numberString
+                }
+            })
+        }
     };
     return numbersAPI;
 });

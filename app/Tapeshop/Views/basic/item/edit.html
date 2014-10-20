@@ -91,6 +91,10 @@
                     <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
                     <span ng-show="numberBlock.low != numberBlock.high">{{numberBlock.low}} - {{numberBlock.high}}</span>
                 </div>
+                <div class="input-append">
+                    <input type="text" placeholder="Item numbers" ng-model="numberString" name="size"/>
+                    <button type="submit" class="btn" ng-click="updateNumbers(item, numberString)"><i class="icon-plus"></i></button>
+                </div>
 
                 <h5>Gesperrte Nummern</h5>
                 Gesperrt: {{ invalidNumbers }} Nummern
@@ -99,7 +103,7 @@
                     <span ng-show="numberBlock.low != numberBlock.high">{{numberBlock.low}} - {{numberBlock.high}}</span>
                 </div>
             </div>
-            
+
             {{ item | json }}
             {/literal}
         </div>

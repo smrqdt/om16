@@ -16,6 +16,7 @@ use ActiveRecord\Model;
  * @property array orderitems
  * @property $sizes Size
  * @property boolean numbered
+ * @property array itemnumbers
  */
 class Item extends Model {
 

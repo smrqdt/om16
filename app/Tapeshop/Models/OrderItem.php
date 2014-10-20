@@ -12,6 +12,7 @@ use ActiveRecord\Model;
  * @property int size_id
  * @property \Tapeshop\Models\Order order
  * @property int order_id
+ * @property int id
  */
 class Orderitem extends Model {
 
