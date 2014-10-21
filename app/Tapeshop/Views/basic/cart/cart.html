@@ -53,13 +53,13 @@
                         <input type="hidden" name="currentSize" value="{$item["size"]}">
                         <select class="new-size" name="newSize" class="btn">
                         {foreach from=$item["item"]->sizes item=size}
-                            {if !$size->deleted && (!$item["item"]->manage_stock || ($item["item"]->manage_stock && ($size->stock > 1||$item["size"]==$size->id)))}
-                                <option
+                            {if !$size->deleted && $item["item"]->inStock(1, $size) || $item["size"]==$size->id }
+                                <option value="{$size->id}"
                                 {if $item["size"] == $size->id}
                                 selected
-                                    {if $size->stock < 1}
-                                    disabled
-                                    {/if}
+                                {/if}
+                                {if intval($size->stock) < intval($item["amount"])}
+                                disabled="disabled"
                                 {/if}
                             >{$size->size}</option>
                             {/if}
@@ -68,32 +68,37 @@
                     </form>
 
 				</td>
-				<td>
-					{$item["amount"]} 
-					<form method="post" action="{$path}cart/increase" class="pull-right" style="display:inline;">
-						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-						<input type="hidden" name="id" value="{$item["item"]->id}">
-						<input type="hidden" name="size" value="{$item["size"]}">
-						<button type="submit" class="btn btn-mini">
-							<i class="icon-plus"></i>
-						</button>
-					</form>
-					<form method="post" class="pull-right" action="{$path}cart/decrease" style="display:inline;">
-						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-						<input type="hidden" name="id" value="{$item["item"]->id}">
-						<input type="hidden" name="size" value="{$item["size"]}">
-						<button type="submit" class="btn btn-mini">
-							<i class="icon-minus"></i>
-						</button>
-					</form>
-				</td>
-				<td>
+            <td>
+                {$item["amount"]}
+                <form method="post" action="{$path}cart/increase" class="pull-right" style="display:inline;">
+                    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                    <input type="hidden" name="id" value="{$item["item"]->id}">
+                    <input type="hidden" name="size" value="{$item["size"]}">
+                    <button type="submit" class="btn btn-mini"
+                    {if !$item["item"]->inStock($item["amount"] + 1, $item["size"])}
+                    disabled="disabled"
+                    {/if}
+                    >
+                        <i class="icon-plus"></i>
+                    </button>
+                </form>
+
+                <form method="post" class="pull-right" action="{$path}cart/decrease" style="display:inline;">
+                    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                    <input type="hidden" name="id" value="{$item["item"]->id}">
+                    <input type="hidden" name="size" value="{$item["size"]}">
+                    <button type="submit" class="btn btn-mini">
+                        <i class="icon-minus"></i>
+                    </button>
+                </form>
+            </td>
+            <td>
 					{($item["item"]->price/100)|number_format:2:",":"."} €
 				</td>
-				<td>
+            <td>
 					{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €
 				</td>
-				<td>
+            <td>
 					<form method="post" class="pull-right" action="{$path}cart/remove" style="display:inline;">
 					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
 						<input type="hidden" name="id" value="{$item["item"]->id}">

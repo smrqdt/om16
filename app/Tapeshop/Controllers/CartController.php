@@ -18,7 +18,7 @@ class CartController extends Controller {
 	public function addItem($id) {
 		try {
 			$item = Item::find($id);
-			$size = Size::find('first', array('conditions'=>array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
+			$size = Size::find('first', array('conditions' => array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
 			$cart = $this->getCart();
 			$incart = false;
 			foreach ($cart as $i => $ci) {
@@ -33,7 +33,7 @@ class CartController extends Controller {
 			if (!$incart) {
 				$a = array(
 					"item" => $item,
-					"size" => $size->id,
+					"size" => empty($size) ? null : $size->id,
 					"amount" => 1
 				);
 				array_push($cart, $a);

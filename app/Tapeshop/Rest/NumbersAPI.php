@@ -79,6 +79,7 @@ class NumbersAPI extends RestController {
 				if (count($numbers) < $orderitem->amount) {
 					array_push($errors, "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!");
 				}
+				/** @var $n Itemnumber */
 				foreach ($numbers as $n) {
 					$n->orderitem_id = $orderitem->id;
 					$n->save();

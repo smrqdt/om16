@@ -2,6 +2,7 @@
 namespace Tapeshop\Models;
 
 use ActiveRecord\Model;
+use ActiveRecord\RecordNotFound;
 
 /**
  * @property String name
@@ -42,14 +43,62 @@ class Item extends Model {
 	}
 
 	function getFreeNumbers() {
-		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and free = true', $this->id)));
+		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and orderitem_id IS NULL', $this->id)));
 	}
 
 	function getInvalidNumbers() {
 		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = false', $this->id)));
 	}
 
-	function getSizesCount(){
-		return array_filter( $this->sizes, function($object) { return !$object->deleted; } );
+	function getSizesCount() {
+		return array_filter($this->sizes, function ($object) { return !$object->deleted; });
+	}
+
+	/**
+	 * @param int $amount Amount of items
+	 * @param mixed $variation Variation of item
+	 * @return bool Item is in stock
+	 */
+	function inStock($amount = 1, $variation = null) {
+		if (!$this->manage_stock && !$this->numbered) {
+			return true;
+		}
+
+		if ($this->manage_stock) {
+			if (count($this->sizes) == 0) {
+				if ($this->stock >= $amount) {
+					return true;
+				}
+			} else {
+				if ($variation == null) {
+					return ($this->stock >= $amount);
+				}
+
+				if ($variation instanceof Size) {
+					if ($variation->stock >= $amount) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					try {
+						/** @var Size $size */
+						$size = Size::find_by_pk($variation, array());
+						if ($size->stock >= $amount) {
+							return true;
+						}
+					} catch (RecordNotFound $e) {
+						return false;
+					}
+				}
+			}
+		}
+
+		if ($this->numbered) {
+			if (count($this->getFreeNumbers()) >= $amount) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
