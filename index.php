@@ -141,4 +141,7 @@ $app->put('/numbers/:id/', array($numbers, 'updateNumbers'));
 $app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
 $app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));
 
+$orders = new \Tapeshop\Rest\OrdersAPI();
+$app->get('/orders/:id/',array($orders, 'get'));
+
 $app->run();

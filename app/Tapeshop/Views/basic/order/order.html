@@ -3,7 +3,7 @@
 {block name=content}
 <h1>{_("order.title")}</h1>
 
-<div class="row">
+<div class="row" ng-app="tapeshop">
 	<div class="span6">
 		<h6>{_("order.shippingaddress")}:</h6>
 		{if $order->address} {$order->address->name}
@@ -19,7 +19,11 @@
 		{$order->user->currentAddress()->country} {/if}
 	</div>
 	
-	<div class="span6">
+	<div class="span6" ng-controller="orderController">
+        <span id="orderId" data-item-id="{$order->id}" style="display:none"></span>
+        {literal}
+        {{ order | json }}
+        {/literal}
 		<table class="table">
 			<tr>
 				<th>{_("order.billingnumber")}</th>
@@ -74,6 +78,9 @@
 			</tr>
 			{/if}
 		</table>
+        {literal}
+        {{ order | json }}
+        {/literal}
 	</div>
 </div>
 <br />
@@ -167,4 +174,8 @@
 		</form>
 	</div>
 {/if}
+{/block}
+
+{block name=moreScripts}
+    <script src="assets/js/orderStatus.js"></script>
 {/block}
