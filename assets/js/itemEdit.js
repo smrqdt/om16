@@ -17,20 +17,20 @@ angular.module("tapeshop").controller("stockController", function ($scope, items
         itemsAPI.updateManageStock(item).success($scope.reloadItem.bind($scope))
     };
 
-    $scope.addStock = function(item, amount){
+    $scope.addStock = function (item, amount) {
         itemsAPI.addStock(item, amount).success($scope.reloadItem.bind($scope));
     };
 
-    $scope.addVariationStock = function(variation, amount){
+    $scope.addVariationStock = function (variation, amount) {
         variationsAPI.addStock(variation, amount).success($scope.reloadItem.bind($scope));
     };
 
-    $scope.addVariation = function(item, variationName){
+    $scope.addVariation = function (item, variationName) {
         variationsAPI.addVariation(item, variationName).success($scope.reloadItem.bind($scope));
     };
 
-    $scope.deleteVariation = function(variation){
-      variationsAPI.deleteVariation(variation).success($scope.reloadItem.bind($scope));
+    $scope.deleteVariation = function (variation) {
+        variationsAPI.deleteVariation(variation).success($scope.reloadItem.bind($scope));
     };
 
     $scope.reloadItem();
@@ -66,7 +66,7 @@ angular.module("tapeshop").factory("itemsAPI", function ($http, baseUrl) {
 angular.module("tapeshop").factory("variationsAPI", function ($http, baseUrl) {
     var variationsAPI = {
         addVariation: function (item, variationName, stock) {
-            if(!stock || stock < 0){
+            if (!stock || stock < 0) {
                 stock = 0;
             }
 
@@ -96,13 +96,15 @@ angular.module("tapeshop").factory("variationsAPI", function ($http, baseUrl) {
     return variationsAPI;
 });
 
-angular.module("tapeshop").controller("numbersController", function($scope, itemsAPI, numbersAPI, itemId){
+angular.module("tapeshop").controller("numbersController", function ($scope, itemsAPI, numbersAPI, itemId) {
 
     $scope.reloadItem = function () {
         itemsAPI.get(itemId).success(function (item) {
             $scope.item = item;
             $scope.item.numbered = !!$scope.item.numbered;
-            $scope.item.itemnumbers.sort(function(a,b){return a.number - b.number;});
+            $scope.item.itemnumbers.sort(function (a, b) {
+                return a.number - b.number;
+            });
             $scope.freeNumberBlocks = $scope.getFreeNumberBlocks(item);
             $scope.freeNumbers = $scope.getFreeNumbers(item);
             $scope.invalidNumberBlocks = $scope.getInvalidBlocks(item);
@@ -110,31 +112,31 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
         });
     };
 
-    $scope.getFreeNumbers= function(item){
+    $scope.getFreeNumbers = function (item) {
         var i = 0;
-        angular.forEach(item.itemnumbers, function(value, key){
-            if(value.valid && value.orderitem_id == null) {
+        angular.forEach(item.itemnumbers, function (value, key) {
+            if (value.valid && value.orderitem_id == null) {
                 i++;
             }
         });
         return i;
     };
 
-    $scope.getInvalidNumbers= function(item){
+    $scope.getInvalidNumbers = function (item) {
         var i = 0;
-        angular.forEach(item.itemnumbers, function(value, key){
-            if(!value.valid) {
+        angular.forEach(item.itemnumbers, function (value, key) {
+            if (!value.valid) {
                 i++;
             }
         });
         return i;
     };
 
-    $scope.getFreeNumberBlocks = function(item){
+    $scope.getFreeNumberBlocks = function (item) {
         var blocks = [];
         var block = null;
-        angular.forEach(item.itemnumbers, function(value, key){
-            if(value.valid && value.orderitem_id == null) {
+        angular.forEach(item.itemnumbers, function (value, key) {
+            if (value.valid && value.orderitem_id == null) {
                 if (block == null) {
                     block = {
                         numbers: [key],
@@ -160,11 +162,11 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
         return blocks;
     };
 
-    $scope.getInvalidBlocks= function(item){
+    $scope.getInvalidBlocks = function (item) {
         var blocks = [];
         var block = null;
-        angular.forEach(item.itemnumbers, function(value, key){
-            if(!value.valid) {
+        angular.forEach(item.itemnumbers, function (value, key) {
+            if (!value.valid) {
                 if (block == null) {
                     block = {
                         numbers: [key],
@@ -191,37 +193,59 @@ angular.module("tapeshop").controller("numbersController", function($scope, item
     };
 
 
-    $scope.updateManageNumbers = function(item){
-      numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));
+    $scope.updateManageNumbers = function (item) {
+        numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));
     };
 
-    $scope.updateNumbers = function(item, numberString){
-      numbersAPI.updateNumbers(item, numberString).success($scope.reloadItem.bind($scope));
+    $scope.updateNumbers = function (item, numberString) {
+        numbersAPI.updateNumbers(item, numberString).success($scope.reloadItem.bind($scope));
+    };
+
+    $scope.updateInvalidNumbers = function(item, invalidNumberString){
+        numbersAPI.updateInvalidNumbers(item, invalidNumberString).success($scope.reloadItem.bind($scope));
     };
 
     $scope.reloadItem();
 });
 
-angular.module("tapeshop").factory("numbersAPI", function($http, baseUrl){
+angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {
     var numbersAPI = {
         updateManageNumbers: function (item) {
-        return $http({
-            url: baseUrl + "items/" + item.id + "/numbered",
-            method: "PUT",
-            data: {
-                numbered: item.numbered
-            }
-        });
-    },
-        updateNumbers: function(item, numberString){
-            console.log("update "+item.id+ " "+numberString);
             return $http({
-                url: baseUrl + "numbers/"+item.id,
+                url: baseUrl + "items/" + item.id + "/numbered",
                 method: "PUT",
-                data:{
+                data: {
+                    numbered: item.numbered
+                }
+            });
+        },
+        updateNumbers: function (item, numberString) {
+            return $http({
+                url: baseUrl + "numbers/" + item.id,
+                method: "PUT",
+                data: {
                     numberString: numberString
+                },
+                success: function (data) {
+                    //TODO show
+                    //data.errors
+                    //data.warnings
                 }
             })
+        },
+        updateInvalidNumbers: function(item, invalidNumberString){
+            return $http({
+                url: baseUrl + "numbers/invalid/" + item.id,
+                method: "PUT",
+                data: {
+                    numberString: invalidNumberString
+                },
+                success: function (data) {
+                    //TODO show
+                    //data.errors
+                    //data.warnings
+                }
+            });
         }
     };
     return numbersAPI;

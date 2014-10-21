@@ -128,5 +128,6 @@ $app->delete('/variations/:id/', array($variations, 'delete'));
 $numbers = new \Tapeshop\Rest\NumbersAPI();
 $app->put('/items/:id/numbered/', array($numbers, 'updateManageNumbers'));
 $app->put('/numbers/:id/', array($numbers, 'updateNumbers'));
+$app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
 
 $app->run();

@@ -102,6 +102,10 @@
                     <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
                     <span ng-show="numberBlock.low != numberBlock.high">{{numberBlock.low}} - {{numberBlock.high}}</span>
                 </div>
+                <div class="input-append">
+                    <input type="text" placeholder="Invalidate numbers" ng-model="invalidNumberString" name="size"/>
+                    <button type="submit" class="btn" ng-click="updateInvalidNumbers(item, invalidNumberString)"><i class="icon-plus"></i></button>
+                </div>
             </div>
 
             {{ item | json }}

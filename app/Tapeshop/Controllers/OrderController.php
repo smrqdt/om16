@@ -67,7 +67,7 @@ class OrderController extends Controller {
 			'items' => array(),
 			'sizes' => array()
 		);
-		
+
 		$c = Order::connection();
 		try {
 			$c->transaction();
