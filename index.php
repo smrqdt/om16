@@ -7,10 +7,20 @@ require_once 'config.php';
 /*
  * I18N support
  */
-setlocale(LC_ALL, 'de_DE.utf8', 'en_US.utf8');
 
-$domain = 'messages';
-bindtextdomain($domain, "assets/locale");
+$language  = str_replace("-","_",substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5));
+$lang_short = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5);
+
+$folder = "assets/locale";
+$domain = "messages";
+$encoding = "UTF-8";
+
+putenv("LANG=" . $language);
+setlocale(LC_ALL, $language, $lang_short);
+
+bindtextdomain($domain, $folder);
+bind_textdomain_codeset($domain, $encoding);
+
 textdomain($domain);
 
 /*

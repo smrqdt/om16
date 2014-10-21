@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: robert
- * Date: 20.10.14
- * Time: 19:43
- */
 
 namespace Tapeshop\Rest;
 
@@ -198,14 +192,15 @@ class NumbersAPI extends RestController {
 				}
 			}
 
+			/** @var $nc Itemnumber */
 			foreach ($ask as $nc) {
 				array_push($warnings,
-				 array(
-					"message" => "Number " . $nc->number . " not changed, because the order was already shipped.",
-					"order" => json_decode($nc->orderitem->order->to_json()),
-					"itemnumber" => json_decode($nc->to_json()),
-					"url" => $this->app->urlFor('order', array('hash' => $nc->orderitem->order->hashlink))
-				));
+					array(
+						"message" => "Number " . $nc->number . " not changed, because the order was already shipped.",
+						"order" => json_decode($nc->orderitem->order->to_json()),
+						"itemnumber" => json_decode($nc->to_json()),
+						"url" => $this->app->urlFor('order', array('hash' => $nc->orderitem->order->hashlink))
+					));
 			}
 		} catch (ActiveRecordException $e) {
 			$c->rollback();
@@ -216,13 +211,14 @@ class NumbersAPI extends RestController {
 		$this->response(array("errors" => $errors, "ask" => $warnings));
 	}
 
-	public function overrideWarning($id){
-		try{
+	public function overrideWarning($id) {
+		try {
+			/** @var $itemnumber  Itemnumber */
 			$itemnumber = Itemnumber::find_by_pk($id, array());
-			$itemnumber->valid=false;
+			$itemnumber->valid = false;
 			$itemnumber->save();
-		}catch(RecordNotFound $e){
-			$this->haltReponse(array("error"=>"Itemnumber with id ".$id." not found!"),404);
+		} catch (RecordNotFound $e) {
+			$this->haltReponse(array("error" => "Itemnumber with id " . $id . " not found!"), 404);
 		}
 	}
 }
