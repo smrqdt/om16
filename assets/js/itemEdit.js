@@ -197,13 +197,20 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
         numbersAPI.updateManageNumbers(item).success($scope.reloadItem.bind($scope));
     };
 
+    $scope.showMessages = function(data){
+      $scope.errors = data.errors|| [];
+        $scope.warnings = data.warnings||[];
+        $scope.ask = data.ask||[];
+
+    };
+
     $scope.updateNumbers = function (item, numberString) {
-        numbersAPI.updateNumbers(item, numberString).success($scope.reloadItem.bind($scope));
+        numbersAPI.updateNumbers(item, numberString, $scope.showMessages).success($scope.reloadItem.bind($scope));
         $scope.numberString = "";
     };
 
     $scope.updateInvalidNumbers = function(item, invalidNumberString){
-        numbersAPI.updateInvalidNumbers(item, invalidNumberString).success($scope.reloadItem.bind($scope));
+        numbersAPI.updateInvalidNumbers(item, invalidNumberString,$scope.showMessages).success($scope.reloadItem.bind($scope));
         $scope.invalidNumberString = "";
     };
 
@@ -221,32 +228,24 @@ angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {
                 }
             });
         },
-        updateNumbers: function (item, numberString) {
+        updateNumbers: function (item, numberString, callback) {
             return $http({
                 url: baseUrl + "numbers/" + item.id,
                 method: "PUT",
                 data: {
                     numberString: numberString
                 },
-                success: function (data) {
-                    //TODO show
-                    //data.errors
-                    //data.warnings
-                }
+                success: callback
             })
         },
-        updateInvalidNumbers: function(item, invalidNumberString){
+        updateInvalidNumbers: function(item, invalidNumberString, callback){
             return $http({
                 url: baseUrl + "numbers/invalid/" + item.id,
                 method: "PUT",
                 data: {
                     numberString: invalidNumberString
                 },
-                success: function (data) {
-                    //TODO show
-                    //data.errors
-                    //data.warnings
-                }
+                success: callback
             });
         }
     };

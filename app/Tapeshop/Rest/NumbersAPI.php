@@ -48,7 +48,7 @@ class NumbersAPI extends RestController {
 			$in = array_map(function ($a) { return $a->number; }, $itemnumbers);
 			foreach ($numbers as $number) {
 				$key = array_search($number, $in);
-				if ($key) {
+				if ($key !== false) {
 					/** @var ItemNumber $itemnumber */
 					$itemnumber = $itemnumbers[$key];
 					if($itemnumber->valid){
@@ -117,7 +117,7 @@ class NumbersAPI extends RestController {
 			$in = array_map(function ($a) { return $a->number; }, $itemnumbers);
 			foreach ($numbers as $number) {
 				$key = array_search($number, $in);
-				if ($key) {
+				if ($key !== false) {
 					/** @var ItemNumber $itemnumber */
 					$itemnumber = $itemnumbers[$key];
 					if($itemnumber->orderitem_id == null){
