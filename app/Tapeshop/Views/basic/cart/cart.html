@@ -47,6 +47,7 @@
 					{$item["item"]->name}
 				</td>
 				<td>
+                    {if count($item["item"]->sizes)>0}
                     <form method="post" class="item-variant-form" action="{$path}cart/changesize">
                         <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
                         <input type="hidden" name="id" value="{$item["item"]->id}">
@@ -66,7 +67,7 @@
                         {/foreach}
                         <select>
                     </form>
-
+                    {/if}
 				</td>
             <td>
                 {$item["amount"]}
