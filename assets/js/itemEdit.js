@@ -213,8 +213,15 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
     };
 
     $scope.updateInvalidNumbers = function(item, invalidNumberString){
-        numbersAPI.updateInvalidNumbers(item, invalidNumberString).success($scope.reloadItem.bind($scope));
+        numbersAPI.updateInvalidNumbers(item, invalidNumberString).success(function(data){
+            $scope.showMessages(data);
+            $scope.reloadItem();
+        });
         $scope.invalidNumberString = "";
+    };
+
+    $scope.overrideWarning= function(itemnumber){
+        numbersAPI.overrideWarning(itemnumber).success($scope.reloadItem.bind($scope));
     };
 
     $scope.reloadItem();
@@ -248,6 +255,9 @@ angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {
                     numberString: invalidNumberString
                 }
             });
+        },
+        overrideWarning: function(itemnumber){
+            return $http.put(baseUrl + "numbers/override/"+itemnumber.id);
         }
     };
     return numbersAPI;

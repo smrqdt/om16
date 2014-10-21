@@ -110,7 +110,7 @@
                 </div>
                 <div ng-show="ask">
                     <div class="alert alert-danger" ng-repeat="a in ask">
-                        {{ a }}
+                        {{ a.message }} <a href="{{a.url}}"></a> <button type="button" ng-click="overrideWarning(a.itemnumber)">DO IT!</button>
                     </div>
                 </div>
 

@@ -83,7 +83,7 @@ class NumbersAPI extends RestController {
 						"order" => json_decode($orderitem->order->to_json()),
 						"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
 					));
-				}else{
+				} else {
 					/** @var $n Itemnumber */
 					foreach ($numbers as $n) {
 						$n->orderitem_id = $orderitem->id;
@@ -166,7 +166,7 @@ class NumbersAPI extends RestController {
 							array_push($ask, $itemnumber);
 						} else {
 							array_push($reassign, $itemnumber->orderitem);
-							$itemnumber->orderitem_id = null;
+							$itemnumber->orderitem_id = null; //TODO this does not work because of fk constrains
 							$itemnumber->valid = false;
 							$itemnumber->save();
 						}
@@ -185,7 +185,11 @@ class NumbersAPI extends RestController {
 			foreach ($reassign as $orderitem) {
 				$numbers = ItemNumber::find('all', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id), 'limit' => $orderitem->amount));
 				if (count($numbers) < $orderitem->amount) {
-					array_push($errors, "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!");
+					array_push($errors, array(
+						"message" => "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!",
+						"order" => json_decode($orderitem->order->to_json()),
+						"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
+					));
 				}
 				/** @var $n Itemnumber */
 				foreach ($numbers as $n) {
@@ -194,9 +198,14 @@ class NumbersAPI extends RestController {
 				}
 			}
 
-			//TODO handle numbers that needs to be asked for
 			foreach ($ask as $nc) {
-				array_push($warnings, "Number " . $nc->number . " not changed, because the order was already shipped.");
+				array_push($warnings,
+				 array(
+					"message" => "Number " . $nc->number . " not changed, because the order was already shipped.",
+					"order" => json_decode($nc->orderitem->order->to_json()),
+					"itemnumber" => json_decode($nc->to_json()),
+					"url" => $this->app->urlFor('order', array('hash' => $nc->orderitem->order->hashlink))
+				));
 			}
 		} catch (ActiveRecordException $e) {
 			$c->rollback();
@@ -204,6 +213,16 @@ class NumbersAPI extends RestController {
 		}
 		$c->commit();
 
-		$this->response(array("errors" => $errors, "warnings" => $warnings));
+		$this->response(array("errors" => $errors, "ask" => $warnings));
 	}
-} 
+
+	public function overrideWarning($id){
+		try{
+			$itemnumber = Itemnumber::find_by_pk($id, array());
+			$itemnumber->valid=false;
+			$itemnumber->save();
+		}catch(RecordNotFound $e){
+			$this->haltReponse(array("error"=>"Itemnumber with id ".$id." not found!"),404);
+		}
+	}
+}
