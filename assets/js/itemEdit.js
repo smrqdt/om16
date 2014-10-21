@@ -198,19 +198,22 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
     };
 
     $scope.showMessages = function(data){
-      $scope.errors = data.errors|| [];
-        $scope.warnings = data.warnings||[];
-        $scope.ask = data.ask||[];
+      $scope.errors = data.errors || [];
+        $scope.warnings = data.warnings ||[];
+        $scope.ask = data.ask ||[];
 
     };
 
     $scope.updateNumbers = function (item, numberString) {
-        numbersAPI.updateNumbers(item, numberString, $scope.showMessages).success($scope.reloadItem.bind($scope));
+        numbersAPI.updateNumbers(item, numberString).success(function(data){
+            $scope.showMessages(data);
+            $scope.reloadItem();
+        });
         $scope.numberString = "";
     };
 
     $scope.updateInvalidNumbers = function(item, invalidNumberString){
-        numbersAPI.updateInvalidNumbers(item, invalidNumberString,$scope.showMessages).success($scope.reloadItem.bind($scope));
+        numbersAPI.updateInvalidNumbers(item, invalidNumberString).success($scope.reloadItem.bind($scope));
         $scope.invalidNumberString = "";
     };
 
@@ -228,24 +231,22 @@ angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {
                 }
             });
         },
-        updateNumbers: function (item, numberString, callback) {
+        updateNumbers: function (item, numberString) {
             return $http({
                 url: baseUrl + "numbers/" + item.id,
                 method: "PUT",
                 data: {
                     numberString: numberString
-                },
-                success: callback
+                }
             })
         },
-        updateInvalidNumbers: function(item, invalidNumberString, callback){
+        updateInvalidNumbers: function(item, invalidNumberString){
             return $http({
                 url: baseUrl + "numbers/invalid/" + item.id,
                 method: "PUT",
                 data: {
                     numberString: invalidNumberString
-                },
-                success: callback
+                }
             });
         }
     };
