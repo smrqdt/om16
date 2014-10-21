@@ -28,7 +28,7 @@
                 {if $item->sizes}
                 <select id="size" name="size" class="btn span6">
                     {foreach from=$item->sizes item=size}
-                        {if !$size->deleted && $item->inStock(1, $size)}
+                        {if $item->inStock(1, $size)}
                         <option>{$size->size}</option>
                         {/if}
                     {/foreach}

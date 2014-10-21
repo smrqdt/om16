@@ -22,7 +22,7 @@ use ActiveRecord\RecordNotFound;
 class Item extends Model {
 
 	static $has_many = array(
-		array('sizes'),
+		array('sizes', array('conditions' => array('deleted = false'))),
 		array('orderitems'),
 		array('itemnumbers')
 	);

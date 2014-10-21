@@ -43,7 +43,7 @@
             {_("item.variations")}
         {literal}
                 </h5>
-                <div ng-repeat="variation in item.sizes | filter:{deleted:0} | orderBy:'size'">
+                <div ng-repeat="variation in item.sizes | orderBy:'size'">
                     {{ variation.size }}
                     <span ng-show="item.manage_stock">
                         {{ variation.stock }}

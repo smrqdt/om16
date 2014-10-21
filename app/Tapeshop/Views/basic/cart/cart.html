@@ -54,7 +54,7 @@
                         <input type="hidden" name="currentSize" value="{$item["size"]}">
                         <select class="new-size" name="newSize" class="btn">
                         {foreach from=$item["item"]->sizes item=size}
-                            {if !$size->deleted && $item["item"]->inStock(1, $size) || $item["size"]==$size->id }
+                            {if $item["item"]->inStock(1, $size) || $item["size"]==$size->id }
                                 <option value="{$size->id}"
                                 {if $item["size"] == $size->id}
                                 selected
