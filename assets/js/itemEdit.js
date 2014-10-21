@@ -199,10 +199,12 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
 
     $scope.updateNumbers = function (item, numberString) {
         numbersAPI.updateNumbers(item, numberString).success($scope.reloadItem.bind($scope));
+        $scope.numberString = "";
     };
 
     $scope.updateInvalidNumbers = function(item, invalidNumberString){
         numbersAPI.updateInvalidNumbers(item, invalidNumberString).success($scope.reloadItem.bind($scope));
+        $scope.invalidNumberString = "";
     };
 
     $scope.reloadItem();
