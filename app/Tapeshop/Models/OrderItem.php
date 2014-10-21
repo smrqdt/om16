@@ -13,6 +13,7 @@ use ActiveRecord\Model;
  * @property \Tapeshop\Models\Order order
  * @property int order_id
  * @property int id
+ * @property array itemnumbers
  */
 class Orderitem extends Model {
 

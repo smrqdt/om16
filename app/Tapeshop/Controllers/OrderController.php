@@ -8,7 +8,9 @@ use Tapeshop\Controller;
 use Tapeshop\Controllers\Helpers\Billing;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Models\Item;
+use Tapeshop\Models\Itemnumber;
 use Tapeshop\Models\Order;
+use Tapeshop\Models\Orderitem;
 use Tapeshop\Models\Size;
 use Tapeshop\OutOfStockException;
 
@@ -23,10 +25,34 @@ class OrderController extends Controller {
 	public static function updateStatus() {
 		$date = new DateTime();
 		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new \DateInterval("P14D")))));
+		$c = Order::connection();
 		foreach ($orders as $order) {
+			$c->transaction();
 			/** @var $order \Tapeshop\Models\Order */
 			$order->status = 'overdue';
 			$order->save();
+
+			/** @var $oi OrderItem */
+			foreach($order->orderitems as $oi){
+				$item = $oi->item;
+				if($item->numbered){
+					/** @var $in ItemNumber */
+					foreach($oi->itemnumbers as $in){
+						$in->orderitem_id = null;
+						$in->save();
+					}
+				}
+
+				if($item->manage_stock){
+					if(!empty($oi->size)){
+						$oi->size->stock += $oi->amount;
+						$oi->size->save();
+					}
+					$item->stock += $oi->amount;
+					$item->save();
+				}
+			}
+			$c->commit();
 		}
 	}
 
@@ -37,6 +63,11 @@ class OrderController extends Controller {
 		$shipping = 0;
 		/** @var $order \Tapeshop\Models\Order */
 		$order = null;
+		$outofstock = array(
+			'items' => array(),
+			'sizes' => array()
+		);
+		
 		$c = Order::connection();
 		try {
 			$c->transaction();
@@ -46,10 +77,7 @@ class OrderController extends Controller {
 			));
 
 			$cart = $this->getCart();
-			$outofstock = array(
-				'items' => array(),
-				'sizes' => array()
-			);
+
 			foreach ($cart as $ci) {
 				/** @var $item Item */
 				$item = null;
