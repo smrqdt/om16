@@ -945,3 +945,36 @@ msgstr "Als nicht versendet markieren"
 
 msgid "order.status.markasnotpayed"
 msgstr "Als nicht bezahlt markieren"
+
+msgid "item.edit.managestock"
+msgstr "Vorräte verwalten"
+
+msgid "item.edit.stock"
+msgstr "Vorrat"
+
+msgid "item.edit.order"
+msgstr "Zur Bestellung"
+
+msgid "item.edit.numberblocks"
+msgstr "Nummernblöcke"
+
+msgid "item.edit.freenumbers"
+msgstr "Verfügbar"
+
+msgid "item.edit.numbers"
+msgstr "Nummern"
+
+msgid "item.edit.add.remove.numbers"
+msgstr "hinzufügen/entfernen"
+
+msgid "item.edit.invalidnumbers"
+msgstr "Gesperrte Nummern"
+
+msgid "item.edit.invalid"
+msgstr "Gesperrt"
+
+msgid "item.edit.invalidate.validate.numbers"
+msgstr "sperren/entsperren"
+
+msgid "item.edit.shownumberstocusomers"
+msgstr "Nummern für Kunden anzeigen"

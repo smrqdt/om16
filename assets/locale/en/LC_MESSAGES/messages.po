@@ -945,3 +945,36 @@ msgstr "Mark as not shipped"
 
 msgid "order.status.markasnotpayed"
 msgstr "Mark as not payed"
+
+msgid "item.edit.managestock"
+msgstr "Manage stocks"
+
+msgid "item.edit.stock"
+msgstr "Stock"
+
+msgid "item.edit.order"
+msgstr "Show order"
+
+msgid "item.edit.numberblocks"
+msgstr "Number ranges"
+
+msgid "item.edit.freenumbers"
+msgstr "Available"
+
+msgid "item.edit.numbers"
+msgstr "Numbers"
+
+msgid "item.edit.add.remove.numbers"
+msgstr "add/remove"
+
+msgid "item.edit.invalidnumbers"
+msgstr "Invalid numbers"
+
+msgid "item.edit.invalid"
+msgstr "Invalid"
+
+msgid "item.edit.invalidate.validate.numbers"
+msgstr "invalidate/validate"
+
+msgid "item.edit.shownumberstocusomers"
+msgstr "Show numbers to customers"

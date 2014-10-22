@@ -21,11 +21,11 @@
         {* TODO extract angular templates *}
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="item.manage_stock" ng-change="updateManageStock(item)"> Manage stock
+                    <input type="checkbox" ng-model="item.manage_stock" ng-change="updateManageStock(item)"> {_("item.edit.managestock")}
                 </label>
             </div>
-            <div ng-show="item.manage_stock && ! item.sizes">
-                Stock: {literal}{{ item.stock }}{/literal}
+            <div ng-show="item.manage_stock && item.sizes.length == 0">
+                {_("item.edit.stock")}: {literal}{{ item.stock }}{/literal}
                 <div class="input-append">
                     <input type="number" placeholder="{_("item.stock.amount")}" name="amount" ng-model="amount">
                     <button type="submit" class="btn" ng-click="addStock(item, amount)"><i class="icon-plus"></i></button>
@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="input-append">
-                    <input type="text" placeholder="{_("item.variations")}" ng-model="variationName" name="size"/>
+                    <input type="text" placeholder="{_("item.variation")}" ng-model="variationName" name="size"/>
                     <button type="submit" class="btn" ng-click="addVariation(item, variationName)">
                         <i class="icon-plus"></i>
                     </button>
@@ -65,7 +65,7 @@
 
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="item.numbered" ng-change="updateManageNumbers(item)"> Manage numbers
+                    <input type="checkbox" ng-model="item.numbered" ng-change="updateManageNumbers(item)"> {_("item.numbers")}
                 </label>
             </div>
             <div ng-show="item.numbered">
@@ -74,7 +74,7 @@
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        {literal}{{ error.message }} <a href="{{error.url}}" target="_blank">order</a>{/literal}
+                        {literal}{{ error.message }} <a href="{{error.url}}" target="_blank">{/literal}{_("item.edit.order")}</a>
                     </div>
                 </div>
                 <div ng-show="warnings">
@@ -82,7 +82,7 @@
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        {literal}{{ warn.message }} <a href="{{warn.url}}" target="_blank">order</a>{/literal}
+                        {literal}{{ warn.message }} <a href="{{warn.url}}" target="_blank">{/literal}{_("item.edit.order")}</a>
                     </div>
                 </div>
                 <div ng-show="ask">
@@ -90,12 +90,12 @@
                         <button type="button" class="close" data-dismiss="alert">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        {literal}{{ a.message }} <a href="{{a.url}}" target="_blank">order</a>{/literal}
-                        <button type="button" ng-click="overrideWarning(a.itemnumber)" class="btn btn-danger">DO IT!</button>
+                        {literal}{{ a.message }} <a href="{{a.url}}" target="_blank">{/literal}{_("item.edit.order")}</a>
+                        <button type="button" ng-click="overrideWarning(a.itemnumber)" class="btn btn-danger">{_("item.edit.override")}</button>
                     </div>
                 </div>
-                <h5>Nummernblöcke</h5>
-                Kontingent: {literal}{{ freeNumbers }}{/literal} Nummern
+                <h5>{_("item.edit.numberblocks")}</h5>
+                {_("item.edit.freenumbers")}: {literal}{{ freeNumbers }}{/literal} {_("item.edit.numbers")}
                 {literal}
                 <div ng-repeat="numberBlock in freeNumberBlocks">
                     <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
@@ -103,14 +103,14 @@
                 </div>
                 {/literal}
                 <div class="input-append">
-                    <input type="text" placeholder="Item numbers" ng-model="numberString" name="size"/>
+                    <input type="text" placeholder="{_("item.edit.add.remove.numbers")}" ng-model="numberString" name="size"/>
                     <button type="submit" class="btn" ng-click="updateNumbers(item, numberString)">
                         <i class="icon-plus"></i>
                     </button>
                 </div>
 
-                <h5>Gesperrte Nummern</h5>
-                Gesperrt: {literal}{{ invalidNumbers }}{/literal} Nummern
+                <h5>{_("item.edit.invalidnumbers")}</h5>
+                {_("item.edit.invalid")}: {literal}{{ invalidNumbers }}{/literal} {_("item.edit.numbers")}
                 {literal}
                 <div ng-repeat="numberBlock in invalidNumberBlocks">
                     <span ng-show="numberBlock.low == numberBlock.high">{{numberBlock.low}}</span>
@@ -118,7 +118,7 @@
                 </div>
                 {/literal}
                 <div class="input-append">
-                    <input type="text" placeholder="Invalidate numbers" ng-model="invalidNumberString" name="size"/>
+                    <input type="text" placeholder="{_("item.edit.invalidate.validate.numbers")}" ng-model="invalidNumberString" name="size"/>
                     <button type="submit" class="btn" ng-click="updateInvalidNumbers(item, invalidNumberString)">
                         <i class="icon-plus"></i>
                     </button>
