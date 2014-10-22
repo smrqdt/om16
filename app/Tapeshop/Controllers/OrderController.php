@@ -109,12 +109,34 @@ class OrderController extends Controller {
 					}
 				}
 
-				$order->create_orderitems(array(
-					"item_id" => $item->id,
-					"amount" => $ci["amount"],
-					"size_id" => $size == null ? "" : $size->id,
-					"price" => $ci["item"]->price
-				));
+				if($item->numbered){
+					for($i = 0; $i < $ci["amount"];$i++){
+
+					}
+				}
+
+				$orderitem = new Orderitem();
+				$orderitem->order_id = $order->id; //TODO test this
+				$orderitem->item_id = $item->id;
+				$orderitem->amount = $ci["amount"];
+				$orderitem->size_id = $size == null ? "" : $size->id;
+				$orderitem->price = $ci["item"]->price;
+				$orderitem->save();
+				$orderitem->reload();
+
+				if($item->numbered){
+					$freenumbers = $item->getFreeNumbers();
+					if(count($freenumbers) < $ci["amount"]){
+						array_push($outofstock['items'],$item->id);
+					}else{
+						for($i = 0; $i < $ci["amount"];$i++){
+							/** @var Itemnumber $number */
+							$number = $freenumbers[$i];
+							$number->orderitem_id = $orderitem->id;
+							$number->save();
+						}
+					}
+				}
 
 				$shipping = max($shipping, $ci["item"]->shipping);
 			}
@@ -189,63 +211,6 @@ class OrderController extends Controller {
 	}
 
 	/**
-	 * Mark an order as payed.
-	 * @param int $id
-	 * @var $order \Tapeshop\Models\Order
-	 */
-	public function payed($id) {
-		$this->checkAdmin();
-		$order = null;
-
-		try {
-			$order = Order::find($id);
-		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Order not found2!');
-			$this->redirect('adminorders');
-		}
-
-		$order->paymenttime = new DateTime();
-		$order->status = 'payed';
-
-		try {
-			$order->save();
-			$mailSuccess = EmailOutbound::sendPaymentConfirmation($order);
-
-			if ($mailSuccess) {
-				$this->app->flash('success', 'Notification Mail was sent!');
-			} else {
-				$this->app->flash('error', 'Could not send Notification Mail!');
-			}
-		} catch (ActiveRecordException $e) {
-			$this->app->flashNow('error', 'Could not update status!' . $e->getMessage() . $e->getTrace());
-		}
-
-		foreach ($order->orderitems as $orderitem) {
-			if ($orderitem->item->numbered) {
-				$freenumbers = $orderitem->item->getFreeNumbers();
-
-				if (count($freenumbers) >= $orderitem->amount) {
-					for ($i = 0; $i < $orderitem->amount; $i++) {
-						/** @var $itemnumber \Tapeshop\Models\Itemnumber */
-						$itemnumber = $freenumbers[$i];
-						$itemnumber->orderitem_id = $orderitem->id;
-						try {
-
-							$itemnumber->save();
-						} catch (ActiveRecordException $e) {
-							$this->app->flashNow('error', 'Could not assign item number!');
-						}
-					}
-				} else {
-					$this->app->flashNow('error', 'Item ' . $orderitem->item->name . ' not enough numbers left!');
-				}
-			}
-		}
-
-		$this->order($order->hashlink);
-	}
-
-	/**
 	 * Show an order and its details.
 	 * @param String $hash Hash (UUID) of the order.
 	 */
@@ -295,42 +260,5 @@ class OrderController extends Controller {
 			$billing->Output();
 			$this->app->response()->header("Content-Type", "application/pdf");
 		}
-	}
-
-	/**
-	 * Mark an order as shipped.
-	 * @param int $id
-	 */
-	public function shipped($id) {
-		$this->checkAdmin();
-
-		/** @var $order \Tapeshop\Models\Order */
-		$order = null;
-
-		try {
-			$order = Order::find($id);
-		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Order not found3!');
-			$this->redirect('adminorders');
-		}
-
-		$order->shippingtime = new DateTime();
-		$order->status = 'shipped';
-		$order->address_id = $order->user->currentAddress()->id;
-
-		try {
-			$order->save();
-			$mailSuccess = EmailOutbound::sendShippedConfirmation($order);
-
-			if ($mailSuccess) {
-				$this->app->flash('success', 'Notification Mail was sent!');
-			} else {
-				$this->app->flash('error', 'Could not send Notification Mail!');
-			}
-		} catch (ActiveRecordException $e) {
-			$this->app->flashNow('error', 'Could not update status!');
-		}
-
-		$this->order($order->hashlink);
 	}
 }

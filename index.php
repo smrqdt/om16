@@ -87,9 +87,7 @@ $orderController::updateStatus();
 $app->post('/order/', array($orderController, 'submitOrder'));
 $app->get('/order/:hash/', array($orderController, "order"))->name("order");
 $app->post('/order/delete/:id/', array($orderController, 'deleteOrder'));
-$app->post('/order/:id/payed/', array($orderController, 'payed'));
 $app->get('/order/billing/:hash/', array($orderController, 'billing'));
-$app->post('/order/:id/shipped/', array($orderController, 'shipped'));
 
 // cart routings
 $cartController = new \Tapeshop\Controllers\CartController();
@@ -143,5 +141,9 @@ $app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));
 
 $orders = new \Tapeshop\Rest\OrdersAPI();
 $app->get('/orders/:id/',array($orders, 'get'));
+$app->put('/orders/:id/payed/',array($orders, 'payed'));
+$app->put('/orders/:id/notpayed/',array($orders, 'notpayed'));
+$app->put('/orders/:id/shipped/',array($orders, 'shipped'));
+$app->put('/orders/:id/notshipped/',array($orders, 'notshipped'));
 
 $app->run();

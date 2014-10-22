@@ -11,8 +11,20 @@ angular.module("tapeshop").controller("orderController", function ($scope, order
         });
     };
 
-    $scope.updateStatus = function(order){
-        ordersAPI.updateStatus(order).success($scope.reloadOrder.bind($scope));
+    $scope.markAsPayed = function(order){
+        ordersAPI.markAsPayed(order).success($scope.reloadOrder.bind($scope));
+    };
+
+    $scope.markAsNotPayed = function(order){
+        ordersAPI.markAsNotPayed(order).success($scope.reloadOrder.bind($scope));
+    };
+
+    $scope.markAsShipped = function(order){
+        ordersAPI.markAsShipped(order).success($scope.reloadOrder.bind($scope));
+    };
+
+    $scope.markAsNotShipped = function(order){
+        ordersAPI.markAsNotShipped(order).success($scope.reloadOrder.bind($scope));
     };
 
     $scope.reloadOrder();
@@ -23,14 +35,17 @@ angular.module("tapeshop").factory("ordersAPI", function ($http, baseUrl) {
         get: function(id){
             return $http.get(baseUrl+"orders/"+id);
         },
-        updateStatus: function(order){
-            return $http({
-                url: baseUrl+"orders/"+id,
-                method:"PUT",
-                data:{
-                    status: order.status
-                }
-            });
+        markAsPayed: function(order){
+            return $http.put(baseUrl+"orders/"+order.id+"/payed");
+        },
+        markAsNotPayed: function(order){
+            return $http.put(baseUrl+"orders/"+order.id+"/notpayed");
+        },
+        markAsShipped: function(order){
+            return $http.put(baseUrl+"orders/"+order.id+"/shipped");
+        },
+        markAsNotShipped: function(order){
+            return $http.put(baseUrl+"orders/"+order.id+"/notshipped");
         }
     };
     return ordersAPI;

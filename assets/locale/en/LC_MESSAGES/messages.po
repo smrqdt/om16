@@ -939,3 +939,9 @@ msgstr "Amount"
 
 msgid "cart.error.outofstock"
 msgstr "We just ran out of stock on some items."
+
+msgid "order.status.markasnotshipped"
+msgstr "Mark as not shipped"
+
+msgid "order.status.markasnotpayed"
+msgstr "Mark as not payed"

@@ -939,3 +939,9 @@ msgstr "Anzahl"
 
 msgid "cart.error.outofstock"
 msgstr "Einige Artikel sind nicht mehr verfügbar."
+
+msgid "order.status.markasnotshipped"
+msgstr "Als nicht versendet markieren"
+
+msgid "order.status.markasnotpayed"
+msgstr "Als nicht versendet markieren"

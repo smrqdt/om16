@@ -17,6 +17,7 @@ use ActiveRecord\Model;
  * @property String payment_id
  * @property int payment_fee
  * @property int payment_method_id
+ * @property DateTime paymenttime
  */
 class Order extends Model {
 	
