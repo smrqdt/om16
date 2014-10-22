@@ -944,4 +944,4 @@ msgid "order.status.markasnotshipped"
 msgstr "Als nicht versendet markieren"
 
 msgid "order.status.markasnotpayed"
-msgstr "Als nicht versendet markieren"
+msgstr "Als nicht bezahlt markieren"
