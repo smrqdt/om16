@@ -48,15 +48,24 @@
 				</td>
 				<td>
 					{$item->description} 
-					{if $item-> numbered}
+					{if $item->numbered}
 						{if $item->getUnrequestedNumberCount() <= 0}
 							<p class="text-error">
 						{else}
 							<p class="text-info">
 						{/if}
-						<em>{$item->getUnrequestedNumberCount()} {_("item.left")}</em>
+						<em>{$item->getUnrequestedNumberCount()} {_("item.edit.numbers")}{_("item.left")}</em>
 					</p>
 					{/if}
+                    {if $item->manage_stock}
+                    {if $item->stock <= 0}
+                    <p class="text-error">
+                        {else}
+                    <p class="text-info">
+                        {/if}
+                        <em>{$item->stock} {_("shop.nav.items")}{_("item.left")}</em>
+                    </p>
+                    {/if}
 				</td>
 				<td>
 					{($item->price/100)|number_format:2:",":"."} €

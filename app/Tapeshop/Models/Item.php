@@ -29,18 +29,7 @@ class Item extends Model {
 	);
 
 	function getUnrequestedNumberCount() {
-		$count = count($this->getFreeNumbers());
-
-		if ($count == 0) {
-			return 0;
-		}
-
-		foreach ($this->orderitems as $oi) {
-			if ($oi->order->status != 'overdue') {
-				$count -= $oi->amount;
-			}
-		}
-		return $count;
+		return count($this->getFreeNumbers());
 	}
 
 	function getFreeNumbers() {
