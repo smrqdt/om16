@@ -19,3 +19,5 @@ UPDATE orderitems t1 SET t1.size_id = (
 ALTER TABLE  `orderitems` DROP  `size` ;
 
 ALTER TABLE  `sizes` ADD  `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
+
+ALTER TABLE  `itemnumbers` DROP  `free` ;

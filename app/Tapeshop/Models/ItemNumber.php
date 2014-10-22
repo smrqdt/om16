@@ -7,7 +7,6 @@ use ActiveRecord\Model;
  * @property int item_id
  * @property int number
  * @property int orderitem_id
- * @property boolean free
  * @property \Tapeshop\Models\OrderItem orderitem
  * @property boolean valid
  */
