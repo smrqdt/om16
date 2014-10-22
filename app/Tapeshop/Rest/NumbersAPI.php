@@ -6,7 +6,6 @@ use ActiveRecord\ActiveRecordException;
 use ActiveRecord\RecordNotFound;
 use Tapeshop\Models\Item;
 use Tapeshop\Models\Itemnumber;
-use Tapeshop\Models\Orderitem;
 
 class NumbersAPI extends RestController {
 
@@ -62,9 +61,7 @@ class NumbersAPI extends RestController {
 										"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
 									));
 								} else {
-									array_push($reassign, $itemnumber->orderitem);
-									$itemnumber->orderitem_id = null;
-									$itemnumber->delete();
+									array_push($reassign, $itemnumber);
 								}
 							}
 						}
@@ -78,21 +75,21 @@ class NumbersAPI extends RestController {
 			}
 
 			$reassign = array_unique($reassign, SORT_REGULAR);
-			/** @var $orderitem OrderItem */
-			foreach ($reassign as $orderitem) {
-				$numbers = ItemNumber::find('all', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id), 'limit' => $orderitem->amount));
-				if (count($numbers) < $orderitem->amount) {
+			/** @var $itemnumber Itemnumber */
+			foreach ($reassign as $itemnumber) {
+				$orderitem = $itemnumber->orderitem;
+				/** @var Itemnumber $number */
+				$number = ItemNumber::find('first', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id)));
+				if ($number == null) {
 					array_push($errors, array(
 						"message" => "Reassign of itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " failed! Not enough numbers!",
 						"order" => json_decode($orderitem->order->to_json()),
 						"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
 					));
 				} else {
-					/** @var $n Itemnumber */
-					foreach ($numbers as $n) {
-						$n->orderitem_id = $orderitem->id;
-						$n->save();
-					}
+					$number->orderitem_id = $orderitem->id;
+					$number->save();
+					$itemnumber->delete();
 				}
 			}
 
@@ -174,10 +171,7 @@ class NumbersAPI extends RestController {
 								$itemnumber->save();
 							}
 						} else {
-							array_push($reassign, $itemnumber->orderitem);
-							$itemnumber->orderitem_id = null; //TODO this does not work because of fk constrains
-							$itemnumber->valid = false;
-							$itemnumber->save();
+							array_push($reassign, $itemnumber);
 						}
 					}
 				} else {
@@ -190,20 +184,22 @@ class NumbersAPI extends RestController {
 			}
 
 			$reassign = array_unique($reassign, SORT_REGULAR);
-			/** @var $orderitem OrderItem */
-			foreach ($reassign as $orderitem) {
-				$numbers = ItemNumber::find('all', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id), 'limit' => $orderitem->amount));
-				if (count($numbers) < $orderitem->amount) {
+			/** @var $itemnumber Itemnumber */
+			foreach ($reassign as $itemnumber) {
+				$orderitem = $itemnumber->orderitem;
+				$number = ItemNumber::find('first', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id)));
+				if ($number == null) {
 					array_push($errors, array(
 						"message" => "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!",
 						"order" => json_decode($orderitem->order->to_json()),
 						"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
 					));
-				}
-				/** @var $n Itemnumber */
-				foreach ($numbers as $n) {
-					$n->orderitem_id = $orderitem->id;
-					$n->save();
+				}else{
+					$itemnumber->orderitem_id = null;
+					$itemnumber->valid = false;
+					$itemnumber->save();
+					$number->orderitem_id = $orderitem->id;
+					$number->save();
 				}
 			}
 
