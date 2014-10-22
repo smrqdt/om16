@@ -53,9 +53,19 @@ class NumbersAPI extends RestController {
 							if ($order->shippingtime != null || $order->status == "shipped") {
 								array_push($notchanged, $itemnumber);
 							} else {
-								array_push($reassign, $itemnumber->orderitem);
-								$itemnumber->orderitem_id = null;
-								$itemnumber->delete();
+								$orderitem = $itemnumber->orderitem;
+								$numbers = ItemNumber::find('all', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id), 'limit' => $orderitem->amount));
+								if (count($numbers) < $orderitem->amount) {
+									array_push($warnings, array(
+										"message" => "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!",
+										"order" => json_decode($orderitem->order->to_json()),
+										"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
+									));
+								} else {
+									array_push($reassign, $itemnumber->orderitem);
+									$itemnumber->orderitem_id = null;
+									$itemnumber->delete();
+								}
 							}
 						}
 					}
@@ -73,7 +83,7 @@ class NumbersAPI extends RestController {
 				$numbers = ItemNumber::find('all', array('conditions' => array('item_id = ? AND valid = 1 AND orderitem_id IS NULL', $id), 'limit' => $orderitem->amount));
 				if (count($numbers) < $orderitem->amount) {
 					array_push($errors, array(
-						"message" => "Could not reassign itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " because there were no numbers left!",
+						"message" => "Reassign of itemnumber for item (" . $orderitem->item->id . ") " . $orderitem->item->name . " failed! Not enough numbers!",
 						"order" => json_decode($orderitem->order->to_json()),
 						"url" => $this->app->urlFor('order', array('hash' => $orderitem->order->hashlink))
 					));
@@ -157,7 +167,12 @@ class NumbersAPI extends RestController {
 					} else {
 						$order = $itemnumber->orderitem->order;
 						if ($order->shippingtime != null || $order->status == "shipped") {
-							array_push($ask, $itemnumber);
+							if($itemnumber->valid){
+								array_push($ask, $itemnumber);
+							}else{
+								$itemnumber->valid = true;
+								$itemnumber->save();
+							}
 						} else {
 							array_push($reassign, $itemnumber->orderitem);
 							$itemnumber->orderitem_id = null; //TODO this does not work because of fk constrains

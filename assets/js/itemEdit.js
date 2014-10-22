@@ -136,7 +136,7 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
         var blocks = [];
         var block = null;
         angular.forEach(item.itemnumbers, function (value, key) {
-            if (value.valid && value.orderitem_id == null) {
+            if (value.valid) {
                 if (block == null) {
                     block = {
                         numbers: [key],
