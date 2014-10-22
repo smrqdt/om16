@@ -18,6 +18,7 @@ use ActiveRecord\RecordNotFound;
  * @property $sizes Size
  * @property boolean numbered
  * @property array itemnumbers
+ * @property boolean shownumbers
  */
 class Item extends Model {
 

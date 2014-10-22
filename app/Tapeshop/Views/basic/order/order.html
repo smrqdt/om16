@@ -119,9 +119,14 @@
 				class="img-square"
 				style="background-color: #ddd; height: 50px; width: 50px;" />
 			</td>
-			<td>{$item->item->name} {if $item->item->numbered} <br />{_("item.numbers")}:
-				{foreach $item->itemnumbers as $in} {$in->number}{if not $in@last},
-				{/if} {/foreach} {/if}
+			<td>{$item->item->name}
+                {if $item->item->numbered && ($item->item->shownumbers || (isset($smarty.session['auth_user']) && $user->admin))}
+                    <br />{_("item.numbers")}:
+                    {foreach $item->itemnumbers as $in}
+                        {$in->number}{if not $in@last},
+                        {/if}
+                    {/foreach}
+                {/if}
 			</td>
 			<td>{if $item->size}{$item->size->size}{/if}</td>
 			<td>{$item->amount}</td>

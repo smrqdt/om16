@@ -102,6 +102,7 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
         itemsAPI.get(itemId).success(function (item) {
             $scope.item = item;
             $scope.item.numbered = !!$scope.item.numbered;
+            $scope.item.shownumbers = !!$scope.item.shownumbers;
             $scope.item.itemnumbers.sort(function (a, b) {
                 return a.number - b.number;
             });
@@ -197,6 +198,10 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
         numbersAPI.updateManageNumbers(item).success($scope.reloadOrder.bind($scope));
     };
 
+    $scope.updateShowNumbers = function (item) {
+        numbersAPI.updateShowNumbers(item).success($scope.reloadOrder.bind($scope));
+    };
+
     $scope.showMessages = function(data){
       $scope.errors = data.errors || [];
         $scope.warnings = data.warnings ||[];
@@ -235,6 +240,15 @@ angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {
                 method: "PUT",
                 data: {
                     numbered: item.numbered
+                }
+            });
+        },
+        updateShowNumbers: function (item) {
+            return $http({
+                url: baseUrl + "items/" + item.id + "/shownumbers",
+                method: "PUT",
+                data: {
+                    shownumbers: item.shownumbers
                 }
             });
         },

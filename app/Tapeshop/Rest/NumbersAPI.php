@@ -22,6 +22,19 @@ class NumbersAPI extends RestController {
 		}
 	}
 
+	public function updateShowNumbers($id){
+		$this->checkAdmin();
+		$shownumbers = $this->params()->shownumbers;
+		try {
+			/** @var Item $item */
+			$item = Item::find_by_pk($id, array());
+			$item->shownumbers = $shownumbers;
+			$item->save();
+		} catch (RecordNotFound $e) {
+			$this->haltReponse(array("error" => "Could not find item with id " . $id), 404);
+		}
+	}
+
 	public function updateNumbers($id) {
 		$this->checkAdmin();
 

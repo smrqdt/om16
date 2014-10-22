@@ -130,6 +130,7 @@ $app->delete('/variations/:id/', array($variations, 'delete'));
 
 $numbers = new \Tapeshop\Rest\NumbersAPI();
 $app->put('/items/:id/numbered/', array($numbers, 'updateManageNumbers'));
+$app->put('/items/:id/shownumbers', array($numbers, 'updateShowNumbers'));
 $app->put('/numbers/:id/', array($numbers, 'updateNumbers'));
 $app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
 $app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));

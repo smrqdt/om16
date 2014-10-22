@@ -21,3 +21,5 @@ ALTER TABLE  `orderitems` DROP  `size` ;
 ALTER TABLE  `sizes` ADD  `deleted` BOOLEAN NOT NULL DEFAULT FALSE ;
 
 ALTER TABLE  `itemnumbers` DROP  `free` ;
+
+ALTER TABLE  `items` ADD  `shownumbers` BOOLEAN NOT NULL DEFAULT TRUE ;
