@@ -18,7 +18,7 @@
 
         <div class="span4 well" ng-controller="stockController">
             <span id="itemId" data-item-id="{$item->id}" style="display:none"></span>
-        {* TODO extract angular templates*}
+        {* TODO extract angular templates *}
         {literal}
             <div class="checkbox">
                 <label>
@@ -72,16 +72,12 @@
             </div>
         {/literal}
         </div>
-		
-		<div class="span4 well">
-            {include file="item/parts/meta.html"}
-		</div>
 
         <div class="span4 well" ng-controller="numbersController">
             {literal}
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="item.numbered" ng-change="updateManageNumbers(item)"> Manage stock
+                    <input type="checkbox" ng-model="item.numbered" ng-change="updateManageNumbers(item)"> Manage numbers
                 </label>
             </div>
             <div ng-show="item.numbered">
@@ -125,8 +121,6 @@
                     <button type="submit" class="btn" ng-click="updateInvalidNumbers(item, invalidNumberString)"><i class="icon-plus"></i></button>
                 </div>
             </div>
-
-            {{ item | json }}
             {/literal}
         </div>
 	</div>

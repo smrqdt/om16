@@ -110,13 +110,7 @@ $itemController = new \Tapeshop\Controllers\ItemController();
 $app->get('/item/:id/', array($itemController, 'show'));
 $app->map('/item/edit/:id/', array($itemController, 'edit'))->via('GET', 'POST')->name('editItem');
 $app->post('/item/delete/:id/', array($itemController, 'delete'));
-$app->post('/item/:id/addsize/', array($itemController, 'addSize'));
 $app->post('/item/:id/removeimage/', array($itemController, 'removeImage'));
-$app->post('/item/:id/addnumbers/', array($itemController, 'addNumbers'));
-$app->post('/item/:id/takenumbers/', array($itemController, 'takeNumbers'));
-$app->post('/item/:id/invalidatenumbers/', array($itemController, 'invalidateNumbers'));
-$app->post('/item/:id/makenumbered', array($itemController, 'makeNumbered'));
-$app->post('/item/deletesize/:id/', array($itemController, 'deleteSize'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
 
 // REST
