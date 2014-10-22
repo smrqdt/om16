@@ -19,7 +19,6 @@
         <div class="span4 well" ng-controller="stockController">
             <span id="itemId" data-item-id="{$item->id}" style="display:none"></span>
         {* TODO extract angular templates *}
-
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="item.manage_stock" ng-change="updateManageStock(item)"> Manage stock
