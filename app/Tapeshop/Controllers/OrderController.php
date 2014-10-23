@@ -119,7 +119,7 @@ class OrderController extends Controller {
 				$orderitem->order_id = $order->id; //TODO test this
 				$orderitem->item_id = $item->id;
 				$orderitem->amount = $ci["amount"];
-				$orderitem->size_id = $size == null ? "" : $size->id;
+				$orderitem->size_id = $size == null ? null : $size->id;
 				$orderitem->price = $ci["item"]->price;
 				$orderitem->save();
 				$orderitem->reload();
