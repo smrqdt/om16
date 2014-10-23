@@ -111,6 +111,27 @@ class ShopController extends Controller {
 		$this->redirect('checkout');
 	}
 
+	public function changeAddress() {
+		/** @var User $user */
+		$user = $this->user;
+		/** @var Address $address */
+		$address = $user->currentAddress();
+		$formData = array(
+			"email" => $user->email,
+			"name" => $address->name,
+			"lastname" => $address->lastname,
+			"street" => $address->street,
+			"building_number" => $address->building_number,
+			"postcode" => $address->postcode,
+			"city" => $address->city,
+			"country" => $address->country
+		);
+
+		$this->auth->logout(false);
+
+		$this->render("shop/checkout.html", array("checkoutform" => $formData));
+	}
+
 	/**
 	 * Show Ticketscript page.
 	 */

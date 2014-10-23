@@ -981,3 +981,6 @@ msgstr "Show numbers to customers"
 
 msgid "item.numbers.pdf"
 msgstr "Download item numbers (*.pdf)"
+
+msgid "order.changeaddress"
+msgstr "Change address"

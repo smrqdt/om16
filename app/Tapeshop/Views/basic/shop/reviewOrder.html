@@ -13,7 +13,14 @@
 	{$user->currentAddress()->postcode} {$user->currentAddress()->city}
 	<br />
 	{$user->currentAddress()->country}
-	
+    <br />
+    <form method="get" action="changeaddress" style="display: inline">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+        <button type="submit" class="btn">
+            <i class="icon-edit"></i> {_("order.changeaddress")}
+        </button>
+    </form>
+
 	<table class="table">
 		<thead>
 			<tr>

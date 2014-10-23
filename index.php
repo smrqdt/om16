@@ -75,6 +75,7 @@ $app->get('/', array($shopController, 'index'))->name('home');
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
 $app->get('/ticketscript/', array($shopController, "ticketscript"));
+$app->get('/changeaddress', array($shopController, 'changeAddress'));
 
 // Admin routings
 $adminController = new Tapeshop\Controllers\AdminController();
