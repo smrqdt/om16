@@ -128,6 +128,12 @@
                         <input type="checkbox" ng-model="item.shownumbers" ng-change="updateShowNumbers(item)"> {_("item.edit.shownumberstocusomers")}
                     </label>
                 </div>
+                <form method="post" action="{$path}item/{$item->id}/numberspdf">
+                    <div class="input-append">
+                        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                        <button type="submit" class="btn btn-default"><i class="icon-list"></i> {_("item.numbers.pdf")}</button>
+                    </div>
+                </form>
             </div>
         </div>
 	</div>

@@ -978,3 +978,6 @@ msgstr "sperren/entsperren"
 
 msgid "item.edit.shownumberstocusomers"
 msgstr "Nummern für Kunden anzeigen"
+
+msgid "item.numbers.pdf"
+msgstr "Artikelnummern herunterladen (*.pdf)"

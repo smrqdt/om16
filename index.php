@@ -113,6 +113,7 @@ $app->map('/item/edit/:id/', array($itemController, 'edit'))->via('GET', 'POST')
 $app->post('/item/delete/:id/', array($itemController, 'delete'));
 $app->post('/item/:id/removeimage/', array($itemController, 'removeImage'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
+$app->post('/item/:id/numberspdf', array($itemController, 'numbersPdf'));
 
 // REST
 

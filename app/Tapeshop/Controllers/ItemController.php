@@ -5,6 +5,7 @@ use ActiveRecord\ActiveRecordException;
 use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Models\Item;
+use Tapeshop\Models\Itemnumber;
 
 /**
  * Handle item operations.
@@ -187,7 +188,7 @@ class ItemController extends Controller {
 		try {
 			$item = Item::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flashNow('error', 'Item not found');
+			$this->app->flash('error', 'Item not found');
 			$this->redirect('home');
 		}
 
@@ -199,5 +200,40 @@ class ItemController extends Controller {
 		}
 
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
+	}
+
+	public function numbersPdf($id) {
+		$this->checkAdmin();
+
+		$item = null;
+
+		try {
+			$item = Item::find($id);
+		} catch (RecordNotFound $e) {
+			$this->app->flash('error', 'Item not found');
+			$this->redirect('home');
+		}
+
+		$valid = Itemnumber::find('all', array("conditions" => array("item_id = ? AND valid = true", $id), "order" => "number"));
+		$invalid = Itemnumber::find('all', array("conditions" => array("item_id = ? AND valid = false", $id), "order" => "number"));
+		$msg = "";
+		foreach ($valid as $v) {
+			$msg .= $v->number . "\n";
+		}
+
+		$pdf = new \Tapeshop\Controllers\Helpers\NumbersPdf('P', 'mm', 'A4');
+		$pdf->SetTitle($item->name);
+		$pdf->SetAuthor('');
+		$pdf->PrintChapter(1, gettext("item.edit.numbers"), $msg);
+
+		$msg = "";
+		foreach ($invalid as $v) {
+			$msg .= $v->number . "\n";
+		}
+
+		$pdf->PrintChapter(2, gettext("item.edit.invalidnumbers"), $msg);
+
+		$pdf->Output();
+		$this->app->response()->header("Content-Type", "application/pdf");
 	}
 }

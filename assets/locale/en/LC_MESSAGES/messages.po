@@ -978,3 +978,6 @@ msgstr "invalidate/validate"
 
 msgid "item.edit.shownumberstocusomers"
 msgstr "Show numbers to customers"
+
+msgid "item.numbers.pdf"
+msgstr "Download item numbers (*.pdf)"
