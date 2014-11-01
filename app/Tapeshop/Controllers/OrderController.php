@@ -116,7 +116,7 @@ class OrderController extends Controller {
 				}
 
 				$orderitem = new Orderitem();
-				$orderitem->order_id = $order->id; //TODO test this
+				$orderitem->order_id = $order->id;
 				$orderitem->item_id = $item->id;
 				$orderitem->amount = $ci["amount"];
 				$orderitem->size_id = $size == null ? null : $size->id;

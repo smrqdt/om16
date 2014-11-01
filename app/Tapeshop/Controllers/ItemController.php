@@ -146,7 +146,7 @@ class ItemController extends Controller {
 				$item->ticketscript = $this->post("ticketscript");
 
 				if ($_FILES['image']['name'] != '') {
-					$uploaddir = dirname(__FILE__) . '/../../upload/';
+					$uploaddir = dirname(__FILE__) . '/../../../upload/';
 					$uploadfile = $uploaddir . basename($_FILES['image']['name']);
 
 					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {

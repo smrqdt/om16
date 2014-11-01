@@ -70,6 +70,7 @@ class PaypalPayment extends Middleware {
 				return;
 			}
 
+			//TODO handle other payment status, e.g.
 			if ($order->getSum() + $order->getFeeFor('paypal') <= $payment_amount) {
 				// Check that the payment_status is Completed
 				if ($payment_status == "Completed") {
