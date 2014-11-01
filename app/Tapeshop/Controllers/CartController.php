@@ -19,14 +19,17 @@ class CartController extends Controller {
 		try {
 			$item = Item::find($id);
 			$size = Size::find('first', array('conditions' => array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
+
 			$cart = $this->getCart();
 			$incart = false;
 			foreach ($cart as $i => $ci) {
-				if ($item->id == $ci["item"]->id && $size->id == $ci["size"]) {
-					$incart = true;
-					$cart[$i]["amount"] = $ci["amount"] + 1;
-					print_r($ci);
-					break;
+				if ($item->id == $ci["item"]->id) {
+					if (($size == null && $ci["size"] == "") || $size->id == $ci["size"]) {
+						$incart = true;
+						$cart[$i]["amount"] = $ci["amount"] + 1;
+						print_r($ci);
+						break;
+					}
 				}
 			}
 
