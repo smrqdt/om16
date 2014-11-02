@@ -33,18 +33,18 @@ class OrderController extends Controller {
 			$order->save();
 
 			/** @var $oi OrderItem */
-			foreach($order->orderitems as $oi){
+			foreach ($order->orderitems as $oi) {
 				$item = $oi->item;
-				if($item->numbered){
+				if ($item->numbered) {
 					/** @var $in ItemNumber */
-					foreach($oi->itemnumbers as $in){
+					foreach ($oi->itemnumbers as $in) {
 						$in->orderitem_id = null;
 						$in->save();
 					}
 				}
 
-				if($item->manage_stock){
-					if(!empty($oi->size)){
+				if ($item->manage_stock) {
+					if (!empty($oi->size)) {
 						$oi->size->stock += $oi->amount;
 						$oi->size->save();
 					}
@@ -91,27 +91,21 @@ class OrderController extends Controller {
 
 				if ($item->manage_stock) {
 					if ($size == null) {
-						if ($item->stock > 1) {
-							$item->stock--;
+						if ($item->stock >= $ci["amount"]) {
+							$item->stock -= $ci["amount"];
 							$item->save();
 						} else {
-							array_push($outofstock['items'],$item->id);
+							array_push($outofstock['items'], $item->id);
 							continue;
 						}
 					} else {
-						if ($size->stock > 1) {
-							$size->stock--;
+						if ($size->stock = $ci["amount"]) {
+							$size->stock -= $ci["amount"];
 							$size->save();
 						} else {
-							array_push($outofstock['sizes'],$size->id);
+							array_push($outofstock['sizes'], $size->id);
 							continue;
 						}
-					}
-				}
-
-				if($item->numbered){
-					for($i = 0; $i < $ci["amount"];$i++){
-
 					}
 				}
 
@@ -124,12 +118,12 @@ class OrderController extends Controller {
 				$orderitem->save();
 				$orderitem->reload();
 
-				if($item->numbered){
+				if ($item->numbered) {
 					$freenumbers = $item->getFreeNumbers();
-					if(count($freenumbers) < $ci["amount"]){
-						array_push($outofstock['items'],$item->id);
-					}else{
-						for($i = 0; $i < $ci["amount"];$i++){
+					if (count($freenumbers) < $ci["amount"]) {
+						array_push($outofstock['items'], $item->id);
+					} else {
+						for ($i = 0; $i < $ci["amount"]; $i++) {
 							/** @var Itemnumber $number */
 							$number = $freenumbers[$i];
 							$number->orderitem_id = $orderitem->id;
@@ -141,7 +135,7 @@ class OrderController extends Controller {
 				$shipping = max($shipping, $ci["item"]->shipping);
 			}
 
-			if(!empty($outofstock['items']) || !empty($outofstock['sizes'])){
+			if (!empty($outofstock['items']) || !empty($outofstock['sizes'])) {
 				throw new OutOfStockException(gettext("cart.error.outofstock"));
 			}
 
