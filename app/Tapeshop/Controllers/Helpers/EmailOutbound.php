@@ -2,6 +2,7 @@
 namespace Tapeshop\Controllers\Helpers;
 use Tapeshop\Controllers\OrderStatus;
 
+require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 /**
  * Helper class for Email notifications.
  */
@@ -83,8 +84,6 @@ Viele Grüße, wir freuen uns auf dich !\n";
 
 	public static function sendNotificationMail($adress, $subject, $message) {
 
-		$header = 'From: ' . "noreply@example.com" . "\r\n" . 'Reply-To: ' . "noreply@example.com" . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-
 		$message = $message . "Maximilian Schneider-Ludorff\n
 -------------------------------------------------------\n
 TAPEFABRIK // Logistik\n
@@ -92,7 +91,15 @@ TAPEFABRIK // Logistik\n
 E-Mail: " . SUPPORTADRESS . "\n
 Web: http://www.tapefabrik.de\n";
 
-		return mail($adress, $subject, $message, $header);
+		$mailToSend = \Swift_Message::newInstance()
+		  ->setSubject($subject)
+		  ->setFrom(array(SHOPADRESS => 'Tapefabrik Ticketshop'))
+		  ->setTo($adress)
+		  ->setBody($message);
+
+		$transport = \Swift_MailTransport::newInstance();
+		$mailer = \Swift_Mailer::newInstance($transport);
+		return $mailer->send($mailToSend);
 	}
 
 	public static function sendPaymentConfirmation($order) {

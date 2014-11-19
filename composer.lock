@@ -10,13 +10,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/iio/fpdf.git",
-                "reference": "4006d3279aad5292fbdd12d85c8e284e6275723d"
+                "url": "https://github.com/hanneskod/fpdf.git",
+                "reference": "06d02a7bf227a62d37691a4e7e9c3a35efcb41c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iio/fpdf/zipball/4006d3279aad5292fbdd12d85c8e284e6275723d",
-                "reference": "4006d3279aad5292fbdd12d85c8e284e6275723d",
+                "url": "https://api.github.com/repos/hanneskod/fpdf/zipball/06d02a7bf227a62d37691a4e7e9c3a35efcb41c3",
+                "reference": "06d02a7bf227a62d37691a4e7e9c3a35efcb41c3",
                 "shasum": ""
             },
             "require": {
@@ -34,20 +34,20 @@
             ],
             "description": "Unofficial PSR-0 compliant version of the FPDF library",
             "homepage": "http://www.fpdf.org/",
-            "time": "2013-11-18 18:39:51"
+            "time": "2013-12-27 14:18:15"
         },
         {
             "name": "paypal/sdk-core-php",
-            "version": "v1.4.2",
+            "version": "v1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/sdk-core-php.git",
-                "reference": "2ee73c75be510af7c2c153ff2eaba086972c8bf7"
+                "reference": "3b568a9b74debec2deb850e18368676f4c508e0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/sdk-core-php/zipball/2ee73c75be510af7c2c153ff2eaba086972c8bf7",
-                "reference": "2ee73c75be510af7c2c153ff2eaba086972c8bf7",
+                "url": "https://api.github.com/repos/paypal/sdk-core-php/zipball/3b568a9b74debec2deb850e18368676f4c508e0e",
+                "reference": "3b568a9b74debec2deb850e18368676f4c508e0e",
                 "shasum": ""
             },
             "require": {
@@ -77,7 +77,7 @@
                 "php",
                 "sdk"
             ],
-            "time": "2013-09-11 14:22:45"
+            "time": "2014-05-12 13:52:52"
         },
         {
             "name": "php-activerecord/php-activerecord",
@@ -167,16 +167,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "2.4.0",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim.git",
-                "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b"
+                "reference": "4906b77a07c7bd6ff1a99aea903e940a2d4fa106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim/zipball/ff7d7148848fa4f45712984d7b91ac3cbced586b",
-                "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b",
+                "url": "https://api.github.com/repos/codeguy/Slim/zipball/4906b77a07c7bd6ff1a99aea903e940a2d4fa106",
+                "reference": "4906b77a07c7bd6ff1a99aea903e940a2d4fa106",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
                 "rest",
                 "router"
             ],
-            "time": "2013-11-29 20:33:36"
+            "time": "2014-04-05 18:33:59"
         },
         {
             "name": "slim/strong",
@@ -260,17 +260,17 @@
         },
         {
             "name": "slim/views",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "target-dir": "Slim/Views",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim-Views.git",
-                "reference": "8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371"
+                "reference": "f0a05ea0b654218e40de692ed7cddcad1cf4b828"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim-Views/zipball/8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371",
-                "reference": "8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371",
+                "url": "https://api.github.com/repos/codeguy/Slim-Views/zipball/f0a05ea0b654218e40de692ed7cddcad1cf4b828",
+                "reference": "f0a05ea0b654218e40de692ed7cddcad1cf4b828",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,7 @@
                 {
                     "name": "Andrew Smith",
                     "email": "a.smith@silentworks.co.uk",
-                    "homepage": "http://thoughts.silentworks.co.uk/"
+                    "homepage": "http://www.silentworks.co.uk/"
                 },
                 {
                     "name": "Josh Lockhart",
@@ -310,25 +310,36 @@
                 "slimphp",
                 "templating"
             ],
-            "time": "2013-12-08 10:18:35"
+            "time": "2014-04-03 16:31:10"
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.15",
+            "version": "v3.1.21",
             "source": {
-                "type": "svn",
-                "url": "http://smarty-php.googlecode.com/svn",
-                "reference": "/tags/v3.1.15/@4782"
+                "type": "git",
+                "url": "https://github.com/smarty-php/smarty.git",
+                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
+                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
-                    "distribution/libs/Smarty.class.php",
-                    "distribution/libs/SmartyBC.class.php",
-                    "distribution/libs/sysplugins/smarty_security.php"
+                    "libs/Smarty.class.php",
+                    "libs/SmartyBC.class.php",
+                    "libs/sysplugins/smarty_security.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -354,24 +365,27 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-01 21:08:54"
+            "time": "2014-10-31 04:22:20"
         },
         {
             "name": "vlucas/valitron",
-            "version": "1.1.5",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/valitron.git",
-                "reference": "63695ad7d1d9c98f5ae67b535567006c8d1bba01"
+                "reference": "2e8453be8113e59bac4bd3e47a916b264d17b248"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/valitron/zipball/63695ad7d1d9c98f5ae67b535567006c8d1bba01",
-                "reference": "63695ad7d1d9c98f5ae67b535567006c8d1bba01",
+                "url": "https://api.github.com/repos/vlucas/valitron/zipball/2e8453be8113e59bac4bd3e47a916b264d17b248",
+                "reference": "2e8453be8113e59bac4bd3e47a916b264d17b248",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "@stable"
             },
             "type": "library",
             "autoload": {
@@ -397,7 +411,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2013-11-11 21:11:45"
+            "time": "2014-09-08 19:55:11"
         }
     ],
     "packages-dev": [
