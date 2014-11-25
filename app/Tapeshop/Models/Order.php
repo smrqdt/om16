@@ -3,6 +3,7 @@ namespace Tapeshop\Models;
 
 use ActiveRecord\DateTime;
 use ActiveRecord\Model;
+use Tapeshop\Controllers\OrderStatus;
 
 /**
  * @property array orderitems
@@ -54,5 +55,21 @@ class Order extends Model {
 			default:
 				return 0;
 		}
+	}
+
+	/**
+	 * Check if the orders status is payed.
+	 * @return boolean
+	 */
+	public function isPayed(){
+		return $this->status == OrderStatus::PAYED;
+	}
+
+	/**
+	 * Check if the orders status is shipped.
+	 * @return boolean
+	 */
+	public function isShipped(){
+		return $this->status == OrderStatus::SHIPPED;
 	}
 }

@@ -29,7 +29,7 @@ class OrderController extends Controller {
 		foreach ($orders as $order) {
 			$c->transaction();
 			/** @var $order \Tapeshop\Models\Order */
-			$order->status = 'overdue';
+			$order->status = OrderStatus::OVERDUE;
 			$order->save();
 
 			/** @var $oi OrderItem */

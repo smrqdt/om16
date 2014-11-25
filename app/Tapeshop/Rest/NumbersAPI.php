@@ -4,6 +4,7 @@ namespace Tapeshop\Rest;
 
 use ActiveRecord\ActiveRecordException;
 use ActiveRecord\RecordNotFound;
+use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Item;
 use Tapeshop\Models\Itemnumber;
 
@@ -62,7 +63,7 @@ class NumbersAPI extends RestController {
 							$itemnumber->delete();
 						} else {
 							$order = $itemnumber->orderitem->order;
-							if ($order->shippingtime != null || $order->status == "shipped") {
+							if ($order->shippingtime != null || $order->status == OrderStatus::SHIPPED) {
 								array_push($notchanged, $itemnumber);
 							} else {
 								$orderitem = $itemnumber->orderitem;
@@ -176,7 +177,7 @@ class NumbersAPI extends RestController {
 						$itemnumber->save();
 					} else {
 						$order = $itemnumber->orderitem->order;
-						if ($order->shippingtime != null || $order->status == "shipped") {
+						if ($order->shippingtime != null || $order->status == OrderStatus::SHIPPED) {
 							if($itemnumber->valid){
 								array_push($ask, $itemnumber);
 							}else{

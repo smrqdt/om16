@@ -4,6 +4,7 @@ namespace Tapeshop;
 use ActiveRecord\DateTime;
 use Slim\Middleware;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
+use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Order;
 
 class PaypalPayment extends Middleware {
@@ -74,7 +75,7 @@ class PaypalPayment extends Middleware {
 			if ($order->getSum() + $order->getFeeFor('paypal') <= $payment_amount) {
 				// Check that the payment_status is Completed
 				if ($payment_status == "Completed") {
-					$order->status = 'payed';
+					$order->status = OrderStatus::PAYED;
 					$order->paymenttime = new DateTime();
 				}
 			}

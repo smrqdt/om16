@@ -154,7 +154,7 @@
 			</td>
 		</tr>
 	</table>
-	{if $order->status != payed && $order->payment_id == null}
+	{if ! $order->isPayed() && $order->payment_id == null}
 	<div id="paymentMethods">
 		Jetzt bezahlen:
 		<a href="#sofortModal" role="button" class="btn" data-toggle="modal"><img src="{$path}assets/img/SOFORT_Ueberweisung/icon-48x32.png">

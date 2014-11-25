@@ -1,6 +1,7 @@
 <?php
 namespace Tapeshop;
 
+use Tapeshop\Controllers\OrderStatus;
 use \Tapeshop\Models\Order;
 
 use ActiveRecord\DateTime;
@@ -104,7 +105,7 @@ class SofortPayment extends Middleware {
 			$order->payment_status = $transactionData->getStatusReason();
 			if ($transactionData->getStatusReason() == "credited" || $transactionData->getStatusReason() == "overpayment") {
 				$order->paymenttime = new DateTime();
-				$order->status = "payed";
+				$order->status = OrderStatus::PAYED;
 			}
 		} else {
 			if ($transactionData->getStatus() == "refunded") {

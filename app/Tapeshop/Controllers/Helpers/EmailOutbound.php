@@ -1,5 +1,6 @@
 <?php
 namespace Tapeshop\Controllers\Helpers;
+use Tapeshop\Controllers\OrderStatus;
 
 /**
  * Helper class for Email notifications.
@@ -14,15 +15,15 @@ class EmailOutbound {
 	public function sendNotification($order) {
 		// Check which mail is to be send.
 		switch ($order->status) {
-			case "new":
+			case OrderStatus::NEW_ORDER:
 				return EmailOutbound::sendBilling($order);
 				break;
 
-			case "payed":
+			case OrderStatus::PAYED:
 				return EmailOutbound::sendPaymentConfirmation($order);
 				break;
 
-			case "shipped":
+			case OrderStatus::SHIPPED:
 				return EmailOutbound::sendShippedConfirmation($order);
 				break;
 		}

@@ -4,6 +4,7 @@ namespace Tapeshop\Rest;
 
 use ActiveRecord\DateTime;
 use ActiveRecord\RecordNotFound;
+use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Order;
 
 class OrdersAPI extends RestController {
@@ -25,8 +26,8 @@ class OrdersAPI extends RestController {
 		try {
 			/** @var Order $order */
 			$order = Order::find_by_pk($id, array());
-			if ($order->status != "shipped") {
-				$order->status = "payed";
+			if ($order->status != OrderStatus::SHIPPED) {
+				$order->status = OrderStatus::PAYED;
 			}
 			$order->paymenttime = new DateTime();
 			$order->save();
@@ -41,8 +42,8 @@ class OrdersAPI extends RestController {
 		try {
 			/** @var Order $order */
 			$order = Order::find_by_pk($id, array());
-			if ($order->status != "shipped") {
-				$order->status = "new";
+			if ($order->status != OrderStatus::SHIPPED) {
+				$order->status = OrderStatus::NEW_ORDER;
 			}
 			$order->paymenttime = null;
 			$order->save();
@@ -57,7 +58,7 @@ class OrdersAPI extends RestController {
 		try {
 			/** @var Order $order */
 			$order = Order::find_by_pk($id, array());
-			$order->status = "shipped";
+			$order->status = OrderStatus::SHIPPED;
 			$order->shippingtime = new DateTime();
 			$order->save();
 		} catch (RecordNotFound $e) {
@@ -72,9 +73,9 @@ class OrdersAPI extends RestController {
 			/** @var Order $order */
 			$order = Order::find_by_pk($id, array());
 			if (empty($order->paymenttime)) {
-				$order->status = "new";
+				$order->status = OrderStatus::NEW_ORDER;
 			} else {
-				$order->status = "payed";
+				$order->status = OrderStatus::PAYED;
 			}
 			$order->shippingtime = null;
 			$order->save();
