@@ -1,8 +1,10 @@
 <?php
 namespace Tapeshop\Controllers\Helpers;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 use Tapeshop\Controllers\OrderStatus;
 
-require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 /**
  * Helper class for Email notifications.
  */
@@ -88,21 +90,27 @@ Viele Grüße, wir freuen uns auf dich !\n";
 -------------------------------------------------------\n
 TAPEFABRIK // Logistik\n
 \n
-E-Mail: " . SUPPORTADRESS . "\n
+E-Mail: " . SHOP_EMAIL_REPLYTO . "\n
 Web: http://www.tapefabrik.de\n";
 
-		$mailToSend = \Swift_Message::newInstance()
+		$mailToSend = Swift_Message::newInstance()
 		  ->setSubject($subject)
-		  ->setFrom(array(SHOPADRESS => 'Tapefabrik Ticketshop'))
+		  ->setFrom(array(SHOP_EMAIL_FROM => 'Tapefabrik Ticketshop'))
 		  ->setTo($adress)
 		  ->setBody($message);
 
-		$transport = \Swift_MailTransport::newInstance();
-		$mailer = \Swift_Mailer::newInstance($transport);
-		return $mailer->send($mailToSend);
+		$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT, 'ssl')
+			->setUsername(SMTP_USER)
+			->setPassword(SMTP_PASSWORD);
+		$mailer = Swift_Mailer::newInstance($transport);
+		$a = $mailer->send($mailToSend);
+		error_log("Sent Mail result");
+		error_log($a);
+		return $a;
 	}
 
 	public static function sendPaymentConfirmation($order) {
+		error_log("In sendPaymentConfirmation");
 		// Get Adress (and Name) of the user that ordered
 
 		$subject = "Bezahlung für Bestellung ".$order->id." ist bei uns eingegangen !";

@@ -21,6 +21,7 @@
         "vlucas/valitron": "*",
         "itbz/fpdf": "dev-master",
         "ext-curl": "*",
+        "swiftmailer/swiftmailer": "@stable",
         "paypal/sdk-core-php":"1.4.*"
     },
     "minimum-stability": "stable",

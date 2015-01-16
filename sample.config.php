@@ -16,8 +16,17 @@ define('VIEW', 'basic');
 /*
  * Email
  */
-define( "SHOPADRESS", "test@example.com");
-define ("SUPPORTADRESS", "test@example.com");
+define("SHOP_EMAIL_FROM", "test@example.com");
+define ("SHOP_EMAIL_REPLYTO", "test@example.com");
+define("SHOP_NAME", "Tapeshop");
+
+/*
+ * SMTP Server configuration
+ */
+define("SMTP_HOST", "smtp.example.com");
+define("SMTP_PORT", 25);
+define("SMTP_USER", "smtp-user");
+define("SMTP_PASSWORD", "secret");
 
 /*
  * FPDF

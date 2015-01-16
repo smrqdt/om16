@@ -4,6 +4,7 @@ namespace Tapeshop\Rest;
 
 use ActiveRecord\DateTime;
 use ActiveRecord\RecordNotFound;
+use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Order;
 
@@ -31,6 +32,7 @@ class OrdersAPI extends RestController {
 			}
 			$order->paymenttime = new DateTime();
 			$order->save();
+			EmailOutbound::sendPaymentConfirmation($order);
 		} catch (RecordNotFound $e) {
 			$this->haltReponse(array("error" => "Order with id " . $id . " not found!"), 404);
 		}
@@ -61,6 +63,7 @@ class OrdersAPI extends RestController {
 			$order->status = OrderStatus::SHIPPED;
 			$order->shippingtime = new DateTime();
 			$order->save();
+			EmailOutbound::sendShippedConfirmation($order);
 		} catch (RecordNotFound $e) {
 			$this->haltReponse(array("error" => "Order with id " . $id . " not found!"), 404);
 		}
