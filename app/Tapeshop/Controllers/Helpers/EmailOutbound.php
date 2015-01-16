@@ -103,25 +103,25 @@ Web: http://www.tapefabrik.de\n";
 	}
 
 	public static function sendPaymentConfirmation($order) {
-		$subject = "Bezahlung für Bestellung " . $order->id . " ist bei uns eingegangen !";
+		// Get Adress (and Name) of the user that ordered
 
-		$message = "Hallo " . $order->address->name . ",\n
-Der Gesamtbetrag für deine Bestellung mit der Nummer" . $order->id . " ist bei uns eingegangen.\n
-\n
+		$subject = "Bezahlung für Bestellung ".$order->id." ist bei uns eingegangen !";
+
+		$message = 	"Hallo ".$order->address->name.",\n
+Der Gesamtbetrag für deine Bestellung mit der Nummer TS-2015-".$order->id." ist bei uns eingegangen.\n
 Vielen Dank !\n
 \n
-Deine Bestellung wird baldmöglichst verschickt, sobald das passiert ist bekommst du erneut eine Nachricht von uns.\n";
+Deine Bestellung wird so bald wie möglich verschickt, sobald das passiert ist bekommst du erneut eine Nachricht von uns.\n\n";
 
 		return EmailOutbound::sendNotificationMail($order->user->email, $subject, $message);
 	}
 
 	public static function sendShippedConfirmation($order) {
-		$subject = "Die Bestellung T-04-" . $order->id . " wurde versendet !";
+		$subject = "Die Bestellung TS-2015-".$order->id." wurde versendet !";
 
-		$message = "Hallo " . $order->address->name . ",\n
-Deine Bestellung mit der Nummer T-04-" . $order->id . " wurde versendet.\n
-\n
-Vielen Dank für deine Bestellung bei uns!\n
+		$message = 	"Hallo ".$order->address->name.",\n
+Deine Bestellung mit der Nummer TS-2015-".$order->id." wurde versendet.\n
+ Vielen Dank für deine Bestellung bei uns!\n
 \n";
 		return EmailOutbound::sendNotificationMail($order->user->email, $subject, $message);
 	}
