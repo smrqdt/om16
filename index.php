@@ -116,6 +116,10 @@ $app->post('/item/:id/removeimage/', array($itemController, 'removeImage'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
 $app->post('/item/:id/numberspdf', array($itemController, 'numbersPdf'));
 
+// Static Pages
+$staticController = new Tapeshop\Controllers\StaticController();
+$app->get('/:pageName/', array($staticController, "renderStaticPage"));
+
 // REST
 
 $items = new \Tapeshop\Rest\Items();

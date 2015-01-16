@@ -1,7 +1,7 @@
 <?php
 namespace Tapeshop\Controllers;
 
-use ActiveRecord\ActiveRecordException;
+use SmartyException;
 use Tapeshop\Controller;
 
 /**
@@ -13,7 +13,11 @@ class StaticController extends Controller {
 	 * Show Static pages.
 	 */
 	public function renderStaticPage($pageName) {
-		$this->render('static/'.$pageName.'.html');
+		try{
+			$this->render('static/'.$pageName.'.html');
+		}catch(SmartyException $e){
+			$this->redirect("home");
+		}
 	}
 
 }
