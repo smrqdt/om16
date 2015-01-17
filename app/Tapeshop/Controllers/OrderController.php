@@ -164,7 +164,7 @@ class OrderController extends Controller {
 			$_SESSION['out_of_stock'] = $outofstock;
 			$this->redirect('cart');
 		} catch (\Exception $e) {
-			echo $e;
+			error_log($e);
 		}
 
 		$_SESSION["cart"] = array();
