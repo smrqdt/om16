@@ -41,6 +41,7 @@ CREATE TABLE `items` (
   `deleted` tinyint(1) DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',
   `shownumbers` tinyint(1) NOT NULL DEFAULT '1',
+  `ticketcode` tinyint(1) NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -51,6 +52,7 @@ CREATE TABLE `orderitems` (
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `size_id` int(11) DEFAULT NULL,
+  `ticketcode` varchar(8) NULL,
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
   KEY `order` (`order_id`),

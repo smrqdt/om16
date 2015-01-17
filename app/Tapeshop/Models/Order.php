@@ -72,4 +72,17 @@ class Order extends Model {
 	public function isShipped(){
 		return $this->status == OrderStatus::SHIPPED;
 	}
+
+	/**
+	 * Get an array of all ticket codes in this order.
+	 */
+	public function getTicketcodes(){
+		$codes = array();
+		foreach($this->orderitems as $orderitem){
+			if($orderitem->item->ticketcode || $orderitem->ticketcode){
+				array_push($codes, $orderitem->ticketcode);
+			}
+		}
+		return $codes;
+	}
 }

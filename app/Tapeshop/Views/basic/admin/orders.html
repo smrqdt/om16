@@ -11,6 +11,9 @@
 					{_("order.paymentstatus")}
 				</th>
 				<th>
+					{_("order.ticketcodes")}
+				</th>
+				<th>
 					{_("order.billingnumber")}
 				</th>
 				<th>
@@ -49,6 +52,11 @@
 				</td>
 				<td>
 					{$order->payment_status}
+				</td>
+				<td>
+					{foreach $order->getTicketcodes() as $ticketcode}
+					{$ticketcode}<br/>
+					{/foreach}
 				</td>
 				<td>
 					TS-{$order->id}
@@ -146,6 +154,7 @@
         	$('#ordersTable').dataTable({
         		"aaSorting": [[ 6, "desc" ]],
 				"aoColumns": [
+				null,
 				null,
 				null,
 				null,

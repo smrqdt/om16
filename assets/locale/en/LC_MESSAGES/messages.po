@@ -984,3 +984,9 @@ msgstr "Download item numbers (*.pdf)"
 
 msgid "order.changeaddress"
 msgstr "Change address"
+
+msgid "item.ticketcode"
+msgstr "Generate ticketcode"
+
+msgid "order.ticketcodes"
+msgstr "Ticketcodes"

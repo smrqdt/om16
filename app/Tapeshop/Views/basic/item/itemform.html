@@ -41,6 +41,12 @@
 	</div>
 </div>
 <div class="control-group">
+	<label class="control-label" id="ticketcode" for="ticketcode">{_("item.ticketcode")}</label>
+	<div class="controls">
+		<input type="checkbox" name="ticketcode" value="1" {if isset($itemform) && $itemform['ticketcode']}checked}{else}{if $item->ticketcode}checked{/if}{/if}>
+	</div>
+</div>
+<div class="control-group">
 	<div class="controls">
 		<input type="submit" value="{_('item.save')}" class="btn" />
 	</div>

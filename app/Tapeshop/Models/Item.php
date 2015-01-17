@@ -19,6 +19,7 @@ use ActiveRecord\RecordNotFound;
  * @property boolean numbered
  * @property array itemnumbers
  * @property boolean shownumbers
+ * @property boolean ticketcode
  */
 class Item extends Model {
 

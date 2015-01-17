@@ -14,6 +14,7 @@ use ActiveRecord\Model;
  * @property int order_id
  * @property int id
  * @property array itemnumbers
+ * @property String ticketcode
  */
 class Orderitem extends Model {
 
