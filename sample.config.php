@@ -19,6 +19,8 @@ define('VIEW', 'basic');
 define("SHOP_EMAIL_FROM", "test@example.com");
 define ("SHOP_EMAIL_REPLYTO", "test@example.com");
 define("SHOP_NAME", "Tapeshop");
+define("SHOP_EMAIL_SUBJECT", "Tapeshop order");
+define("SHOP_URL", "tapshop.example.com");
 
 /*
  * SMTP Server configuration
