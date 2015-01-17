@@ -61,7 +61,13 @@ class Item extends Model {
 				}
 			} else {
 				if ($variation == null) {
-					return ($this->stock >= $amount);
+					/**@var Size $size */
+					foreach($this->sizes as $size){
+						if ($size->stock >= $amount) {
+							return true;
+						}
+					}
+					return false;
 				}
 
 				if ($variation instanceof Size) {
