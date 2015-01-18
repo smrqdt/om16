@@ -1,11 +1,12 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<div class="span8">
+<div class="row" id="item-detail">
+	<div class="span6 offset1">
 			<h4 class="muted">
 				{$item->name}
 			</h4>
-			<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-polaroid" style="background-color:#ddd;"/>
+			<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-rounded" style="background-color:#ddd;"/>
 	</div>
 	
 	{if isset($smarty.session['auth_user']) && $user->admin}
@@ -18,7 +19,8 @@
 	</div>
 	{/if}
 	
-	<div class="span4 well">
+	<div class="span4" id="item-details">
+		<div class="well">
 	<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 			<form method="post" action="{$path}cart/addItem/{$item->id}">
 				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
@@ -51,4 +53,6 @@
 			{/if}
 			<h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
 	</div>
+	</div>
+</div>
 {/block}

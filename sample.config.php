@@ -38,7 +38,7 @@ define('FPDF_FONTPATH','assets/fonts/');
 /*
  * Example Image when no Article Image was passed.
  */
-define('ITEM_PLACEHOLDER','assets/img/placeholder.jpg');
+define('ITEM_PLACEHOLDER','assets/img/tape.png');
 
 /*
  * Order number prefix

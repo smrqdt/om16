@@ -55,7 +55,7 @@ body {
 }
 
 #loginButton, #signupButton, #logoutButton {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .item a{
@@ -64,11 +64,27 @@ body {
 
 .item {
     margin-right: 25px;
-    height: 560px;
+    height: 400px;
+}
+
+.item img{
+    height: 270px;
 }
 
 .item:last-child {
-    margin-right: 0px;
+    margin-right: 0;
+}
+
+.container hr{
+    margin-top: 60px;
+}
+
+#item-detail img{
+    width: 100%;
+}
+
+#item-detail #item-details {
+    margin-top: 40px;
 }
 
 @media(min-width: 767px) {
