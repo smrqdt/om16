@@ -238,4 +238,23 @@ class ItemController extends Controller {
 		$pdf->Output();
 		$this->app->response()->header("Content-Type", "application/pdf");
 	}
+
+    public function showTicketcodes($id){
+        $this->checkAdmin();
+
+        $item = null;
+
+        try {
+            $item = Item::find($id);
+        } catch (RecordNotFound $e) {
+            $this->app->flash('error', 'Item not found');
+            $this->redirect('home');
+        }
+
+        $data = array(
+            "item"=>$item
+        );
+
+        $this->render('admin/ticketcodes.tpl', $data);
+    }
 }
