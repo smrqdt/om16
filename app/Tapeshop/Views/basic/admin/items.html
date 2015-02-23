@@ -35,7 +35,7 @@
 		</thead>
 		<tbody>
 			{foreach from=$items item=item}
-			{if $item-> numbered && $item->getUnrequestedNumberCount() <= 0}
+			{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
 				<tr class="error">
 			{else}
 				<tr>

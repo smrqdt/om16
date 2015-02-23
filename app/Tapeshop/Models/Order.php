@@ -85,4 +85,16 @@ class Order extends Model {
 		}
 		return $codes;
 	}
+
+    /**
+     * Check if the order contains items with a ticketcode.
+     */
+    public function hasTicketCodes(){
+        foreach($this->orderitems as $orderitem){
+            if($orderitem->item->ticketcode){
+                return true;
+            }
+        }
+        return false;
+    }
 }
