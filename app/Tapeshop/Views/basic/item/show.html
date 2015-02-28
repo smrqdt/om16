@@ -13,7 +13,7 @@
 	<div class="span4">
         <div class="well">
             {if $item->ticketcode}
-                <a href="{$path}item/{$item->id}/ticketcodes" class="btn"><i class="icon-list"></i> {_("item.ticketcodes")}</a>
+                <a href="{$path}ticketcodes/{$item->id}" class="btn"><i class="icon-list"></i> {_("item.ticketcodes")}</a>
             {/if}
             <a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> {_("item.edit")}</a>
             <form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
