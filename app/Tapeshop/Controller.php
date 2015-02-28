@@ -4,6 +4,7 @@ namespace Tapeshop;
 use ActiveRecord\RecordNotFound;
 use Slim\Slim;
 use Strong\Strong;
+use Tapeshop\Controllers\Cart;
 use Tapeshop\Models\User;
 use Valitron\Validator;
 
@@ -38,14 +39,7 @@ abstract class Controller {
 	}
 
 	protected function getCartCount() {
-		$i = 0;
-		if (isset($_SESSION["cart"])) {
-			$cart = $_SESSION["cart"];
-			foreach ($cart as $item) {
-				$i += $item['amount'];
-			}
-		}
-		return $i;
+		return Cart::getCartCount();
 	}
 
 	/**
@@ -73,11 +67,7 @@ abstract class Controller {
 	 * @return array The current cart or a dummy (empty array.)
 	 */
 	protected function getCart() {
-		$cart = array();
-		if (isset($_SESSION["cart"])) {
-			$cart = $_SESSION["cart"];
-		}
-		return $cart;
+		return Cart::getCart();
 	}
 
 	/**

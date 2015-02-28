@@ -20,29 +20,7 @@ class CartController extends Controller {
 			$item = Item::find($id);
 			$size = Size::find('first', array('conditions' => array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
 
-			$cart = $this->getCart();
-			$incart = false;
-			foreach ($cart as $i => $ci) {
-				if ($item->id == $ci["item"]->id) {
-					if (($size == null && $ci["size"] == "") || $size->id == $ci["size"]) {
-						$incart = true;
-						$cart[$i]["amount"] = $ci["amount"] + 1;
-						print_r($ci);
-						break;
-					}
-				}
-			}
-
-			if (!$incart) {
-				$a = array(
-					"item" => $item,
-					"size" => empty($size) ? null : $size->id,
-					"amount" => 1
-				);
-				array_push($cart, $a);
-			}
-
-			$_SESSION["cart"] = $cart;
+            Cart::addItem($item, $size);
 		} catch (RecordNotFound $e) {
 			$this->app->flash('error', 'Could not add item to cart, because the item was not found!');
 		}
@@ -53,7 +31,7 @@ class CartController extends Controller {
 	 * Remove all items from the shopping cart. Redirects to Home screen.
 	 */
 	public function clearCart() {
-		$_SESSION["cart"] = array();
+        Cart::clear();
 		$this->redirect('home');
 	}
 
@@ -63,16 +41,11 @@ class CartController extends Controller {
 	 * @param POST String size Variation of the item
 	 */
 	public function increase() {
-		$cart = $this->getCart();
-		$id = $this->post("id");
-		$size = $this->post("size");
+        $id = $this->post("id");
+        $size = $this->post("size");
 
-		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $size) {
-				$item["amount"]++;
-			}
-		}
-		$_SESSION["cart"] = $cart;
+        Cart::increase($id, $size);
+
 		$this->redirect('cart');
 	}
 
@@ -87,7 +60,7 @@ class CartController extends Controller {
 			unset($_SESSION['out_of_stock']);
 		}
 
-		$cart = $this->getCart();
+		$cart = Cart::getCart();
 		$sum = 0;
 		$shipping = 0;
 
@@ -113,16 +86,11 @@ class CartController extends Controller {
 	 * @param POST String size Variant of the item
 	 */
 	public function decrease() {
-		$cart = $this->getCart();
 		$id = $this->post("id");
 		$size = $this->post("size");
 
-		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $size) {
-				$item["amount"] = max(array(1, --$item["amount"]));
-			}
-		}
-		$_SESSION["cart"] = $cart;
+        Cart::decrease($id, $size);
+
 		$this->redirect('cart');
 	}
 
@@ -133,17 +101,12 @@ class CartController extends Controller {
 	 * @param POST String newSize New variant of the item.
 	 */
 	public function changeSize() {
-		$cart = $this->getCart();
-		$id = $this->post("id");
+		$item_id = $this->post("id");
 		$currentSize = $this->post("currentSize");
 		$newSize = $this->post("newSize");
 
-		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $currentSize) {
-				$item["size"] = $newSize;
-			}
-		}
-		$_SESSION["cart"] = $cart;
+        Cart::changeSize($item_id, $currentSize, $newSize);
+
 		$this->redirect('cart');
 	}
 
@@ -153,18 +116,12 @@ class CartController extends Controller {
 	 * @param POST String size variation of the item
 	 */
 	public function remove() {
-		$cart = $this->getCart();
-		$newCart = array();
-		$id = $this->post("id");
+		$item_id = $this->post("id");
 		$size = $this->post("size");
 
-		foreach ($cart as $item) {
-			if (!($item["item"]->id == $id && $item["size"] == $size)) {
-				array_push($newCart, $item);
-			}
-		}
-		$_SESSION["cart"] = $newCart;
-		if (count($newCart) > 0) {
+        Cart::remove($item_id, $size);
+        
+		if (Cart::getCartCount() > 0) {
 			$this->redirect('cart');
 		} else {
 			$this->redirect('home');
