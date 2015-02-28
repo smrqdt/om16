@@ -22,7 +22,11 @@
         {foreach $item->orderitems as $orderitem}
             <tr>
                 <td>
-                    {$orderitem->ticketcode}
+                    {if $orderitem->ticketcode_valid}
+                        {$orderitem->ticketcode}
+                    {else}
+                        <del>{$orderitem->ticketcode}</del>
+                    {/if}
                 </td>
                 <td>
                     {$orderitem->order->user->currentAddress()->name} {$orderitem->order->user->currentAddress()->lastname}
@@ -32,6 +36,21 @@
                 </td>
                 <td>
                     {$orderitem->order->id}
+                </td>
+                <td>
+                    {if $orderitem->ticketcode_valid}
+                    <form method="post"
+                          action="{$path}ticketcode/{$orderitem->id}">
+                        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                        <button type="submit" class="btn"><i class="icon-ok"></i></button>
+                    </form>
+                    {else}
+                        <form method="post"
+                              action="{$path}ticketcode/{$orderitem->id}/reactivate">
+                            <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                            <button type="submit" class="btn"><i class="icon-edit"></i></button>
+                        </form>
+                    {/if}
                 </td>
             </tr>
         {/foreach}
@@ -56,7 +75,8 @@
                     null,
                     null,
                     null,
-                    null
+                    null,
+                    { "bSortable": false, "bSearchable" : false}
                 ]
             });
         });

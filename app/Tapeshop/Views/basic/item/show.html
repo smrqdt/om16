@@ -10,12 +10,17 @@
 	</div>
 	
 	{if isset($smarty.session['auth_user']) && $user->admin}
-	<div class="span4 well">
-		<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> {_("item.edit")}</a>
-		<form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
-			<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-			<button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {_("item.delete")}</button>
-		</form>
+	<div class="span4">
+        <div class="well">
+            {if $item->ticketcode}
+                <a href="{$path}item/{$item->id}/ticketcodes" class="btn"><i class="icon-list"></i> {_("item.ticketcodes")}</a>
+            {/if}
+            <a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> {_("item.edit")}</a>
+            <form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
+                <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {_("item.delete")}</button>
+            </form>
+        </div>
 	</div>
 	{/if}
 	

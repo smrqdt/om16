@@ -990,3 +990,6 @@ msgstr "Generate ticketcode"
 
 msgid "order.ticketcodes"
 msgstr "Ticketcodes"
+
+msgid "item.ticketcodes"
+msgstr "Ticketcodes"

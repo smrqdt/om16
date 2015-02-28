@@ -15,6 +15,7 @@ use ActiveRecord\Model;
  * @property int id
  * @property array itemnumbers
  * @property String ticketcode
+ * @property boolean ticketcode_valid
  */
 class Orderitem extends Model {
 

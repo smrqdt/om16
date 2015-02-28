@@ -6,6 +6,7 @@ use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Models\Item;
 use Tapeshop\Models\Itemnumber;
+use Tapeshop\Models\Orderitem;
 
 /**
  * Handle item operations.
@@ -256,5 +257,41 @@ class ItemController extends Controller {
         );
 
         $this->render('admin/ticketcodes.tpl', $data);
+    }
+
+    public function invalidateTicketcode($orderitem_id){
+        $this->checkAdmin();
+
+        /**@var Orderitem $orderItem*/
+        $orderItem = null;
+
+        try {
+            $orderItem = Orderitem::find($orderitem_id);
+            $orderItem->ticketcode_valid = false;
+            $orderItem->save()
+;        } catch (RecordNotFound $e) {
+            $this->app->flash('error', 'Orderitem not found');
+            $this->redirect('home');
+        }
+
+        $this->redirect($this->app->urlFor('ticketcodes', array("id" => $orderItem->item_id)), false);
+    }
+
+    public function reactivateTicketcode($orderitem_id){
+        $this->checkAdmin();
+
+        /**@var Orderitem $orderItem*/
+        $orderItem = null;
+
+        try {
+            $orderItem = Orderitem::find($orderitem_id);
+            $orderItem->ticketcode_valid = true;
+            $orderItem->save()
+            ;        } catch (RecordNotFound $e) {
+            $this->app->flash('error', 'Orderitem not found');
+            $this->redirect('home');
+        }
+
+        $this->redirect($this->app->urlFor('ticketcodes', array("id" => $orderItem->item_id)), false);
     }
 }
