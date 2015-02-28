@@ -115,6 +115,11 @@ class OrderController extends Controller {
 				$orderitem->amount = $ci["amount"];
 				$orderitem->size_id = $size == null ? null : $size->id;
 				$orderitem->price = $ci["item"]->price;
+
+				if($item->ticketcode){
+					$orderitem->ticketcode = $this->generateTicketCode();
+				}
+
 				$orderitem->save();
 				$orderitem->reload();
 
@@ -254,5 +259,18 @@ class OrderController extends Controller {
 			$billing->Output();
 			$this->app->response()->header("Content-Type", "application/pdf");
 		}
+	}
+
+	/**
+	 * Returns an 8 char code.
+	 */
+	private function generateTicketCode() {
+		$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+    	$code = '';
+    	for ($i = 0; $i < 8; $i++) {
+			$code .= $characters[mt_rand(0, $charactersLength - 1)];
+		}
+    	return $code;
 	}
 }

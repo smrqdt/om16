@@ -116,6 +116,11 @@ $app->post('/item/:id/removeimage/', array($itemController, 'removeImage'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
 $app->post('/item/:id/numberspdf', array($itemController, 'numbersPdf'));
 
+$ticketcodeController = new \Tapeshop\Controllers\TicketcodeController();
+$app->get('/ticketcodes/:item_id', array($ticketcodeController, 'show'))->name('ticketcodes');
+$app->post('/ticketcode/:orderitem_id', array($ticketcodeController, 'invalidate'));
+$app->post('/ticketcode/:orderitem_id/reactivate', array($ticketcodeController, 'reactivate'));
+
 // Static Pages
 $staticController = new Tapeshop\Controllers\StaticController();
 $app->get('/:pageName/', array($staticController, "renderStaticPage"));

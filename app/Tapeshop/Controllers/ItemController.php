@@ -82,6 +82,7 @@ class ItemController extends Controller {
 				$item->price = $this->post("price") * 100;
 				$item->shipping = $this->post("shipping") * 100;
 				$item->ticketscript = $this->post("ticketscript");
+				$item->ticketcode = $this->post("ticketcode");
 
 				try {
 					$item->save();
@@ -144,6 +145,7 @@ class ItemController extends Controller {
 				$item->price = $this->post("price") * 100;
 				$item->shipping = $this->post("shipping") * 100;
 				$item->ticketscript = $this->post("ticketscript");
+				$item->ticketcode = $this->post("ticketcode");
 
 				if ($_FILES['image']['name'] != '') {
 					$uploaddir = dirname(__FILE__) . '/../../../upload/';
@@ -160,13 +162,13 @@ class ItemController extends Controller {
 					$item->save();
 				} catch (ActiveRecordException $e) {
 					$this->app->flash('error', 'Could not create Item! ' . $e->getMessage());
-					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript', 'ticketcode'));
 				}
 
 				$this->redirect('adminitems');
 			} else {
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
-				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript', 'ticketcode'));
 			}
 		}
 
