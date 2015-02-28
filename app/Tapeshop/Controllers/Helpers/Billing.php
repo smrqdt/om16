@@ -12,7 +12,7 @@ class Billing extends FPDF {
 		$this->Meta();
 
 		// Print the Header
-		$this->SetFont('Sanchez', '', 10);
+		$this->SetFont('Arial', '', 10);
 		//TODO
 //		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
 		$this->SetTextColor(255, 255, 255);
@@ -34,7 +34,6 @@ class Billing extends FPDF {
 	}
 
 	function Meta() {
-		$this->AddFont('Sanchez', '', 'sanchez.php');
 	}
 
 	function Body() {
@@ -48,28 +47,25 @@ class Billing extends FPDF {
 		$message =
 			"Hallo " . $this->order->address->name . ",\n
 \n
-wir möchten uns bei dir noch einmal für deine Bestellung bedanken.\n
+danke für deine Bestellung!\n
 \n
-Nach dem ersten Event in Limburg, versuchen wir auch in Wiesbaden, den freshesten Rap\n
-Deutschlands auf die Bühnen zu stellen - ohne dich wär das nicht möglich !\n
-\n
-Wir freuen uns sehr auf deinen Besuch, alle Informationen die du brauchst findest du weiterhin\n
-unter:\n
-\n
-      - tapefabrik.de\n
-      - facebook.com/tapefabrik\n
-\n
-Wenn du möchtest lade doch bei Facebook noch deine Leute ein, uns hilft jeder Besucher !\n
-\n
-Hier deine Bestellung mit der Rechnungsnummer T-04-" . $this->order->id . ".\n
+Hier deine Bestellung mit der Rechnungsnummer ". ORDER_PREFIX . $this->order->id . ".\n
 \n";
 
 		foreach ($this->order->orderitems as $orderitem) {
-			$message = $message . $orderitem->amount . " x - '" . $orderitem->item->name . "'\n\n";
+			$message = $message . $orderitem->amount . " x - '" . $orderitem->item->name."'";
+
+            if($orderitem->item->ticketcode){
+                $message.= "         Ticketcode: ".$orderitem->ticketcode;
+            }
+            $message.= "\n\n";
+
 		}
 
 		$message = $message . "\n
-Bis zum 25. Januar - Dein Tapefabrik Team !\n";
+Viele Grüße,\n
+dein Tapeshop Team !\n";
+
 		$this->MultiCell(0, 2.2, utf8_decode($message));
 	}
 }
