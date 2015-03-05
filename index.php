@@ -72,6 +72,7 @@ $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->na
 // Shop
 $shopController = new Tapeshop\Controllers\ShopController();
 $app->get('/', array($shopController, 'index'))->name('home');
+$app->get('/shop', array($shopController, 'shop'));
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
 $app->get('/ticketscript/', array($shopController, "ticketscript"));
@@ -121,13 +122,9 @@ $app->get('/ticketcodes/:item_id', array($ticketcodeController, 'show'))->name('
 $app->post('/ticketcode/:orderitem_id', array($ticketcodeController, 'invalidate'));
 $app->post('/ticketcode/:orderitem_id/reactivate', array($ticketcodeController, 'reactivate'));
 
-// Static Pages
-$staticController = new Tapeshop\Controllers\StaticController();
-$app->get('/:pageName/', array($staticController, "renderStaticPage"));
-
 // REST
-
 $items = new \Tapeshop\Rest\Items();
+$app->get('/items/', array($items, 'getAll'));
 $app->get('/items/:id/', array($items, 'get'));
 $app->put('/items/:id/manage/', array($items, 'updateManageStock'));
 
@@ -152,5 +149,16 @@ $app->put('/orders/:id/payed/',array($orders, 'payed'));
 $app->put('/orders/:id/notpayed/',array($orders, 'notpayed'));
 $app->put('/orders/:id/shipped/',array($orders, 'shipped'));
 $app->put('/orders/:id/notshipped/',array($orders, 'notshipped'));
+
+$carts = new \Tapeshop\Rest\CartsAPI();
+$app->get('/cartapi', array($carts, 'get'));
+$app->post('/cartapi', array($carts, 'add'));
+$app->delete('/cartapi', array($carts, 'remove'));
+
+
+// Static Pages
+// Needs to be placed last, since it all not defined routes
+$staticController = new Tapeshop\Controllers\StaticController();
+$app->get('/:pageName/', array($staticController, "renderStaticPage"));
 
 $app->run();

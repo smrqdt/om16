@@ -5,7 +5,7 @@ angular.module("tapeshop").value("itemId", jQuery("#itemId").data("itemId"));
 
 angular.module("tapeshop").controller("stockController", function ($scope, itemsAPI, variationsAPI, itemId) {
 
-    $scope.reloadOrder = function () {
+    $scope.reloadItems = function () {
         itemsAPI.get(itemId).success(function (item) {
             $scope.item = item;
             $scope.item.manage_stock = !!$scope.item.manage_stock;
@@ -14,26 +14,26 @@ angular.module("tapeshop").controller("stockController", function ($scope, items
 
 
     $scope.updateManageStock = function (item) {
-        itemsAPI.updateManageStock(item).success($scope.reloadOrder.bind($scope))
+        itemsAPI.updateManageStock(item).success($scope.reloadItems.bind($scope))
     };
 
     $scope.addStock = function (item, amount) {
-        itemsAPI.addStock(item, amount).success($scope.reloadOrder.bind($scope));
+        itemsAPI.addStock(item, amount).success($scope.reloadItems.bind($scope));
     };
 
     $scope.addVariationStock = function (variation, amount) {
-        variationsAPI.addStock(variation, amount).success($scope.reloadOrder.bind($scope));
+        variationsAPI.addStock(variation, amount).success($scope.reloadItems.bind($scope));
     };
 
     $scope.addVariation = function (item, variationName) {
-        variationsAPI.addVariation(item, variationName).success($scope.reloadOrder.bind($scope));
+        variationsAPI.addVariation(item, variationName).success($scope.reloadItems.bind($scope));
     };
 
     $scope.deleteVariation = function (variation) {
-        variationsAPI.deleteVariation(variation).success($scope.reloadOrder.bind($scope));
+        variationsAPI.deleteVariation(variation).success($scope.reloadItems.bind($scope));
     };
 
-    $scope.reloadOrder();
+    $scope.reloadItems();
 });
 
 angular.module("tapeshop").factory("itemsAPI", function ($http, baseUrl) {
@@ -98,7 +98,7 @@ angular.module("tapeshop").factory("variationsAPI", function ($http, baseUrl) {
 
 angular.module("tapeshop").controller("numbersController", function ($scope, itemsAPI, numbersAPI, itemId) {
 
-    $scope.reloadOrder = function () {
+    $scope.reloadItems = function () {
         itemsAPI.get(itemId).success(function (item) {
             $scope.item = item;
             $scope.item.numbered = !!$scope.item.numbered;
@@ -195,11 +195,11 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
 
 
     $scope.updateManageNumbers = function (item) {
-        numbersAPI.updateManageNumbers(item).success($scope.reloadOrder.bind($scope));
+        numbersAPI.updateManageNumbers(item).success($scope.reloadItems.bind($scope));
     };
 
     $scope.updateShowNumbers = function (item) {
-        numbersAPI.updateShowNumbers(item).success($scope.reloadOrder.bind($scope));
+        numbersAPI.updateShowNumbers(item).success($scope.reloadItems.bind($scope));
     };
 
     $scope.showMessages = function(data){
@@ -212,7 +212,7 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
     $scope.updateNumbers = function (item, numberString) {
         numbersAPI.updateNumbers(item, numberString).success(function(data){
             $scope.showMessages(data);
-            $scope.reloadOrder();
+            $scope.reloadItems();
         });
         $scope.numberString = "";
     };
@@ -220,16 +220,16 @@ angular.module("tapeshop").controller("numbersController", function ($scope, ite
     $scope.updateInvalidNumbers = function(item, invalidNumberString){
         numbersAPI.updateInvalidNumbers(item, invalidNumberString).success(function(data){
             $scope.showMessages(data);
-            $scope.reloadOrder();
+            $scope.reloadItems();
         });
         $scope.invalidNumberString = "";
     };
 
     $scope.overrideWarning= function(itemnumber){
-        numbersAPI.overrideWarning(itemnumber).success($scope.reloadOrder.bind($scope));
+        numbersAPI.overrideWarning(itemnumber).success($scope.reloadItems.bind($scope));
     };
 
-    $scope.reloadOrder();
+    $scope.reloadItems();
 });
 
 angular.module("tapeshop").factory("numbersAPI", function ($http, baseUrl) {

@@ -54,7 +54,6 @@ class Cart
                 if (($size == null && $ci["size"] == "") || $size->id == $ci["size"]) {
                     $incart = true;
                     $cart[$i]["amount"] = $ci["amount"] + 1;
-                    print_r($ci);
                     break;
                 }
             }

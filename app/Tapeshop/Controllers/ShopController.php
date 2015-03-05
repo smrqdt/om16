@@ -25,6 +25,10 @@ class ShopController extends Controller {
 		$this->render("shop/index.html", $data);
 	}
 
+    public function shop(){
+        $this->render("shop/shop.tpl");
+    }
+
 	/**
 	 * Check if a user is authenticated and redirect them to Input the shipping address, or review the order.
 	 */
