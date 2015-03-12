@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{$shop_name}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <base href="{$path}">
+
+      <!-- Le styles -->
+    <link href="{$path}assets/css/bootstrap.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/styles.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/om15.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/bootstrap-responsive.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/print.css" rel="stylesheet" media="print">
+    {block name=moreStyles}{/block}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{$path}node_modules/hteml5shiv/dist/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  {block name="pagehead"}{/block}
+  <div class="container">
+    {if isset($flash['error'])}
+		<div class="alert alert-error">
+			{foreach from=$flash['error'] item=msg}
+			{$msg}<br />
+			{/foreach}
+		</div>
+	{/if}
+	
+	{if isset($flash['warn'])}
+		<div class="alert">
+			{foreach from=$flash['warn'] item=msg}
+			{$msg}<br />
+			{/foreach}
+		</div>
+	{/if}
+	
+	{if isset($flash['info'])}
+		<div class="alert alert-info">
+			{foreach from=$flash['info'] item=msg}
+			{$msg}<br />
+			{/foreach}
+		</div>
+	{/if}
+	
+	{if isset($flash['success'])}
+		<div class="alert alert-success">
+			{foreach from=$flash['success'] item=msg}
+			{$msg}<br />
+			{/foreach}
+		</div>
+	{/if}
+  	
+  		{block name=content}{/block}
+  	
+	  	<div class="clearfix"></div>
+	    <hr>
+	
+	    <footer>
+            TODO: Add social media icons
+	      <p>{_("shop.poweredby")} <a href="https://github.com/euleule/tapeshop">Tapeshop</a></p>
+	    </footer>
+  	</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{$path}node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="{$path}node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{$path}node_modules/angular/angular.min.js"></script>
+  {block name=moreScripts}{/block}
+  </body>
+</html>

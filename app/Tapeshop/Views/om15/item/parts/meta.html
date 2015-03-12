@@ -1,0 +1,50 @@
+<h5>{_("item.numbers")}</h5>
+{if $item->numbered}
+<table class="table">
+    <tr>
+        <th>{_("item.numbers.total")}</th>
+        <th>{_("item.numbers.free")}</th>
+        <th>{_("item.numbers.invalid")}</th>
+        <th>{_("item.numbers.unrequested")}</th>
+    </tr>
+    <tr>
+        <td>{count($item->itemnumbers)}</td>
+        <td>{count($item->getFreeNumbers())}</td>
+        <td>{count($item->getInvalidNumbers())}</td>
+        {if $item->getUnrequestedNumberCount() <= 0}
+        <td class="text-error">
+        {else}
+        <td>
+        {/if}
+            {$item->getUnrequestedNumberCount()}
+        </td>
+    </tr>
+</table>
+<form method="post" action="{$path}item/{$item->id}/addnumbers">
+    <div class="input-append">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+        <input type="number" placeholder="{_('item.numbers.amount')}" name="amount"/>
+        <button type="submit" class="btn"><i class="icon-plus"></i></button>
+    </div>
+</form>
+<form method="post" action="{$path}item/{$item->id}/takenumbers">
+    <div class="input-append">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+        <input type="text" placeholder="1,2,3,5-7" name="numbers"/>
+        <button type="submit" class="btn"><i class="icon-ok"></i></button>
+    </div>
+</form>
+<form method="post" action="{$path}item/{$item->id}/invalidatenumbers">
+    <div class="input-append">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+        <input type="text" placeholder="1,2,3,5-7" name="numbers"/>
+        <button type="submit" class="btn"><i class="icon-remove"></i></button>
+    </div>
+</form>
+
+{else}
+<form method="post" action="{$path}item/{$item->id}/makenumbered">
+    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+    <button type="submit" class="btn"><i class="icon-tags"></i> {_("item.numbers.addnumbers")}</button>
+</form>
+{/if}

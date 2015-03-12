@@ -30,6 +30,7 @@ abstract class Controller {
 	public function render($template, $data = array(), $status = null) {
 		$data['path'] = APP_PATH;
 		$data['item_placeholder'] = APP_PATH . ITEM_PLACEHOLDER;
+        $data['shop_name'] = SHOP_NAME;
 		$data = array_merge($data, array(
 			"noCartItems" => $this->getCartCount(),
 			"user" => $this->user

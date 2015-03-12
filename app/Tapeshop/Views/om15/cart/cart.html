@@ -1,0 +1,144 @@
+{extends file="baseWithNav.html"}
+
+{block name=moreScripts}
+    <script src="{$path}assets/js/cart.js"></script>
+{/block}
+
+{block name=content}
+	<h1>{_("cart.heading")}</h1>
+	{if $noCartItems > 0}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<!-- image column -->
+				</th>
+				<th>
+					{_("cart.item")}
+				</th>
+				<th>
+					{_("item.variation")}
+				</th>
+				<th>
+					{_("cart.amount")}
+				</th>
+				<th>
+					{_("item.price")}
+				</th>
+				<th>
+					{_("order.total")}
+				</th>
+				<th>
+					<!-- remove item -->
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		{foreach from=$cart item=item}
+        {if in_array($item["item"]->id, $outofstock['items'])||in_array($item["size"], $outofstock['sizes'])}
+			<tr class="error">
+        {else}
+            <tr>
+        {/if}
+				<td>
+					<img src="{if $item['item']->image}{$item['item']->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+				</td>
+				<td>
+					{$item["item"]->name}
+				</td>
+				<td>
+                    {if count($item["item"]->sizes)>0}
+                    <form method="post" class="item-variant-form" action="{$path}cart/changesize">
+                        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                        <input type="hidden" name="id" value="{$item["item"]->id}">
+                        <input type="hidden" name="currentSize" value="{$item["size"]}">
+                        <select class="new-size" name="newSize" class="btn">
+                        {foreach from=$item["item"]->sizes item=size}
+                            {if $item["item"]->inStock(1, $size) || $item["size"]==$size->id }
+                                <option value="{$size->id}"
+                                {if $item["size"] == $size->id}
+                                selected
+                                {/if}
+                                {if intval($size->stock) < intval($item["amount"])}
+                                disabled="disabled"
+                                {/if}
+                            >{$size->size}</option>
+                            {/if}
+                        {/foreach}
+                        <select>
+                    </form>
+                    {/if}
+				</td>
+            <td>
+                {$item["amount"]}
+                <form method="post" action="{$path}cart/increase" class="pull-right" style="display:inline;">
+                    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                    <input type="hidden" name="id" value="{$item["item"]->id}">
+                    <input type="hidden" name="size" value="{$item["size"]}">
+                    <button type="submit" class="btn btn-mini"
+                    {if !$item["item"]->inStock($item["amount"] + 1, $item["size"])}
+                    disabled="disabled"
+                    {/if}
+                    >
+                        <i class="icon-plus"></i>
+                    </button>
+                </form>
+
+                <form method="post" class="pull-right" action="{$path}cart/decrease" style="display:inline;">
+                    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                    <input type="hidden" name="id" value="{$item["item"]->id}">
+                    <input type="hidden" name="size" value="{$item["size"]}">
+                    <button type="submit" class="btn btn-mini"
+                    {if $item["amount"] < 2}
+                    disabled="disabled"
+                    {/if}
+                    >
+                        <i class="icon-minus"></i>
+                    </button>
+                </form>
+            </td>
+            <td>
+					{($item["item"]->price/100)|number_format:2:",":"."} €
+				</td>
+            <td>
+					{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €
+				</td>
+            <td>
+					<form method="post" class="pull-right" action="{$path}cart/remove" style="display:inline;">
+					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+						<input type="hidden" name="id" value="{$item["item"]->id}">
+						<input type="hidden" name="size" value="{$item["size"]}">
+						<button type="submit" class="btn">
+							<i class="icon-trash"></i>
+						</button>
+					</form>
+				</td>
+			</tr>
+		{/foreach}
+			<tr>
+				<td colspan="4" style="border-top:none;"></td>
+				<td><b>{_("order.shipping")}</b></td>
+				<td>
+					<b>{($shipping/100)|number_format:2:",":"."} €</b>
+				</td>
+			
+			</tr>
+			<tr>
+				<td colspan="4" style="border-top:none;"></td>
+				<td><b>{_("order.total")}</b></td>
+				<td>
+					<b>{$sum|number_format:2:",":"."} €</b>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<form method="post" action="{$path}cart/clear" style="display:inline">
+		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+		<button type="submit" class="btn"><i class="icon-remove"></i> {_("cart.clear")}</button>
+	</form>
+	<a href="{$path}checkout" class="btn"><i class="icon-play"></i> {_("cart.checkout")}</a>
+	{else}
+	{_("cart.noitems")}
+	{/if}
+{/block}

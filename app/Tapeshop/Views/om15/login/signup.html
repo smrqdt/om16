@@ -1,0 +1,52 @@
+{extends file="base.html"}
+
+{block name=content}
+<div class="span6 offset3">
+    <h2 class="form-signin-heading">{_("signup.text")}</h2>
+
+    <form class="form-horizontal" method="post">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+
+        <div class="control-group">
+
+            <label class="control-label" for="email">{_("user.email")}</label>
+
+            <div class="controls">
+                <input type="text" id="email" name="email" class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['email']}{/if}">
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <label class="control-label" for="password">{_("login.password")}</label>
+
+            <div class="controls">
+                <input type="password" id="password" name="password" class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['password']}{/if}">
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <label class="control-label" for="password_verify">{_("signup.reenterpassword")}</label>
+
+            <div class="controls">
+                <input type="password" id="password_verify" name="password_verify"
+                       class="input-block-level"
+                       value="{if isset($signupform)}{$signupform['password_verify']}{/if}">
+            </div>
+
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox"> <input type="checkbox" name="remember"
+                                                value="remember-me"> {_("login.rememberme")}
+                </label> <a href="{$path}" class="btn">{_("signup.button.back")}</a>
+                <button class="btn btn-primary" type="submit">{_("singup.button.register")}</button>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}

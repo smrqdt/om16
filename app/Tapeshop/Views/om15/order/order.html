@@ -1,0 +1,161 @@
+{extends file="baseWithNav.html"}
+
+{block name=content}
+<h1>{_("order.title")}</h1>
+
+<div class="row" ng-app="tapeshop">
+	<div class="span6">
+		<h6>{_("order.shippingaddress")}:</h6>
+		{if $order->address} {$order->address->name}
+		{$order->address->lastname}<br /> {$order->address->street}
+		{$order->address->building_number}<br /> {$order->address->postcode}
+		{$order->address->city}<br /> {$order->address->country} {else}
+		{$order->user->currentAddress()->name}
+		{$order->user->currentAddress()->lastname}<br />
+		{$order->user->currentAddress()->street}
+		{$order->user->currentAddress()->building_number}<br />
+		{$order->user->currentAddress()->postcode}
+		{$order->user->currentAddress()->city}<br />
+		{$order->user->currentAddress()->country} {/if}
+	</div>
+	
+	<div class="span6" ng-controller="orderController">
+        <span id="orderId" data-item-id="{$order->id}" style="display:none"></span>
+		<table class="table">
+			<tr>
+				<th>{_("order.billingnumber")}</th>
+				<td>TS-{$order->id}</td>
+			</tr>
+			<tr>
+				<th>{_("order.status.ordered")}</th>
+				<td>{$order->ordertime->format('d.m.Y, H:i')} Uhr</td>
+			</tr>
+			<tr>
+				<th>{_("order.status.paymentreceived")}</th>
+				<td>
+                    {if isset($smarty.session['auth_user']) && $user->admin}
+                    {literal}
+                        <span ng-show="order.paymenttime">
+                            {{ order.paymenttime | date : 'dd.MM.yyyy, HH:mm'}} Uhr
+                            <button type="button" class="btn btn-danger" ng-click="markAsNotPayed(order)">{/literal}{_("order.status.markasnotpayed")}{literal}</button>
+                        </span>
+                        <span ng-show="!order.paymenttime">
+                             -
+                            <button type="button" class="btn btn-default" ng-click="markAsPayed(order)">{/literal}{_("order.status.markaspayed")}{literal}</button>
+                        </span>
+                    {/literal}
+                    {else}
+                        {if $order->paymenttime}
+                            {$order->paymenttime->format('d.m.Y, H:i')} Uhr
+                        {else}
+					     -
+                        {/if}
+                    {/if}
+				</td>
+			</tr>
+			<tr>
+				<th>{_("order.status.shipped")}</th>
+				<td>
+                    {if isset($smarty.session['auth_user']) && $user->admin}
+                    {literal}
+                    <span ng-show="order.shippingtime">
+                            {{ order.shippingtime | date : 'dd.MM.yyyy, HH:mm'}} Uhr
+                            <button type="button" class="btn btn-danger" ng-click="markAsNotShipped(order)">{/literal}{_("order.status.markasnotshipped")}{literal}</button>
+                        </span>
+                        <span ng-show="!order.shippingtime">
+                             -
+                            <button type="button" class="btn btn-default" ng-click="markAsShipped(order)">{/literal}{_("order.status.markasshipped")}{literal}</button>
+                        </span>
+                    {/literal}
+                    {else}
+                        {if $order->shippingtime}
+                            {$order->shippingtime->format('d.m.Y, H:i')} Uhr
+                        {else}
+					     -
+                        {/if}
+                    {/if}
+				</td>
+			</tr>
+			{if isset($smarty.session['auth_user']) && $user->admin}
+			<tr>
+				<th>{_("order.billingpdf")}</th>
+				<td>
+                    <form method="get" action="{$path}order/billing/{$order->hashlink}"
+                        style="display: inline" ng-show="order.paymenttime">
+                        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                        <button type="submit" class="btn">
+                            <i class="icon-barcode"></i>
+                            {_("order.button.createbillingpdf")}
+                        </button>
+                    </form>
+                    <span ng-show="!order.paymenttime">
+                    {_("order.status.markaspayedfirst")}
+                    </span>
+				</td>
+			</tr>
+			{/if}
+		</table>
+	</div>
+</div>
+<br />
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<!-- image column -->
+				</th>
+				<th>{_("cart.item")}</th>
+				<th>{_("item.variation")}</th>
+				<th>{_("cart.amount")}</th>
+				<th>{_("item.price")}</th>
+				<th>{_("order.total")}</th>
+			</tr>
+		</thead>
+		{foreach from=$order->orderitems item=item}
+		<tr>
+			<td><img
+				src="{if $item->item->image}{$item->item->image}{else}{$item_placeholder}{/if}"
+				class="img-square"
+				style="background-color: #ddd; height: 50px; width: 50px;" />
+			</td>
+			<td>{$item->item->name}
+                {if $item->item->numbered && ($item->item->shownumbers || (isset($smarty.session['auth_user']) && $user->admin))}
+                    <br />{_("item.numbers")}:
+                    {foreach $item->itemnumbers as $in}
+                        {$in->number}{if not $in@last},
+                        {/if}
+                    {/foreach}
+                {/if}
+			</td>
+			<td>{if $item->size}{$item->size->size}{/if}</td>
+			<td>{$item->amount}</td>
+			<td>{($item->price/100)|number_format:2:",":"."} €</td>
+			<td>{($item->amount * ($item->price)/100)|number_format:2:",":"."} €</td>
+		</tr>
+		{/foreach}
+	
+		<tr>
+			<td colspan="4" style="border-top:none"></td>
+			<td><b>{_("order.shipping")}</b></td>
+			<td><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-top:none"></td>
+			<td><b>{_("order.fees")}</b></td>
+			<td><b>{($order->payment_fee / 100)|number_format:2:",":"."} €</b>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-top:none"></td>
+			<td><b>{_("order.total")}</b></td>
+			<td><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
+			</td>
+		</tr>
+	</table>
+{/block}
+
+{block name=moreScripts}
+    <script src="assets/js/orderStatus.js"></script>
+{/block}

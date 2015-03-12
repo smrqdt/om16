@@ -1,0 +1,47 @@
+<div class="control-group">
+	<label class="control-label" for="name">{_("item.name")}</label>
+	<div class="controls">
+		<input type="text" id="name" name="name" placeholder="{_('item.name')}"
+			value="{if isset($itemform)}{$itemform['name']}{else}{$item->name}{/if}">
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="image">{_("item.image")}</label>
+	<div class="controls">
+		<img src="{$item->image}" class="img-polaroid"
+			style="background-color: #ddd; height: 240px; width: 240px;" /> <br />
+		<input type="file" name="image" id="image"/>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="description">{_("item.description")}</label>
+	<div class="controls">
+		<textarea id="description" rows="4" type="text" name="description"
+			placeholder="{_('item.description')}">{if isset($itemform)}{$itemform['description']}{else}{$item->description}{/if}</textarea>
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="price">{_("item.price")}</label>
+	<div class="controls">
+		<input type="text" id="price" name="price" placeholder="17.42"
+			value="{if isset($itemform)}{$itemform['price']}{else}{($item->price/100)|number_format:2:".":""}{/if}"> €
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" for="shipping">{_("item.shipping")}</label>
+	<div class="controls">
+		<input type="text" id="shipping" name="shipping" placeholder="17.42"
+			value="{if isset($itemform)}{$itemform['shipping']}{else}{($item->shipping/100)|number_format:2:".":""}{/if}"> €
+	</div>
+</div>
+<div class="control-group">
+	<label class="control-label" id="ticketcode" for="ticketcode">{_("item.ticketcode")}</label>
+	<div class="controls">
+		<input type="checkbox" name="ticketcode" value="1" {if isset($itemform) && $itemform['ticketcode']}checked}{else}{if $item->ticketcode}checked{/if}{/if}>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls">
+		<input type="submit" value="{_('item.save')}" class="btn" />
+	</div>
+</div>
