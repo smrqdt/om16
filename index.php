@@ -71,8 +71,8 @@ $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->na
 
 // Shop
 $shopController = new Tapeshop\Controllers\ShopController();
-$app->get('/tickets', array($shopController, 'index'))->name('home');
-$app->get('/shop', array($shopController, 'shop'));
+$app->get('/shop', array($shopController, 'index'));
+$app->get('/tickets', array($shopController, 'shop'))->name('home');
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
 $app->get('/ticketscript/', array($shopController, "ticketscript"));
@@ -151,9 +151,10 @@ $app->put('/orders/:id/shipped/',array($orders, 'shipped'));
 $app->put('/orders/:id/notshipped/',array($orders, 'notshipped'));
 
 $carts = new \Tapeshop\Rest\CartsAPI();
-$app->get('/cartapi', array($carts, 'get'));
-$app->post('/cartapi', array($carts, 'add'));
-$app->delete('/cartapi', array($carts, 'remove'));
+$app->get('/cartapi/', array($carts, 'get'));
+$app->post('/cartapi/:item_id', array($carts, 'add'));
+$app->delete('/cartapi/:item_id', array($carts, 'remove'));
+$app->delete('/cartapi/', array($carts, 'clear'));
 
 
 // Static Pages

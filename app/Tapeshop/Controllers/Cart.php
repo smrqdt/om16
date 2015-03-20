@@ -4,18 +4,6 @@ namespace Tapeshop\Controllers;
 
 class Cart
 {
-    /**
-     * @return array The current cart or a dummy (empty array.)
-     */
-    static function getCart()
-    {
-        $cart = array();
-        if (isset($_SESSION["cart"])) {
-            $cart = $_SESSION["cart"];
-        }
-        return $cart;
-    }
-
     static function getCartCount()
     {
         $i = 0;
@@ -43,6 +31,18 @@ class Cart
             }
         }
         $_SESSION["cart"] = $cart;
+    }
+
+    /**
+     * @return array The current cart or a dummy (empty array.)
+     */
+    static function getCart()
+    {
+        $cart = array();
+        if (isset($_SESSION["cart"])) {
+            $cart = $_SESSION["cart"];
+        }
+        return $cart;
     }
 
     public static function addItem($item, $size)
@@ -105,5 +105,16 @@ class Cart
             }
         }
         $_SESSION["cart"] = $newCart;
+    }
+
+    public static function getAmount($item_id, $size)
+    {
+        $cart = Cart::getCart();
+
+        foreach ($cart as &$item) {
+            if ($item["item"]->id == $item_id && $item["size"] == $size) {
+                return $item["amount"];
+            }
+        }
     }
 }

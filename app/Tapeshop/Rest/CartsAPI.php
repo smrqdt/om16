@@ -10,9 +10,8 @@ use Tapeshop\Models\Size;
 class CartsAPI extends RestController
 {
 
-    function add()
+    function add($item_id)
     {
-        $item_id = $this->params()->item;
         $size_id = $this->params()->size;
 
         /** @var Item $item */
@@ -56,15 +55,6 @@ class CartsAPI extends RestController
         $this->response($json);
     }
 
-    function remove(){
-        $item_id = $this->params()->item;
-        $size_id = $this->params()->size;
-
-        Cart::remove($item_id, $size_id);
-
-        $this->get();
-    }
-
     private function cartItemToJson($cartItem)
     {
         $json = "{";
@@ -77,5 +67,26 @@ class CartsAPI extends RestController
         $json .= '"amount": ' . $cartItem["amount"];
         $json .= "}";
         return $json;
+    }
+
+    function remove($item_id)
+    {
+        $size_id = $this->params()->size;
+
+        $amount = Cart::getAmount($item_id, $size_id);
+
+        if ($amount > 1) {
+            Cart::decrease($item_id, $size_id);
+        } else {
+
+            Cart::remove($item_id, $size_id);
+        }
+
+        $this->get();
+    }
+
+    function clear(){
+        Cart::clear();
+        $this->get();
     }
 }
