@@ -8,10 +8,10 @@
         <div class="row" id="items-list" ng-controller="shopController">
             <div class="span6">
 
-                <div class="container item" ng-repeat="item in items">
+                <div class="item" ng-repeat="item in items">
                     <a href="item/{{item.id}}">
                         <h4 class="muted">
-                            {{item.id}} {{item.name}}
+                            {{item.name}}
                         </h4>
                     </a>
                     <h5>{{item.price/100.0|number:2}} €</h5>
@@ -23,7 +23,7 @@
                             </select>
                             {{selectedSize}}
                             <div class="btn-group">
-                                <button type="button" class="btn btn-primary" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
+                                <button type="button" class="btn btn-default" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
                             </div>
 
                         </div>

@@ -1,4 +1,4 @@
-angular.module("tapeshop", []);
+angular.module("tapeshop", ['ngSanitize']);
 
 angular.module("tapeshop").value("baseUrl", jQuery("base").attr("href"));
 
@@ -11,51 +11,6 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
     $scope.SHIRT_ID = 8;
 
     $scope.selectedSize = "";
-
-    $scope.addEarlyBird = function () {
-        $.when(
-            cartAPI.addToCart($scope.findById($scope.items, $scope.EARLY_BIRD_ID)),
-            cartAPI.addToCart($scope.findById($scope.items, $scope.TICKET_ID))
-        ).then(function () {
-                $scope.reloadCart();
-            }
-        );
-    };
-
-    $scope.addFirstTime = function () {
-        $.when(
-            cartAPI.addToCart($scope.findById($scope.items, $scope.FIRST_TIME_ID)),
-            cartAPI.addToCart($scope.findById($scope.items, $scope.TICKET_ID))
-        ).then(function () {
-                $scope.reloadCart();
-            }
-        );
-    };
-
-    $scope.uebernachtungAvailable = function (cart) {
-        var tickets = 0;
-        var uebernachtung = 0;
-
-        if (!cart) {
-            return false;
-        }
-
-        $.each(cart, function (index, item) {
-            if (item.item.id == $scope.TICKET_ID) {
-                tickets = item.amount;
-                return false;
-            }
-        });
-
-        $.each(cart, function (index, item) {
-            if (item.item.id == $scope.UEBERNACHTUNG_ID) {
-                uebernachtung = item.amount;
-                return false;
-            }
-        });
-
-        return tickets > uebernachtung;
-    };
 
     $scope.reloadItems = function () {
         itemsAPI.getAll().success(function (items) {
@@ -115,6 +70,12 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
         });
     };
 
+    $scope.clearCart = function () {
+        cartAPI.clearCart().then(function (response) {
+            $scope.cart = response.data;
+        })
+    };
+
     $scope.findById = function (array, id) {
         //TODO check why array is undefined for OM15 custom entries
         if (!array) {
@@ -163,23 +124,24 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
                 size = {id: null}
             }
             return $http({
-                url: baseUrl + "cartapi",
+                url: baseUrl + "cartapi/" + item.id,
                 method: "POST",
                 data: {
-                    item: item.id,
                     size: size.id
                 }
             });
         },
         removeFromCart: function (cartItem) {
             return $http({
-                url: baseUrl + "cartapi",
+                url: baseUrl + "cartapi/" + cartItem.item.id,
                 method: "DELETE",
                 data: {
-                    item: cartItem.item.id,
                     size: cartItem.size
                 }
             })
+        },
+        clearCart: function () {
+            return $http.delete(baseUrl + "cartapi");
         }
     };
     return cartAPI;

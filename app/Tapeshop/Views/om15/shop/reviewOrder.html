@@ -42,7 +42,13 @@
 				style="background-color: #ddd; height: 50px; width: 50px;" />
 			</td>
 			<td>{$item["item"]->name}</td>
-			<td>{$item["size"]}</td>
+			<td>
+                {foreach from=$item["item"]->sizes item=size}
+                    {if $item["size"] == $size->id}
+                        {$size->size}
+                    {/if}
+                {/foreach}
+            </td>
 			<td>{$item["amount"]}</td>
 			<td>{($item["item"]->price/100)|number_format:2:",":"."} €</td>
 			<td>{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €</td>

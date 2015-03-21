@@ -1,5 +1,5 @@
 <p><strong>Bitte beachte:</strong> In Tickets mit Übernachtung sind zwei Übernachtungen in der Jugendherberge Kassel inbegriffen. Wenn du dich selbst um eine Übernachtung außerhalb der Jugendherberge kümmerst, wähle ein Ticket ohne Übernachtung.</p>
-
+TODO
 <p>Alle Tickets sind für den gesamten Konferenzzeitraum gültig und beinhalten Verpflegung (Essen, Kaffee, Tee). Wenn du vegane, vegetarische oder glutenfreie Mahlzeiten möchtest, gib uns bitte gesondert Bescheid.</p>
 
 <p>Die openmind #om15 startet am Freitag, 11.09. abends (Anreise und Socialising). Vorträge und Barcamp finden von Samstagvormittag bis Sonntagnachmittag statt. Der Vorverkauf endete am TODO: 20. September, eine Tageskasse wird es möglicherweise geben.</p>

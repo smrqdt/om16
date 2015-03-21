@@ -2,7 +2,7 @@
 
 {block name=content}
     <h1>Wann und wo</h1>
-<p>Die #om14 findet statt vom 26. bis 28. September 2014 (Freitag bis Sonntag), wie üblich in der Jugendherberge Kassel:</p>
+<p>Die #om15 findet statt vom 11. bis 13. September 2015 (Freitag bis Sonntag), wie üblich in der <a href="http://www.djh-hessen.de/jugendherbergen/kassel/">Jugendherberge Kassel</a>:</p>
 
 <address>
     <strong>DJH Jugendherberge Kassel</strong><br>
@@ -12,5 +12,5 @@
     WGS84-Koordinaten: 51.319372,9.475584
 </address>
 
-    TODO-LINK: Die Jugendherberge Kassel auf Google+.
+    Die <a href="https://plus.google.com/104462428945039874523/about">Jugendherberge Kassel auf Google+</a>.
 {/block}

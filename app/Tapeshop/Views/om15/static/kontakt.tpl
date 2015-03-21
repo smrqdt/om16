@@ -3,13 +3,14 @@
 {block name=content}
     <h1>Kontakt</h1>
     <p>Du erreichst uns per Mail unter info@openmind-konferenz.de.</p>
-    <p>Außerdem kannst du uns auch gern auf TODO-LINK:Twitter, Facebook oder Google+ kontaktieren, wobei wir auf Twitter
+    <p>Außerdem kannst du uns auch gern auf <a href="https://twitter.com/openmindkonf">Twitter</a>, <a href="https://www.facebook.com/openmind.konferenz">Facebook</a> oder <a href="https://plus.google.com/118100230661845993722">Google+</a> kontaktieren, wobei wir auf Twitter
         definitiv am schnellsten reagieren. ;)</p>
     <h1>Impressum</h1>
     <p>Dienstanbieter dieser Seite ist die Piratenpartei Deutschland, vertreten durch den Vorsitzenden Stefan
         Körner.</p>
     <h2>Redaktionell verantwortlich gem&auml;&szlig; &#x00a7; 5 TMG</h2>
     <address>
+        TODO
         Robert Krause<br>
         Junge Piraten e.V.<br>
         Pflugstr. 9a<br>
@@ -18,12 +19,14 @@
     </address>
     <h2>Ladungsf&auml;hige Anschrift gem&auml;&szlig; TMG</h2>
     <address>
+        TODO
         Junge Piraten e.V.<br>
         Pflugstr. 9a<br>
         10115 Berlin<br>
     </address>
     <h2>Die Openmind Konferenz wird durchgef&uuml;hrt von</h2>
     <address>
+        TODO
         Junge Piraten e.V.<br>
         Pflugstr. 9a<br>
         10115 Berlin<br>
@@ -38,6 +41,7 @@
         müssen wir daher jede Verantwortung für den Inhalt dieser Links bzw. der verlinkten Seite ablehnen.</p>
     <h1>Datenschutzhinweise</h1>
     <h2>Analysedienste</h2>
+    TODO
     <p>Unsere Website verwendet Piwik als Webanalysedienst. Es werden Nutzungsinformationen (einschließlich deiner
         gekürzten IP-Adresse) an unseren Server übertragen und zu Nutzungsanalysezwecken gespeichert, was der
         Webseitenoptimierung unsererseits dient. Deine IP-Adresse wird bei diesem Vorgang umgehend anonymisiert, so dass

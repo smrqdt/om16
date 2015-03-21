@@ -4,3 +4,7 @@
     margin-top: 0px;
 }
 
+.item {
+    height: 200px;
+    float: none;
+}

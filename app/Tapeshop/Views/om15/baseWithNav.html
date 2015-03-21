@@ -20,11 +20,15 @@
                 <li><a href="{$path}">#om15</a></li>
                 <li><a href="{$path}wann-und-wo">Wann und wo</a></li>
                 <li><a href="{$path}programm">Programm</a></li>
+                <li><a href="{$path}einreichen">Einreichen</a></li>
                 <li><a href="{$path}tickets">Tickets</a></li>
                 <li><a href="{$path}anti-harassment-policy">Anti-Harassment-Policy</a></li>
                 <li><a href="{$path}kontakt">Kontakt</a></li>
 
+              <!--
               <li><a href="{$path}cart">{_("shop.nav.cart")} {if isset($noCartItems) && $noCartItems}<span class="badge">{$noCartItems}</span>{/if}</a></li>
+              -->
+
               {if isset($smarty.session['auth_user']['logged_in']) && $smarty.session['auth_user']['logged_in'] && $user->admin}
               	<li class="divider-vertical"></li>
               	<li><a href="{$path}admin">{_("shop.nav.users")}</a></li>
