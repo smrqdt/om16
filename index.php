@@ -1,5 +1,5 @@
 <?php
-define("APP_PATH", "http://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . "/../");
+define("APP_PATH", (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . "/../");
 
 require 'vendor/autoload.php';
 require_once 'config.php';
