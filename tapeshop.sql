@@ -52,7 +52,6 @@ CREATE TABLE `orderitems` (
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `size_id` int(11) DEFAULT NULL,
-  `ticketcode` varchar(8) NULL,
   `ticketcode_valid` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `item` (`item_id`),
