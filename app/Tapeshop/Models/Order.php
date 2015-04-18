@@ -74,16 +74,10 @@ class Order extends Model {
 	}
 
 	/**
-	 * Get an array of all ticket codes in this order.
+	 * Get the ticketcode of this order.
 	 */
-	public function getTicketcodes(){
-		$codes = array();
-		foreach($this->orderitems as $orderitem){
-			if($orderitem->item->ticketcode || $orderitem->ticketcode){
-				array_push($codes, $orderitem->ticketcode);
-			}
-		}
-		return $codes;
+	public function getTicketcode(){
+		return strtoupper(explode("-", $this->hashlink)[0]);
 	}
 
     /**

@@ -6,66 +6,69 @@ use fpdf\FPDF;
 /**
  * @property \Tapeshop\Models\Order order
  */
-class Billing extends FPDF {
+class Billing extends FPDF
+{
 
-	function Header() {
-		$this->Meta();
+    function Header()
+    {
+        $this->Meta();
 
-		// Print the Header
-		$this->SetFont('Arial', '', 10);
-		//TODO
+        // Print the Header
+        $this->SetFont('Arial', '', 10);
+        //TODO
 //		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
-		$this->SetTextColor(255, 255, 255);
+        $this->SetTextColor(255, 255, 255);
 
-		$this->Ln(49.5);
-		$this->Cell(16.5);
+        $this->Ln(49.5);
+        $this->Cell(16.5);
 
-		$this->Cell(472, 3, utf8_decode($this->order->address->name . " " . $this->order->address->lastname));
-		$this->Ln(6);
+        $this->Cell(472, 3, utf8_decode($this->order->address->name . " " . $this->order->address->lastname));
+        $this->Ln(6);
 
-		$this->Cell(16.5);
-		$this->Cell(472, 3, utf8_decode($this->order->address->street . " " . $this->order->address->building_number));
-		$this->Ln(6);
+        $this->Cell(16.5);
+        $this->Cell(472, 3, utf8_decode($this->order->address->street . " " . $this->order->address->building_number));
+        $this->Ln(6);
 
-		$this->Cell(16.5);
-		$this->Cell(472, 3, utf8_decode($this->order->address->postcode . " " . $this->order->address->city));
+        $this->Cell(16.5);
+        $this->Cell(472, 3, utf8_decode($this->order->address->postcode . " " . $this->order->address->city));
 
-		$this->Body();
-	}
+        $this->Body();
+    }
 
-	function Meta() {
-	}
+    function Meta()
+    {
+    }
 
-	function Body() {
+    function Body()
+    {
 
-		$this->Ln(37);
-		$this->Cell(16.5);
+        $this->Ln(37);
+        $this->Cell(16.5);
 
-		$this->SetTextColor(0, 0, 0);
+        $this->SetTextColor(0, 0, 0);
 
-		// TODO use templates, e.g. smarty
-		$message =
-			"Hallo " . $this->order->address->name . ",\n
+        // TODO use templates, e.g. smarty
+        $message =
+            "Hallo " . $this->order->address->name . ",\n
 \n
 danke für deine Bestellung!\n
 \n
-Hier deine Bestellung mit der Rechnungsnummer ". ORDER_PREFIX . $this->order->id . ".\n
+Hier deine Bestellung mit der Rechnungsnummer " . ORDER_PREFIX . $this->order->id . ".\n
 \n";
 
-		foreach ($this->order->orderitems as $orderitem) {
-			$message = $message . $orderitem->amount . " x - '" . $orderitem->item->name."'";
+        if ($this->order->hasTicketCodes()) {
+            $message .= "Um Zutritt zu der Veranstaltung zu bekommen weise dich mit folgendem Code aus : " . $this->order->getTicketcode() . "\n";
+        }
 
-            if($orderitem->item->ticketcode){
-                $message.= "         Ticketcode: ".$orderitem->ticketcode;
-            }
-            $message.= "\n\n";
+        foreach ($this->order->orderitems as $orderitem) {
+            $message = $message . $orderitem->amount . " x - '" . $orderitem->item->name . "'";
+            $message .= "\n\n";
+        }
 
-		}
-
-		$message = $message . "\n
+        $message = $message . "\n
 Viele Grüße,\n
 dein Tapeshop Team !\n";
 
-		$this->MultiCell(0, 2.2, utf8_decode($message));
-	}
+        $this->MultiCell(0, 2.2, utf8_decode($message));
+    }
 }
