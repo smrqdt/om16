@@ -54,9 +54,7 @@
 					{$order->payment_status}
 				</td>
 				<td>
-					{foreach $order->getTicketcodes() as $ticketcode}
-					{$ticketcode}<br/>
-					{/foreach}
+					{$order->getTicketcode()}
 				</td>
 				<td>
 					TS-{$order->id}
