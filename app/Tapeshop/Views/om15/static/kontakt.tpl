@@ -3,7 +3,7 @@
 {block name=content}
     <h1>Kontakt</h1>
     <p>Du erreichst uns per Mail unter info@openmind-konferenz.de.</p>
-    <p>Außerdem kannst du uns auch gern auf <a href="https://twitter.com/openmindkonf">Twitter</a>, <a href="https://www.facebook.com/openmind.konferenz">Facebook</a> oder <a href="https://plus.google.com/118100230661845993722">Google+</a> kontaktieren, wobei wir auf Twitter
+    <p>Außerdem kannst du uns auch gern auf <a href="https://twitter.com/openmindkonf" target="_blank">Twitter</a>, <a href="https://www.facebook.com/openmind.konferenz" target="_blank">Facebook</a> oder <a href="https://plus.google.com/118100230661845993722" target="_blank">Google+</a> kontaktieren, wobei wir auf Twitter
         definitiv am schnellsten reagieren. ;)</p>
     <h1>Impressum</h1>
     <p>Dienstanbieter dieser Seite ist die Piratenpartei Deutschland, vertreten durch den Vorsitzenden Stefan

@@ -47,11 +47,11 @@
 
 <p>Ein Vortrag für die #om15 ist auf eine halbe, maximal eine Dreiviertelstunde ausgelegt, damit die Diskussion vor Ort starten kann. Ob du einen Vortrag oder Workshop allein oder in einer Gruppe halten möchtest, steht dir frei. Ausschlaggebend für die Auswahl deines Beitrags für die #om15 ist vor allem, dass er sich mit den oben formulierten Grundsatzfragen beschäftigt.</p>
 
-<p>Um ein Gefühl für die Themen der openmind zu gewinnen, lohnt sich auch ein Blick auf die Konferenzreader und das Programm der letzten Jahre: <a href="http://11.openmind-konferenz.de/wp-content/uploads/2012/01/om10-final-120106.pdf">#om10 (PDF)</a>, <a href="http://www.heise.de/tp/artikel/35/35722/1.html">#om11</a>, <a href="http://www.heise.de/tp/special/open/default.html">#om12</a>, <a href="https://pentabarf.junge-piraten.de/fahrplan/om13/events.de.html">#om13</a>, <a href="http://14.openmind-konferenz.de/schedule/12/events.en.html">#om14</a>.</p>
+<p>Um ein Gefühl für die Themen der openmind zu gewinnen, lohnt sich auch ein Blick auf die Konferenzreader und das Programm der letzten Jahre: <a href="http://11.openmind-konferenz.de/wp-content/uploads/2012/01/om10-final-120106.pdf" target="_blank">#om10 (PDF)</a>, <a href="http://www.heise.de/tp/artikel/35/35722/1.html" target="_blank">#om11</a>, <a href="http://www.heise.de/tp/special/open/default.html" target="_blank">#om12</a>, <a href="https://pentabarf.junge-piraten.de/fahrplan/om13/events.de.html" target="_blank">#om13</a>, <a href="http://14.openmind-konferenz.de/schedule/12/events.en.html" target="_blank">#om14</a>.</p>
 
 <h2>Wie reiche ich meinen Beitrag ein?</h2>
 
-<p>Du konntest deinen Vorschlag bis TODO: 03. August direkt im <a href="https://pentabarf.junge-piraten.de/submission/om14">Pentabarf</a> einreichen. Wir nehmen spätestens am TODO 17. August Kontakt mit dir auf.</p>
+<p>Du konntest deinen Vorschlag bis TODO: 03. August direkt im <a href="https://pentabarf.junge-piraten.de/submission/om14" target="_blank">Pentabarf</a> einreichen. Wir nehmen spätestens am TODO 17. August Kontakt mit dir auf.</p>
 
 <h2>Worum es bei der #om15 nicht geht</h2>
 

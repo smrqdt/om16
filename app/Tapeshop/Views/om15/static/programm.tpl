@@ -7,5 +7,5 @@
 
 <p>Am Freitag (11.09.) wird es noch kein Vortragsprogramm geben, sondern das übliche lockere Get-Together, für das die openmind so bekannt ist.</p>
 
-<p>Folgt uns auf <a href="https://twitter.com/openmindkonf">Twitter</a>, <a href="https://www.facebook.com/openmind.konferenz">Facebook</a> oder <a href="https://plus.google.com/118100230661845993722">Google+</a>, um benachrichtigt zu werden, wenn es Änderungen oder Ergänzungen gibt!</p>
+<p>Folgt uns auf <a href="https://twitter.com/openmindkonf" target="_blank">Twitter</a>, <a href="https://www.facebook.com/openmind.konferenz" target="_blank">Facebook</a> oder <a href="https://plus.google.com/118100230661845993722" target="_blank">Google+</a>, um benachrichtigt zu werden, wenn es Änderungen oder Ergänzungen gibt!</p>
 {/block}
