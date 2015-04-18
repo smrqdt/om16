@@ -1,7 +1,7 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<div class="row-fluid" ng-app="tapeshop">
+	<div class="row-fluid" ng-app="tapeshop" ng-cloak>
 	
 		<div class="span6">
 			<form method="post" action="{$path}item/edit/{$item->id}"
