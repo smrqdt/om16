@@ -6,6 +6,7 @@ use ActiveRecord\Model;
 /**
  * @property int amount
  * @property int price
+ * @property int support_price
  * @property \Tapeshop\Models\Item item
  * @property int item_id
  * @property \Tapeshop\Models\Size size
