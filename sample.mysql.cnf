@@ -1,0 +1,5 @@
+[client]
+user = root
+password = secret
+host = localhost
+socket = /Applications/MAMP/tmp/mysql/mysql.sock
