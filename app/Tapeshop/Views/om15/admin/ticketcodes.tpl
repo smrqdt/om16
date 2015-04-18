@@ -23,9 +23,9 @@
             <tr>
                 <td>
                     {if $orderitem->ticketcode_valid}
-                        {$orderitem->ticketcode}
+                        {$orderitem->order->getTicketcode()}
                     {else}
-                        <del>{$orderitem->ticketcode}</del>
+                        <del>{$orderitem->order->getTicketcode()}</del>
                     {/if}
                 </td>
                 <td>
