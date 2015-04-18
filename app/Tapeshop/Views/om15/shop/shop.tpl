@@ -107,5 +107,5 @@
 {/block}
 
 {block name=moreScripts}
-    <script src="assets/js/shop.js"></script>
+    <script src="{$path}/assets/js/shop.js"></script>
 {/block}
