@@ -21,12 +21,12 @@ class Cart
 		$_SESSION["cart"] = array();
 	}
 
-	public static function increase($id, $size)
+	public static function increase($id, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $size) {
+			if ($item["item"]->id == $id && $item["size"] == $size && $item['support_price'] == $support_price) {
 				$item["amount"]++;
 			}
 		}
@@ -83,12 +83,12 @@ class Cart
 		$_SESSION["cart"] = $cart;
 	}
 
-	public static function changeSize($item_id, $currentSize, $newSize)
+	public static function changeSize($item_id, $currentSize, $newSize, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $item_id && $item["size"] == $currentSize) {
+			if ($item["item"]->id == $item_id && $item["size"] == $currentSize && $item["support_price"] == $support_price) {
 				$item["size"] = $newSize;
 			}
 		}
@@ -117,5 +117,6 @@ class Cart
 				return $item["amount"];
 			}
 		}
+		return 0;
 	}
 }

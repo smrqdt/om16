@@ -35,7 +35,7 @@ class CartsAPI extends RestController
 
 		if($item->support_ticket){
 			if($support_price < 500){
-				$this->response(array("error" => "Support price to low!"), 400);
+				$this->response(array("error" => "Support price must be at least 500!"), 400);
 			}
 		}else{
 			$support_price = 0;
