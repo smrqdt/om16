@@ -999,3 +999,9 @@ msgstr "Support-Ticket"
 
 msgid "item.choose_your_price"
 msgstr "Select the price you want to pay"
+
+msgid "item.ticketcode.description"
+msgstr "Genereates a ticket code that can be user for verification at the venue."
+
+msgid "item.support_ticket.description"
+msgstr "The Customer can choose to add between 5€ bis 100€ to the price."
