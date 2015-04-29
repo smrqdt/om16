@@ -34,14 +34,13 @@ class CartsAPI extends RestController
             }
         }
 
-		//TODO fix validation
-//		if($support_ticket || $support_ticket == "1"){
-//			if($support_price < 500){
-//				$this->response(array("error" => "Support price to low!"), 400);
-//			}
-//		}else{
-//			$support_price = 0;
-//		}
+		if($item->support_ticket){
+			if($support_price < 500){
+				$this->response(array("error" => "Support price to low!"), 400);
+			}
+		}else{
+			$support_price = 0;
+		}
 
         Cart::addItem($item, $size, $support_price);
 
