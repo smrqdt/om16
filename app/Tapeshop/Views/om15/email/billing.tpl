@@ -5,7 +5,7 @@ Thank you for your order!
 You ordered:
 
 {foreach from=$order->orderitems item=item}
-{$item->amount} x {$item->item->name} - {($item->price / 100)|number_format:2:",":"."}€
+{$item->amount} x {$item->item->name} - {(($item->price + $item->support_price)/ 100)|number_format:2:",":"."}€
 {/foreach}
 ------------------------------------------------------------------------------------------
 Shipping:   {(($order->shipping) / 100)|number_format:2:",":"."}€

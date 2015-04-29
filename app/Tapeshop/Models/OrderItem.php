@@ -16,7 +16,8 @@ use ActiveRecord\Model;
  * @property int id
  * @property array itemnumbers
  */
-class Orderitem extends Model {
+class Orderitem extends Model
+{
 
 	static $belongs_to = array(
 		array('item'),
@@ -27,4 +28,9 @@ class Orderitem extends Model {
 	static $has_many = array(
 		array('itemnumbers')
 	);
+
+	function getSum()
+	{
+		return ($this->item->price + $this->support_price) * $this->amount;
+	}
 }

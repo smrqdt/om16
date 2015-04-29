@@ -50,8 +50,8 @@
                 {/foreach}
             </td>
 			<td>{$item["amount"]}</td>
-			<td>{($item["item"]->price/100)|number_format:2:",":"."} €</td>
-			<td>{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €</td>
+			<td>{(($item["item"]->price + $item["support_price"])/100)|number_format:2:",":"."} €</td>
+			<td>{($item["amount"] * (($item["item"]->price + $item["support_price"])/100))|number_format:2:",":"."} €</td>
 		</tr>
 		{/foreach}
 		<tr>

@@ -115,6 +115,7 @@ class OrderController extends Controller {
 				$orderitem->amount = $ci["amount"];
 				$orderitem->size_id = $size == null ? null : $size->id;
 				$orderitem->price = $ci["item"]->price;
+				$orderitem->support_price = $ci["support_price"];
 
 				$orderitem->save();
 				$orderitem->reload();

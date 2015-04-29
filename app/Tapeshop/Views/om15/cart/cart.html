@@ -98,10 +98,10 @@
                 </form>
             </td>
             <td>
-					{($item["item"]->price/100)|number_format:2:",":"."} €
+					{(($item["item"]->price + $item["support_price"])/100)|number_format:2:",":"."} €
 				</td>
             <td>
-					{($item["amount"] * ($item["item"]->price/100))|number_format:2:",":"."} €
+					{($item["amount"] * (($item["item"]->price+ $item["support_price"])/100))|number_format:2:",":"."} €
 				</td>
             <td>
 					<form method="post" class="pull-right" action="{$path}cart/remove" style="display:inline;">

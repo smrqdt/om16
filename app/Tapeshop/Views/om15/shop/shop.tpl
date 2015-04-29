@@ -1,7 +1,7 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-    <div class="container" ng-app="tapeshop">
+    <div class="container" ng-app="tapeshop" ng-cloak>
         <h1>{_("shop.title")}</h1>
         {include file="shop/shop_text.tpl"}
 {literal}
@@ -26,7 +26,7 @@
                                 <button type="button" class="btn btn-default" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
                             </div>
                             <div ng-show="item.support_ticket" ng-init="item.support_price = 500">
-                                {/literal}{_('item.support_price')}{literal}
+                                {/literal}{_('item.choose_your_price')}{literal}
                                 <input ng-model="item.support_price" type="range" min="500" max="10000" step="100" />
                                 {{ item.support_price | euro }}
                                 <button ng-click="addToCart(item)" class="btn btn-default">{{ addPrices(item) | euro }} {/literal}{_('item.add')}{literal}</button>
@@ -80,10 +80,10 @@
                                 {{cartItem.amount}}
                             </td>
                             <td>
-                                {{cartItem.item.price | euro }}
+                                {{cartItem.item.price + cartItem.support_price | euro }}
                             </td>
                             <td>
-                                {{ addPrices(cartItem.item) * cartItem.amount | euro }}
+                                {{ addPrices(cartItem) * cartItem.amount | euro }}
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-mini btn-link" ng-click="removeFromCart(cartItem)">

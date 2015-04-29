@@ -38,7 +38,7 @@ class ShopController extends Controller {
 		$shipping = 0;
 
 		foreach ($cart as $item) {
-			$sum += ($item["item"]->price / 100) * $item["amount"];
+			$sum += (($item["item"]->price + $item["support_price"])/ 100) * $item["amount"];
 			$shipping = max(array($shipping, $item["item"]->shipping));
 		}
 		$sum += ($shipping / 100);

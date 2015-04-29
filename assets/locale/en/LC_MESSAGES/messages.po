@@ -996,3 +996,6 @@ msgstr "Ticketcodes"
 
 msgid "item.support_ticket"
 msgstr "Support-Ticket"
+
+msgid "item.choose_your_price"
+msgstr "Select the price you want to pay"

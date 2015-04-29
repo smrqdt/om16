@@ -726,13 +726,13 @@ msgstr "Als bezahlt markieren"
 #: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:240
 #: ../../../../templates_c/92f76fabdc29e228677753663e609ef4e9be6217.file.order.html.php:241
 msgid "order.status.shipped"
-msgstr "Versand am"
+msgstr "Versendet am"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:243
 #: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:252
 #: ../../../../templates_c/92f76fabdc29e228677753663e609ef4e9be6217.file.order.html.php:253
 msgid "order.status.markasshipped"
-msgstr "Als versand markieren"
+msgstr "Als versendet markieren"
 
 #: ../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:251
 #: ../../../../templates_c/41b7949c7e27e549d8f7e8b6579317034419dffe.file.order.html.php:260
@@ -996,3 +996,6 @@ msgstr "Ticketcodes"
 
 msgid "item.support_ticket"
 msgstr "Support-Ticket"
+
+msgid "item.choose_your_price"
+msgstr "Wähle den Preis, den du bezahlen möchtest"
