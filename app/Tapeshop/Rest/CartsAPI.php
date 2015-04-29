@@ -13,7 +13,6 @@ class CartsAPI extends RestController
     function add($item_id)
     {
         $size_id = $this->params()->size;
-		$support_ticket = $this->params()->support_ticket;
 		$support_price = $this->params()->support_price;
 
         /** @var Item $item */
