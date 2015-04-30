@@ -16,7 +16,7 @@ class ShopController extends Controller {
 	 * Show list of all items.
 	 */
 	public function index() {
-		$items = Item::all(array("conditions" => array("deleted = false"), "order" => "name asc"));
+		$items = Item::all(array("conditions" => array("deleted = false"), 'order' => 'sort_order asc'));
 
 		$data = array(
 			"items" => $items

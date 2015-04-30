@@ -10,7 +10,7 @@ class Items extends RestController
 
     public function getAll()
     {
-        $items = Item::all(array("conditions" => array("deleted = false")));
+        $items = Item::all(array("conditions" => array("deleted = false"), 'order' => 'sort_order asc'));
         $json = "[";
 
         foreach ($items as $item) {
