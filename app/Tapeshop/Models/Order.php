@@ -20,32 +20,36 @@ use Tapeshop\Controllers\OrderStatus;
  * @property int payment_method_id
  * @property DateTime paymenttime
  */
-class Order extends Model {
-	
+class Order extends Model
+{
+
 	static $belongs_to = array(
-			array('user'),
-			array('address')
-	);
-	
-	static $has_many = array(
-			array('orderitems'),
-			array('items', 'through' => 'orderitems')
+		array('user'),
+		array('address')
 	);
 
-	public function getSum(){
+	static $has_many = array(
+		array('orderitems'),
+		array('items', 'through' => 'orderitems')
+	);
+
+	public function getSum()
+	{
 		$sum = 0;
-		foreach ($this->orderitems as $item){
+		foreach ($this->orderitems as $item) {
 			$sum += $item->amount * $item->price;
 		}
 		return ($sum + $this->shipping + $this->payment_fee);
 	}
-	
-	public function getOrderId(){
+
+	public function getOrderId()
+	{
 		return ORDER_PREFIX . $this->id;
 	}
-	
-	public function getFeeFor($method){
-		switch($method){
+
+	public function getFeeFor($method)
+	{
+		switch ($method) {
 			case 'sofort':
 				$pm = PaymentMethod::find('first', array("conditions" => array("name = 'sofort'")));
 				return $pm->fix + $this->getSum() * $pm->fee;
@@ -61,7 +65,8 @@ class Order extends Model {
 	 * Check if the orders status is payed.
 	 * @return boolean
 	 */
-	public function isPayed(){
+	public function isPayed()
+	{
 		return $this->status == OrderStatus::PAYED;
 	}
 
@@ -69,26 +74,29 @@ class Order extends Model {
 	 * Check if the orders status is shipped.
 	 * @return boolean
 	 */
-	public function isShipped(){
+	public function isShipped()
+	{
 		return $this->status == OrderStatus::SHIPPED;
 	}
 
 	/**
 	 * Get the ticketcode of this order.
 	 */
-	public function getTicketcode(){
+	public function getTicketcode()
+	{
 		return strtoupper(explode("-", $this->hashlink)[0]);
 	}
 
-    /**
-     * Check if the order contains items with a ticketcode.
-     */
-    public function hasTicketCodes(){
-        foreach($this->orderitems as $orderitem){
-            if($orderitem->item->ticketcode){
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Check if the order contains items with a ticketcode.
+	 */
+	public function hasTicketCodes()
+	{
+		foreach ($this->orderitems as $orderitem) {
+			if ($orderitem->item->ticketcode) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
