@@ -12,5 +12,7 @@
     WGS84-Koordinaten: 51.319372,9.475584
 </address>
 
+    <p>Der Veranstaltungsort ist leider <b>nicht</b> barrierefrei.</p>
+
     Die <a href="https://plus.google.com/104462428945039874523/about" target="_blank">Jugendherberge Kassel auf Google+</a>.
 {/block}

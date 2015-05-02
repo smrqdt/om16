@@ -19,8 +19,9 @@ class CartController extends Controller {
 		try {
 			$item = Item::find($id);
 			$size = Size::find('first', array('conditions' => array('item_id = ? AND size LIKE ? AND deleted = false', $id, $this->post("size"))));
+			$support_price = $this->post("support_price");
 
-            Cart::addItem($item, $size);
+            Cart::addItem($item, $size, $support_price);
 		} catch (RecordNotFound $e) {
 			$this->app->flash('error', 'Could not add item to cart, because the item was not found!');
 		}
@@ -43,8 +44,9 @@ class CartController extends Controller {
 	public function increase() {
         $id = $this->post("id");
         $size = $this->post("size");
+		$support_price = $this->post("support_price");
 
-        Cart::increase($id, $size);
+        Cart::increase($id, $size, $support_price);
 
 		$this->redirect('cart');
 	}
@@ -65,7 +67,7 @@ class CartController extends Controller {
 		$shipping = 0;
 
 		foreach ($cart as $item) {
-			$sum += ($item["item"]->price / 100) * $item["amount"];
+			$sum += (($item["item"]->price + $item["support_price"])/ 100) * $item["amount"];
 			$shipping = max(array($shipping, $item["item"]->shipping));
 		}
 		$sum += ($shipping / 100);
@@ -88,8 +90,9 @@ class CartController extends Controller {
 	public function decrease() {
 		$id = $this->post("id");
 		$size = $this->post("size");
+		$support_price = $this->post("support_price");
 
-        Cart::decrease($id, $size);
+        Cart::decrease($id, $size, $support_price);
 
 		$this->redirect('cart');
 	}
@@ -104,8 +107,9 @@ class CartController extends Controller {
 		$item_id = $this->post("id");
 		$currentSize = $this->post("currentSize");
 		$newSize = $this->post("newSize");
+		$support_price = $this->post("support_price");
 
-        Cart::changeSize($item_id, $currentSize, $newSize);
+        Cart::changeSize($item_id, $currentSize, $newSize, $support_price);
 
 		$this->redirect('cart');
 	}
@@ -118,8 +122,9 @@ class CartController extends Controller {
 	public function remove() {
 		$item_id = $this->post("id");
 		$size = $this->post("size");
+		$support_price = $this->post("support_price");
 
-        Cart::remove($item_id, $size);
+        Cart::remove($item_id, $size, $support_price);
         
 		if (Cart::getCartCount() > 0) {
 			$this->redirect('cart');

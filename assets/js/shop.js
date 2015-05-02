@@ -12,6 +12,13 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
 
     $scope.selectedSize = "";
 
+    $scope.addPrices = function (item) {
+        if(item.hasOwnProperty("item")){
+            return parseInt(item.item.price || 0) + parseInt(item.support_price || 0);
+        }
+        return parseInt(item.price || 0) + parseInt(item.support_price || 0);
+    };
+
     $scope.reloadItems = function () {
         itemsAPI.getAll().success(function (items) {
             $scope.items = items;
@@ -92,7 +99,7 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
     $scope.getSum = function (cart) {
         var sum = 0;
         $.each(cart, function (index, cartItem) {
-            sum += cartItem.item.price * cartItem.amount;
+            sum += $scope.addPrices(cartItem) * cartItem.amount;
         });
         return sum;
     };
@@ -127,7 +134,8 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
                 url: baseUrl + "cartapi/" + item.id,
                 method: "POST",
                 data: {
-                    size: size.id
+                    size: size.id,
+                    support_price: item.support_price
                 }
             });
         },
@@ -136,7 +144,8 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
                 url: baseUrl + "cartapi/" + cartItem.item.id,
                 method: "DELETE",
                 data: {
-                    size: cartItem.size
+                    size: cartItem.size,
+                    support_price: cartItem.support_price
                 }
             })
         },
@@ -145,4 +154,14 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
         }
     };
     return cartAPI;
+});
+
+angular.module("tapeshop").filter("euro", function ($filter) {
+    return function (number) {
+        if (isNaN(number)) {
+            return number;
+        } else {
+            return $filter('number')(number / 100, 2) + ' €';
+        }
+    }
 });

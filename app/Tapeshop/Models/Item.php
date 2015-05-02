@@ -21,6 +21,7 @@ use ActiveRecord\RecordNotFound;
  * @property boolean shownumbers
  * @property boolean ticketcode
  * @property int sort_order
+ * @property boolean support_ticket
  */
 class Item extends Model {
 

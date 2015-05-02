@@ -9,6 +9,13 @@
     float: none;
 }
 
+@media(min-width: 767px) {
+	.item {
+		max-width: 570px;
+		float:left;
+	}
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }

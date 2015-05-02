@@ -38,7 +38,15 @@
 	<label class="control-label" id="ticketcode" for="ticketcode">{_("item.ticketcode")}</label>
 	<div class="controls">
 		<input type="checkbox" name="ticketcode" value="1" {if isset($itemform) && $itemform['ticketcode']}checked}{else}{if $item->ticketcode}checked{/if}{/if}>
+        <span class="help-block">{_("item.ticketcode.description")}</span>
 	</div>
+</div>
+<div class="control-group">
+    <label class="control-label" id="support_ticket" for="support_ticket">{_("item.support_ticket")}</label>
+    <div class="controls">
+        <input type="checkbox" name="support_ticket" value="1" {if isset($itemform) && $itemform['support_ticket']}checked}{else}{if $item->support_ticket}checked{/if}{/if}>
+        <span class="help-block">{_("item.support_ticket.description")}</span>
+    </div>
 </div>
 <div class="control-group">
 	<div class="controls">

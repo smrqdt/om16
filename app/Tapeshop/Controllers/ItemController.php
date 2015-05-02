@@ -83,6 +83,7 @@ class ItemController extends Controller {
 				$item->shipping = $this->post("shipping") * 100;
 				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
+				$item->support_ticket = $this->post("support_ticket");
 
 				try {
 					$item->save();
@@ -146,6 +147,7 @@ class ItemController extends Controller {
 				$item->shipping = $this->post("shipping") * 100;
 				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
+				$item->support_ticket = $this->post("support_ticket") || false;
 
 				if ($_FILES['image']['name'] != '') {
 					$uploaddir = dirname(__FILE__) . '/../../../upload/';

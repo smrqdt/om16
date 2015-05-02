@@ -36,8 +36,9 @@ class Order extends Model
 	public function getSum()
 	{
 		$sum = 0;
+		/**@var $item OrderItem*/
 		foreach ($this->orderitems as $item) {
-			$sum += $item->amount * $item->price;
+			$sum += $item->getSum();
 		}
 		return ($sum + $this->shipping + $this->payment_fee);
 	}
@@ -84,7 +85,8 @@ class Order extends Model
 	 */
 	public function getTicketcode()
 	{
-		return strtoupper(explode("-", $this->hashlink)[0]);
+		$parts = explode("-", $this->hashlink);
+		return strtoupper($parts[0]);
 	}
 
 	/**

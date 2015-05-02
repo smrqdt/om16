@@ -21,12 +21,12 @@ class Cart
 		$_SESSION["cart"] = array();
 	}
 
-	public static function increase($id, $size)
+	public static function increase($id, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $size) {
+			if (Cart::cartItemMatches($item, $id, $size, $support_price)) {
 				$item["amount"]++;
 			}
 		}
@@ -45,76 +45,86 @@ class Cart
 		return $cart;
 	}
 
-	public static function addItem($item, $size)
+	public static function addItem($item, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
-		$incart = false;
 		foreach ($cart as $i => $ci) {
-			if ($item->id == $ci["item"]->id) {
-				if (($size == null && $ci["size"] == "") || $size->id == $ci["size"]) {
-					$incart = true;
-					$cart[$i]["amount"] = $ci["amount"] + 1;
-					break;
-				}
+			if (Cart::cartItemMatches($ci, $item->id, $size, $support_price)) {
+				$cart[$i]["amount"] = $ci["amount"] + 1;
+
+				$_SESSION["cart"] = $cart;
+				return;
 			}
 		}
 
-		if (!$incart) {
-			$a = array(
-				"item" => $item,
-				"size" => empty($size) ? null : $size->id,
-				"amount" => 1
-			);
-			array_push($cart, $a);
-		}
+		$a = array(
+			"item" => $item,
+			"size" => empty($size) ? null : $size->id,
+			"amount" => 1,
+			"support_price" => $support_price
+		);
+		array_push($cart, $a);
 
 		$_SESSION["cart"] = $cart;
 	}
 
-	public static function decrease($id, $size)
+	public static function decrease($id, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $id && $item["size"] == $size) {
+			if (Cart::cartItemMatches($item, $id, $size, $support_price)) {
 				$item["amount"] = max(array(1, --$item["amount"]));
 			}
 		}
 		$_SESSION["cart"] = $cart;
 	}
 
-	public static function changeSize($item_id, $currentSize, $newSize)
+	public static function changeSize($item_id, $currentSize, $newSize, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $item_id && $item["size"] == $currentSize) {
+			if (Cart::cartItemMatches($item, $item_id, $currentSize, $support_price)) {
 				$item["size"] = $newSize;
 			}
 		}
 		$_SESSION["cart"] = $cart;
 	}
 
-	public static function remove($item_id, $size)
+	public static function remove($item_id, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 		$newCart = array();
 
 		foreach ($cart as $item) {
-			if (!($item["item"]->id == $item_id && $item["size"] == $size)) {
+			if (!Cart::cartItemMatches($item, $item_id, $size, $support_price)) {
 				array_push($newCart, $item);
 			}
 		}
 		$_SESSION["cart"] = $newCart;
 	}
 
-	public static function getAmount($item_id, $size)
+	public static function getAmount($item_id, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
 
 		foreach ($cart as &$item) {
-			if ($item["item"]->id == $item_id && $item["size"] == $size) {
+			if (Cart::cartItemMatches($item, $item_id, $size, $support_price)) {
 				return $item["amount"];
 			}
 		}
+		return 0;
+	}
+
+	public static function cartItemMatches($cartItem, $id, $size = null, $support_price = 0)
+	{
+		if ($cartItem["item"]->id == $id) {
+			if ($cartItem["size"] == $size || $size == null && $cartItem["size"] == "") {
+				if ($cartItem["support_price"] == $support_price) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

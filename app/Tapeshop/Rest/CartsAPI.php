@@ -13,6 +13,7 @@ class CartsAPI extends RestController
     function add($item_id)
     {
         $size_id = $this->params()->size;
+		$support_price = $this->params()->support_price;
 
         /** @var Item $item */
         $item = null;
@@ -32,7 +33,15 @@ class CartsAPI extends RestController
             }
         }
 
-        Cart::addItem($item, $size);
+		if($item->support_ticket){
+			if($support_price < 500){
+				$this->response(array("error" => "Support price must be at least 500!"), 400);
+			}
+		}else{
+			$support_price = 0;
+		}
+
+        Cart::addItem($item, $size, $support_price);
 
         $this->get();
     }
@@ -64,7 +73,8 @@ class CartsAPI extends RestController
         } else {
             $json .= '"size": null, ';
         }
-        $json .= '"amount": ' . $cartItem["amount"];
+        $json .= '"amount": ' . $cartItem["amount"]. ", ";
+		$json .= '"support_price": '. $cartItem["support_price"];
         $json .= "}";
         return $json;
     }
@@ -72,14 +82,15 @@ class CartsAPI extends RestController
     function remove($item_id)
     {
         $size_id = $this->params()->size;
+		$support_price = $this->params()->support_price;
 
-        $amount = Cart::getAmount($item_id, $size_id);
+        $amount = Cart::getAmount($item_id, $size_id, $support_price);
 
         if ($amount > 1) {
-            Cart::decrease($item_id, $size_id);
+            Cart::decrease($item_id, $size_id, $support_price);
         } else {
 
-            Cart::remove($item_id, $size_id);
+            Cart::remove($item_id, $size_id, $support_price);
         }
 
         $this->get();
