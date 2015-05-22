@@ -13,6 +13,14 @@ html, body {
 	float: none;
 }
 
+/* basic styling overrides */
+.om15 a {
+	color: #6b6f9b;
+}
+.om15 a:hover {
+	color: #8b91cd;
+}
+
 @media (min-width: 767px) {
 	.item {
 		max-width: 570px;
