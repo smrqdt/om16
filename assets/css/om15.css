@@ -21,6 +21,26 @@ html, body {
 	color: #8b91cd;
 }
 
+.om15 .navbar .btn-navbar .icon-bar {
+	border: none;
+	background-color: #33374F;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+@media (max-width: 767px) {
+	body.om15 {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.om15 .container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
 @media (min-width: 767px) {
 	.item {
 		max-width: 570px;
