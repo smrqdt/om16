@@ -202,6 +202,12 @@ a.symbol:before {
 	margin-top: -20px;
 }
 
+@media (max-width: 768px) {
+	.side-container {
+		margin-top: 0;
+	}
+}
+
 .side-container img {
 	width: 100%;
 }
