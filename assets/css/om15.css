@@ -234,3 +234,7 @@ a.symbol:before {
 	padding: 0 8% 0 18%;
 	margin-top: 100px;
 }
+
+.index-text p {
+	padding-right: 25px;
+}
