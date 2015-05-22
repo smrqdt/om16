@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+html, body {
+	height: 100%;
+}
+
 .container {
 	margin-top: 0px;
 }
@@ -22,10 +26,8 @@
 
 .om-navbar .container {
 	width: 940px;
-}
-
-.om-navbar .container {
-	width: 940px;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 @media (min-width: 1200px) {
@@ -38,6 +40,11 @@
 	.om-navbar .container {
 		width: 724px;
 	}
+}
+
+.om-navbar {
+	margin-bottom: 0;
+	padding-bottom: 20px;
 }
 
 .om-navbar .navbar-inner {
@@ -109,9 +116,23 @@ body {
 	color: #CF483B;
 }
 
+/* sticky footer */
+
+#wrap {
+	min-height: 100%;
+}
+
+#page {
+	overflow: auto;
+	padding-bottom: 120px;
+}
+
 #footer {
 	background-color: #33374F;
+	position: relative;
 	height: 120px;
+	margin-top: -120px;
+	clear: both;
 }
 
 /* Social media icon font */
