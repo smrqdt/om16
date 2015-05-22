@@ -136,6 +136,10 @@ body {
 	padding-right: 5px;
 }
 
+.social-media-icons a {
+	text-decoration: none;
+}
+
 .social-media-icons .twitter {
 	color: #45A3DB;
 }
@@ -151,6 +155,10 @@ body {
 #footer {
 	background-color: #33374F;
 	height: 120px;
+}
+
+#footer .social-media-icons {
+	margin-top: 20px;
 }
 
 /* Social media icon font */
@@ -204,11 +212,11 @@ a.symbol:before {
 }
 
 .side-container .quote .blackbox {
-	position:relative;
+	position: relative;
 	top: 70px;
 	left: 60px;
 	background-color: black;
-	height:12px;
+	height: 12px;
 	width: 80%;
 }
 
