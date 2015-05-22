@@ -66,6 +66,16 @@ html, body {
 	font-size: 12px;
 }
 
+.navbar a.brand:hover,
+.om-navbar .nav > li > a:hover {
+	/*
+	color: #e1e4e5;
+	background-color: #3f435d;
+	*/
+	background-color: #CABFC4;
+	color: #000000;
+}
+
 body {
 	background-color: #CABFC4;
 }
