@@ -1,5 +1,5 @@
 <?php
-define("APP_PATH", (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://".$_SERVER['SERVER_NAME'] .$_SERVER['SCRIPT_NAME'] . "/../");
+define("APP_PATH", (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://" . $_SERVER['SERVER_NAME'] . str_replace("index.php", "", $_SERVER['SCRIPT_NAME']));
 
 require 'vendor/autoload.php';
 require_once 'config.php';
@@ -8,7 +8,7 @@ require_once 'config.php';
  * I18N support
  */
 
-$language  = str_replace("-","_",substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5));
+$language = str_replace("-", "_", substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5));
 $lang_short = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5);
 
 $folder = "assets/locale";
@@ -26,31 +26,31 @@ textdomain($domain);
 /*
  * Configure phpactiverecord
  */
-ActiveRecord\Config::initialize(function($cfg) {
+ActiveRecord\Config::initialize(function ($cfg) {
 	/** @var ActiveRecord\Config $cfg */
-	$cfg->set_connections(array('development' => DB_PROVIDER.'://'.DB_USERNAME.':'.DB_PASSWORD.'@'.DB_HOSTNAME.'/'.DB_NAME));
+	$cfg->set_connections(array('development' => DB_PROVIDER . '://' . DB_USERNAME . ':' . DB_PASSWORD . '@' . DB_HOSTNAME . '/' . DB_NAME));
 });
 
 /*
  * Set up Slim application
  */
 $app = new \Slim\Slim(array(
-		'view' => new \Slim\Views\Smarty(),
-		'templates.path' => 'app/Tapeshop/Views/' . VIEW,
-		'log.level' => 4,
-		'log.enabled' => true
+	'view' => new \Slim\Views\Smarty(),
+	'templates.path' => 'app/Tapeshop/Views/' . VIEW,
+	'log.level' => 4,
+	'log.enabled' => true
 ));
 
 /*
  * Configure authentication
  */
 $authConfig = array(
-		'provider' => 'AuthProvider',
-		'auth.type' => 'form',
-		'login.url' => APP_PATH.'login',
-		'security.urls' => array(
-				array('path' => '/admin'),
-		),
+	'provider' => 'AuthProvider',
+	'auth.type' => 'form',
+	'login.url' => APP_PATH . 'login',
+	'security.urls' => array(
+		array('path' => '/admin'),
+	),
 );
 
 // add authentication 
@@ -130,7 +130,7 @@ $app->put('/items/:id/manage/', array($items, 'updateManageStock'));
 
 $stocks = new \Tapeshop\Rest\StocksAPI();
 $app->put('/stocks/item/:id/', array($stocks, 'addItem'));
-$app->put('/stocks/variation/:id/', array($stocks,'addVariation'));
+$app->put('/stocks/variation/:id/', array($stocks, 'addVariation'));
 
 $variations = new \Tapeshop\Rest\VariationsAPI();
 $app->post('/variations/', array($variations, 'add'));
@@ -144,11 +144,11 @@ $app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
 $app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));
 
 $orders = new \Tapeshop\Rest\OrdersAPI();
-$app->get('/orders/:id/',array($orders, 'get'));
-$app->put('/orders/:id/payed/',array($orders, 'payed'));
-$app->put('/orders/:id/notpayed/',array($orders, 'notpayed'));
-$app->put('/orders/:id/shipped/',array($orders, 'shipped'));
-$app->put('/orders/:id/notshipped/',array($orders, 'notshipped'));
+$app->get('/orders/:id/', array($orders, 'get'));
+$app->put('/orders/:id/payed/', array($orders, 'payed'));
+$app->put('/orders/:id/notpayed/', array($orders, 'notpayed'));
+$app->put('/orders/:id/shipped/', array($orders, 'shipped'));
+$app->put('/orders/:id/notshipped/', array($orders, 'notshipped'));
 
 $carts = new \Tapeshop\Rest\CartsAPI();
 $app->get('/cartapi/', array($carts, 'get'));
