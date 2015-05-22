@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-html, body {
-	height: 100%;
-}
-
 .container {
 	margin-top: 0px;
 }
@@ -14,14 +10,15 @@ html, body {
 }
 
 /* basic styling overrides */
-.om15 a {
+a {
 	color: #6b6f9b;
 }
-.om15 a:hover {
+
+a:hover {
 	color: #8b91cd;
 }
 
-.om15 .navbar .btn-navbar .icon-bar {
+.navbar .btn-navbar .icon-bar {
 	border: none;
 	background-color: #33374F;
 	box-shadow: none;
@@ -54,8 +51,10 @@ html, body {
 
 .om-navbar .container {
 	width: 940px;
-	margin-top: 0;
-	margin-bottom: 0;
+}
+
+.om-navbar .container {
+	width: 940px;
 }
 
 @media (min-width: 1200px) {
@@ -68,11 +67,6 @@ html, body {
 	.om-navbar .container {
 		width: 724px;
 	}
-}
-
-.om-navbar {
-	margin-bottom: 0;
-	padding-bottom: 20px;
 }
 
 .om-navbar .navbar-inner {
@@ -127,10 +121,10 @@ body {
 	padding-right: 10px;
 }
 
-.page-head .social-media-icons{
-	position:absolute;
-	right:20px;
-	top:20px
+.page-head .social-media-icons {
+	position: absolute;
+	right: 20px;
+	top: 20px
 }
 
 .social-media-icons ul {
@@ -154,23 +148,9 @@ body {
 	color: #CF483B;
 }
 
-/* sticky footer */
-
-#wrap {
-	min-height: 100%;
-}
-
-#page {
-	overflow: auto;
-	padding-bottom: 120px;
-}
-
 #footer {
 	background-color: #33374F;
-	position: relative;
 	height: 120px;
-	margin-top: -120px;
-	clear: both;
 }
 
 /* Social media icon font */
@@ -208,36 +188,35 @@ a.symbol:before {
 
 /* End Social media icon font */
 
-
 /* quote and image container */
 
-.om15 .side-container {
+.side-container {
+	margin-top: -20px;
+}
+
+.side-container img {
 	width: 100%;
-	height: auto;
 }
 
-.om15 blockquote {
-	font-style: italic;
-	font-size: 1.2em;
+.side-container .quote {
+	min-height: 500px;
 	background-color: white;
-	border: none;
-	padding: 20px;
-	margin-top: 20px;
 }
 
-@media (min-width: 768px) {
+.side-container .quote .blackbox {
+	position:relative;
+	top: 70px;
+	left: 60px;
+	background-color: black;
+	height:12px;
+	width: 80%;
+}
 
-	.om15 .content-container {
-		padding-right: 300px;
-	}
-
-	.om15 .side-container {
-		position: absolute;
-		right: 0;
-		top: 290px;
-		width: 300px;
-		background-color: white;
-		height: auto;
-	}
-
+.side-container blockquote {
+	font-style: italic;
+	font-size: 2em;
+	line-height: 1.3em;
+	border: none;
+	padding: 0 8% 0 18%;
+	margin-top: 100px;
 }
