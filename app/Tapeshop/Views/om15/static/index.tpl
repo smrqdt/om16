@@ -26,7 +26,7 @@
             <h3>Wann und wo</h3>
             <p>Die openmind #om15 ist eine dreitägige, familiäre Konferenz zu politischen, netzpolitischen, gesellschaftlichen und visionären Themen.</p>
 
-            <p>Sie findet seit 2010 jährlich in der Jugendherberge Kassel statt. Offiziell wird sie vom Junge Piraten* e. V. organisiert, ist offen und überparteilich eine der angenehmsten und spannendsten politischen Veranstaltungen Deutschlands.</p>
+            <p>Sie findet seit 2010 jährlich in der Jugendherberge Kassel statt. Offiziell wird sie von den Jungen Piraten* e.&nbsp;V. organisiert, ist offen und überparteilich eine der angenehmsten und spannendsten politischen Veranstaltungen Deutschlands.</p>
             <p>Schau dir das <a href="programm">Programm</a> oder unseren <a href="einreichen">Call for Participation</a> an, um genauer zu erfahren, worum es geht und wie du mitmachen kannst!</p>
 
             <p>Die #om15 findet statt vom 11. bis 13. September 2015 (Freitag bis Sonntag), wie üblich in der <a href="http://www.djh-hessen.de/jugendherbergen/kassel/" target="_blank">Jugendherberge Kassel</a>:</p>
