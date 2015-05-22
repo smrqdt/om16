@@ -116,7 +116,7 @@ body {
 }
 
 .social-media-icons {
-	font-size: 3.5em;
+	font-size: 1.5em;
 	padding-top: 20px;
 	padding-right: 10px;
 }
@@ -161,43 +161,7 @@ body {
 	margin-top: 20px;
 }
 
-/* Social media icon font */
-@font-face {
-	font-family: 'Mono Social Icons Font';
-	src: url('MonoSocialIconsFont-1.10.eot');
-	src: url('MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
-	url('MonoSocialIconsFont-1.10.woff') format('woff'),
-	url('MonoSocialIconsFont-1.10.ttf') format('truetype'),
-	url('MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-	src: url('MonoSocialIconsFont-1.10.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-.symbol, a.symbol:before {
-	font-family: 'Mono Social Icons Font';
-	-webkit-text-rendering: optimizeLegibility;
-	-moz-text-rendering: optimizeLegibility;
-	-ms-text-rendering: optimizeLegibility;
-	-o-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	-ms-font-smoothing: antialiased;
-	-o-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-}
-
-a.symbol:before {
-	content: attr(title);
-	margin-right: 0.3em;
-	font-size: 130%;
-}
-
-/* End Social media icon font */
-
 /* quote and image container */
-
 .side-container {
 	margin-top: -20px;
 }
