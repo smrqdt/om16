@@ -1,21 +1,150 @@
 @CHARSET "UTF-8";
 
 .container {
-    margin-top: 0px;
+	margin-top: 0px;
 }
 
 .item {
-    height: 200px;
-    float: none;
+	height: 200px;
+	float: none;
 }
 
-@media(min-width: 767px) {
+@media (min-width: 767px) {
 	.item {
 		max-width: 570px;
-		float:left;
+		float: left;
 	}
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
+	display: none !important;
 }
+
+.om-navbar .container {
+	width: 940px;
+}
+
+.om-navbar .container {
+	width: 940px;
+}
+
+@media (min-width: 1200px) {
+	.om-navbar .container {
+		width: 1170px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	.om-navbar .container {
+		width: 724px;
+	}
+}
+
+.om-navbar .navbar-inner {
+	background: none;
+	border: none;
+	border-radius: 0;
+
+	background-color: #33374F;
+	text-transform: uppercase;
+	color: #F7FAFB;
+}
+
+.navbar .brand,
+.om-navbar .nav > li > a {
+	color: #F7FAFB;
+	text-shadow: none;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+body {
+	background-color: #CABFC4;
+}
+
+.page-head {
+	background-color: #fff;
+	width: 100%;
+	height: 250px;
+}
+
+.page-head img {
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.social-media-icons {
+	font-size: 3.5em;
+	padding-top: 20px;
+	padding-right: 10px;
+}
+
+.page-head .social-media-icons{
+	position:absolute;
+	right:20px;
+	top:20px
+}
+
+.social-media-icons ul {
+	list-style: none;
+}
+
+.social-media-icons li {
+	float: left;
+	padding-right: 5px;
+}
+
+.social-media-icons .twitter {
+	color: #45A3DB;
+}
+
+.social-media-icons .facebook {
+	color: #5066A4;
+}
+
+.social-media-icons .gplus {
+	color: #CF483B;
+}
+
+#footer {
+	background-color: #33374F;
+	height: 120px;
+}
+
+/* Social media icon font */
+@font-face {
+	font-family: 'Mono Social Icons Font';
+	src: url('MonoSocialIconsFont-1.10.eot');
+	src: url('MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+	url('MonoSocialIconsFont-1.10.woff') format('woff'),
+	url('MonoSocialIconsFont-1.10.ttf') format('truetype'),
+	url('MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+	src: url('MonoSocialIconsFont-1.10.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.symbol, a.symbol:before {
+	font-family: 'Mono Social Icons Font';
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+a.symbol:before {
+	content: attr(title);
+	margin-right: 0.3em;
+	font-size: 130%;
+}
+
+/* End Social media icon font */
