@@ -207,3 +207,37 @@ a.symbol:before {
 }
 
 /* End Social media icon font */
+
+
+/* quote and image container */
+
+.om15 .side-container {
+	width: 100%;
+	height: auto;
+}
+
+.om15 blockquote {
+	font-style: italic;
+	font-size: 1.2em;
+	background-color: white;
+	border: none;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+
+	.om15 .content-container {
+		padding-right: 300px;
+	}
+
+	.om15 .side-container {
+		position: absolute;
+		right: 0;
+		top: 290px;
+		width: 300px;
+		background-color: white;
+		height: auto;
+	}
+
+}
