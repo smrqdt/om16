@@ -44,16 +44,6 @@
             Die <a href="https://plus.google.com/104462428945039874523/about" target="_blank">Jugendherberge Kassel auf Google+</a>.
         </div>
 
-        <div class="span5 side-container">
-            <div class="row">
-                <img src="{$path}assets/img/index.jpg"/>
-            </div>
-            <div class="row quote">
-                <div class="blackbox"></div>
-                <blockquote>&bdquo;Wenn ich diese Normen nicht mittrage, sind sie für euch nichts mehr wert!&ldquo;
-                    <br>- @SeeroiberJenny
-                </blockquote>
-            </div>
-        </div>
+        {include file="static/sidebar.tpl"}
     </div>
 {/block}
