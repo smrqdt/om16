@@ -72,7 +72,7 @@ $app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->na
 // Shop
 $shopController = new Tapeshop\Controllers\ShopController();
 $app->get('/shop', array($shopController, 'index'));
-$app->get('/tickets', array($shopController, 'shop'))->name('home');
+//$app->get('/tickets', array($shopController, 'shop'))->name('home');
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
 $app->get('/ticketscript/', array($shopController, "ticketscript"));
@@ -160,7 +160,7 @@ $app->delete('/cartapi/', array($carts, 'clear'));
 // Static Pages
 // Needs to be placed last, since it all not defined routes
 $staticController = new Tapeshop\Controllers\StaticController();
-$app->get('/', array($staticController, "renderIndex"));
+$app->get('/', array($staticController, "renderIndex"))->name('home');
 $app->get('/:pageName/', array($staticController, "renderStaticPage"))->name("static");
 
 $app->run();
