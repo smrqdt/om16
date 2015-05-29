@@ -164,6 +164,12 @@ body {
 	width: 10em;
 }
 
+@media (max-width: 540px) {
+	.page-head .social-media-icons li {
+		float: none;
+	}
+}
+
 /* quote and image container */
 .side-container {
 	margin-top: -20px;
