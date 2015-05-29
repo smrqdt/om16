@@ -39,8 +39,7 @@
             <b>Wer kann beitragen?</b>
 
             <p>Alle, die Lust haben, an der Zukunft unserer Gesellschaft mitzuarbeiten, sind eingeladen, sich zu
-                beteiligen – ob
-                Mitglied der Jungen Pirat*innen oder nicht. Hierfür brauchen wir Menschen, die ihre Ideen in Form von
+                beteiligen. Hierfür brauchen wir Menschen, die ihre Ideen in Form von
                 Vorträgen und
                 Workshops präsentieren. Dabei ist es kein Problem, wenn deine Ideen kontrovers oder in der Netzgemeinde
                 eher
