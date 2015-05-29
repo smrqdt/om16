@@ -16,7 +16,7 @@
 
             <h2>Impressum</h2>
 
-            <p>Dienstanbieter dieser Seite sind die Jungen Piraten, vertreten durch den Generalsekretär.</p>
+            <p>Dienstanbieter dieser Seite sind die Jungen Pirat*innen, vertreten durch den Generalsekretär.</p>
 
             <p><b>Reaktionell verantwortlich gemäß § 5 TMG</b><br>
                 Robert Krause<br>

@@ -20,7 +20,7 @@
                 -philosoph*innen</p>
             <b>Wer veranstaltet die #om15?</b>
 
-            <p>Die #om15 wird veranstaltet von den Jungen Piraten und unabhängigen Netzaktivist*innen, richtet sich aber
+            <p>Die #om15 wird veranstaltet von den Jungen Pirat*innen und unabhängigen Netzaktivist*innen, richtet sich aber
                 an
                 alle, die sich mit der Entwicklung der (digitalen) Gesellschaft beschäftigen wollen.</p>
             <b>Wo und wann findet die #om15 statt?</b>
@@ -40,7 +40,7 @@
 
             <p>Alle, die Lust haben, an der Zukunft unserer Gesellschaft mitzuarbeiten, sind eingeladen, sich zu
                 beteiligen – ob
-                Mitglied der Jungen Piraten oder nicht. Hierfür brauchen wir Menschen, die ihre Ideen in Form von
+                Mitglied der Jungen Pirat*innen oder nicht. Hierfür brauchen wir Menschen, die ihre Ideen in Form von
                 Vorträgen und
                 Workshops präsentieren. Dabei ist es kein Problem, wenn deine Ideen kontrovers oder in der Netzgemeinde
                 eher
