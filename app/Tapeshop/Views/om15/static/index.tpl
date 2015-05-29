@@ -42,6 +42,9 @@
             <p>Der Veranstaltungsort ist leider <b>nicht</b> barrierefrei.</p>
 
             Die <a href="https://plus.google.com/104462428945039874523/about" target="_blank">Jugendherberge Kassel auf Google+</a>.
+            <br>
+            <br>
+            <br>
         </div>
 
         {include file="static/sidebar.tpl"}
