@@ -158,7 +158,10 @@ body {
 }
 
 #footer .social-media-icons {
-	margin-top: 20px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 10em;
 }
 
 /* quote and image container */
