@@ -67,12 +67,12 @@ $app->add(new \Tapeshop\Middleware\CsrfGuard());
 $loginController = new Tapeshop\Controllers\LoginController();
 $app->map('/login/', array($loginController, 'login'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
-//$app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
+$app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 
 // Shop
 $shopController = new Tapeshop\Controllers\ShopController();
 $app->get('/shop', array($shopController, 'index'));
-//$app->get('/tickets', array($shopController, 'shop'))->name('home');
+$app->get('/tickets', array($shopController, 'shop'));
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
 $app->get('/ticketscript/', array($shopController, "ticketscript"));
