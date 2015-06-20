@@ -1,12 +1,49 @@
 @CHARSET "UTF-8";
 
 .container {
-	margin-top: 0px;
+	margin-top: 0;
+}
+
+#items-list {
+	margin-top: 30px;
 }
 
 .item {
-	height: 200px;
 	float: none;
+	margin-left: 0 !important;
+	margin-bottom: 20px;
+}
+
+.item div {
+	margin-left: 0;
+}
+
+.item p {
+	padding-right: 10px;
+}
+
+.item h4 {
+	color: #33374F;
+}
+
+.item select, .item input {
+	margin-bottom: 10px;
+}
+
+.item button {
+	margin-left: 0;
+}
+
+#cart h3 {
+	color: #33374F;
+}
+
+#cart .table td {
+	border-top: 1px solid #33374F;
+}
+
+#cart .table td.cart-total {
+	border-top: 3px double #33374F;
 }
 
 /* basic styling overrides */
@@ -210,4 +247,38 @@ body {
 
 .index-text p {
 	padding-right: 25px;
+}
+
+.btn-white {
+	background-color: hsl(0, 100%, 100%) !important;
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff");
+	background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+	background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+	background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+	background-image: linear-gradient(#ffffff, #ffffff);
+	border-color: #ffffff #ffffff hsl(0, 100%, 100%);
+	color: #333 !important;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+	-webkit-font-smoothing: antialiased;
+	font-weight: 500;
+}
+
+.btn-white:hover {
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff");
+	background-image: -khtml-gradient(linear, left top, left bottom, from(#cabfc4), to(#ffffff));
+	background-image: -moz-linear-gradient(top, #cabfc4, #ffffff);
+	background-image: -ms-linear-gradient(top, #cabfc4, #ffffff);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cabfc4), color-stop(100%, #ffffff));
+	background-image: -webkit-linear-gradient(top, #cabfc4, #ffffff);
+	background-image: -o-linear-gradient(top, #cabfc4, #ffffff);
+	background-image: linear-gradient(#cabfc4, #ffffff);
+	border-color: #ffffff #ffffff hsl(0, 100%, 100%);
+	color: #333 !important;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+	-webkit-font-smoothing: antialiased;
 }

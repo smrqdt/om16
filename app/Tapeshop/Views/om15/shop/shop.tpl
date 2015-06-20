@@ -8,30 +8,34 @@
         <div class="row" id="items-list" ng-controller="shopController">
             <div class="span6">
 
-                <div class="item" ng-repeat="item in items">
-                    <a href="item/{{item.id}}">
-                        <h4 class="muted">
-                            {{item.name}}
-                        </h4>
-                    </a>
-                    <h5 ng-hide="item.support_ticket">{{ item.price | euro }}</h5>
-                    <h5 ng-show="item.support_ticket">{{ addPrices(item) | euro }}</h5>
-                    <p ng-bind-html="item.description"></p>
-                    <div>
+                <div class="row item" ng-repeat="item in items">
+
+                    <div class="span4">
+                        <a href="item/{{item.id}}">
+                            <h4>
+                                {{item.name}}
+                            </h4>
+                        </a>
+                        <p ng-bind-html="item.description"></p>
+                    </div>
+
+                    <div class="span2">
+                        <h5 ng-hide="item.support_ticket">{{ item.price | euro }}</h5>
+                        <h5 ng-show="item.support_ticket">{{ addPrices(item) | euro }}</h5>
                         <div class="text-error" ng-if="!inStock(item)">{/literal}{_("item.outofstock")}{literal}</div>
                         <div ng-if="inStock(item)">
                             <form class="form-search" action="#">
-                                <select name="size" ng-if="item.sizes.length" ng-model="item.selectedSize" ng-options="size as size.size for size in sizesInStock(item)">
+                                <select name="size" class="span2" ng-if="item.sizes.length" ng-model="item.selectedSize" ng-options="size as size.size for size in sizesInStock(item)">
                                 </select>
                                 {{selectedSize}}
                                 <div class="btn-group" ng-hide="item.support_ticket">
-                                    <button type="button" class="btn btn-default" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
+                                    <button type="button" class="btn btn-white span2" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
                                 </div>
                                 <div ng-show="item.support_ticket" ng-init="item.support_price = 500">
                                     {/literal}{_('item.choose_your_price')}{literal}<br/>
-                                    <input ng-model="item.support_price" type="range" min="500" max="20000" step="100" />
+                                    <input class="span2" ng-model="item.support_price" type="range" min="500" max="20000" step="100" />
                                     <!--{{ item.support_price | euro }}-->
-                                    <button type="button" ng-click="addToCart(item)" class="btn btn-default">{{ addPrices(item) | euro }} {/literal}{_('item.add')}{literal}</button>
+                                    <button type="button" ng-click="addToCart(item)" class="btn btn-white span2">{{ addPrices(item) | euro }} {/literal}{_('item.add')}{literal}</button>
                                 </div>
                             </form>
                         </div>
@@ -39,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="container span6" ng-if="cart.length">
+            <div id="cart" class="container span6" ng-if="cart.length">
 {/literal}
                 <h3>{_("cart.heading")}</h3>
 
@@ -96,16 +100,24 @@
 
                         <tr>
                             <td colspan="3" style="border-top:none;"></td>
-                            <td><b>{/literal}{_("order.total")}{literal}</b></td>
-                            <td>
+                            <td class="cart-total"><b>{/literal}{_("order.total")}{literal}</b></td>
+                            <td class="cart-total">
                                 <b>{{getSum(cart)/100|number:2}} €</b>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 {/literal}
-                <button type="submit" class="btn" ng-click="clearCart()"><i class="icon-remove"></i> {_("cart.clear")}</button>
-                <a href="{$path}checkout" class="btn"><i class="icon-play"></i> {_("cart.checkout")}</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="span2 offset1">
+                            <button type="submit" class="btn btn-white" ng-click="clearCart()"><i class="icon-remove"></i> {_("cart.clear")}</button>
+                        </div>
+                        <div class="span2">
+                            <a href="{$path}checkout" class="btn btn-white"><i class="icon-play"></i> {_("cart.checkout")}</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
