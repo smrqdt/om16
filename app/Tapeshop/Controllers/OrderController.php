@@ -224,6 +224,7 @@ class OrderController extends Controller {
 		} else {
 
 			$data = array(
+				"orderPrefix" => ORDER_PREFIX,
 				"order" => $order,
 				"paypal_merchant_id" => PAYPAL_MERCHANT_ID
 			);
