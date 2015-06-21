@@ -1,78 +1,88 @@
 {extends file="baseWithNav.html"}
 
 {block name=content}
-	<h1>{_("shop.review.title")}</h1>
-	
-	{$user->email}
-	<br />
-	{$user->currentAddress()->name} {$user->currentAddress()->lastname}
-	<br />
-	{$user->currentAddress()->street}
-	{$user->currentAddress()->building_number}
-	<br />
-	{$user->currentAddress()->postcode} {$user->currentAddress()->city}
-	<br />
-	{$user->currentAddress()->country}
-    <br />
-    <form method="get" action="changeaddress" style="display: inline">
-        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-        <button type="submit" class="btn">
-            <i class="icon-edit"></i> {_("order.changeaddress")}
-        </button>
-    </form>
+<h1>{_("shop.review.title")}</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					<!-- image column -->
-				</th>
-				<th>{_("cart.item")}</th>
-				<th>{_("item.variation")}</th>
-				<th>{_("cart.amount")}</th>
-				<th>{_("item.price")}</th>
-				<th>{_("order.total")}</th>
-			</tr>
-		</thead>
-		{foreach from=$cart item=item}
-		<tr>
-			<td><img
-				src="{if $item['item']->image}{$item['item']->image}{else}{$item_placeholder}{/if}"
-				class="img-square"
-				style="background-color: #ddd; height: 50px; width: 50px;" />
-			</td>
-			<td>{$item["item"]->name}</td>
-			<td>
-                {foreach from=$item["item"]->sizes item=size}
-                    {if $item["size"] == $size->id}
-                        {$size->size}
-                    {/if}
-                {/foreach}
-            </td>
-			<td>{$item["amount"]}</td>
-			<td>{(($item["item"]->price + $item["support_price"])/100)|number_format:2:",":"."} €</td>
-			<td>{($item["amount"] * (($item["item"]->price + $item["support_price"])/100))|number_format:2:",":"."} €</td>
-		</tr>
-		{/foreach}
-		<tr>
-			<td colspan="4" style="border-top: none;"></td>
-			<td><b>{_("order.shipping")}</b></td>
-			<td><b>{($shipping/100)|number_format:2:",":"."} €</b>
-			</td>
-	
-		</tr>
-		<tr>
-			<td colspan="4" style="border-top: none;"></td>
-			<td><b>{_("order.total")}</b></td>
-			<td><b>{$sum|number_format:2:",":"."} €</b>
-			</td>
-		</tr>
-	</table>
-	
-	<form method="post" action="{$path}order" style="display: inline">
-		<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-		<button type="submit" class="btn">
-			<i class="icon-ok"></i> {_("order.submit")}
-		</button>
-	</form>
+{$user->email}
+<br/>
+{$user->currentAddress()->name} {$user->currentAddress()->lastname}
+<br/>
+{$user->currentAddress()->street}
+{$user->currentAddress()->building_number}
+<br/>
+{$user->currentAddress()->postcode} {$user->currentAddress()->city}
+<br/>
+{$user->currentAddress()->country}
+<br/>
+<form method="get" action="changeaddress" style="display: inline">
+    <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+    <button type="submit" class="btn btn-white">
+        <i class="icon-edit"></i> {_("order.changeaddress")}
+    </button>
+</form>
+
+<table class="table review-items">
+    <thead>
+    <tr>
+        <th>
+            <!-- image column -->
+        </th>
+        <th>{_("cart.item")}</th>
+        <th>{_("item.variation")}</th>
+        <th>{_("cart.amount")}</th>
+        <th>{_("item.price")}</th>
+        <th>{_("order.total")}</th>
+    </tr>
+    </thead>
+    {foreach from=$cart item=item}
+    <tr>
+        <td><img
+            src="{if $item['item']->image}{$item['item']->image}{else}{$item_placeholder}{/if}"
+            class="img-square"
+            style="background-color: #ddd; height: 50px; width: 50px;"/>
+        </td>
+        <td>{$item["item"]->name}</td>
+        <td>
+            {foreach from=$item["item"]->sizes item=size}
+            {if $item["size"] == $size->id}
+            {$size->size}
+            {/if}
+            {/foreach}
+        </td>
+        <td>{$item["amount"]}</td>
+        <td>{(($item["item"]->price + $item["support_price"])/100)|number_format:2:",":"."} €</td>
+        <td>{($item["amount"] * (($item["item"]->price + $item["support_price"])/100))|number_format:2:",":"."} €</td>
+    </tr>
+    {/foreach}
+    <tr>
+        <td colspan="4" style="border-top: none;"></td>
+        <td><b>{_("order.shipping")}</b></td>
+        <td><b>{($shipping/100)|number_format:2:",":"."} €</b>
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="4" style="border-top: none;"></td>
+        <td class="review-total"><b>{_("order.total")}</b></td>
+        <td class="review-total"><b>{$sum|number_format:2:",":"."} €</b>
+        </td>
+    </tr>
+</table>
+
+<div class="row submit-order-controls">
+    <div class="span3 offset2">
+        <a href="tickets" class="btn btn-white span3">Zurück</a>
+    </div>
+    <div class="span3 offset1">
+        <form method="post" action="{$path}order" style="display: inline">
+            <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+            <button type="submit" class="btn btn-white span3">
+                <i class="icon-ok"></i> {_("order.submit")}
+            </button>
+        </form>
+    </div>
+</div>
+
+<br><br><br>
+
 {/block}

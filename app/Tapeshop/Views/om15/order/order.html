@@ -21,10 +21,10 @@
 	
 	<div class="span6" ng-controller="orderController">
         <span id="orderId" data-item-id="{$order->id}" style="display:none"></span>
-		<table class="table">
+		<table class="table order-summary">
 			<tr>
-				<th>{_("order.billingnumber")}</th>
-				<td>TS-{$order->id}</td>
+				<th class="noborder">{_("order.billingnumber")}</th>
+				<td class="noborder">TS-{$order->id}</td>
 			</tr>
 			<tr>
 				<th>{_("order.status.ordered")}</th>
@@ -99,7 +99,7 @@
 </div>
 <br />
 
-	<table class="table">
+	<table class="table review-items">
 		<thead>
 			<tr>
 				<th>
@@ -137,14 +137,8 @@
 	
 		<tr>
 			<td colspan="4" style="border-top:none"></td>
-			<td><b>{_("order.shipping")}</b></td>
-			<td><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4" style="border-top:none"></td>
-			<td><b>{_("order.fees")}</b></td>
-			<td><b>{($order->payment_fee / 100)|number_format:2:",":"."} €</b>
+			<td class="review-total"><b>{_("order.shipping")}</b></td>
+			<td class="review-total"><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
 			</td>
 		</tr>
 		<tr>

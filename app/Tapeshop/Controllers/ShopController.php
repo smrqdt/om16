@@ -10,12 +10,14 @@ use Tapeshop\Models\User;
 /**
  * Handle shop operations.
  */
-class ShopController extends Controller {
+class ShopController extends Controller
+{
 
 	/**
 	 * Show list of all items.
 	 */
-	public function index() {
+	public function index()
+	{
 		$items = Item::all(array("conditions" => array("deleted = false"), 'order' => 'sort_order asc'));
 
 		$data = array(
@@ -25,20 +27,22 @@ class ShopController extends Controller {
 		$this->render("shop/index.html", $data);
 	}
 
-    public function shop(){
-        $this->render("shop/shop.tpl");
-    }
+	public function shop()
+	{
+		$this->render("shop/shop.tpl");
+	}
 
 	/**
 	 * Check if a user is authenticated and redirect them to Input the shipping address, or review the order.
 	 */
-	public function checkout() {
+	public function checkout()
+	{
 		$cart = $this->getCart();
 		$sum = 0;
 		$shipping = 0;
 
 		foreach ($cart as $item) {
-			$sum += (($item["item"]->price + $item["support_price"])/ 100) * $item["amount"];
+			$sum += (($item["item"]->price + $item["support_price"]) / 100) * $item["amount"];
 			$shipping = max(array($shipping, $item["item"]->shipping));
 		}
 		$sum += ($shipping / 100);
@@ -59,9 +63,13 @@ class ShopController extends Controller {
 	/**
 	 * Handles the address input of a user and creates a new user on the fly.
 	 */
-	public function noSignup() {
+	public function noSignup()
+	{
 		$v = $this->validator($this->post());
-		$v->rule('required', array('email', 'name', 'street', 'city'));
+		// original tapeshop rule set
+		// $v->rule('required', array('email', 'name', 'street', 'city'));
+
+		$v->rule('required', array('email'));
 
 		if ($v->validate()) {
 			$c = User::connection();
@@ -115,7 +123,8 @@ class ShopController extends Controller {
 		$this->redirect('checkout');
 	}
 
-	public function changeAddress() {
+	public function changeAddress()
+	{
 		/** @var User $user */
 		$user = $this->user;
 		/** @var Address $address */
@@ -139,7 +148,8 @@ class ShopController extends Controller {
 	/**
 	 * Show Ticketscript page.
 	 */
-	public function ticketscript() {
+	public function ticketscript()
+	{
 		$this->render('ticketscript.html');
 	}
 }

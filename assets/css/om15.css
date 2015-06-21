@@ -38,12 +38,26 @@
 	color: #33374F;
 }
 
-#cart .table td {
+#cart .table td,
+.review-items td ,
+.order-summary td,
+.order-summary th{
 	border-top: 1px solid #33374F;
 }
+.order-summary td.noborder,
+.order-summary th.noborder{
+	border-top: none;
+}
 
-#cart .table td.cart-total {
+
+
+#cart .table td.cart-total,
+.review-items td.review-total{
 	border-top: 3px double #33374F;
+}
+
+.submit-order-controls div{
+	margin-top:20px;
 }
 
 /* basic styling overrides */
