@@ -27,6 +27,7 @@ define("SHOP_URL", "tapshop.example.com");
  */
 define("SMTP_HOST", "smtp.example.com");
 define("SMTP_PORT", 25);
+define("SMTP_AUTH_DISABLED", false);
 define("SMTP_USER", "smtp-user");
 define("SMTP_PASSWORD", "secret");
 
