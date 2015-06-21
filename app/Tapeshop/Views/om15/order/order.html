@@ -102,9 +102,6 @@
 	<table class="table review-items">
 		<thead>
 			<tr>
-				<th>
-					<!-- image column -->
-				</th>
 				<th>{_("cart.item")}</th>
 				<th>{_("item.variation")}</th>
 				<th>{_("cart.amount")}</th>
@@ -114,11 +111,6 @@
 		</thead>
 		{foreach from=$order->orderitems item=item}
 		<tr>
-			<td><img
-				src="{if $item->item->image}{$item->item->image}{else}{$item_placeholder}{/if}"
-				class="img-square"
-				style="background-color: #ddd; height: 50px; width: 50px;" />
-			</td>
 			<td>{$item->item->name}
                 {if $item->item->numbered && ($item->item->shownumbers || (isset($smarty.session['auth_user']) && $user->admin))}
                     <br />{_("item.numbers")}:
@@ -136,15 +128,9 @@
 		{/foreach}
 	
 		<tr>
-			<td colspan="4" style="border-top:none"></td>
-			<td class="review-total"><b>{_("order.shipping")}</b></td>
-			<td class="review-total"><b>{($order->shipping/100)|number_format:2:",":"."} €</b>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4" style="border-top:none"></td>
-			<td><b>{_("order.total")}</b></td>
-			<td><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
+			<td colspan="3" style="border-top:none"></td>
+            <td class="review-total"><b>{_("order.total")}</b></td>
+            <td class="review-total"><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
 			</td>
 		</tr>
 	</table>
