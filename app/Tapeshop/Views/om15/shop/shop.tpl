@@ -25,7 +25,7 @@
                         <div class="text-error" ng-if="!inStock(item)">{/literal}{_("item.outofstock")}{literal}</div>
                         <div ng-if="inStock(item)">
                             <form class="form-search" action="#">
-                                <select name="size" class="span2" ng-if="item.sizes.length" ng-model="item.selectedSize" ng-options="size as size.size for size in sizesInStock(item)">
+                                <select name="size" class="span2" ng-init="item.selectedSize = sizesInStock(item)[0]" ng-if="item.sizes.length" ng-model="item.selectedSize" ng-options="size as size.size for size in sizesInStock(item)">
                                 </select>
                                 {{selectedSize}}
                                 <div class="btn-group" ng-hide="item.support_ticket">
