@@ -8,7 +8,7 @@
         <div class="row" id="items-list" ng-controller="shopController">
             <div class="span6">
 
-                <div class="row item" ng-repeat="item in items">
+                <div class="row item span6" ng-repeat="item in items">
 
                     <div class="span4">
                         <a href="item/{{item.id}}">
@@ -28,7 +28,7 @@
                                 <select name="size" class="span2" ng-init="item.selectedSize = sizesInStock(item)[0]" ng-if="item.sizes.length" ng-model="item.selectedSize" ng-options="size as size.size for size in sizesInStock(item)">
                                 </select>
                                 {{selectedSize}}
-                                <div class="btn-group" ng-hide="item.support_ticket">
+                                <div class="btn-group span2" ng-hide="item.support_ticket">
                                     <button type="button" class="btn btn-white span2" ng-click="addToCart(item)">{/literal}{_('item.add')}{literal}</button>
                                 </div>
                                 <div ng-show="item.support_ticket" ng-init="item.support_price = 500">
@@ -110,14 +110,18 @@
 {/literal}
                 <div class="container">
                     <div class="row">
-                        <div class="span2 offset1">
-                            <button type="submit" class="btn btn-white" ng-click="clearCart()"><i class="icon-remove"></i> {_("cart.clear")}</button>
-                        </div>
                         <div class="span2">
-                            <a href="{$path}checkout" class="btn btn-white"><i class="icon-play"></i> {_("cart.checkout")}</a>
+                            <button type="submit" class="btn btn-white span2" ng-click="clearCart()"><i class="icon-remove"></i> {_("cart.clear")}</button>
+                        </div>
+                        <br class="hidden-desktop">
+                        <div class="span2">
+                            <a href="{$path}checkout" class="btn btn-white span2"><i class="icon-play"></i> {_("cart.checkout")}</a>
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br>
             </div>
 
         </div>
