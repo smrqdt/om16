@@ -11,11 +11,27 @@ use Tapeshop\Controllers\OrderStatus;
  * Helper class for Email notifications.
  */
 class EmailOutbound {
-	//TODO use templates, e.g. smarty
 
 	const TEMPLATE_BILLING = "email/billing.tpl";
 	const TEMPLATE_PAYMENT = "email/payment.tpl";
 	const TEMPLATE_SHIPPING = "email/shipping.tpl";
+	const TEMPLATE_REMINDER = "email/reminder.tpl";
+
+	/**
+	 * Send a reminder email.
+	 * @param \Tapeshop\Models\Order $order
+	 * @return boolean
+	 */
+	public static function sendReminder($order){
+		$smarty = new Smarty();
+		$smarty->setTemplateDir(Slim::getInstance()->view()->getTemplatesDirectory());
+
+		$data = EmailOutbound::getDataForOrder($order);
+
+		$message = $smarty->fetch(EmailOutbound::TEMPLATE_REMINDER, $data);
+
+		return EmailOutbound::sendNotificationMail($order->user->email, $message);
+	}
 
 	/**
 	 * Send a notification email.

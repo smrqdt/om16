@@ -84,6 +84,7 @@ class ItemController extends Controller {
 				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
 				$item->support_ticket = $this->post("support_ticket");
+				$item->sort_order = $this->post("sort_order");
 
 				try {
 					$item->save();

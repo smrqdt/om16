@@ -19,6 +19,7 @@ use Tapeshop\Controllers\OrderStatus;
  * @property int payment_fee
  * @property int payment_method_id
  * @property DateTime paymenttime
+ * @property bool reminder_sent
  */
 class Order extends Model
 {

@@ -1005,3 +1005,6 @@ msgstr "Generiert einen Ticketcode für die Bestellung, der beim Einlass zur Üb
 
 msgid "item.support_ticket.description"
 msgstr "Für diesen Artikel kann der Käufer selbst den Preis bestimmen und 5€ bis 100€ zusätzlich bezahlen."
+
+msgid "item.sort_order"
+msgstr "Reihenfolge"

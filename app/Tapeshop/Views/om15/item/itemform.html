@@ -34,6 +34,14 @@
 			value="{if isset($itemform)}{$itemform['shipping']}{else}{($item->shipping/100)|number_format:2:".":""}{/if}"> €
 	</div>
 </div>
+
+<div class="control-group">
+    <label class="control-label" for="sort_order">{_("item.sort_order")}</label>
+    <div class="controls">
+        <input type="text" id="sort_order" name="sort_order" placeholder="17"
+               value="{if isset($itemform)}{$itemform['sort_order']}{else}{$item->sort_order}{/if}">
+    </div>
+</div>
 <div class="control-group">
 	<label class="control-label" id="ticketcode" for="ticketcode">{_("item.ticketcode")}</label>
 	<div class="controls">

@@ -1005,3 +1005,6 @@ msgstr "Genereates a ticket code that can be user for verification at the venue.
 
 msgid "item.support_ticket.description"
 msgstr "The Customer can choose to add between 5€ bis 100€ to the price."
+
+msgid "item.sort_order"
+msgstr "Sort order"

@@ -17,49 +17,14 @@ use Tapeshop\OutOfStockException;
 /**
  * Handle orders.
  */
-class OrderController extends Controller {
-
-	/**
-	 * Update the status for orders not payed after 14 days.
-	 */
-	public static function updateStatus() {
-		$date = new DateTime();
-		$orders = Order::find('all', array("conditions" => array("status = 'new' AND ordertime < ?", $date->sub(new \DateInterval("P14D")))));
-		$c = Order::connection();
-		foreach ($orders as $order) {
-			$c->transaction();
-			/** @var $order \Tapeshop\Models\Order */
-			$order->status = OrderStatus::OVERDUE;
-			$order->save();
-
-			/** @var $oi OrderItem */
-			foreach ($order->orderitems as $oi) {
-				$item = $oi->item;
-				if ($item->numbered) {
-					/** @var $in ItemNumber */
-					foreach ($oi->itemnumbers as $in) {
-						$in->orderitem_id = null;
-						$in->save();
-					}
-				}
-
-				if ($item->manage_stock) {
-					if (!empty($oi->size)) {
-						$oi->size->stock += $oi->amount;
-						$oi->size->save();
-					}
-					$item->stock += $oi->amount;
-					$item->save();
-				}
-			}
-			$c->commit();
-		}
-	}
+class OrderController extends Controller
+{
 
 	/**
 	 * Submit a new order. Get all items form the cart and add them as OrderItem
 	 */
-	public function submitOrder() {
+	public function submitOrder()
+	{
 		$shipping = 0;
 		/** @var $order \Tapeshop\Models\Order */
 		$order = null;
@@ -185,7 +150,8 @@ class OrderController extends Controller {
 	 * @param int $id Id of the order.
 	 * @var $order \Tapeshop\Models\Order
 	 */
-	public function deleteOrder($id) {
+	public function deleteOrder($id)
+	{
 		$this->checkAdmin();
 		$order = null;
 
@@ -210,7 +176,8 @@ class OrderController extends Controller {
 	 * Show an order and its details.
 	 * @param String $hash Hash (UUID) of the order.
 	 */
-	public function order($hash) {
+	public function order($hash)
+	{
 		$order = Order::find(
 			'first',
 			array(
@@ -237,7 +204,8 @@ class OrderController extends Controller {
 	 * Generate invoice PDF.
 	 * @param String $hash Hash (UUID) of the order
 	 */
-	function billing($hash) {
+	function billing($hash)
+	{
 		$this->checkAdmin();
 
 		$order = Order::find(
