@@ -7,13 +7,11 @@ require_once 'config.php';
 /*
  * I18N support
  */
-
 $folder = "assets/locale";
 $domain = "messages";
 $encoding = "UTF-8";
 
-putenv("LANG=de_DE");
-setlocale(LC_ALL, "de");
+setlocale(LC_ALL, "de_DE", "de");
 
 bindtextdomain($domain, $folder);
 bind_textdomain_codeset($domain, $encoding);
