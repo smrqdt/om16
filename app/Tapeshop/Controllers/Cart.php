@@ -25,13 +25,21 @@ class Cart
 	{
 		$cart = Cart::getCart();
 
-		foreach ($cart as &$item) {
-			if (Cart::cartItemMatches($item, $id, $size, $support_price)) {
-				if($item["amount"] < 5){
+		$numberOfArticle = 0;
+		foreach ($cart as $i => $ci) {
+			if ($ci["item"]->id == $id) {
+				$numberOfArticle += $ci["amount"];
+			}
+		}
+
+		if ($numberOfArticle < 5) {
+			foreach ($cart as &$item) {
+				if (Cart::cartItemMatches($item, $id, $size, $support_price)) {
 					$item["amount"]++;
 				}
 			}
 		}
+
 		$_SESSION["cart"] = $cart;
 	}
 
@@ -50,25 +58,34 @@ class Cart
 	public static function addItem($item, $size, $support_price = 0)
 	{
 		$cart = Cart::getCart();
-		foreach ($cart as $i => $ci) {
-			if (Cart::cartItemMatches($ci, $item->id, $size, $support_price)) {
-				if($ci["amount"] < 5){
-					$cart[$i]["amount"] = $ci["amount"] + 1;
-				}
 
-				$_SESSION["cart"] = $cart;
-				return;
+		$numberOfArticle = 0;
+		foreach ($cart as $i => $ci) {
+			if ($ci["item"]->id == $item->id) {
+				$numberOfArticle += $ci["amount"];
 			}
 		}
 
-		$a = array(
-			"item" => $item,
-			"size" => empty($size) ? null : $size,
-			"amount" => 1,
-			"support_price" => $support_price
-		);
-		array_push($cart, $a);
+		if ($numberOfArticle < 5) {
+			foreach ($cart as $i => $ci) {
+				if (Cart::cartItemMatches($ci, $item->id, $size, $support_price)) {
 
+					$cart[$i]["amount"] = $ci["amount"] + 1;
+
+
+					$_SESSION["cart"] = $cart;
+					return;
+				}
+			}
+
+			$a = array(
+				"item" => $item,
+				"size" => empty($size) ? null : $size,
+				"amount" => 1,
+				"support_price" => $support_price
+			);
+			array_push($cart, $a);
+		}
 		$_SESSION["cart"] = $cart;
 	}
 
