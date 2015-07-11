@@ -69,7 +69,8 @@ class ShopController extends Controller
 		// original tapeshop rule set
 		// $v->rule('required', array('email', 'name', 'street', 'city'));
 
-		$v->rule('required', array('email'));
+		$v->rule('required', array('email'))->message("Die Email-Adresse wird benötigt!");
+		$v->rule('email', array('email'))->message("Die angegebene Email-Adresse scheint ungültig zu sein!");
 
 		if ($v->validate()) {
 			$c = User::connection();
@@ -113,7 +114,7 @@ class ShopController extends Controller
 				$c->commit();
 			} catch (ActiveRecordException $e) {
 				$c->rollback();
-				$this->app->flashNow('error', 'An error occured! Please try again.' . $e->getMessage());
+				$this->app->flashNow('error', 'Ein unerwarteter Fehler ist aufgetreten! Bitte versuche es erneut!' . $e->getMessage());
 			}
 		} else {
 			$this->app->flash('error', $this->errorOutput($v->errors()));

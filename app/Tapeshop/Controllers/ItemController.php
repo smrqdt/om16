@@ -20,7 +20,7 @@ class ItemController extends Controller {
 		try {
 			$item = Item::find_by_pk($id, array("conditions" => array("deleted = false")));
 			if ($item == null) {
-				$this->app->flash('error', 'Item not found');
+				$this->app->flash('error', 'Artikel nicht gefunden!');
 				$this->redirect('home');
 			} else {
 				$data = array(
@@ -29,7 +29,7 @@ class ItemController extends Controller {
 				$this->render('item/show.html', $data);
 			}
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Item not found');
+			$this->app->flash('error', 'Artikel nicht gefunden!');
 			$this->redirect('home');
 		}
 	}
@@ -46,7 +46,7 @@ class ItemController extends Controller {
 		try {
 			$item = Item::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Item not found.');
+			$this->app->flash('error', 'Artikel nicht gefunden!');
 			$this->redirect('home');
 		}
 
@@ -60,21 +60,21 @@ class ItemController extends Controller {
 				if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
 					$item->image = APP_PATH . 'upload/' . basename($_FILES['image']['name']);
 				} else {
-					$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+					$this->app->flashNow('error', 'Upload fehlgeschlagen. Bitte prüfe ob das Verzeichnis  "upload" existiert und Schreibrechte dafür vorhanden sind.');
 				}
 			}
 
 			try {
 				$item->save();
-				$this->app->flashNow('success', 'Item saved.');
+				$this->app->flashNow('success', 'Artikel gespeichert.');
 			} catch (ActiveRecordException $e) {
-				$this->app->flash('error', 'Could not save Image: ' . $e->getMessage());
+				$this->app->flash('error', 'Konnte das bild nicht speichern: ' . $e->getMessage());
 			}
 
 			// validate form fields
 			$v = $this->validator($this->post());
-			$v->rule('required', array('name', 'price'));
-			$v->rule('numeric', array('price', 'shipping'));
+			$v->rule('required', array('name', 'price'))->message("Du musst einen Preis angeben");
+			$v->rule('numeric', array('price', 'shipping'))->message("Bitte gib eine Zahle ein.");
 			if ($v->validate()) {
 				// update item
 				$item->name = $this->post("name");
@@ -89,7 +89,7 @@ class ItemController extends Controller {
 				try {
 					$item->save();
 				} catch (ActiveRecordException $e) {
-					$this->app->flashNow('error', 'Changes could not be saved! ' . $e->getMessage());
+					$this->app->flashNow('error', 'Änderungen konnten nicht gespeichert werden! ' . $e->getMessage());
 					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping', 'ticketscript'));
 				}
 			} else {
@@ -122,9 +122,9 @@ class ItemController extends Controller {
 
 		try {
 			$item->save();
-			$this->app->flash('success', "Item deleted!");
+			$this->app->flash('success', "Artikel gelöscht!");
 		} catch (ActiveRecordException $e) {
-			$this->app->flash('error', 'Deletion failed! ' . $e->getMessage());
+			$this->app->flash('error', 'Löschen fehlgeschlagen! ' . $e->getMessage());
 		}
 
 		$this->redirect('adminitems');
@@ -157,14 +157,14 @@ class ItemController extends Controller {
 					if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
 						$item->image = APP_PATH . 'upload/' . basename($_FILES['image']['name']);
 					} else {
-						$this->app->flashNow('error', 'Something went wrong while uploading the image.');
+						$this->app->flashNow('error', 'Upload fehlgeschlagen. Bitte prüfe ob das Verzeichnis  "upload" existiert und Schreibrechte dafür vorhanden sind.');
 					}
 				}
 
 				try {
 					$item->save();
 				} catch (ActiveRecordException $e) {
-					$this->app->flash('error', 'Could not create Item! ' . $e->getMessage());
+					$this->app->flash('error', 'Konnte Artikel nicht anlegen! ' . $e->getMessage());
 					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript', 'ticketcode'));
 				}
 
@@ -193,7 +193,7 @@ class ItemController extends Controller {
 		try {
 			$item = Item::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Item not found');
+			$this->app->flash('error', 'Artikel nicht gefunden!');
 			$this->redirect('home');
 		}
 
@@ -201,7 +201,7 @@ class ItemController extends Controller {
 		try {
 			$item->save();
 		} catch (ActiveRecordException $e) {
-			$this->app->flash('error', 'Could not remove image! ' . $e->getMessage());
+			$this->app->flash('error', 'Konnte Bild nicht entfernen! ' . $e->getMessage());
 		}
 
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
@@ -215,7 +215,7 @@ class ItemController extends Controller {
 		try {
 			$item = Item::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Item not found');
+			$this->app->flash('error', 'Artikel nicht gefunden!');
 			$this->redirect('home');
 		}
 

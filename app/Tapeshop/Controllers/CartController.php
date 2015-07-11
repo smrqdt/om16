@@ -23,7 +23,7 @@ class CartController extends Controller {
 
             Cart::addItem($item, $size, $support_price);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Could not add item to cart, because the item was not found!');
+			$this->app->flash('error', 'Artikel konnte nicht hinzugefügt werden. Er wurde nicht gefunden.');
 		}
 		$this->redirect('home');
 	}

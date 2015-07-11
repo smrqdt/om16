@@ -7,20 +7,13 @@ require_once 'config.php';
 /*
  * I18N support
  */
-$language = str_replace("-", "_", substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 5));
-$lang_short = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-
-if(!in_array($lang_short, array("en","de"))){
-	$language = "en_us";
-	$lang_short = "en";
-}
 
 $folder = "assets/locale";
 $domain = "messages";
 $encoding = "UTF-8";
 
-putenv("LANG=" . $language);
-setlocale(LC_ALL, $language, $lang_short);
+putenv("LANG=de_DE");
+setlocale(LC_ALL, "de");
 
 bindtextdomain($domain, $folder);
 bind_textdomain_codeset($domain, $encoding);

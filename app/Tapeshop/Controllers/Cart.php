@@ -27,7 +27,9 @@ class Cart
 
 		foreach ($cart as &$item) {
 			if (Cart::cartItemMatches($item, $id, $size, $support_price)) {
-				$item["amount"]++;
+				if($item["amount"] < 5){
+					$item["amount"]++;
+				}
 			}
 		}
 		$_SESSION["cart"] = $cart;
@@ -50,7 +52,9 @@ class Cart
 		$cart = Cart::getCart();
 		foreach ($cart as $i => $ci) {
 			if (Cart::cartItemMatches($ci, $item->id, $size, $support_price)) {
-				$cart[$i]["amount"] = $ci["amount"] + 1;
+				if($ci["amount"] < 5){
+					$cart[$i]["amount"] = $ci["amount"] + 1;
+				}
 
 				$_SESSION["cart"] = $cart;
 				return;
@@ -59,7 +63,7 @@ class Cart
 
 		$a = array(
 			"item" => $item,
-			"size" => empty($size) ? null : $size->id,
+			"size" => empty($size) ? null : $size,
 			"amount" => 1,
 			"support_price" => $support_price
 		);

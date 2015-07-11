@@ -22,7 +22,7 @@ abstract class Controller {
 			try{
 				$this->user = User::find($auth_user['id']);
 			}catch(RecordNotFound $e){
-				$this->app->flashNow('error', 'User not found!');
+				$this->app->flashNow('error', 'Benutzer nicht gefunden!');
 			}
 		}
 	}

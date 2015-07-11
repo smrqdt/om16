@@ -17,10 +17,10 @@ class LoginController extends Controller {
 	public function login() {
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
-			$v->rule('required', array('email', 'password'));
+			$v->rule('required', array('email', 'password'))->message("Bitte gib deine Anmeldedaten ein!");
 			if ($v->validate()) {
 				if ($this->auth->login($this->post('email'), $this->post('password'))) {
-					$this->app->flash('info', 'Your login was successfull');
+					$this->app->flash('info', 'Login erfolgreich!');
 					$u = $this->auth->getUser();
 					$user = User::find($u["id"]);
 					if ($user->admin > 0) {
@@ -30,7 +30,7 @@ class LoginController extends Controller {
 					}
 				}
 			}
-			$this->app->flashNow('error', "Login failed!");
+			$this->app->flashNow('error', "Login fehlgeschlagen!");
 		}
 		$this->render('login/login.html');
 	}
@@ -42,9 +42,9 @@ class LoginController extends Controller {
 		if ($this->app->request()->isPost()) {
 			$v = $this->validator($this->post());
 			$v->rule('required', array('email', 'password', 'password_verify'));
-			$v->rule('email', 'email');
-			$v->rule('length', 'password', 6, 256);
-			$v->rule('equals', 'password', 'password_verify');
+			$v->rule('email', 'email')->message("Deine Email-Adresse wird zum login benötigt!");
+			$v->rule('length', 'password', 6, 256)->message("Dein Passwort kann zwischen 6 und 256 Zeichen lang sein!");
+			$v->rule('equals', 'password', 'password_verify')->message("Die Passwörter stimmen nicht überein!");
 			if ($v->validate()) {
 
 				try {
@@ -64,14 +64,14 @@ class LoginController extends Controller {
 					$this->app->stop();
 				} catch (ActiveRecordException $e) {
 					// TODO use message instead
-					$this->app->flashNow('error', 'Could not create user! ' . $e->getMessage());
+					$this->app->flashNow('error', 'Konnte Nutzer nicht anlegen! ' . $e->getMessage());
 					$this->useDataFromRequest('signupform', array('email', 'password', 'password_verify'));
 					$this->render('login/signup.html');
 					$this->app->stop();
 				}
 
 				// TODO use message instead
-				$this->app->flash('info', 'Your registration was successfull');
+				$this->app->flash('info', 'Dein Account wurde erstellt!');
 				$this->auth->login($this->post('email'), $this->post('password'), $this->post('remember'));
 				$this->redirect('home');
 			}
@@ -87,7 +87,7 @@ class LoginController extends Controller {
 	public function logout() {
 		// TODO use message instead
 		// TODO flash is not shown
-		$this->app->flash('info', 'Come back sometime soon!');
+		$this->app->flash('info', 'Du bist jetzt abgemeldet!');
 		$this->auth->logout(true);
 		$this->redirect('home');
 	}

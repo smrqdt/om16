@@ -18,14 +18,14 @@ class UserController extends Controller {
 		try {
 			$user = User::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'User not found!');
+			$this->app->flash('error', 'Benutzer nicht gefunden!');
 			$this->redirect('admin');
 		}
 
 		try {
 			$user->delete();
 		} catch (ActiveRecordException $e) {
-			$this->app->flash('error', 'Could not delete user! ' . $e->getMessage());
+			$this->app->flash('error', 'Konnte Nutzer nicht löschen! ' . $e->getMessage());
 		}
 
 		$this->redirect('admin');
@@ -40,7 +40,7 @@ class UserController extends Controller {
 		try {
 			$user = User::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'User not found!');
+			$this->app->flash('error', 'Nutzer nicht gefunden!');
 			$this->redirect('admin');
 		}
 
@@ -62,7 +62,7 @@ class UserController extends Controller {
 		try {
 			$user = User::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'User not found!');
+			$this->app->flash('error', 'Nutzer nicht gefunden!');
 			$this->redirect('admin');
 		}
 

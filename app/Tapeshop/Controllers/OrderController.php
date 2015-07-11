@@ -113,9 +113,9 @@ class OrderController extends Controller
 			$mailSuccess = EmailOutbound::sendBilling($order);
 
 			if ($mailSuccess) {
-				$this->app->flash('success', 'Notification Mail was sent!');
+				$this->app->flash('success', 'Bestellung erfolgreich! Du erhälst zusätzlich eine Email.');
 			} else {
-				$this->app->flash('error', 'Could not send Notification Mail!');
+				$this->app->flash('error', 'Konnte keine Bestätigungsmail senden!');
 			}
 		} catch (RecordNotFound $e) {
 			$c->rollback();
@@ -123,7 +123,7 @@ class OrderController extends Controller
 			$this->redirect('cart');
 		} catch (ActiveRecordException $e) {
 			$c->rollback();
-			$this->app->flash('error', "Could not create order! " . $e->getMessage());
+			$this->app->flash('error', "Deine Bestellung konnte nicht angelegt werden! " . $e->getMessage());
 			$this->redirect('cart');
 		} catch (OutOfStockException $e) {
 			$c->rollback();
@@ -158,14 +158,14 @@ class OrderController extends Controller
 		try {
 			$order = Order::find($id);
 		} catch (RecordNotFound $e) {
-			$this->app->flash('error', "Order not found1!");
+			$this->app->flash('error', "Bestellung nicht gefunden!");
 			$this->redirect('adminorders');
 		}
 
 		try {
 			$order->delete();
 		} catch (ActiveRecordException $e) {
-			$this->app->flash('error', "Could not delete order! " . $e->getMessage());
+			$this->app->flash('error', "Konnte Bestellung nicht löschen! " . $e->getMessage());
 			$this->redirect('adminorders');
 		}
 
@@ -186,7 +186,7 @@ class OrderController extends Controller
 		);
 
 		if ($order == null) {
-			$this->app->flash('warn', "Order could not be found!" . $hash);
+			$this->app->flash('warn', "Bestellung nicht gefunden!" . $hash);
 			$this->redirect('home');
 		} else {
 
@@ -216,7 +216,7 @@ class OrderController extends Controller
 		);
 
 		if ($order == null) {
-			$this->app->flash('warn', "Order could not be found!");
+			$this->app->flash('warn', "Bestellung nicht gefunden!");
 			$this->redirect('home');
 		} else {
 			$billing = new Billing('P', 'mm', 'A4');

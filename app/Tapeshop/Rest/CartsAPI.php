@@ -41,7 +41,11 @@ class CartsAPI extends RestController
 			$support_price = 0;
 		}
 
-        Cart::addItem($item, $size, $support_price);
+		if($size == null){
+			Cart::addItem($item, null, $support_price);
+		}else{
+			Cart::addItem($item, $size->id, $support_price);
+		}
 
         $this->get();
     }
