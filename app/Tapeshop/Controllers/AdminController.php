@@ -38,7 +38,7 @@ class AdminController extends Controller {
 	public function items() {
 		$this->checkAdmin();
 
-		$items = Item::all(array("conditions" => array("deleted = false"), "order" => "name asc"));
+		$items = Item::all(array("conditions" => array("deleted = false"), "order" => "sort_order asc"));
 
 		$data = array(
 			"items" => $items
