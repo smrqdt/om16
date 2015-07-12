@@ -11,11 +11,11 @@
                 <div class="row item span6" ng-repeat="item in items">
 
                     <div class="span4">
-                        <a href="item/{{item.id}}">
-                            <h4>
-                                {{item.name}}
-                            </h4>
-                        </a>
+                        <h4>
+                            {{item.name}}
+                        </h4>
+                        <img src="{{item.image}}" ng-if="item.image"/>
+
                         <p ng-bind-html="item.description"></p>
                     </div>
 
