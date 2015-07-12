@@ -149,6 +149,7 @@ class ItemController extends Controller {
 				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
 				$item->support_ticket = $this->post("support_ticket") || false;
+				$item->sort_order = $this->post("sort_order");
 
 				if ($_FILES['image']['name'] != '') {
 					$uploaddir = dirname(__FILE__) . '/../../../upload/';
