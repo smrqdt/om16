@@ -140,7 +140,7 @@ class ShopController extends Controller
 			"postcode" => $address->postcode,
 			"city" => $address->city,
 			"country" => $address->country,
-			"user_info_text" => $this->post("user_info_text")
+			"user_info_text" => $address->user_info_text
 		);
 
 		$this->auth->logout(false);
