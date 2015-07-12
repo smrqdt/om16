@@ -68,6 +68,13 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
     $scope.addToCart = function (item) {
         cartAPI.addToCart(item).then(function (response) {
             $scope.cart = response.data;
+
+            var cart = $("#cart");
+            if(cart.size() > 0){
+                $('html, body').animate({
+                    scrollTop: cart.offset().top
+                }, 1000);
+            }
         });
     };
 
@@ -130,10 +137,6 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
             if (size == null) {
                 size = {id: null}
             }
-
-            $('html, body').animate({
-                scrollTop: $("#cart").offset().top
-            }, 1000);
 
             return $http({
                 url: baseUrl + "cartapi/" + item.id,
