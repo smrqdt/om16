@@ -13,7 +13,7 @@ angular.module("tapeshop").controller("shopController", function ($scope, itemsA
     $scope.selectedSize = "";
 
     $scope.addPrices = function (item) {
-        if(item.hasOwnProperty("item")){
+        if (item.hasOwnProperty("item")) {
             return parseInt(item.item.price || 0) + parseInt(item.support_price || 0);
         }
         return parseInt(item.price || 0) + parseInt(item.support_price || 0);
@@ -130,6 +130,11 @@ angular.module("tapeshop").factory("cartAPI", function ($http, baseUrl) {
             if (size == null) {
                 size = {id: null}
             }
+
+            $('html, body').animate({
+                scrollTop: $("#cart").offset().top
+            }, 1000);
+
             return $http({
                 url: baseUrl + "cartapi/" + item.id,
                 method: "POST",
