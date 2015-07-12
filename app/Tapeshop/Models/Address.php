@@ -15,6 +15,7 @@ use ActiveRecord\Model;
  * @property String country
  * @property array orders
  * @property boolean current
+ * @property String user_info_text
  */
 class Address extends Model {
 
