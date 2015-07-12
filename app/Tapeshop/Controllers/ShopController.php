@@ -101,7 +101,8 @@ class ShopController extends Controller
 					"building_number" => $this->post("building_number"),
 					"postcode" => $this->post("postcode"),
 					"city" => $this->post("city"),
-					"country" => $this->post("country")
+					"country" => $this->post("country"),
+					"user_info_text" => $this->post("user_info_text")
 				);
 
 				$address = new Address($a);
@@ -114,7 +115,7 @@ class ShopController extends Controller
 				$c->commit();
 			} catch (ActiveRecordException $e) {
 				$c->rollback();
-				$this->app->flashNow('error', 'Ein unerwarteter Fehler ist aufgetreten! Bitte versuche es erneut!' . $e->getMessage());
+				$this->app->flash('error', 'Ein unerwarteter Fehler ist aufgetreten! Bitte versuche es erneut!' . $e->getMessage());
 			}
 		} else {
 			$this->app->flash('error', $this->errorOutput($v->errors()));
@@ -138,7 +139,8 @@ class ShopController extends Controller
 			"building_number" => $address->building_number,
 			"postcode" => $address->postcode,
 			"city" => $address->city,
-			"country" => $address->country
+			"country" => $address->country,
+			"user_info_text" => $this->post("user_info_text")
 		);
 
 		$this->auth->logout(false);

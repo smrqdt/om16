@@ -20,6 +20,16 @@
                        value="{if isset($checkoutform)}{$checkoutform['email']}{/if}">
             </div>
         </div>
+
+        <div class="control-group">
+            <label class="control-label" for="user_info_text">Zusätzliche Angaben</label>
+
+            <div class="controls">
+                <textarea id="user_info_text" name="user_info_text" placeholder="Allergien, Fleisch, Unverträglichketien, ..."
+                value="{if isset($checkoutform)}{$checkoutform['user_info_text']}{/if}" maxlength="512"></textarea>
+            </div>
+        </div>
+
         <br>
 
         <p>Bitte gib die Adresse ein, die auf deiner Rechnung stehen soll. Wenn du keine Rechnung benötigst, kannst du
