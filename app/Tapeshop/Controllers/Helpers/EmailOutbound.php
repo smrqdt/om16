@@ -101,7 +101,7 @@ class EmailOutbound {
 			->setTo($adress)
 			->setBody($message);
 
-		if(defined(SMTP_AUTH_DISABLED) && SMTP_AUTH_DISABLED == true){
+		if(SMTP_AUTH_DISABLED == true){
 //			$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT, 'ssl');
 			$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT);
 		}else{
