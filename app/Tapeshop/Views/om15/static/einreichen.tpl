@@ -6,11 +6,10 @@
             <h1>Einreichen</h1>
             <b>Schlag etwas vor!</b>
 
-            <p>Du kannst deinen Vortrag im <a href="https://pentabarf.junge-piraten.de/submission/om15" target="_blank">Pentabarf</a>
-                einreichen!</p>
+            <p>Die Einreichungsphase für Vorträge ist inzwischen vorbei, aber du bist herzlich eingeladen, deine Ideen als Workshop oder Beitrag für das Spontanprogramm (Barcamp) vorzubereiten und mitzubringen!</p>
             <b>Zeitplan</b>
             <ul>
-                <li>Einreichungsschluss: 26. Juli 2015, 23:59:59 Kasseler Zeit ;)</li>
+                <li>Einreichungsschluss für das normale Vortragsprogramm: 26. Juli 2015, 23:59:59 Kasseler Zeit ;)</li>
                 <li>wir sagen bis zum 17. August Bescheid, ob du dabei bist</li>
                 <li>am 24. August gibt es den Fahrplan (das fertige Programm)</li>
             </ul>
@@ -66,9 +65,7 @@
                     href="http://14.openmind-konferenz.de/schedule/12/events.en.html" target="_blank">#om14</a>.</p>
             <b>Wie reiche ich meinen Beitrag ein?</b>
 
-            <p>Du kannst deinen Vorschlag bis 26. Juli direkt im <a
-                    href="https://pentabarf.junge-piraten.de/submission/om15"
-                    target="_blank">Pentabarf</a> einreichen. Wir nehmen
+            <p>Du konntest deinen Vorschlag bis 26. Juli direkt im Pentabarf einreichen. Wir nehmen
                 spätestens am 17. August Kontakt mit dir auf.</p>
             <b>Worum es bei der #om15 nicht geht</b>
 

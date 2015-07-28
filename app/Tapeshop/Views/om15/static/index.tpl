@@ -18,9 +18,7 @@
 
             <p>Die openmind-Konferenz lädt Visionär*innen, Philosoph*innen, Aktivist*innen, Wissenschaftler*innen und viele mehr in die Jugendherberge Kassel ein, um eine neue Gesellschaft zu denken.</p>
 
-            <p>Die sechste openmind-Konferenz findet vom 11. bis 13. September 2015 statt. Du bist herzlich eingeladen, deine Ideen im Call for Participation bis zum 26. Juli einzureichen! Ob zu Soziologie, Physik, Psychologie, Geographie, Bildung, Politik, Gesellschaft, Weltraum oder anderen Zukunftsthemen, ist egal.</p>
-
-            <p><a href="einreichen">Take your Space und reiche deinen Vorschlag ein!</a></p>
+            <p>Die sechste openmind-Konferenz findet vom 11. bis 13. September 2015 statt. Die Einreichungsphase für Vorträge ist inzwischen vorbei, aber du bist herzlich eingeladen, deine Ideen als Workshop oder Beitrag für das Spontanprogramm (Barcamp) vorzubereiten und mitzubringen. Ob aus den Bereichen Soziologie, Physik, Psychologie, Geographie, Bildung, Politik, Gesellschaft, Weltraum oder anderen Zukunftsthemen – bereichere die openmind!</p>
 
             <br>
             <h3>Wann und wo</h3>
