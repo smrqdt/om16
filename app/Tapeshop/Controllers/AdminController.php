@@ -68,6 +68,10 @@ class AdminController extends Controller {
 	 * Update the status for orders not payed after 14 days.
 	 */
 	private function updateOrderStatus(){
+
+		// Abgeschaltet bis der Schatzmeister der JuPis aufgeholt hat.
+		return;
+
 		$date = new DateTime();
 
 		// send reminder email
