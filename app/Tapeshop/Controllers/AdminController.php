@@ -69,9 +69,6 @@ class AdminController extends Controller {
 	 */
 	private function updateOrderStatus(){
 
-		// Abgeschaltet bis der Schatzmeister der JuPis aufgeholt hat.
-		return;
-
 		$date = new DateTime();
 
 		// send reminder email
