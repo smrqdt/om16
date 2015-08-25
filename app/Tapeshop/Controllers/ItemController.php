@@ -10,13 +10,15 @@ use Tapeshop\Models\Itemnumber;
 /**
  * Handle item operations.
  */
-class ItemController extends Controller {
+class ItemController extends Controller
+{
 
 	/**
 	 * Show item.
 	 * @param int $id Id of the item
 	 */
-	public function show($id) {
+	public function show($id)
+	{
 		try {
 			$item = Item::find_by_pk($id, array("conditions" => array("deleted = false")));
 			if ($item == null) {
@@ -41,24 +43,27 @@ class ItemController extends Controller {
 		}
 	}
 
-	private function getOrderedSizes($item){
+	private function getOrderedSizes($item)
+	{
 		$orderedItems = array();
 
-		foreach($item->sizes as $size){
-			$orderdItems[$size->size] = array("ordered"=>0, "payed"=>0);
+		foreach ($item->sizes as $size) {
+			$orderedItems[$size->size] = array("ordered" => 0, "payed" => 0);
 		}
 
-		foreach($item->orderitems as $orderitem){
+		foreach ($item->orderitems as $orderitem) {
 			$order = $orderitem->order;
 			$size = null;
-			if($orderitem->size !=null){
+
+			if ($orderitem->size != null) {
 				$size = $orderitem->size->size;
 			}
-			if($order->status == "payed"){
+
+			if ($order->status == "payed") {
 				$orderedItems[$size]["payed"] += $orderitem->amount;
 			}
 
-			if($order->status != "overdue"){
+			if ($order->status != "overdue") {
 				$orderedItems[$size]["ordered"] += $orderitem->amount;
 			}
 		}
@@ -69,7 +74,8 @@ class ItemController extends Controller {
 	 * Edit an item.
 	 * @param int $id
 	 */
-	public function edit($id) {
+	public function edit($id)
+	{
 		$this->checkAdmin();
 
 		$item = null;
@@ -139,7 +145,8 @@ class ItemController extends Controller {
 	 * Delete an item.
 	 * @param int $id Id of the item.
 	 */
-	public function delete($id) {
+	public function delete($id)
+	{
 		$item = null;
 
 		try {
@@ -164,7 +171,8 @@ class ItemController extends Controller {
 	/**
 	 * Create a new item.
 	 */
-	public function create() {
+	public function create()
+	{
 		$this->checkAdmin();
 
 		if ($this->app->request()->isPost()) {
@@ -217,7 +225,8 @@ class ItemController extends Controller {
 	 * Remove the image of an Item
 	 * @param Item $id
 	 */
-	public function removeImage($id) {
+	public function removeImage($id)
+	{
 		$this->checkAdmin();
 
 		$item = null;
@@ -239,7 +248,8 @@ class ItemController extends Controller {
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
 	}
 
-	public function numbersPdf($id) {
+	public function numbersPdf($id)
+	{
 		$this->checkAdmin();
 
 		$item = null;
