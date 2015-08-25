@@ -5,7 +5,7 @@
         <div class="span7 index-text">
             <h1>Programm</h1>
 
-            <p>Sobald das Programm der #om15 veröffentlicht ist, findest du hier den Fahrplan.</p>
+            <p>Das Programm der #om15 ist fertig. Hier findest du den <a href="https://15.openmind-konferenz.de/schedule/">Fahrplan</a>.</p>
 
             <p>Die #om15 startet am Freitag, 11.09. abends (Anreise und Socialising). Vorträge und Barcamp finden von
                 Samstagvormittag bis Sonntagnachmittag statt.</p>
