@@ -26,12 +26,43 @@ class ItemController extends Controller {
 				$data = array(
 					"item" => $item
 				);
+
+				if (isset($this->user)) {
+					if ($this->user->admin) {
+						$data["amounts"] = $this->getOrderedSizes($item);
+					}
+				}
+
 				$this->render('item/show.html', $data);
 			}
 		} catch (RecordNotFound $e) {
 			$this->app->flash('error', 'Artikel nicht gefunden!');
 			$this->redirect('home');
 		}
+	}
+
+	private function getOrderedSizes($item){
+		$orderedItems = array();
+
+		foreach($item->sizes as $size){
+			$orderdItems[$size->size] = array("ordered"=>0, "payed"=>0);
+		}
+
+		foreach($item->orderitems as $orderitem){
+			$order = $orderitem->order;
+			$size = null;
+			if($orderitem->size !=null){
+				$size = $orderitem->size->size;
+			}
+			if($order->status == "payed"){
+				$orderedItems[$size]["payed"] += $orderitem->amount;
+			}
+
+			if($order->status != "overdue"){
+				$orderedItems[$size]["ordered"] += $orderitem->amount;
+			}
+		}
+		return $orderedItems;
 	}
 
 	/**
