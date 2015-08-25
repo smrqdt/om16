@@ -47,13 +47,17 @@ class ItemController extends Controller
 	{
 		$orderedItems = array();
 
-		foreach ($item->sizes as $size) {
-			$orderedItems[$size->size] = array("ordered" => 0, "payed" => 0);
+		if (count($item->sizes) > 0) {
+			foreach ($item->sizes as $size) {
+				$orderedItems[$size->size] = array("ordered" => 0, "payed" => 0);
+			}
+		} else {
+			$orderedItems["none"] = array("ordered" => 0, "payed" => 0);
 		}
 
 		foreach ($item->orderitems as $orderitem) {
 			$order = $orderitem->order;
-			$size = null;
+			$size = "none";
 
 			if ($orderitem->size != null) {
 				$size = $orderitem->size->size;
