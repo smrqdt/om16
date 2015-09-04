@@ -150,6 +150,15 @@ $app->post('/cartapi/:item_id', array($carts, 'add'));
 $app->delete('/cartapi/:item_id', array($carts, 'remove'));
 $app->delete('/cartapi/', array($carts, 'clear'));
 
+$nametags = new \Tapeshop\Rest\NametagAPI();
+$app->get('/nametags/:order_id', array($nametags, 'get'));
+$app->post('/nametags/', array($nametags, 'create'));
+$app->delete('/nametags/:id', array($nametags, 'delete'));
+
+$app->get('/orders/ticketcode/:ticketcode', array($orders, 'findByTicketcode'));
+
+$app->get('/namensschilder/', array($shopController, 'nametags'));
+
 
 // Static Pages
 // Needs to be placed last, since it all not defined routes

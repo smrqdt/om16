@@ -7,6 +7,7 @@ use ActiveRecord\RecordNotFound;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Order;
+use Tapeshop\Models\Orderitem;
 
 class OrdersAPI extends RestController {
 
@@ -84,6 +85,21 @@ class OrdersAPI extends RestController {
 			$order->save();
 		} catch (RecordNotFound $e) {
 			$this->haltReponse(array("error" => "Order with id " . $id . " not found!"), 404);
+		}
+	}
+
+	public function findByTicketcode($ticketcode){
+		$orderitem = Orderitem::find(
+			'first',
+			array(
+				'ticketcode' => $ticketcode
+			)
+		);
+
+		if ($orderitem == null) {
+			$this->haltReponse(array("error" => "Order with ticket code " . $ticketcode . " not found!"), 404);
+		} else {
+			$this->response($orderitem->order->to_json(array("include" => array("nametags"))));
 		}
 	}
 } 

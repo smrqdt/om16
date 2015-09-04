@@ -155,4 +155,9 @@ class ShopController extends Controller
 	{
 		$this->render('ticketscript.html');
 	}
+
+	public function nametags()
+	{
+		$this->render('shop/nametags.tpl');
+	}
 }

@@ -32,7 +32,8 @@ class Order extends Model
 
 	static $has_many = array(
 		array('orderitems'),
-		array('items', 'through' => 'orderitems')
+		array('items', 'through' => 'orderitems'),
+		array('nametags')
 	);
 
 	public function getSum()
