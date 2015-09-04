@@ -1,0 +1,9 @@
+CREATE TABLE `nametags` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`order_id` int(11) NOT NULL,
+	`name` varchar(64),
+	`nickname` varchar(64),
+	`pronoun` varchar(64),
+	PRIMARY KEY (`id`),
+	KEY `order_id` (`order_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
