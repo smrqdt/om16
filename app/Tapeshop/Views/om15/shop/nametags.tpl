@@ -14,7 +14,7 @@
                 Zahlung zugeschickt haben, um dich als Teilnehmer_in zu identifizieren. Wenn du mehrere Tickets bestellt
                 hast, kannst du hier auch mehrere
                 Namensschilder
-                eintragen. Du kannst dich aber auch bei der Akkredetierung an uns wenden.
+                eintragen. Du kannst dich aber auch bei der Akkreditierung an uns wenden.
             </p>
 
             <br>
@@ -53,8 +53,9 @@
                         <select name="pronoun" id="pronoun" ng-model="nametag.pronoun">
                             <option value="" disabled selected>Anrede</option>
                             <option>mit meinem Namen</option>
-                            <option>sie (weiblich)</option>
-                            <option>er (männlich)</option>
+                            <option>es</option>
+                            <option>sie</option>
+                            <option>er</option>
                             <option>frag mich einfach</option>
                         </select>
                     </div>
