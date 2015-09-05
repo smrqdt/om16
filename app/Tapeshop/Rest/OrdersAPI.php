@@ -9,9 +9,11 @@ use Tapeshop\Controllers\OrderStatus;
 use Tapeshop\Models\Order;
 use Tapeshop\Models\Orderitem;
 
-class OrdersAPI extends RestController {
+class OrdersAPI extends RestController
+{
 
-	public function get($id) {
+	public function get($id)
+	{
 		$this->checkAdmin();
 
 		try {
@@ -22,7 +24,8 @@ class OrdersAPI extends RestController {
 		}
 	}
 
-	public function payed($id) {
+	public function payed($id)
+	{
 		$this->checkAdmin();
 
 		try {
@@ -39,7 +42,8 @@ class OrdersAPI extends RestController {
 		}
 	}
 
-	public function notpayed($id) {
+	public function notpayed($id)
+	{
 		$this->checkAdmin();
 
 		try {
@@ -55,7 +59,8 @@ class OrdersAPI extends RestController {
 		}
 	}
 
-	public function shipped($id) {
+	public function shipped($id)
+	{
 		$this->checkAdmin();
 
 		try {
@@ -70,7 +75,8 @@ class OrdersAPI extends RestController {
 		}
 	}
 
-	public function notshipped($id) {
+	public function notshipped($id)
+	{
 		$this->checkAdmin();
 
 		try {
@@ -88,18 +94,23 @@ class OrdersAPI extends RestController {
 		}
 	}
 
-	public function findByTicketcode($ticketcode){
-		$orderitem = Orderitem::find(
+	public function findByTicketcode($ticketcode)
+	{
+		$order = Order::find(
 			'first',
 			array(
-				'ticketcode' => $ticketcode
+				'conditions' => array(
+					"hashlink LIKE '" . $ticketcode . "%'"
+				)
 			)
 		);
 
-		if ($orderitem == null) {
-			$this->haltReponse(array("error" => "Order with ticket code " . $ticketcode . " not found!"), 404);
+		$query = Order::connection()->last_query;
+
+		if ($order == null) {
+			$this->haltReponse(array("error" => "Order with ticket code " . $ticketcode . " not found!", "query" => $query), 404);
 		} else {
-			$this->response($orderitem->order->to_json(array("include" => array("nametags"))));
+			$this->response($order->to_json());
 		}
 	}
 } 
