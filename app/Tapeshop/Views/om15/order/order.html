@@ -64,11 +64,11 @@
                     {literal}
                     <span ng-show="order.shippingtime">
                             {{ order.shippingtime | date : 'dd.MM.yyyy, HH:mm'}} Uhr
-                            <button type="button" class="btn btn-danger" ng-click="markAsNotShipped(order)">{/literal}{_("order.status.markasnotshipped")}{literal}</button>
+                            <button type="button" class="btn btn-default" ng-click="markAsShipped(order)">{/literal}Vorabmail senden{literal}</button>
                         </span>
                         <span ng-show="!order.shippingtime">
                              -
-                            <button type="button" class="btn btn-default" ng-click="markAsShipped(order)">{/literal}{_("order.status.markasshipped")}{literal}</button>
+                            <button type="button" class="btn btn-default" ng-click="markAsShipped(order)">{/literal}Vorabmail senden{literal}</button>
                         </span>
                     {/literal}
                     {else}
