@@ -63,7 +63,7 @@ class ItemController extends Controller
 				$size = $orderitem->size->size;
 			}
 
-			if ($order->status == "payed") {
+			if ($order->status == "payed" || $order->status == "shipped") {
 				$orderedItems[$size]["payed"] += $orderitem->amount;
 			}
 
