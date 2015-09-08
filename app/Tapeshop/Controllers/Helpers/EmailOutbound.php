@@ -1,5 +1,7 @@
 <?php
 namespace Tapeshop\Controllers\Helpers;
+
+use Exception;
 use Slim\Slim;
 use Smarty;
 use Swift_Mailer;
@@ -10,7 +12,8 @@ use Tapeshop\Controllers\OrderStatus;
 /**
  * Helper class for Email notifications.
  */
-class EmailOutbound {
+class EmailOutbound
+{
 
 	const TEMPLATE_BILLING = "email/billing.tpl";
 	const TEMPLATE_PAYMENT = "email/payment.tpl";
@@ -22,7 +25,8 @@ class EmailOutbound {
 	 * @param \Tapeshop\Models\Order $order
 	 * @return boolean
 	 */
-	public static function sendReminder($order){
+	public static function sendReminder($order)
+	{
 		$smarty = new Smarty();
 		$smarty->setTemplateDir(Slim::getInstance()->view()->getTemplatesDirectory());
 
@@ -38,7 +42,8 @@ class EmailOutbound {
 	 * @param \Tapeshop\Models\Order $order
 	 * @return boolean
 	 */
-	public function sendNotification($order) {
+	public function sendNotification($order)
+	{
 		// Check which mail is to be send.
 		switch ($order->status) {
 			case OrderStatus::NEW_ORDER:
@@ -60,7 +65,8 @@ class EmailOutbound {
 	 * @param \Tapeshop\Models\Order $order
 	 * @return bool
 	 */
-	public static function sendBilling($order) {
+	public static function sendBilling($order)
+	{
 		$smarty = new Smarty();
 		$smarty->setTemplateDir(Slim::getInstance()->view()->getTemplatesDirectory());
 
@@ -71,7 +77,8 @@ class EmailOutbound {
 		return EmailOutbound::sendNotificationMail($order->user->email, $message);
 	}
 
-	public static function sendPaymentConfirmation($order) {
+	public static function sendPaymentConfirmation($order)
+	{
 		$smarty = new Smarty();
 		$smarty->setTemplateDir(Slim::getInstance()->view()->getTemplatesDirectory());
 
@@ -82,7 +89,8 @@ class EmailOutbound {
 		return EmailOutbound::sendNotificationMail($order->user->email, $message);
 	}
 
-	public static function sendShippedConfirmation($order) {
+	public static function sendShippedConfirmation($order)
+	{
 		$smarty = new Smarty();
 		$smarty->setTemplateDir(Slim::getInstance()->view()->getTemplatesDirectory());
 
@@ -93,18 +101,24 @@ class EmailOutbound {
 		return EmailOutbound::sendNotificationMail($order->user->email, $message);
 	}
 
-	public static function sendNotificationMail($adress, $message) {
-		/** @var Swift_Message $mailToSend */
-		$mailToSend = Swift_Message::newInstance()
-			->setSubject(SHOP_EMAIL_SUBJECT)
-			->setFrom(array(SHOP_EMAIL_FROM => SHOP_NAME))
-			->setTo($adress)
-			->setBody($message);
+	public static function sendNotificationMail($adress, $message)
+	{
+		try {
+			/** @var Swift_Message $mailToSend */
+			$mailToSend = Swift_Message::newInstance()
+				->setSubject(SHOP_EMAIL_SUBJECT)
+				->setFrom(array(SHOP_EMAIL_FROM => SHOP_NAME))
+				->setTo($adress)
+				->setBody($message);
 
-		if(SMTP_AUTH_DISABLED == true){
-//			$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT, 'ssl');
+		} catch (Exception $e) {
+			error_log("Could not send email. Invalid mail format.");
+			return;
+		}
+
+		if (SMTP_AUTH_DISABLED == true) {
 			$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT);
-		}else{
+		} else {
 			$transport = Swift_SmtpTransport::newInstance(SMTP_HOST, SMTP_PORT, 'ssl')
 				->setUsername(SMTP_USER)
 				->setPassword(SMTP_PASSWORD);
@@ -115,9 +129,10 @@ class EmailOutbound {
 		return $mailer->send($mailToSend);
 	}
 
-	private static function getDataForOrder($order){
+	private static function getDataForOrder($order)
+	{
 		return array(
-			"email"=> SHOP_EMAIL_REPLYTO,
+			"email" => SHOP_EMAIL_REPLYTO,
 			"orderPrefix" => ORDER_PREFIX,
 			"name" => $order->address->name,
 			"shopName" => SHOP_NAME,
