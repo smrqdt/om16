@@ -154,6 +154,7 @@ $nametags = new \Tapeshop\Rest\NametagAPI();
 $app->get('/nametags/:order_id', array($nametags, 'get'));
 $app->post('/nametags/', array($nametags, 'create'));
 $app->delete('/nametags/:id', array($nametags, 'delete'));
+$app->get('/namensschilder/allAsCsv', array($nametags, 'allAsCsv'));
 
 $app->get('/orders/ticketcode/:ticketcode', array($orders, 'findByTicketcode'));
 

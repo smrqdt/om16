@@ -45,4 +45,15 @@ class NametagAPI extends RestController
 		$this->response($json);
 	}
 
+	public function allAsCsv()
+	{
+		$nametags = Nametag::all();
+		$response = "";
+		foreach ($nametags as $tag) {
+			$response .= $tag->name . "," . $tag->nickname . "," . $tag->pronoun . "\n";
+		}
+
+		$this->response($response);
+	}
+
 }
