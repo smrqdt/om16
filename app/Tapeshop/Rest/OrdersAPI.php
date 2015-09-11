@@ -131,10 +131,13 @@ class OrdersAPI extends RestController
 			$response .= ";" . ($order->paymenttime == null ? "ja" : "nein");
 			$response .= ";";
 
-			foreach ($order->nametags as $nametag) {
-				$response .= $nametag->name;
-				$response .= ",";
+			$tickets = 0;
+
+			foreach ($order->orderitems as $orderitem) {
+				if ($orderitem->item->ticketcode)
+					$tickets += $orderitem->amount;
 			}
+			$response .= $tickets;
 
 			$response .= "\n";
 		}
