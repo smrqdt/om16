@@ -113,4 +113,32 @@ class OrdersAPI extends RestController
 			$this->response($order->to_json());
 		}
 	}
+
+	public function allAsCsv()
+	{
+		$this->checkAdmin();
+
+		$orders = Order::all();
+		$response = "ticketcode;id;name;bezahlt;names\n";
+		foreach ($orders as $order) {
+			// ticketcode, bestellnummer, name, bezahlt, personen?
+			if ($order->hasTicketCodes()) {
+				$response .= $order->getTicketcode();
+			}
+
+			$response .= ";" . $order->id;
+			$response .= ";" . $order->address->name;
+			$response .= ";" . ($order->paymenttime == null ? "ja" : "nein");
+			$response .= ";";
+
+			foreach ($order->nametags as $nametag) {
+				$response .= $nametag->name;
+				$response .= ",";
+			}
+
+			$response .= "\n";
+		}
+
+		$this->response($response);
+	}
 } 

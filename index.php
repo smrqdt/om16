@@ -138,11 +138,13 @@ $app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
 $app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));
 
 $orders = new \Tapeshop\Rest\OrdersAPI();
+$app->get('/orders/allAsCsv', array($orders, 'allAsCsv'));
 $app->get('/orders/:id/', array($orders, 'get'));
 $app->put('/orders/:id/payed/', array($orders, 'payed'));
 $app->put('/orders/:id/notpayed/', array($orders, 'notpayed'));
 $app->put('/orders/:id/shipped/', array($orders, 'shipped'));
 $app->put('/orders/:id/notshipped/', array($orders, 'notshipped'));
+
 
 $carts = new \Tapeshop\Rest\CartsAPI();
 $app->get('/cartapi/', array($carts, 'get'));
