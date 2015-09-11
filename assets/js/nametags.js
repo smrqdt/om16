@@ -8,18 +8,18 @@ angular.module("tapeshop").controller("nametagController", function ($scope, nam
     $scope.submitTicketcode = function (ticketcode) {
         orderAPI.get(ticketcode).success(function (order) {
             $scope.order_id = order.id;
-            $scope.loadNametags(order.id);
+            //$scope.loadNametags(order.id);
             $scope.error = false;
         }).error(function () {
             $scope.error = true;
         })
     };
 
-    $scope.loadNametags = function (order_id) {
-        nametagAPI.get(order_id).success(function (nametags) {
-            $scope.nametags = nametags;
-        })
-    };
+    //$scope.loadNametags = function (order_id) {
+    //    nametagAPI.get(order_id).success(function (nametags) {
+    //        $scope.nametags = nametags;
+    //    })
+    //};
 
     $scope.addNametag = function (nametag) {
         if (!nametag) {
