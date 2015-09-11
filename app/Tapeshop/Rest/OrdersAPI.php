@@ -128,7 +128,7 @@ class OrdersAPI extends RestController
 
 			$response .= ";" . $order->id;
 			$response .= ";" . $order->address->name;
-			$response .= ";" . ($order->paymenttime == null ? "ja" : "nein");
+			$response .= ";" . ($order->paymenttime != null ? "ja" : "nein");
 			$response .= ";";
 
 			$tickets = 0;
