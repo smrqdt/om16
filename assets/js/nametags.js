@@ -4,6 +4,7 @@ angular.module("tapeshop").value("baseUrl", jQuery("base").attr("href"));
 
 angular.module("tapeshop").controller("nametagController", function ($scope, nametagAPI, orderAPI) {
 
+    $scope.nametags = [];
     $scope.submitTicketcode = function (ticketcode) {
         orderAPI.get(ticketcode).success(function (order) {
             $scope.order_id = order.id;
@@ -21,18 +22,31 @@ angular.module("tapeshop").controller("nametagController", function ($scope, nam
     };
 
     $scope.addNametag = function (nametag) {
-        if(!nametag){
+        if (!nametag) {
             return;
         }
 
-        nametagAPI.create($scope.order_id, nametag).success(function () {
-            $scope.loadNametags($scope.order_id);
+        nametagAPI.create($scope.order_id, nametag).success(function (data) {
+            $scope.nametags.push(data);
+
+            nametag.name = "";
+            nametag.nickname = "";
+            nametag.pronoun = "Anrede";
         })
     };
 
     $scope.removeNametag = function (nametag) {
         nametagAPI.delete(nametag.id).success(function () {
-            $scope.loadNametags($scope.order_id);
+            //$scope.loadNametags($scope.order_id);
+            var t_tags = [];
+            $.each($scope.nametags, function (index, tag) {
+                if (tag.id != nametag.id) {
+                    console.log(tag);
+                    console.log(nametag);
+                    t_tags.push(tag);
+                }
+            });
+            $scope.nametags = t_tags;
         })
     }
 

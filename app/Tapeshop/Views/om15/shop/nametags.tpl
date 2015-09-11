@@ -9,17 +9,17 @@
                 Wie jedes Jahr wird es f&uuml;r jede_n ein Namensschild geben. Auf dieser Seite kannst du angeben, was
                 auf
                 deinem
-                Namensschild stehen soll. Zun&auml;chst musst du jedoch den Code eingeben, den wir dir nach Eingang
+                Namensschild stehen soll. <!--Zun&auml;chst musst du jedoch den Code eingeben, den wir dir nach Eingang
                 deiner
                 Zahlung zugeschickt haben, um dich als Teilnehmer_in zu identifizieren. Wenn du mehrere Tickets bestellt
                 hast, kannst du hier auch mehrere
                 Namensschilder
-                eintragen. Du kannst dich aber auch bei der Akkreditierung an uns wenden.
+                eintragen. -->Du kannst dich aber auch bei der Akkreditierung an uns wenden.
             </p>
 
             <br>
 
-            <div ng-hide="order_id">
+            <div ng-hide="true">
                 <form action="#" class="form-search">
                     <label for="ticketcode">Ticketcode</label>
                     <input type="text" name="ticketcode" id="ticketcode" ng-model="ticketcode"
@@ -37,7 +37,7 @@
                 </form>
             </div>
 
-            <div ng-show="order_id">
+            <div ng-show="true">
                 <form class="form-horizontal" action="#">
                     <div class="control-group">
                         <label for="name">Name</label>

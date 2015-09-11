@@ -8,13 +8,13 @@ class NametagAPI extends RestController
 {
 	public function create()
 	{
-		$order_id = $this->params()->order_id;
+//		$order_id = $this->params()->order_id;
 		$name = $this->params()->name;
 		$nickname = $this->params()->nickname;
 		$pronoun = $this->params()->pronoun;
 
 		$nametag = new Nametag();
-		$nametag->order_id = $order_id;
+		$nametag->order_id = 0;
 		$nametag->name = $name;
 		$nametag->nickname = $nickname;
 		$nametag->pronoun = $pronoun;
