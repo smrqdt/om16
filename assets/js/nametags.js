@@ -63,8 +63,8 @@ angular.module("tapeshop").factory("nametagAPI", function ($http, baseUrl) {
                 method: "POST",
                 data: {
                     order_id: order_id,
-                    name: nametag.name,
-                    nickname: nametag.nickname,
+                    name: nametag.name || "",
+                    nickname: nametag.nickname || "",
                     pronoun: nametag.pronoun
                 }
             });
