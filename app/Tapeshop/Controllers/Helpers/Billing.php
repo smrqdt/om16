@@ -9,66 +9,93 @@ use fpdf\FPDF;
 class Billing extends FPDF
 {
 
-    function Header()
-    {
-        $this->Meta();
+	function Header()
+	{
+		$this->Meta();
 
-        // Print the Header
-        $this->SetFont('Arial', '', 10);
-        //TODO
-//		$this->Image(APP_PATH . 'assets/img/Ticketbestellungen.png', 0, 0, -150, -150);
-        $this->SetTextColor(255, 255, 255);
+		// Print the Header
+		$this->SetFont('Arial', '', 10);
+		//TODO
+		$this->Image(APP_PATH . 'assets/img/om15logo.jpg', 115, 20, -280, -280);
 
-        $this->Ln(49.5);
-        $this->Cell(16.5);
+		$this->Ln(20);
+		$this->Cell(16.5);
 
-        $this->Cell(472, 3, utf8_decode($this->order->address->name . " " . $this->order->address->lastname));
-        $this->Ln(6);
+		$this->Cell(472, 3, "Junge Piraten e.V.");
+		$this->Ln(6);
 
-        $this->Cell(16.5);
-        $this->Cell(472, 3, utf8_decode($this->order->address->street . " " . $this->order->address->building_number));
-        $this->Ln(6);
+		$this->Cell(16.5);
+		$this->Cell(472, 3, utf8_decode("Pflugstraße 9a"));
+		$this->Ln(6);
 
-        $this->Cell(16.5);
-        $this->Cell(472, 3, utf8_decode($this->order->address->postcode . " " . $this->order->address->city));
+		$this->Cell(16.5);
+		$this->Cell(472, 3, "10115 Berlin");
+		$this->Ln(6);
 
-        $this->Body();
-    }
+		$this->Ln(12);
+		$this->Cell(16.5);
 
-    function Meta()
-    {
-    }
+		$this->Cell(472, 3, utf8_decode($this->order->address->name . " " . $this->order->address->lastname));
+		$this->Ln(6);
 
-    function Body()
-    {
+		$this->Cell(16.5);
+		$this->Cell(472, 3, utf8_decode($this->order->address->street . " " . $this->order->address->building_number));
+		$this->Ln(6);
 
-        $this->Ln(37);
-        $this->Cell(16.5);
+		$this->Cell(16.5);
+		$this->Cell(472, 3, utf8_decode($this->order->address->postcode . " " . $this->order->address->city));
 
-        $this->SetTextColor(0, 0, 0);
+		$this->Ln(6);
+		$this->Cell(16.5);
 
-        // TODO use templates, e.g. smarty
-        $message =
-            "Hallo " . $this->order->address->name . ",\n
+
+		$this->Body();
+	}
+
+	function Meta()
+	{
+	}
+
+	/**
+	 * 6stelliger Ticketcode als Rechnungsnummer
+	 *
+	 */
+
+	function Body()
+	{
+
+		$this->Ln(60);
+		$this->Cell(16.5);
+		$this->Cell(130, 0, utf8_decode("Hallo " . $this->order->address->name . ","));
+		$this->Cell(0, 0, date('d.m.Y', $this->order->ordertime->getTimestamp()));
+
+		$this->Ln(6);
+		$this->Cell(16.5);
+
+		$message = "
+
+
+danke, dass du bei der Openmind Konferenz am 12. und 13. Oktober 2015 warst!\n
 \n
-danke für deine Bestellung!\n
-\n
-Hier deine Bestellung mit der Rechnungsnummer " . ORDER_PREFIX . $this->order->id . ".\n
+Hier die Rechnung für deine Bestellung mit der Rechnungsnummer 20150912" .str_pad($this->order->id, 4, '0', STR_PAD_LEFT)  . ".\n
 \n";
 
-        if ($this->order->hasTicketCodes()) {
-            $message .= "Um Zutritt zu der Veranstaltung zu bekommen weise dich mit folgendem Code aus : " . $this->order->getTicketcode() . "\n";
-        }
+		foreach ($this->order->orderitems as $orderitem) {
+			$message = $message . $orderitem->amount . " x - " . $orderitem->item->name . " (" . number_format($orderitem->getSum() / 100, 2, ",", ".") . " Euro)";
+			$message .= "\n\n";
+		}
 
-        foreach ($this->order->orderitems as $orderitem) {
-            $message = $message . $orderitem->amount . " x - '" . $orderitem->item->name . "'";
-            $message .= "\n\n";
-        }
-
-        $message = $message . "\n
+		$message .= "\nGesamt: " . number_format($this->order->getSum() / 100, 2, ",", ".") . " Euro";
+		$message = $message . "\n\n\n\n
+Nicht umsatzsteuerpflichtig nach § 19 Abs. 1 UStG (Kleinunternehmerregelung).\n
+\n
+Steuernummer: 27/669/51491\n\n
+Eingetragen beim Amtsgericht Charlottenburg, VR 30966 B\n\n
+Der Verein wird je einzeln vertreten durch Simon Marquardt (Schatzmeister) und Leo Bellersen\n
+(Generalsekretär). Bei Fragen wende dich an finanzen@junge-piraten.de.\n\n\n\n
 Viele Grüße,\n
-dein Tapeshop Team !\n";
+dein Openmind Team !\n";
 
-        $this->MultiCell(0, 2.2, utf8_decode($message));
-    }
+		$this->MultiCell(0, 2.2, utf8_decode($message));
+	}
 }
