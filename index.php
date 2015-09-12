@@ -81,6 +81,7 @@ $app->get('/admin/orders/', array($adminController, 'orders'))->name('adminorder
 
 // order routings
 $orderController = new \Tapeshop\Controllers\OrderController();
+$app->get('/order/allAsPdf/', array($orderController, 'allBillingsAsPdf'));
 $app->post('/order/', array($orderController, 'submitOrder'));
 $app->get('/order/:hash/', array($orderController, "order"))->name("order");
 $app->post('/order/delete/:id/', array($orderController, 'deleteOrder'));

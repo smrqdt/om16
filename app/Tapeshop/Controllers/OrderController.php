@@ -226,4 +226,33 @@ class OrderController extends Controller
 			$this->app->response()->header("Content-Type", "application/pdf");
 		}
 	}
+
+	public function allBillingsAsPdf()
+	{
+		$this->checkAdmin();
+
+		$orders = Order::find(
+			'all',
+			array(
+				'conditions' => array(
+					'status in (?)',
+					array(
+						'payed',
+						'shipped'
+					)
+				)
+			)
+		);
+
+		$billing = new Billing('P', 'mm', 'A4');
+
+		foreach ($orders as $order) {
+			$billing->order = $order;
+			$billing->AddPage();
+
+		}
+
+		$billing->Output();
+		$this->app->response()->header("Content-Type", "application/pdf");
+	}
 }

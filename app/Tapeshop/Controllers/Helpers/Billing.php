@@ -56,11 +56,6 @@ class Billing extends FPDF
 	{
 	}
 
-	/**
-	 * 6stelliger Ticketcode als Rechnungsnummer
-	 *
-	 */
-
 	function Body()
 	{
 
