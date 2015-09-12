@@ -82,8 +82,6 @@ Hier die Rechnung für deine Bestellung mit der Rechnungsnummer 20150912" .str_p
 		$message .= "\nGesamt: " . number_format($this->order->getSum() / 100, 2, ",", ".") . " Euro";
 		$message = $message . "\n\n\n\n
 Nicht umsatzsteuerpflichtig nach § 19 Abs. 1 UStG (Kleinunternehmerregelung).\n
-
-Betrag dankend erhalten.
 \n
 Steuernummer: 27/669/51491\n\n
 Eingetragen beim Amtsgericht Charlottenburg, VR 30966 B\n\n

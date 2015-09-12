@@ -231,18 +231,7 @@ class OrderController extends Controller
 	{
 		$this->checkAdmin();
 
-		$orders = Order::find(
-			'all',
-			array(
-				'conditions' => array(
-					'status in (?)',
-					array(
-						'payed',
-						'shipped'
-					)
-				)
-			)
-		);
+		$orders = Order::all();
 
 		$billing = new Billing('P', 'mm', 'A4');
 
