@@ -15,8 +15,7 @@ class Billing extends FPDF
 
 		// Print the Header
 		$this->SetFont('Arial', '', 10);
-		//TODO
-		$this->Image(APP_PATH . 'assets/img/om15logo.jpg', 115, 20, -280, -280);
+		$this->Image(__DIR__. '/../../../../assets/img/om15logo.jpg', 115, 20, -280, -280);
 
 		$this->Ln(20);
 		$this->Cell(16.5);
