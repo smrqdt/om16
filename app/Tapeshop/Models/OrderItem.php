@@ -14,7 +14,6 @@ use ActiveRecord\Model;
  * @property \Tapeshop\Models\Order order
  * @property int order_id
  * @property int id
- * @property array itemnumbers
  */
 class Orderitem extends Model
 {
@@ -23,10 +22,6 @@ class Orderitem extends Model
 		array('item'),
 		array('order'),
 		array('size')
-	);
-
-	static $has_many = array(
-		array('itemnumbers')
 	);
 
 	function getSum()

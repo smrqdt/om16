@@ -5,7 +5,6 @@ use DateTime;
 use Tapeshop\Controller;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Models\Item;
-use Tapeshop\Models\Itemnumber;
 use Tapeshop\Models\Order;
 use Tapeshop\Models\Orderitem;
 use Tapeshop\Models\User;
@@ -95,13 +94,6 @@ class AdminController extends Controller {
 			/** @var $oi OrderItem */
 			foreach ($order->orderitems as $oi) {
 				$item = $oi->item;
-				if ($item->numbered) {
-					/** @var $in ItemNumber */
-					foreach ($oi->itemnumbers as $in) {
-						$in->orderitem_id = null;
-						$in->save();
-					}
-				}
 
 				if ($item->manage_stock) {
 					if (!empty($oi->size)) {

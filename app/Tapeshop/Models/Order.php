@@ -15,9 +15,6 @@ use Tapeshop\Controllers\OrderStatus;
  * @property DateTime shippingtime
  * @property int address_id
  * @property String hashlink
- * @property String payment_id
- * @property int payment_fee
- * @property int payment_method_id
  * @property DateTime paymenttime
  * @property bool reminder_sent
  * @property String user_info_text
@@ -43,26 +40,12 @@ class Order extends Model
 		foreach ($this->orderitems as $item) {
 			$sum += $item->getSum();
 		}
-		return ($sum + $this->shipping + $this->payment_fee);
+		return ($sum + $this->shipping);
 	}
 
 	public function getOrderId()
 	{
 		return ORDER_PREFIX . $this->id;
-	}
-
-	public function getFeeFor($method)
-	{
-		switch ($method) {
-			case 'sofort':
-				$pm = PaymentMethod::find('first', array("conditions" => array("name = 'sofort'")));
-				return $pm->fix + $this->getSum() * $pm->fee;
-			case 'paypal':
-				$pm = PaymentMethod::find('first', array("conditions" => array("name = 'paypal'")));
-				return $pm->fix + $this->getSum() * $pm->fee;
-			default:
-				return 0;
-		}
 	}
 
 	/**

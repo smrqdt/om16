@@ -11,14 +11,11 @@ use ActiveRecord\RecordNotFound;
  * @property int shipping
  * @property int stock
  * @property boolean manage_stock
- * @property boolean ticketscript
  * @property String image
  * @property int id
  * @property array orderitems
  * @property $sizes Size
  * @property boolean numbered
- * @property array itemnumbers
- * @property boolean shownumbers
  * @property boolean ticketcode
  * @property int sort_order
  * @property boolean support_ticket
@@ -27,21 +24,8 @@ class Item extends Model {
 
 	static $has_many = array(
 		array('sizes', array('conditions' => array('deleted = false'))),
-		array('orderitems'),
-		array('itemnumbers')
+		array('orderitems')
 	);
-
-	function getUnrequestedNumberCount() {
-		return count($this->getFreeNumbers());
-	}
-
-	function getFreeNumbers() {
-		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = true and orderitem_id IS NULL', $this->id)));
-	}
-
-	function getInvalidNumbers() {
-		return Itemnumber::find('all', array('conditions' => array('item_id = ? and valid = false', $this->id)));
-	}
 
 	function getSizesCount() {
 		return array_filter($this->sizes, function ($object) { return !$object->deleted; });
@@ -93,11 +77,6 @@ class Item extends Model {
 			}
 		}
 
-		if ($this->numbered) {
-			if (count($this->getFreeNumbers()) >= $amount) {
-				return true;
-			}
-		}
 		return false;
 	}
 }

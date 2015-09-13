@@ -5,7 +5,6 @@ use ActiveRecord\ActiveRecordException;
 use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Models\Item;
-use Tapeshop\Models\Itemnumber;
 
 /**
  * Handle item operations.
@@ -122,7 +121,6 @@ class ItemController extends Controller
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
 				$item->shipping = $this->post("shipping") * 100;
-				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
 				$item->support_ticket = $this->post("support_ticket");
 				$item->sort_order = $this->post("sort_order");
@@ -131,10 +129,10 @@ class ItemController extends Controller
 					$item->save();
 				} catch (ActiveRecordException $e) {
 					$this->app->flashNow('error', 'Änderungen konnten nicht gespeichert werden! ' . $e->getMessage());
-					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping', 'ticketscript'));
+					$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shippping'));
 				}
 			} else {
-				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping', 'ticketscript'));
+				$this->useDataFromRequest('itemform', array('name', 'description', 'price', 'shipping'));
 				$this->app->flashNow('error', $this->errorOutput($v->errors()));
 			}
 		}
@@ -189,7 +187,6 @@ class ItemController extends Controller
 				$item->description = $this->post("description");
 				$item->price = $this->post("price") * 100;
 				$item->shipping = $this->post("shipping") * 100;
-				$item->ticketscript = $this->post("ticketscript");
 				$item->ticketcode = $this->post("ticketcode");
 				$item->support_ticket = $this->post("support_ticket") || false;
 				$item->sort_order = $this->post("sort_order");
@@ -250,41 +247,5 @@ class ItemController extends Controller
 		}
 
 		$this->redirect($this->app->urlFor('editItem', array('id' => $id)), false);
-	}
-
-	public function numbersPdf($id)
-	{
-		$this->checkAdmin();
-
-		$item = null;
-
-		try {
-			$item = Item::find($id);
-		} catch (RecordNotFound $e) {
-			$this->app->flash('error', 'Artikel nicht gefunden!');
-			$this->redirect('home');
-		}
-
-		$valid = Itemnumber::find('all', array("conditions" => array("item_id = ? AND valid = true", $id), "order" => "number"));
-		$invalid = Itemnumber::find('all', array("conditions" => array("item_id = ? AND valid = false", $id), "order" => "number"));
-		$msg = "";
-		foreach ($valid as $v) {
-			$msg .= $v->number . "\n";
-		}
-
-		$pdf = new \Tapeshop\Controllers\Helpers\NumbersPdf('P', 'mm', 'A4');
-		$pdf->SetTitle($item->name);
-		$pdf->SetAuthor('');
-		$pdf->PrintChapter(1, gettext("item.edit.numbers"), $msg);
-
-		$msg = "";
-		foreach ($invalid as $v) {
-			$msg .= $v->number . "\n";
-		}
-
-		$pdf->PrintChapter(2, gettext("item.edit.invalidnumbers"), $msg);
-
-		$pdf->Output();
-		$this->app->response()->header("Content-Type", "application/pdf");
 	}
 }

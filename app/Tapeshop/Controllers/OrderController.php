@@ -2,13 +2,11 @@
 namespace Tapeshop\Controllers;
 
 use ActiveRecord\ActiveRecordException;
-use ActiveRecord\DateTime;
 use ActiveRecord\RecordNotFound;
 use Tapeshop\Controller;
 use Tapeshop\Controllers\Helpers\Billing;
 use Tapeshop\Controllers\Helpers\EmailOutbound;
 use Tapeshop\Models\Item;
-use Tapeshop\Models\Itemnumber;
 use Tapeshop\Models\Order;
 use Tapeshop\Models\Orderitem;
 use Tapeshop\Models\Size;
@@ -84,20 +82,6 @@ class OrderController extends Controller
 
 				$orderitem->save();
 				$orderitem->reload();
-
-				if ($item->numbered) {
-					$freenumbers = $item->getFreeNumbers();
-					if (count($freenumbers) < $ci["amount"]) {
-						array_push($outofstock['items'], $item->id);
-					} else {
-						for ($i = 0; $i < $ci["amount"]; $i++) {
-							/** @var Itemnumber $number */
-							$number = $freenumbers[$i];
-							$number->orderitem_id = $orderitem->id;
-							$number->save();
-						}
-					}
-				}
 
 				$shipping = max($shipping, $ci["item"]->shipping);
 			}

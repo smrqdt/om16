@@ -148,14 +148,6 @@ class ShopController extends Controller
 		$this->render("shop/checkout.html", array("checkoutform" => $formData));
 	}
 
-	/**
-	 * Show Ticketscript page.
-	 */
-	public function ticketscript()
-	{
-		$this->render('ticketscript.html');
-	}
-
 	public function nametags()
 	{
 		$this->render('shop/nametags.tpl');

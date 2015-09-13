@@ -70,7 +70,6 @@ $app->get('/shop', array($shopController, 'index'));
 $app->get('/tickets', array($shopController, 'shop'));
 $app->get('/checkout/', array($shopController, 'checkout'))->name("checkout");
 $app->post('/noSignup/', array($shopController, "noSignup"));
-$app->get('/ticketscript/', array($shopController, "ticketscript"));
 $app->get('/changeaddress', array($shopController, 'changeAddress'));
 
 // Admin routings
@@ -110,7 +109,6 @@ $app->map('/item/edit/:id/', array($itemController, 'edit'))->via('GET', 'POST')
 $app->post('/item/delete/:id/', array($itemController, 'delete'));
 $app->post('/item/:id/removeimage/', array($itemController, 'removeImage'));
 $app->map('/items/create/', array($itemController, 'create'))->via('GET', 'POST');
-$app->post('/item/:id/numberspdf', array($itemController, 'numbersPdf'));
 
 $ticketcodeController = new \Tapeshop\Controllers\TicketcodeController();
 $app->get('/ticketcodes/:item_id', array($ticketcodeController, 'show'))->name('ticketcodes');
@@ -130,13 +128,6 @@ $app->put('/stocks/variation/:id/', array($stocks, 'addVariation'));
 $variations = new \Tapeshop\Rest\VariationsAPI();
 $app->post('/variations/', array($variations, 'add'));
 $app->delete('/variations/:id/', array($variations, 'delete'));
-
-$numbers = new \Tapeshop\Rest\NumbersAPI();
-$app->put('/items/:id/numbered/', array($numbers, 'updateManageNumbers'));
-$app->put('/items/:id/shownumbers', array($numbers, 'updateShowNumbers'));
-$app->put('/numbers/:id/', array($numbers, 'updateNumbers'));
-$app->put('/numbers/invalid/:id/', array($numbers, 'updateInvalidNumbers'));
-$app->put('/numbers/override/:id/', array($numbers, 'overrideWarning'));
 
 $orders = new \Tapeshop\Rest\OrdersAPI();
 $app->get('/orders/allAsCsv', array($orders, 'allAsCsv'));

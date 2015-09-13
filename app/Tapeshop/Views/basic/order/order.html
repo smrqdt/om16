@@ -119,15 +119,7 @@
 				class="img-square"
 				style="background-color: #ddd; height: 50px; width: 50px;" />
 			</td>
-			<td>{$item->item->name}
-                {if $item->item->numbered && ($item->item->shownumbers || (isset($smarty.session['auth_user']) && $user->admin))}
-                    <br />{_("item.numbers")}:
-                    {foreach $item->itemnumbers as $in}
-                        {$in->number}{if not $in@last},
-                        {/if}
-                    {/foreach}
-                {/if}
-			</td>
+			<td>{$item->item->name}</td>
 			<td>{if $item->size}{$item->size->size}{/if}</td>
 			<td>{$item->amount}</td>
 			<td>{($item->price/100)|number_format:2:",":"."} €</td>
@@ -143,56 +135,11 @@
 		</tr>
 		<tr>
 			<td colspan="4" style="border-top:none"></td>
-			<td><b>{_("order.fees")}</b></td>
-			<td><b>{($order->payment_fee / 100)|number_format:2:",":"."} €</b>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4" style="border-top:none"></td>
 			<td><b>{_("order.total")}</b></td>
 			<td><b>{($order->getSum() / 100)|number_format:2:",":"."} €</b>
 			</td>
 		</tr>
 	</table>
-	{if ! $order->isPayed() && $order->payment_id == null}
-	<div id="paymentMethods">
-		Jetzt bezahlen:
-		<a href="#sofortModal" role="button" class="btn" data-toggle="modal"><img src="{$path}assets/img/SOFORT_Ueberweisung/icon-48x32.png">
-		+ {($order->getFeeFor('sofort') / 100)|number_format:2:",":"."} €</a>
-		
-		<script src="{$path}node_modules/paypaljsbuttons/dist/paypal-button.min.js?merchant={$paypal_merchant_id}"
-    	data-button="buynow" 
-    	data-name="{$order->id}" 
-    	data-amount="{(($order->getSum() + $order->getFeeFor('paypal')) / 100)|number_format:2:".":""}"
-    	data-currency="EUR"
-    	data-locale="DE" 
-    	data-callback="{$path}payment/paypal/notification" 
-    	data-env="sandbox"
-></script> + {($order->getFeeFor('paypal') / 100)|number_format:2:",":"."} €
-	</div>
-
-	<div id="sofortModal" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">{_("payment.sofort.header")}</h3>
-		</div>
-		<form method="post" action="{$path}payment/sofort/pay" style="display:inline">
-			<div class="modal-body">
-				<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
-				<input type="hidden" name="orderId" value="{$order->id}" /> <label>{_("payment.sofort.account.holder")}</label>
-				<input type="text" name="accountHolder" /> <label>{_("payment.sofort.account.number")}</label>
-				<input type="text" name="accountNumber" /> <label>{_("payment.sofort.bankcode")}</label>
-				<input type="text" name="bankcode" />
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button type="submit" class="btn">{_("payment.sofort.pay")}</button>
-			</div>
-		</form>
-	</div>
-{/if}
 {/block}
 
 {block name=moreScripts}
