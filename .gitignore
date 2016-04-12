@@ -1,0 +1,20 @@
+# eclipse noise
+.project
+.settings/
+.buildpath
+
+# idea noise
+.idea/
+tapeshop.iml
+
+# project noise
+templates_c/
+config.php
+upload/
+vendor/
+build/
+node_modules/
+
+# webserver config
+.htaccess
+mysql.cnf

@@ -1,0 +1,530 @@
+StartFontMetrics 4.1
+FontName Merit
+FullName Merit
+Notice Copyright [c] 2012 by Scott Simpson. All rights reserved.
+EncodingScheme FontSpecific
+FamilyName Merit
+Weight Regular
+Version Version 1.000
+Characters 101
+ItalicAngle 0.0
+Ascender 750
+Descender -250
+UnderlineThickness 50
+UnderlinePosition -75
+IsFixedPitch false
+FontBBox -52 -254 1195 913
+StartCharMetrics 256
+C 0 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 1 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 2 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 3 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 4 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 5 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 6 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 7 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 8 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 9 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 10 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 11 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 12 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 13 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 14 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 15 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 16 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 17 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 18 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 19 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 20 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 21 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 22 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 23 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 24 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 25 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 26 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 27 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 28 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 29 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 30 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 31 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 32 ; WX 333 ; N _d_53 ; B 15 -8 257 234 ;
+C 33 ; WX 274 ; N _d_68 ; B 20 -8 254 700 ;
+C 34 ; WX 523 ; N _d_99 ; B 5 371 520 746 ;
+C 35 ; WX 664 ; N _d_91 ; B 12 -111 652 596 ;
+C 36 ; WX 680 ; N _d_84 ; B 15 -100 673 800 ;
+C 37 ; WX 682 ; N _d_92 ; B 10 -36 672 689 ;
+C 38 ; WX 527 ; N _d_95 ; B 11 0 516 486 ;
+C 39 ; WX 260 ; N _d_72 ; B 5 394 297 746 ;
+C 40 ; WX 290 ; N _d_80 ; B 15 -213 290 913 ;
+C 41 ; WX 290 ; N _d_81 ; B 0 -213 275 913 ;
+C 42 ; WX 406 ; N _d_88 ; B 7 327 398 700 ;
+C 43 ; WX 528 ; N _d_73 ; B 11 0 516 486 ;
+C 44 ; WX 309 ; N _d_65 ; B 3 -175 306 185 ;
+C 45 ; WX 383 ; N _d_77 ; B 10 174 373 312 ;
+C 46 ; WX 273 ; N _d_54 ; B 15 -8 257 234 ;
+C 47 ; WX 371 ; N _d_85 ; B -30 -188 402 888 ;
+C 48 ; WX 595 ; N _d_55 ; B 15 -10 582 660 ;
+C 49 ; WX 429 ; N _d_56 ; B 30 0 413 650 ;
+C 50 ; WX 589 ; N _d_57 ; B 20 0 571 660 ;
+C 51 ; WX 568 ; N _d_58 ; B 15 -10 546 660 ;
+C 52 ; WX 573 ; N _d_59 ; B 15 0 554 650 ;
+C 53 ; WX 565 ; N _d_60 ; B 9 -10 548 650 ;
+C 54 ; WX 559 ; N _d_61 ; B 15 -10 546 660 ;
+C 55 ; WX 581 ; N _d_62 ; B 12 0 559 650 ;
+C 56 ; WX 559 ; N _d_63 ; B 15 -10 545 660 ;
+C 57 ; WX 559 ; N _d_64 ; B 12 -10 543 660 ;
+C 58 ; WX 262 ; N _d_67 ; B 15 -8 247 494 ;
+C 59 ; WX 336 ; N _d_66 ; B 3 -168 321 494 ;
+C 60 ; WX 523 ; N _d_75 ; B 10 -64 512 550 ;
+C 61 ; WX 527 ; N _d_74 ; B 11 45 516 444 ;
+C 62 ; WX 524 ; N _d_76 ; B 11 -64 513 550 ;
+C 63 ; WX 528 ; N _d_69 ; B 8 -8 518 720 ;
+C 64 ; WX 673 ; N _d_94 ; B 15 -67 658 553 ;
+C 65 ; WX 776 ; N _d_26 ; B 10 0 766 700 ;
+C 66 ; WX 727 ; N .null ; B 30 0 714 700 ;
+C 67 ; WX 716 ; N _d_2 ; B 15 -12 701 712 ;
+C 68 ; WX 694 ; N _d_3 ; B 30 0 679 700 ;
+C 69 ; WX 645 ; N _d_4 ; B 30 0 634 700 ;
+C 70 ; WX 644 ; N _d_5 ; B 30 0 634 700 ;
+C 71 ; WX 750 ; N _d_6 ; B 15 -12 733 712 ;
+C 72 ; WX 841 ; N _d_7 ; B 30 0 811 700 ;
+C 73 ; WX 461 ; N _d_8 ; B 40 0 421 700 ;
+C 74 ; WX 430 ; N _d_9 ; B -52 -211 410 700 ;
+C 75 ; WX 805 ; N _d_10 ; B 30 0 794 700 ;
+C 76 ; WX 636 ; N _d_11 ; B 30 0 634 700 ;
+C 77 ; WX 1013 ; N _d_12 ; B 30 0 983 700 ;
+C 78 ; WX 823 ; N _d_13 ; B 30 0 803 700 ;
+C 79 ; WX 733 ; N _d_14 ; B 15 -12 718 712 ;
+C 80 ; WX 696 ; N _d_15 ; B 30 0 695 700 ;
+C 81 ; WX 776 ; N _d_16 ; B 15 -12 766 712 ;
+C 82 ; WX 777 ; N _d_17 ; B 30 0 767 700 ;
+C 83 ; WX 680 ; N _d_18 ; B 15 -12 673 712 ;
+C 84 ; WX 691 ; N _d_19 ; B 10 0 681 700 ;
+C 85 ; WX 823 ; N _d_20 ; B 10 -12 813 700 ;
+C 86 ; WX 779 ; N _d_21 ; B 10 0 769 700 ;
+C 87 ; WX 1050 ; N _d_22 ; B 10 0 1040 700 ;
+C 88 ; WX 711 ; N _d_23 ; B 10 0 701 700 ;
+C 89 ; WX 720 ; N _d_24 ; B 10 0 710 700 ;
+C 90 ; WX 777 ; N _d_25 ; B 10 0 762 700 ;
+C 91 ; WX 332 ; N _d_82 ; B 30 -184 353 886 ;
+C 92 ; WX 371 ; N _d_86 ; B -30 -188 402 888 ;
+C 93 ; WX 332 ; N _d_83 ; B -20 -184 303 886 ;
+C 94 ; WX 633 ; N _d_93 ; B 10 -16 624 486 ;
+C 95 ; WX 571 ; N _d_96 ; B 10 0 560 138 ;
+C 96 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 97 ; WX 609 ; N _d_28 ; B 10 -6 598 518 ;
+C 98 ; WX 657 ; N _d_29 ; B 20 -8 642 700 ;
+C 99 ; WX 532 ; N _d_30 ; B 15 -8 518 494 ;
+C 100 ; WX 657 ; N _d_31 ; B 15 -8 637 700 ;
+C 101 ; WX 558 ; N _d_32 ; B 15 -8 544 494 ;
+C 102 ; WX 420 ; N _d_33 ; B 23 0 439 720 ;
+C 103 ; WX 652 ; N _d_34 ; B 15 -214 637 494 ;
+C 104 ; WX 793 ; N _d_35 ; B 20 0 784 700 ;
+C 105 ; WX 395 ; N _d_36 ; B 30 0 383 787 ;
+C 106 ; WX 352 ; N _d_37 ; B -9 -231 326 787 ;
+C 107 ; WX 754 ; N _d_38 ; B 20 0 744 700 ;
+C 108 ; WX 414 ; N _d_39 ; B 26 0 388 700 ;
+C 109 ; WX 1204 ; N _d_27 ; B 30 0 1195 494 ;
+C 110 ; WX 803 ; N _d_40 ; B 30 0 793 494 ;
+C 111 ; WX 598 ; N _d_41 ; B 15 -8 583 494 ;
+C 112 ; WX 657 ; N _d_42 ; B 20 -214 642 494 ;
+C 113 ; WX 657 ; N _d_43 ; B 15 -214 637 494 ;
+C 114 ; WX 485 ; N _d_44 ; B 30 0 476 493 ;
+C 115 ; WX 566 ; N _d_45 ; B 22 -8 552 494 ;
+C 116 ; WX 387 ; N _d_46 ; B 13 -6 387 700 ;
+C 117 ; WX 746 ; N _d_47 ; B 10 -8 735 486 ;
+C 118 ; WX 661 ; N _d_48 ; B 10 0 651 486 ;
+C 119 ; WX 965 ; N _d_49 ; B 10 0 955 486 ;
+C 120 ; WX 604 ; N _d_50 ; B 18 0 586 486 ;
+C 121 ; WX 664 ; N _d_51 ; B 11 -257 653 486 ;
+C 122 ; WX 575 ; N _d_52 ; B 13 0 563 486 ;
+C 123 ; WX 277 ; N _d_89 ; B 10 -185 276 885 ;
+C 124 ; WX 238 ; N _d_87 ; B 42 -185 197 885 ;
+C 125 ; WX 278 ; N _d_90 ; B 1 -185 267 885 ;
+C 126 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 127 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 128 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 129 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 130 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 131 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 132 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 133 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 134 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 135 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 136 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 137 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 138 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 139 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 140 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 141 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 142 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 143 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 144 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 145 ; WX 307 ; N _d_98 ; B 7 394 299 746 ;
+C 146 ; WX 305 ; N _d_97 ; B 7 394 299 746 ;
+C 147 ; WX 526 ; N _d_71 ; B 5 371 520 746 ;
+C 148 ; WX 526 ; N _d_70 ; B 5 371 520 746 ;
+C 149 ; WX 315 ; N _d_100 ; B 15 225 299 476 ;
+C 150 ; WX 570 ; N _d_78 ; B 10 174 560 312 ;
+C 151 ; WX 819 ; N _d_79 ; B 10 173 810 311 ;
+C 152 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 153 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 154 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 155 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 156 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 157 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 158 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 159 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 160 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 161 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 162 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 163 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 164 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 165 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 166 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 167 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 168 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 169 ; WX 260 ; N _d_72 ; B 5 394 297 746 ;
+C 170 ; WX 526 ; N _d_71 ; B 5 371 520 746 ;
+C 171 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 172 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 173 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 174 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 175 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 176 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 177 ; WX 570 ; N _d_78 ; B 10 174 560 312 ;
+C 178 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 179 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 180 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 181 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 182 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 183 ; WX 315 ; N _d_100 ; B 15 225 299 476 ;
+C 184 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 185 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 186 ; WX 526 ; N _d_70 ; B 5 371 520 746 ;
+C 187 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 188 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 189 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 190 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 191 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 192 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 193 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 194 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 195 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 196 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 197 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 198 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 199 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 200 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 201 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 202 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 203 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 204 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 205 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 206 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 207 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 208 ; WX 819 ; N _d_79 ; B 10 173 810 311 ;
+C 209 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 210 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 211 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 212 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 213 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 214 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 215 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 216 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 217 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 218 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 219 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 220 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 221 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 222 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 223 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 224 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 225 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 226 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 227 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 228 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 229 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 230 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 231 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 232 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 233 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 234 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 235 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 236 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 237 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 238 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 239 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 240 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 241 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 242 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 243 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 244 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 245 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 246 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 247 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 248 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 249 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 250 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 251 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 252 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 253 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 254 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+C 255 ; WX 500 ; N .notdef ; B 30 0 714 700 ;
+EndCharMetrics
+StartKernData
+StartKernPairs 251
+KPX _d_3 .null -31
+KPX _d_3 _d_3 -31
+KPX _d_3 _d_4 -31
+KPX _d_3 _d_5 -32
+KPX _d_3 _d_7 -31
+KPX _d_3 _d_8 -31
+KPX _d_3 _d_9 -31
+KPX _d_3 _d_10 -31
+KPX _d_3 _d_11 -31
+KPX _d_3 _d_12 -31
+KPX _d_3 _d_13 -31
+KPX _d_3 _d_15 -32
+KPX _d_3 _d_17 -31
+KPX _d_3 _d_20 -31
+KPX _d_3 _d_21 -52
+KPX _d_3 _d_22 -52
+KPX _d_3 _d_23 -31
+KPX _d_3 _d_24 -52
+KPX _d_3 _d_26 -53
+KPX _d_3 _d_29 -21
+KPX _d_3 _d_35 -21
+KPX _d_3 _d_38 -21
+KPX _d_3 _d_39 -21
+KPX _d_5 _d_26 -104
+KPX _d_6 _d_19 -21
+KPX _d_6 _d_20 -21
+KPX _d_6 _d_21 -42
+KPX _d_6 _d_22 -31
+KPX _d_6 _d_24 -42
+KPX _d_7 _d_2 -31
+KPX _d_7 _d_6 -31
+KPX _d_7 _d_14 -31
+KPX _d_7 _d_16 -32
+KPX _d_8 _d_2 -32
+KPX _d_8 _d_6 -32
+KPX _d_8 _d_14 -32
+KPX _d_8 _d_16 -31
+KPX _d_9 _d_2 -31
+KPX _d_9 _d_6 -31
+KPX _d_9 _d_14 -31
+KPX _d_9 _d_16 -31
+KPX _d_10 _d_2 -42
+KPX _d_10 _d_6 -42
+KPX _d_10 _d_14 -42
+KPX _d_10 _d_16 -42
+KPX _d_11 _d_2 -10
+KPX _d_11 _d_6 -10
+KPX _d_11 _d_16 -10
+KPX _d_12 _d_2 -32
+KPX _d_12 _d_6 -31
+KPX _d_12 _d_14 -31
+KPX _d_12 _d_16 -31
+KPX _d_13 _d_2 -32
+KPX _d_13 _d_6 -31
+KPX _d_13 _d_14 -31
+KPX _d_13 _d_16 -31
+KPX _d_14 .null -31
+KPX _d_14 _d_3 -31
+KPX _d_14 _d_4 -31
+KPX _d_14 _d_5 -31
+KPX _d_14 _d_7 -31
+KPX _d_14 _d_8 -32
+KPX _d_14 _d_9 -31
+KPX _d_14 _d_10 -31
+KPX _d_14 _d_11 -31
+KPX _d_14 _d_12 -32
+KPX _d_14 _d_13 -32
+KPX _d_14 _d_15 -31
+KPX _d_14 _d_17 -31
+KPX _d_14 _d_20 -31
+KPX _d_14 _d_21 -52
+KPX _d_14 _d_22 -52
+KPX _d_14 _d_23 -32
+KPX _d_14 _d_24 -52
+KPX _d_14 _d_26 -52
+KPX _d_14 _d_29 -21
+KPX _d_14 _d_35 -21
+KPX _d_14 _d_38 -21
+KPX _d_14 _d_39 -21
+KPX _d_15 _d_26 -115
+KPX _d_16 _d_2 -31
+KPX _d_16 _d_6 -31
+KPX _d_16 _d_16 -31
+KPX _d_16 _d_19 -41
+KPX _d_16 _d_20 -63
+KPX _d_16 _d_21 -73
+KPX _d_16 _d_22 -63
+KPX _d_16 _d_24 -83
+KPX _d_17 _d_2 -31
+KPX _d_17 _d_6 -31
+KPX _d_17 _d_14 -31
+KPX _d_17 _d_16 -31
+KPX _d_17 _d_19 -31
+KPX _d_17 _d_21 -83
+KPX _d_17 _d_22 -52
+KPX _d_19 _d_26 -73
+KPX _d_20 _d_2 -32
+KPX _d_20 _d_6 -31
+KPX _d_20 _d_14 -32
+KPX _d_20 _d_16 -52
+KPX _d_21 _d_2 -52
+KPX _d_21 _d_6 -52
+KPX _d_21 _d_14 -52
+KPX _d_21 _d_16 -52
+KPX _d_21 _d_26 -104
+KPX _d_21 _d_27 -62
+KPX _d_21 _d_28 -83
+KPX _d_21 _d_30 -94
+KPX _d_21 _d_31 -93
+KPX _d_21 _d_32 -94
+KPX _d_21 _d_33 -62
+KPX _d_21 _d_37 -41
+KPX _d_21 _d_40 -63
+KPX _d_21 _d_41 -93
+KPX _d_21 _d_42 -94
+KPX _d_21 _d_43 -94
+KPX _d_21 _d_44 -62
+KPX _d_21 _d_45 -115
+KPX _d_21 _d_47 -83
+KPX _d_21 _d_48 -73
+KPX _d_21 _d_49 -42
+KPX _d_21 _d_50 -62
+KPX _d_21 _d_51 -41
+KPX _d_21 _d_52 -83
+KPX _d_22 _d_2 -52
+KPX _d_22 _d_6 -52
+KPX _d_22 _d_14 -52
+KPX _d_22 _d_16 -52
+KPX _d_22 _d_26 -104
+KPX _d_22 _d_27 -63
+KPX _d_22 _d_28 -84
+KPX _d_22 _d_30 -94
+KPX _d_22 _d_31 -94
+KPX _d_22 _d_32 -94
+KPX _d_22 _d_33 -42
+KPX _d_22 _d_34 -94
+KPX _d_22 _d_36 -62
+KPX _d_22 _d_40 -62
+KPX _d_22 _d_41 -83
+KPX _d_22 _d_42 -94
+KPX _d_22 _d_43 -94
+KPX _d_22 _d_44 -62
+KPX _d_22 _d_45 -104
+KPX _d_22 _d_47 -83
+KPX _d_22 _d_48 -94
+KPX _d_22 _d_50 -63
+KPX _d_22 _d_51 -52
+KPX _d_22 _d_52 -63
+KPX _d_23 _d_2 -32
+KPX _d_23 _d_6 -32
+KPX _d_23 _d_14 -32
+KPX _d_23 _d_16 -31
+KPX _d_24 _d_2 -52
+KPX _d_24 _d_6 -52
+KPX _d_24 _d_14 -52
+KPX _d_24 _d_16 -52
+KPX _d_24 _d_26 -94
+KPX _d_26 _d_2 -52
+KPX _d_26 _d_6 -52
+KPX _d_26 _d_14 -63
+KPX _d_26 _d_16 -52
+KPX _d_26 _d_19 -93
+KPX _d_26 _d_21 -125
+KPX _d_26 _d_22 -125
+KPX _d_26 _d_24 -104
+KPX _d_27 _d_22 -73
+KPX _d_27 _d_46 -41
+KPX _d_27 _d_47 -52
+KPX _d_27 _d_48 -73
+KPX _d_27 _d_49 -73
+KPX _d_27 _d_51 -73
+KPX _d_28 _d_21 -94
+KPX _d_28 _d_22 -83
+KPX _d_28 _d_47 -31
+KPX _d_28 _d_48 -31
+KPX _d_28 _d_49 -32
+KPX _d_28 _d_51 -31
+KPX _d_29 _d_21 -93
+KPX _d_30 _d_22 -42
+KPX _d_31 _d_22 -42
+KPX _d_31 _d_47 -41
+KPX _d_31 _d_48 -52
+KPX _d_31 _d_49 -52
+KPX _d_31 _d_51 -53
+KPX _d_32 _d_21 -63
+KPX _d_32 _d_22 -62
+KPX _d_33 _d_21 52
+KPX _d_33 _d_22 42
+KPX _d_34 _d_21 -31
+KPX _d_34 _d_22 -31
+KPX _d_35 _d_21 -145
+KPX _d_35 _d_46 -42
+KPX _d_35 _d_47 -52
+KPX _d_35 _d_48 -73
+KPX _d_35 _d_49 -73
+KPX _d_35 _d_51 -73
+KPX _d_36 _d_21 -21
+KPX _d_36 _d_46 -21
+KPX _d_36 _d_47 -32
+KPX _d_36 _d_48 -52
+KPX _d_36 _d_49 -52
+KPX _d_36 _d_51 -52
+KPX _d_38 _d_21 -114
+KPX _d_39 _d_21 -63
+KPX _d_39 _d_47 -52
+KPX _d_39 _d_48 -42
+KPX _d_39 _d_49 -41
+KPX _d_39 _d_51 -42
+KPX _d_40 _d_21 -104
+KPX _d_40 _d_22 -73
+KPX _d_40 _d_46 -42
+KPX _d_40 _d_47 -52
+KPX _d_40 _d_48 -73
+KPX _d_40 _d_49 -73
+KPX _d_40 _d_51 -73
+KPX _d_41 _d_21 -62
+KPX _d_41 _d_22 -63
+KPX _d_42 _d_21 -94
+KPX _d_42 _d_22 -63
+KPX _d_43 _d_21 -32
+KPX _d_43 _d_22 -32
+KPX _d_44 _d_21 -20
+KPX _d_44 _d_22 -20
+KPX _d_45 _d_21 -31
+KPX _d_45 _d_22 -41
+KPX _d_46 _d_21 -31
+KPX _d_46 _d_46 -10
+KPX _d_46 _d_47 -21
+KPX _d_46 _d_48 -20
+KPX _d_46 _d_49 -21
+KPX _d_46 _d_51 -21
+KPX _d_47 _d_46 -41
+KPX _d_47 _d_47 -31
+KPX _d_47 _d_48 -52
+KPX _d_47 _d_49 -52
+KPX _d_47 _d_51 -52
+KPX _d_48 _d_21 -21
+KPX _d_48 _d_22 -31
+KPX _d_48 _d_54 -63
+KPX _d_48 _d_65 -125
+KPX _d_49 _d_21 -11
+KPX _d_49 _d_54 -42
+KPX _d_49 _d_65 -83
+KPX _d_50 _d_21 -41
+KPX _d_51 _d_21 -41
+KPX _d_51 _d_22 -32
+KPX _d_51 _d_35 -32
+KPX _d_51 _d_54 -63
+KPX _d_51 _d_65 -125
+KPX _d_52 _d_21 -52
+KPX _d_52 _d_22 -31
+EndKernPairs
+EndKernData
+EndFontMetrics

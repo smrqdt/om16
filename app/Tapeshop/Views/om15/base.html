@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{$shop_name}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <base href="{$path}">
+
+    <!-- Le styles -->
+    <link href="{$path}assets/css/bootstrap.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/styles.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/om15.css" rel="stylesheet" media="all">
+    <link href="{$path}assets/css/bootstrap-responsive.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="{$path}assets/css/print.css" rel="stylesheet" media="print">
+    {block name=moreStyles}{/block}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="{$path}node_modules/hteml5shiv/dist/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+{block name="pagehead"}{/block}
+<div class="container">
+    {if isset($flash['error'])}
+    <div class="alert alert-error">
+        {foreach from=$flash['error'] item=msg}
+        {$msg}<br/>
+        {/foreach}
+    </div>
+    {/if}
+
+    {if isset($flash['warn'])}
+    <div class="alert">
+        {foreach from=$flash['warn'] item=msg}
+        {$msg}<br/>
+        {/foreach}
+    </div>
+    {/if}
+
+    {if isset($flash['info'])}
+    <div class="alert alert-info">
+        {foreach from=$flash['info'] item=msg}
+        {$msg}<br/>
+        {/foreach}
+    </div>
+    {/if}
+
+    {if isset($flash['success'])}
+    <div class="alert alert-success">
+        {foreach from=$flash['success'] item=msg}
+        {$msg}<br/>
+        {/foreach}
+    </div>
+    {/if}
+
+    {block name=content}{/block}
+</div>
+
+<div id="footer">
+    <div class="container">
+        <div class="social-media-icons">
+
+            <ul>
+                <li>
+                    <a href="https://twitter.com/openmindkonf" target="_blank">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x twitter"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/openmind.konferenz" target="_blank">
+                    <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x facebook"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span></a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/118100230661845993722" target="_blank">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x gplus"></i>
+                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{$path}node_modules/jquery/dist/jquery.min.js"></script>
+<script src="{$path}assets/js/bootstrap.min.js"></script>
+<script src="{$path}node_modules/angular/angular.min.js"></script>
+<script src="{$path}node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+{block name=moreScripts}{/block}
+</body>
+</html>

@@ -1,0 +1,103 @@
+{extends file="baseWithNav.html"}
+
+{block name=content}
+<div class="row">
+    <h1>{_("shop.checkout")}</h1>
+
+    <br>
+
+    <form class="form-horizontal" method="post" action="{$path}noSignup">
+        <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+
+        <p>Wir benötigen noch einige Daten von dir um deine Bestellung abzuschließen.</p>
+        <p>Deine E-Mail-Adresse musst du angeben. An diese Adresse schicken wir dein Ticket, nach dem du bezahlt hast!</p>
+
+        <div class="control-group">
+            <label class="control-label" for="email">{_("user.email")}</label>
+
+            <div class="controls">
+                <input type="text" id="email" name="email" placeholder="{_("user.email")}"
+                       value="{if isset($checkoutform)}{$checkoutform['email']}{/if}">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="user_info_text">Zusätzliche Angaben</label>
+
+            <div class="controls">
+                <textarea id="user_info_text" name="user_info_text" placeholder="Allergien, Fleisch, Unverträglichketien, ..."
+                maxlength="512">{if isset($checkoutform)}{$checkoutform['user_info_text']}{/if}</textarea>
+            </div>
+        </div>
+
+        <br>
+
+        <p>Bitte gib die Adresse ein, die auf deiner Rechnung stehen soll. Wenn du keine Rechnung benötigst, kannst du
+            diese einfach leer lassen.</p>
+
+        <div class="control-group">
+            <label class="control-label" for="name">{_("user.firstname")}</label>
+
+            <div class="controls">
+                <input type="text" id="name" name="name" placeholder="{_("user.firstname")}"
+                       value="{if isset($checkoutform)}{$checkoutform['name']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="lastname">{_("user.lastname")}</label>
+
+            <div class="controls">
+                <input type="text" id="lastname" name="lastname"
+                       placeholder="{_("user.lastname")}"
+                       value="{if isset($checkoutform)}{$checkoutform['lastname']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="street">{_("address.street")}</label>
+
+            <div class="controls">
+                <input type="text" id="street" name="street" placeholder="{_("address.street")}"
+                       value="{if isset($checkoutform)}{$checkoutform['street']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="bulding_number">{_("address.buildingnumber")}</label>
+
+            <div class="controls">
+                <input type="text" id="bulding_number" name="building_number"
+                       placeholder="{_("address.buildingnumber")}"
+                       value="{if isset($checkoutform)}{$checkoutform['building_number']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="postcode">{_("address.postcode")}</label>
+
+            <div class="controls">
+                <input type="text" id="postcode" name="postcode"
+                       placeholder="{_("address.postcode")}"
+                       value="{if isset($checkoutform)}{$checkoutform['postcode']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="city">{_("address.city")}</label>
+
+            <div class="controls">
+                <input type="text" id="city" name="city" placeholder="{_("address.city")}"
+                       value="{if isset($checkoutform)}{$checkoutform['city']}{/if}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="country">{_("address.country")}</label>
+
+            <div class="controls">
+                <input type="text" id="country" name="country" placeholder="{_("address.country")}"
+                       value="{if isset($checkoutform)}{$checkoutform['country']}{/if}">
+            </div>
+        </div>
+        <div class="controls">
+            <a href="tickets" class="btn btn-white">Zurück</a>
+            <button type="submit" class="btn btn-white">{_("checkout.continue")}</button>
+        </div>
+    </form>
+</div>
+{/block}
