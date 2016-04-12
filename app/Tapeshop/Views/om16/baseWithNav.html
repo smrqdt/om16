@@ -1,0 +1,84 @@
+{extends file="base.html"}
+
+{block name=pagehead}
+
+<div class="page-head">
+    <a href="{$path}">
+        <img src="{$path}assets/img/om15logo.jpg">
+    </a>
+
+    <div class="pull-right social-media-icons">
+        <ul>
+            <li>
+                <a href="https://twitter.com/openmindkonf" target="_blank">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x twitter"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/openmind.konferenz" target="_blank">
+                    <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x facebook"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span></a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/118100230661845993722" target="_blank">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x gplus"></i>
+                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="navbar om-navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="{$path}">{$shop_name}</a>
+
+            <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                    {if isset($smarty.session['auth_user']['logged_in']) && $smarty.session['auth_user']['logged_in']}
+                    {*{_("shop.loggedinas")} {$user->email}*} <a href="{$path}logout" id="logoutButton"
+                                                                 class="btn btn-small btn-inverse navbar-link">{_("shop.button.logout")}</a>
+                    {else}
+                    {*<a href="{$path}login" id="loginButton"
+                       class="btn btn-small btn-white navbar-link">{_("login.text")}</a>*}
+                    {/if}
+                </p>
+                <ul class="nav">
+                    <li><a href="{$path}programm">Programm</a></li>
+                    <li><a href="{$path}einreichen">Einreichen</a></li>
+                    <li><a href="{$path}tickets">Tickets</a></li>
+                    <li><a href="{$path}anti-harassment-policy">Anti-Harassment-Policy</a></li>
+                    <li><a href="{$path}kontakt">Kontakt</a></li>
+
+                    <!--
+                    <li><a href="{$path}cart">{_("shop.nav.cart")} {if isset($noCartItems) && $noCartItems}<span class="badge">{$noCartItems}</span>{/if}</a></li>
+                    -->
+
+                    {if isset($smarty.session['auth_user']['logged_in']) && $smarty.session['auth_user']['logged_in'] &&
+                    $user->admin}
+                    <li class="divider-vertical"></li>
+                    <li><a href="{$path}admin">{_("shop.nav.users")}</a></li>
+                    <li><a href="{$path}admin/items">{_("shop.nav.items")}</a></li>
+                    <li><a href="{$path}admin/orders">{_("shop.nav.orders")}</a></li>
+                    {/if}
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+{/block}

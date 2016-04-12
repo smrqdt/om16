@@ -1,0 +1,170 @@
+{extends file="baseWithNav.html"}
+
+{block name=content}
+	<table class="table" id="ordersTable">
+		<thead>
+			<tr>
+				<th>
+					{_("order.status")}
+				</th>
+				<th>
+					{_("order.paymentstatus")}
+				</th>
+				<th>
+					{_("order.ticketcodes")}
+				</th>
+				<th>
+					{_("order.billingnumber")}
+				</th>
+				<th>
+					{_("order.customer")}
+				</th>
+				<th>
+					{_("item.count")}
+				</th>
+				<th>
+					{_("order.total")}
+				</th>
+				<th>
+					{_("order.lastaction")}
+				</th>
+				<th>
+					{_("show")}
+				</th>
+				<th>
+					{_("delete")}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach $orders as $order}
+			{if $order->isPayed()}
+			<tr class="error">
+			{elseif $order->isShipped()}
+			<tr class="success">
+			{elseif $order->payment_status=='loss' || $order->payment_status=='pending' || $order->payment_status=='partially_credited' || $order->payment_status=='untraceable'}
+			<tr class="warning">
+			{else}
+			<tr>
+			{/if}
+				<td>
+					{$order->status}
+				</td>
+				<td>
+					{$order->payment_status}
+				</td>
+				<td>
+					{$order->getTicketcode()}
+				</td>
+				<td>
+					TS-{$order->id}
+				</td>
+				<td>
+					{$order->user->currentAddress()->name} {$order->user->currentAddress()->lastname}
+				</td>
+				<td>
+					{count($order->orderitems)}
+				</td>
+				<td>
+					{($order->getSum()/100)|number_format:2:",":"."} €
+				</td>
+				<td>
+					{if $order->shippingtime}
+						{$order->shippingtime->format('d.m.Y')}
+					{elseif $order->paymenttime}
+						{$order->paymenttime->format('d.m.Y')}
+					{else}
+						{$order->ordertime->format('d.m.Y')}
+					{/if}
+				</td>
+				<td>
+					<a href="{$path}order/{$order->hashlink}" class="btn"><i class="icon-share"></i></a>
+				</td>
+				<td>
+					<form method="post" action="{$path}order/delete/{$order->id}" style="display:inline">
+						<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+						<button type="submit" class="btn"><i class="icon-trash"></i></button>
+					</form>
+				</td>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+{/block}
+
+{block name=moreStyles}
+    <link href="{$path}assets/css/DT_bootstrap.css" rel="stylesheet" media="all">
+{/block}
+{block name=moreScripts}
+    <script src="{$path}node_modules/drmonty-datatables/js/jquery.dataTables.min.js"></script>
+    <script src="{$path}assets/js/DT_bootstrap.js"></script>
+{literal}
+	<script type="text/javascript">
+	
+		$.fn.dataTableExt.oSort['date-de-asc']  = function(x,y) {
+			var a = x.split(".");
+			var b = y.split(".");
+			if(a[2] > b[2]){
+				return 1;
+			}else if(a[2] < b[2]){
+				return -1;
+			}else{
+				if(a[1] > b[1]){
+					return 1;
+				}else if(a[1] < b[1]){
+					return -1;
+				}else{
+					if(a[0] > b[0]){
+						return 1;
+					}else if(a[0] < b[0]){
+						return -1;
+					}
+				}
+			}
+		    return 0;
+		};
+		 
+		$.fn.dataTableExt.oSort['date-de-desc'] = function(x,y) {
+			var a = x.split(".");
+			var b = y.split(".");
+			if(a[2] > b[2]){
+				return -1;
+			}else if(a[2] < b[2]){
+				return 1;
+			}else{
+				if(a[1] > b[1]){
+					return -1;
+				}else if(a[1] < b[1]){
+					return 1;
+				}else{
+					if(a[0] > b[0]){
+						return -1;
+					}else if(a[0] < b[0]){
+						return 1;
+					}
+				}
+			}
+		    return 0;
+		};
+		
+    	/* orders table initialisation */
+    	$(document).ready(function() {
+        	$('#ordersTable').dataTable({
+        		"aaSorting": [[ 7, "desc" ]],
+				"aoColumns": [
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				null,
+				{"sType": "date-de"},
+				{ "bSortable": false, "bSearchable" : false},
+				{ "bSortable": false, "bSearchable" : false }
+				]
+			});
+    	});
+	</script>
+{/literal}
+{/block}

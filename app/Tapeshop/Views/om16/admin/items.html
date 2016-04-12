@@ -1,0 +1,96 @@
+{extends file="baseWithNav.html"}
+{block name=content}
+	<a href="{$path}items/create" class="btn"><i class="icon-plus"></i> {_("button.item.new")}</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					{_("item.id")}
+				</th>
+				<th>
+					{_("item.name")}
+				</th>
+				<th>
+					{_("item.description")}
+				</th>
+				<th>
+					{_("item.price")}
+				</th>
+				<th>
+					{_("item.variation")}
+				</th>
+				<th>
+					{_("item.image")}
+				</th>
+				<th>
+					{_("show")}
+				</th>
+				<th>
+					{_("edit")}
+				</th>
+				<th>
+					{_("delete")}
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach from=$items item=item}
+			{if $item->numbered && $item->getUnrequestedNumberCount() <= 0}
+				<tr class="error">
+			{else}
+				<tr>
+			{/if}
+				<td>
+					{$item->id}
+				</td>
+				<td>
+					{$item->name}
+				</td>
+				<td>
+					{$item->description} 
+					{if $item->numbered}
+						{if $item->getUnrequestedNumberCount() <= 0}
+							<p class="text-error">
+						{else}
+							<p class="text-info">
+						{/if}
+						<em>{$item->getUnrequestedNumberCount()} {_("item.edit.numbers")}{_("item.left")}</em>
+					</p>
+					{/if}
+                    {if $item->manage_stock}
+                    {if $item->stock <= 0}
+                    <p class="text-error">
+                        {else}
+                    <p class="text-info">
+                        {/if}
+                        <em>{$item->stock} {_("shop.nav.items")}{_("item.left")}</em>
+                    </p>
+                    {/if}
+				</td>
+				<td>
+					{($item->price/100)|number_format:2:",":"."} €
+				</td>
+				<td>
+					{count($item->getSizesCount())}
+				</td>
+				<td>
+					<img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-square" style="background-color:#ddd; height:50px;width:50px;" />
+				</td>
+				<td>
+					<a href="{$path}item/{$item->id}" class="btn"><i class="icon-share"></i></a>
+				</td>
+				<td>
+					<a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i></a>
+				</td>
+				<td>
+				<form method="post"
+					action="{$path}item/delete/{$item->id}">
+					<input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+					<button type="submit" class="btn"><i class="icon-trash"></i></button>
+				</form>
+				</td>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+{/block}

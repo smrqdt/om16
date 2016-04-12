@@ -1,0 +1,86 @@
+{extends file="baseWithNav.html"}
+
+{block name=content}
+<div class="row" id="item-detail">
+    <div class="span6 offset1">
+        <h4 class="muted">
+            {$item->name}
+        </h4>
+        <img src="{if $item->image}{$item->image}{else}{$item_placeholder}{/if}" class="img-rounded"
+             style="background-color:#ddd;"/>
+    </div>
+
+    {if isset($smarty.session['auth_user']) && $user->admin}
+    <div class="span4">
+        <div class="well">
+            {if $item->ticketcode}
+            <a href="{$path}ticketcodes/{$item->id}" class="btn"><i class="icon-list"></i> {_("item.ticketcodes")}</a>
+            {/if}
+            <a href="{$path}item/edit/{$item->id}" class="btn"><i class="icon-pencil"></i> {_("item.edit")}</a>
+
+            <form method="post" action="{$path}item/delete/{$item->id}" style="display:inline;">
+                <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> {_("item.delete")}</button>
+            </form>
+        </div>
+    </div>
+    {/if}
+
+    <div class="span4" id="item-details">
+        <div class="well">
+            <h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
+
+            <form method="post" action="{$path}cart/addItem/{$item->id}">
+                <input type="hidden" name="{$csrf_key}" value="{$csrf_token}">
+                {if !$item->inStock()}
+                <p class="text-error">{_("item.outofstock")}</p>
+                {else}
+                {if $item->sizes}
+                <select id="size" name="size" class="btn span6">
+                    {foreach from=$item->sizes item=size}
+                    {if $item->inStock(1, $size)}
+                    <option>{$size->size}</option>
+                    {/if}
+                    {/foreach}
+                </select>
+                {/if}
+                <div class="btn-group">
+                    <input type="submit" value="{_('item.add')}" class="btn btn-primary"/>
+                </div>
+                {/if}
+            </form>
+            <p>{$item->description}</p>
+            {if $item->sizes}
+            <b class="muted">{_("item.availablein")}</b>
+            {foreach $item->sizes as $size}
+            {$size->size}{if ! $size@last}, {/if}
+            {/foreach}
+            {/if}
+            <h5>{($item->price/100.0)|number_format:2:",":"."} €</h5>
+        </div>
+    </div>
+
+    {if $amounts}
+    <div class="span4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Size</th>
+                <th>Ordered (without overdue)</th>
+                <th>Payed</th>
+            </tr>
+            </thead>
+            <tbody>
+                {foreach $amounts as $key => $value}
+                <tr>
+                    <td>{$key}</td>
+                    <td>{$value["ordered"]}</td>
+                    <td>{$value["payed"]}</td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+    {/if}
+</div>
+{/block}
