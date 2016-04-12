@@ -1,5 +1,6 @@
 <?php
 define("APP_PATH", (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://" . $_SERVER['SERVER_NAME'] . str_replace("index.php", "", $_SERVER['SCRIPT_NAME']));
+date_default_timezone_set('Europe/Berlin');
 
 require 'vendor/autoload.php';
 require_once 'config.php';
@@ -62,7 +63,7 @@ $app->add(new \Tapeshop\Middleware\CsrfGuard());
 $loginController = new Tapeshop\Controllers\LoginController();
 $app->map('/login/', array($loginController, 'login'))->via('GET', 'POST')->name('login');
 $app->get('/logout/', array($loginController, 'logout'))->name('logout');
-//$app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
+$app->map('/signup/', array($loginController, 'signup'))->via('GET', 'POST')->name('signup');
 
 // Shop
 $shopController = new Tapeshop\Controllers\ShopController();

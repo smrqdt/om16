@@ -4,7 +4,7 @@
 
 <div class="page-head">
     <a href="{$path}">
-        <img src="{$path}assets/img/om15logo.jpg">
+        <img src="{$path}assets/img/om16-logo-entwurf.png">
     </a>
 
     <div class="pull-right social-media-icons">
@@ -74,6 +74,10 @@
                     <li><a href="{$path}admin">{_("shop.nav.users")}</a></li>
                     <li><a href="{$path}admin/items">{_("shop.nav.items")}</a></li>
                     <li><a href="{$path}admin/orders">{_("shop.nav.orders")}</a></li>
+                    {else}
+                    <li class="divider-vertical"></li>
+                    <li><a href="{$path}login">Anmelden</a></li>
+                    <li><a href="{$path}signup">Admin Account erstellen</a></li>
                     {/if}
                 </ul>
             </div>

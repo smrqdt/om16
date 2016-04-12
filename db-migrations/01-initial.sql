@@ -1,6 +1,6 @@
 SET time_zone = "+00:00";
-CREATE DATABASE IF NOT EXISTS `tapeshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE tapeshop;
+CREATE DATABASE IF NOT EXISTS `om16` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE om16;
 
 CREATE TABLE `addresses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
