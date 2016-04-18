@@ -3,29 +3,31 @@
 {block name=content}
     <div class="row">
         <div class="span7 index-text">
-            <h1>#om15 – take your space</h1>
+            <h1>openmind2016 - Upon New Ground</h1>
 
-            <p>Nimm deinen Platz ein.</p>
+            <p>Sei mutig! Wage dich auf neues Terrain.</p>
 
-            <p>Menschen werden aus ihren Räumen vertrieben. Zu selten wird der vorhandene Platz solidarisch geteilt. Wieder und wieder muss der Raum erkämpft werden, der einer jeden Person zusteht.
-                <br />Zugleich gibt es auch Menschen, die sich so breit machen, dass anderen kaum Luft zum Leben bleibt.</p>
+            <p>Einen Schritt in eine neue Umgebung zu machen erfordert Mut, Neugier und Risikobereitschaft. Gleich ob du zum Arbeiten oder Studieren in eine andere Stadt ziehst, dein Glück in einem anderen Land suchst, etwas Neues lernst, dich selbst verändern möchtest, oder du Altbekanntes mit anderen Augen siehst. Es bietet Chancen. Für uns alle.</p>
 
-            <p>Was ist „Raum“?<br />
-                Welche Lebensräume gibt es und wie können wir sie hacken?<br />
-                Wem gehört Raum?<br />
-                Wie kann Raum gestaltet werden?<br />
-                Welche Wirkung erzeugen Architekturen?</p>
+            <p>Viele Menschen haben jedoch gar keine Wahl. Sie begeben sich in ein unbekanntes Land und eine unbekannte Kultur, weil sie um ihr Leben fürchten, und fangen hier ganz von vorne an.</p>
 
-            <p>Die openmind-Konferenz lädt Visionär*innen, Philosoph*innen, Aktivist*innen, Wissenschaftler*innen und viele mehr in die Jugendherberge Kassel ein, um eine neue Gesellschaft zu denken.</p>
+            <p>Was bedeutet es, gewohntes Terrain zu verlassen?</p>
 
-            <p>Die sechste openmind-Konferenz findet vom 11. bis 13. September 2015 statt. Die Einreichungsphase für Vorträge ist inzwischen vorbei, aber du bist herzlich eingeladen, deine Ideen als Workshop oder Beitrag für das Spontanprogramm (Barcamp) vorzubereiten und mitzubringen. Ob aus den Bereichen Soziologie, Physik, Psychologie, Geographie, Bildung, Politik, Gesellschaft, Weltraum oder anderen Zukunftsthemen – bereichere die openmind!</p>
+            <p>Welche Ängste haben wir?<br>
+            Wie können wir denen helfen, für die hier alles neu ist?<br>
+            Was werden wir entdecken?<br>
+            Was lernen wir über uns selbst, wenn wir Neues wagen?</p>
 
-            <br>
-            <h3>Wann und wo</h3>
-            <p>Die openmind #om15 ist eine dreitägige, familiäre Konferenz zu politischen, netzpolitischen, gesellschaftlichen und visionären Themen.</p>
+            <p>Lasst uns gemeinsam Mut fassen, Risiken eingehen, Ängste besiegen, Chancen ergreifen und Neues schaffen!</p>
 
-            <p>Sie findet seit 2010 jährlich in der Jugendherberge Kassel statt. Offiziell wird sie von den Jungen Pirat*innen. organisiert, ist offen und überparteilich eine der angenehmsten und spannendsten politischen Veranstaltungen Deutschlands.</p>
-            <p>Schau dir das <a href="programm">Programm</a> oder unseren <a href="einreichen">Call for Participation</a> an, um genauer zu erfahren, worum es geht und wie du mitmachen kannst!</p>
+            <p>Auch die openmind selbst wagt einen Schritt, und erfindet sich ein Stück neu.<br>
+            Sei gespannt.</p>
+
+            <!-- *allgemeiner Text* -->
+            <p>Die openmind Konferenz lädt Visionär*innen, Philosoph*innen, Aktivist*innen, Wissenschaftler*innen und viele mehr in die Jugendherberge Darmstadt ein, um eine bessere Gesellschaft zu denken.
+            Die siebte openmind Konferenz findet vom 14. bis 16. Oktober 2016 statt. Du bist herzlich eingeladen, deine Ideen als Workshop oder Beitrag im <a href="einreichen">Call for Participation</a> *bis zum xx. xx. 2016 * einzureichen. Zusätzlich hast du die Möglichkeit im Spontanprogramm (Barcamp) unterzukommen.</p>
+
+            <!--<p>Schau dir das <a href="programm">Programm</a> oder unseren  an, um genauer zu erfahren, worum es geht und wie du mitmachen kannst!</p>
 
             <p>Die #om15 findet statt vom 11. bis 13. September 2015 (Freitag bis Sonntag), wie üblich in der <a href="http://www.djh-hessen.de/jugendherbergen/kassel/" target="_blank">Jugendherberge Kassel</a>:</p>
 
@@ -39,7 +41,8 @@
 
             <p>Der Veranstaltungsort ist leider <b>nicht</b> barrierefrei.</p>
 
-            Die <a href="https://plus.google.com/104462428945039874523/about" target="_blank">Jugendherberge Kassel auf Google+</a>.
+            Die <a href="https://plus.google.com/104462428945039874523/about" target="_blank">Jugendherberge Kassel auf Google+</a>.-->
+            
             <br>
             <br>
             <br>
