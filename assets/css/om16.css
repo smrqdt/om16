@@ -62,11 +62,11 @@
 
 /* basic styling overrides */
 a {
-	color: #6b6f9b;
+	color: #94c11f;
 }
 
 a:hover {
-	color: #8b91cd;
+	color: #a9d925;
 }
 
 .navbar .btn-navbar .icon-bar {
@@ -145,13 +145,13 @@ a:hover {
 	color: #e1e4e5;
 	background-color: #3f435d;
 	*/
-	background-color: #B95C49;
-	color: #1F1D3D;
+	background-color: #cd715c;
+	color: #222249;
 }
 
 body {
-	background-color: #B95C49;
-	color: #1F1D3D;
+	background-color: #cd715c;
+	color: #16162e;
 }
 
 .page-head {
