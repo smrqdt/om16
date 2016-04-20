@@ -8,9 +8,6 @@
 					{_("order.status")}
 				</th>
 				<th>
-					{_("order.paymentstatus")}
-				</th>
-				<th>
 					{_("order.ticketcodes")}
 				</th>
 				<th>
@@ -42,16 +39,10 @@
 			<tr class="error">
 			{elseif $order->isShipped()}
 			<tr class="success">
-			{elseif $order->payment_status=='loss' || $order->payment_status=='pending' || $order->payment_status=='partially_credited' || $order->payment_status=='untraceable'}
-			<tr class="warning">
-			{else}
 			<tr>
 			{/if}
 				<td>
 					{$order->status}
-				</td>
-				<td>
-					{$order->payment_status}
 				</td>
 				<td>
 					{$order->getTicketcode()}
