@@ -66,8 +66,7 @@ To install Tapeshop from the source you need [composer](http://www.getcomposer.o
 		 * Paypal settings
 		 */
 		define('PAYPAL_EMAIL', ''); // your paypal email.
-		define('PAYPAL_MERCHANT_ID', '');
-     
+
 
 
 5. Create the directorys ```upload``` and ```templates_c``` in the Tapeshop directory and grant read, write, and execute permissions.

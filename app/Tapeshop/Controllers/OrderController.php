@@ -176,8 +176,7 @@ class OrderController extends Controller
 
 			$data = array(
 				"orderPrefix" => ORDER_PREFIX,
-				"order" => $order,
-				"paypal_merchant_id" => PAYPAL_MERCHANT_ID
+				"order" => $order
 			);
 
 			$this->render("order/order.html", $data);
