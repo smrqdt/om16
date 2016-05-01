@@ -58,7 +58,7 @@ $app->add(new \Tapeshop\Middleware\CsrfGuard());
 /*
  * Set up routes
  */
-
+/*
 // Login
 $loginController = new Tapeshop\Controllers\LoginController();
 $app->map('/login/', array($loginController, 'login'))->via('GET', 'POST')->name('login');
@@ -81,7 +81,7 @@ $app->get('/admin/orders/', array($adminController, 'orders'))->name('adminorder
 
 // order routings
 $orderController = new \Tapeshop\Controllers\OrderController();
-$app->get('/order/allAsPdf/', array($orderController, 'allBillingsAsPdf'));
+$app->get('/order/allAsPdf/', array($orderController, 'allBillingsAsPdf')); //TODO
 $app->post('/order/', array($orderController, 'submitOrder'));
 $app->get('/order/:hash/', array($orderController, "order"))->name("order");
 $app->post('/order/delete/:id/', array($orderController, 'deleteOrder'));
@@ -131,7 +131,7 @@ $app->post('/variations/', array($variations, 'add'));
 $app->delete('/variations/:id/', array($variations, 'delete'));
 
 $orders = new \Tapeshop\Rest\OrdersAPI();
-$app->get('/orders/allAsCsv', array($orders, 'allAsCsv'));
+$app->get('/orders/allAsCsv', array($orders, 'allAsCsv')); //TODO
 $app->get('/orders/:id/', array($orders, 'get'));
 $app->put('/orders/:id/payed/', array($orders, 'payed'));
 $app->put('/orders/:id/notpayed/', array($orders, 'notpayed'));
@@ -149,12 +149,12 @@ $nametags = new \Tapeshop\Rest\NametagAPI();
 $app->get('/nametags/:order_id', array($nametags, 'get'));
 $app->post('/nametags/', array($nametags, 'create'));
 $app->delete('/nametags/:id', array($nametags, 'delete'));
-$app->get('/namensschilder/allAsCsv', array($nametags, 'allAsCsv'));
+$app->get('/namensschilder/allAsCsv', array($nametags, 'allAsCsv')); //TODO
 
 $app->get('/orders/ticketcode/:ticketcode', array($orders, 'findByTicketcode'));
 
-$app->get('/namensschilder/', array($shopController, 'nametags'));
-
+$app->get('/namensschilder/', array($shopController, 'nametags')); //TODO
+*/
 
 // Static Pages
 // Needs to be placed last, since it all not defined routes

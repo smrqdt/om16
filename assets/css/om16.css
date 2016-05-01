@@ -39,34 +39,33 @@
 }
 
 #cart .table td,
-.review-items td ,
+.review-items td,
 .order-summary td,
-.order-summary th{
+.order-summary th {
 	border-top: 1px solid #1F1D3D;
 }
+
 .order-summary td.noborder,
-.order-summary th.noborder{
+.order-summary th.noborder {
 	border-top: none;
 }
 
-
-
 #cart .table td.cart-total,
-.review-items td.review-total{
+.review-items td.review-total {
 	border-top: 3px double #1F1D3D;
 }
 
-.submit-order-controls div{
-	margin-top:20px;
+.submit-order-controls div {
+	margin-top: 20px;
 }
 
 /* basic styling overrides */
 a {
-	color: #94c11f;
+	color: #4f4c97;
 }
 
 a:hover {
-	color: #a9d925;
+	color: #5c58b0;
 }
 
 .navbar .btn-navbar .icon-bar {
@@ -245,7 +244,7 @@ body {
 .side-container .quote .blackbox {
 	position: relative;
 	top: 70px;
-	left: 60px;
+	left: 12%;
 	background-color: black;
 	height: 12px;
 	width: 80%;
@@ -256,7 +255,7 @@ body {
 	font-size: 2em;
 	line-height: 1.3em;
 	border: none;
-	padding: 0 8% 0 18%;
+	padding: 0 8% 0 12%;
 	margin-top: 100px;
 }
 
