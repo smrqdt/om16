@@ -15,10 +15,12 @@ class StaticController extends Controller
 	 */
 	public function renderStaticPage($pageName)
 	{
+		$templatePath = $this->app->view()->getTemplatesDirectory() . '/static/' . $pageName . '.tpl';
 		try {
-			$templatePath = $this->app->view()->getTemplatesDirectory() . '/static/' . $pageName . '.tpl';
 			$this->render($templatePath);
 		} catch (SmartyException $e) {
+			error_log("Could not reder template " . $templatePath);
+			error_log($e);
 			$this->redirect("home");
 		}
 	}
