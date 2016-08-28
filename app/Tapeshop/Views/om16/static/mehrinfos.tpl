@@ -26,11 +26,7 @@
                 seinen Facetten mit sich bringt.</p>
 
             <p><b>Wie und wo kann ich Tickets kaufen?</b><br>
-                Der Ticketverkauf hat noch nicht begonnen. Um auf dem Laufenden zu bleiben, empfehlen wir dir, uns bei
-                <a href="https://twitter.com/openmindkonf"
-                   target="_blank">Twitter</a>, <a
-                    href="https://www.facebook.com/openmind.konferenz" target="_blank">Facebook</a> oder <a
-                    href="https://plus.google.com/118100230661845993722" target="_blank">Google+</a> zu folgen.</p>
+                In unserem <a href="https://shop.openmind-konferenz.de/">Ticketshop</a>.</a></p>
 
             <br>
             <br>
