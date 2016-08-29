@@ -29,17 +29,9 @@
                 uns und lerne Menschen kennen, mit denen du sie weiter entwickeln kannst. Wir sind gespannt auf deinen
                 Beitrag und deine persönliche Interpretation von “Upon New Ground”.</p>
 
-            <p><strong><a href="https://docs.google.com/forms/d/11iX47fFyKHaWfcCdS3siTwQa2zNZbtm5BNXSIeSBfro/viewform">Du bist herzlich eingeladen, deine Ideen als Workshop oder Vortrag bis zum 15.08.2016 im Call for
-                    Participation einzureichen!</a></strong> Zusätzlich hast du die Möglichkeit im Spontanprogramm (Barcamp)
+            <p><Der Call for Participation für das Vortragsprogramm ist leider vorbei. Du hast jedoch noch die Möglichkeit im Spontanprogramm (Barcamp)
                 vor Ort
                 unterzukommen.</p>
-
-            <p>Die einzelnen Beiträge sollen nicht länger als 30-45 Minuten sein, anschließend ist jeweils eine von uns
-                moderierte Frage- bzw. Diskussionsrunde.
-            </p>
-            <p>Das Content Team wählt unter den eingereichten Beiträgen bis zum 31. August aus und informiert dich
-                darüber,
-                ob du Teil des Programms bist.</p>
 
             <br>
             <br>
