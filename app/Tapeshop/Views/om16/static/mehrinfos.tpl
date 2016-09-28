@@ -27,7 +27,8 @@
 
             <p><b>Wie und wo kann ich Tickets kaufen?</b><br>
                  Im <a href="https://shop.openmind-konferenz.de">Ticketshop</a>.</p>
-
+            <p><b>Ich kann mir das Ticket nicht leisten!</b><br>
+                 Kein Problem! Fülle einfach unser kurzes <a href="https://shop.openmind-konferenz.de/soli-ticket/">Formular</a> aus und schlage und einen Preis vor.</p>
             <br>
             <br>
             <br>
